@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>research | hyunjun yi</title>
+<meta name="description" content="Hyunjun Yi. AI research at AIscend, analytic number theory, director of YIMO.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <a href="index.html">home</a>
+  <a href="research.html" class="on">research</a>
+  <a href="cv.html">cv</a>
+  <a href="mailto:hjyi2027@gmail.com">contact</a>
+</nav>
+<h1 style="margin:56px 0 10px">research</h1>
+<p class="lede" style="color:var(--muted)">two threads. what language models do when you change something unreported, and analytic number theory.</p>
+
+<h2>language models</h2><hr class="rule">
+
+<div class="item">
+  <h3>the sampler is a confound: decoding configuration rivals model choice in llm mathematical reasoning</h3>
+  <p class="meta">math-ai 2026 (neurips workshop) &middot; under review</p>
+  <p>a math-reasoning number is a function of model, prompt, benchmark, and decoding configuration. the last one is almost never reported and almost never held constant across papers. from a fully crossed design i estimate the sampler's variance share against the model's, and the rate at which a comparison between two models inverts under a sampler change nobody documented. the agentic extension measures how that variance compounds across multi-step reasoning.</p>
+</div>
+
+<div class="item">
+  <h3>restored lines</h3>
+  <p class="meta">aiscend &middot; <a href="https://github.com/AIscend-Research">code</a></p>
+  <p>a line break is the smallest unit of poetic will. nothing in the sentence about the red wheelbarrow requires anyone to break it after "wheel". williams did that. this strips the breaks off public-domain poems, asks a model to restore them, and scores breaks that follow the syntax separately from breaks that fight it, using the dependency arcs a break has to cut. the prediction was that models would miss the second kind. on free verse with every surface cue removed, opus 5 recovers 70 percent of the hardest ones.</p>
+</div>
+
+<div class="item">
+  <h3>erasure</h3>
+  <p class="meta">aiscend &middot; <a href="https://github.com/AIscend-Research">code</a></p>
+  <p>give a model a passage and a single operator, delete. change one word of the instruction. asked for a summary, opus 5 keeps proper nouns at +0.70 log-odds. asked for a poem, it cuts them at -0.73. random deletion sits at +0.08. the words that go to zero survival are the ones that say which thing this is (president, north, pursuant). the words that survive are home, wildlife, shadow, water, hope. run the same design on gpt-oss-120b and half of it reverses.</p>
+</div>
+
+<div class="item">
+  <h3>the unchosen word</h3>
+  <p class="meta">aiscend &middot; language models as editors of poetic indeterminacy</p>
+  <p>dickinson wrote alternative words beside her lines and crossed none of them out. for most of the late fragments no fair copy was ever made, so the alternatives are the poem, a field of readings held open on purpose. printed editions close that field. this asks what a language model does with the same manuscripts, and whether the demand for one fluent output is itself an editorial act.</p>
+</div>
+
+<div class="item">
+  <h3>specscope: what did the operator learn?</h3>
+  <p class="meta">aiscend &middot; extension of the litefno reproduction</p>
+  <p>treats a trained fourier neural operator's spectral weights as an empirical transfer function of the system rather than as opaque parameters, and pulls out their pole structure with classical system identification. two questions: does that readout predict where the surrogate fails, and do the learned factors transplant across regimes? the testbed is an exactly solvable oscillatory pde, so the per-mode poles are known in closed form and "what the network should have learned" is not a matter of opinion.</p>
+</div>
+
+<h2>number theory</h2><hr class="rule">
+
+<div class="item">
+  <h3>partitions and q-series</h3>
+  <p class="meta">in progress</p>
+  <p>ongoing work on integer partitions, q-series, and special values of l-functions.</p>
+</div>
+
+<div class="item">
+  <h3>the basel problem and the riemann zeta function</h3>
+  <p class="meta">expository &middot; <a href="https://hjyi2027.github.io/jun-yi-math-research/">writeup</a></p>
+  <p>several routes to &zeta;(2) = &pi;&sup2;/6, then the bernoulli-number machinery that hands you every even zeta value at once, and why the odd ones stay out of reach.</p>
+</div>
+
+<div class="item">
+  <h3>computational experiments with &zeta;(s)</h3>
+  <p class="meta">notes and python &middot; <a href="https://github.com/hjyi2027">code</a></p>
+  <p>convergence rates for the naive series against euler-maclaurin corrections, and how many terms you actually need for a given accuracy.</p>
+</div>
+<footer>
+  <span>&copy; 2026 hyunjun yi</span>
+  <span>seoul, korea</span>
+</footer>
+</div>
+</body>
+</html>
