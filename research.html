@@ -4,78 +4,118 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>research | hyunjun yi</title>
-<meta name="description" content="Hyunjun Yi. AI research at AIscend, analytic number theory, director of YIMO.">
+<meta name="description" content="papers and code by hyunjun yi: poetics and decoding in language models, a litefno reproducibility study, and analytic number theory writeups.">
+<meta name="author" content="Hyunjun Yi">
+<link rel="canonical" href="https://hjyi2027.github.io/research.html">
+<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e0e0c" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="research | hyunjun yi">
+<meta property="og:description" content="papers and code: poetics and decoding in language models, a litefno reproducibility study, analytic number theory.">
+<meta property="og:url" content="https://hjyi2027.github.io/research.html">
+<meta property="og:image" content="https://hjyi2027.github.io/photo.jpg">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%238a5a2b'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-family='Georgia,serif' font-size='40' fill='%23fbfaf7'%3Ey%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script>document.documentElement.classList.add('js-reveal')</script>
 </head>
 <body>
+<a class="skip" href="#main">skip to content</a>
 <div class="wrap">
-<nav>
-  <a href="index.html">home</a>
-  <a href="research.html" class="on">research</a>
-  <a href="cv.html">cv</a>
-  <a href="mailto:hjyi2027@gmail.com">contact</a>
+<nav aria-label="site">
+  <ul>
+    <li><a href="index.html">home</a></li>
+    <li><a href="research.html" aria-current="page">research</a></li>
+    <li><a href="cv.html">cv</a></li>
+    <li><a href="mailto:hjyi2027@gmail.com">contact</a></li>
+  </ul>
 </nav>
-<h1 style="margin:56px 0 10px">research</h1>
-<p class="lede" style="color:var(--muted)">two threads. what language models do when you change something unreported, and analytic number theory.</p>
+<main id="main">
+<h1 class="page-title">research</h1>
+<p class="lede muted">what language models do when you change something nobody reports, and some analytic number theory. every item links to its paper, code, or both.</p>
 
-<h2>language models</h2><hr class="rule">
+<h2 id="language-models">language models</h2>
 
-<div class="item">
-  <h3>the sampler is a confound: decoding configuration rivals model choice in llm mathematical reasoning</h3>
-  <p class="meta">math-ai 2026 (neurips workshop) &middot; under review</p>
-  <p>a math-reasoning number is a function of model, prompt, benchmark, and decoding configuration. the last one is almost never reported and almost never held constant across papers. from a fully crossed design i estimate the sampler's variance share against the model's, and the rate at which a comparison between two models inverts under a sampler change nobody documented. the agentic extension measures how that variance compounds across multi-step reasoning.</p>
+<h3 class="sub" id="poetics">poetics</h3>
+
+<div class="item" id="restored-lines">
+  <h3><a href="https://aiscend-research.github.io/papers/restored-lines.pdf">restored lines: a model finds the poet's hardest line breaks and declines to write them</a></h3>
+  <p class="meta">2026 &middot; sole author &middot; <a href="https://aiscend-research.github.io/papers/restored-lines.pdf">pdf</a> &middot; <a href="https://github.com/hjyi2027/Restored-Lines">code</a></p>
+  <p>a line break is the smallest unit of poetic will. nothing in the sentence about the red wheelbarrow requires anyone to break it after "wheel". williams did that. this strips the breaks off public-domain poems, asks a model to restore them, and scores breaks that follow the syntax separately from breaks that fight it, using the dependency arcs a break has to cut. the prediction was that models would miss the second kind. on free verse with every surface cue removed, claude opus 5 recovers 70 percent of the hardest enjambments where syntax alone predicts 13 percent. asked to write free verse of its own, it produces those breaks at half the human rate.</p>
 </div>
 
-<div class="item">
-  <h3>restored lines</h3>
-  <p class="meta">aiscend &middot; <a href="https://github.com/AIscend-Research">code</a></p>
-  <p>a line break is the smallest unit of poetic will. nothing in the sentence about the red wheelbarrow requires anyone to break it after "wheel". williams did that. this strips the breaks off public-domain poems, asks a model to restore them, and scores breaks that follow the syntax separately from breaks that fight it, using the dependency arcs a break has to cut. the prediction was that models would miss the second kind. on free verse with every surface cue removed, opus 5 recovers 70 percent of the hardest ones.</p>
-</div>
-
-<div class="item">
-  <h3>erasure</h3>
-  <p class="meta">aiscend &middot; <a href="https://github.com/AIscend-Research">code</a></p>
+<div class="item" id="erasure">
+  <h3><a href="https://aiscend-research.github.io/papers/erasure.pdf">erasure: a stated goal reorganises what a language model deletes</a></h3>
+  <p class="meta">2026 &middot; sole author &middot; <a href="https://aiscend-research.github.io/papers/erasure.pdf">pdf</a> &middot; <a href="https://github.com/hjyi2027/erasure">code</a></p>
   <p>give a model a passage and a single operator, delete. change one word of the instruction. asked for a summary, opus 5 keeps proper nouns at +0.70 log-odds. asked for a poem, it cuts them at -0.73. random deletion sits at +0.08. the words that go to zero survival are the ones that say which thing this is (president, north, pursuant). the words that survive are home, wildlife, shadow, water, hope. run the same design on gpt-oss-120b and half of it reverses.</p>
 </div>
 
-<div class="item">
-  <h3>the unchosen word</h3>
-  <p class="meta">aiscend &middot; language models as editors of poetic indeterminacy</p>
+<div class="item" id="unchosen-word">
+  <h3><a href="https://aiscend-research.github.io/papers/the-unchosen-word.pdf">the unchosen word: language models as editors of poetic indeterminacy</a></h3>
+  <p class="meta">2026 &middot; with wenhao lu &middot; <a href="https://aiscend-research.github.io/papers/the-unchosen-word.pdf">pdf</a> &middot; <a href="https://github.com/hjyi2027/unchosen-word">code</a></p>
   <p>dickinson wrote alternative words beside her lines and crossed none of them out. for most of the late fragments no fair copy was ever made, so the alternatives are the poem, a field of readings held open on purpose. printed editions close that field. this asks what a language model does with the same manuscripts, and whether the demand for one fluent output is itself an editorial act.</p>
 </div>
 
-<div class="item">
-  <h3>specscope: what did the operator learn?</h3>
-  <p class="meta">aiscend &middot; extension of the litefno reproduction</p>
+<div class="item" id="compulsory-hope">
+  <h3><a href="https://aiscend-research.github.io/papers/compulsory-hope.pdf">compulsory hope: instruction tuning teaches poems to evade, not to console</a></h3>
+  <p class="meta">2026 &middot; sole author &middot; <a href="https://aiscend-research.github.io/papers/compulsory-hope.pdf">pdf</a> &middot; <a href="https://github.com/hjyi2027/compulsory-hope">code</a></p>
+  <p>hardy's "hap" argues that suffering is meaningless chance. handed its opening, olmo 2 1b instruct finishes it with a guardian angel and eternal peace with god. its own base checkpoint, given a byte-identical prompt, does not. the paper measures that gap across checkpoints that differ only in how much preference training they received, with an ending-uplift metric built for poems.</p>
+</div>
+
+<h3 class="sub" id="decoding">decoding</h3>
+
+<div class="item" id="unauthored-by-design">
+  <h3><a href="https://aiscend-research.github.io/papers/unauthored-by-design.pdf">unauthored by design: the seed's share of a generated artifact</a></h3>
+  <p class="meta">2026 &middot; with wenhao lu and adithya balakumar &middot; <a href="https://aiscend-research.github.io/papers/unauthored-by-design.pdf">pdf</a> &middot; <a href="https://github.com/AIscend-Research/seed-study-creative">code</a></p>
+  <p>when an artist prompts a generative model, how much of the result did they determine? a fully crossed design isolates the random seed's share of the variance from the prompt's and the model's, so that authorship of a generated artifact has a number attached to it.</p>
+</div>
+
+<div class="item" id="sampler-confound">
+  <h3><a href="https://github.com/hjyi2027/sampler-confound">the sampler is a confound: decoding configuration rivals model choice in llm mathematical reasoning</a></h3>
+  <p class="meta">2026 &middot; sole author &middot; <a href="https://github.com/hjyi2027/sampler-confound">code and design</a> &middot; full sweep not yet run</p>
+  <p>a math-reasoning number is a function of model, prompt, benchmark, and decoding configuration. the last one is almost never reported and almost never held constant across papers. the design is fully crossed model by sampler with problems as a blocking factor, and it reports two numbers: the sampler's variance share against the model's, and how often a ranking between two models flips when only the sampler moves. the target was math-ai 2026. that deadline passed with the sweep unrun; the benchmarks, grader, runner, and both metrics are public and validated on a smoke run. the repo says exactly what is and is not done.</p>
+</div>
+
+<h3 class="sub" id="reproducibility">reproducibility</h3>
+
+<div class="item" id="litefno">
+  <h3><a href="https://aiscend-research.github.io/papers/re-litefno-cnn-ablation.pdf">[re] a novel cnn ablation reveals limited fourier inductive bias in litefno: a reproducibility study</a></h3>
+  <p class="meta">2026 &middot; with jacob goldstein, kristen zhou, wenhao lu, david j. zhang and spursh deshpande &middot; rescience c, under review &middot; <a href="https://aiscend-research.github.io/papers/re-litefno-cnn-ablation.pdf">pdf</a> &middot; <a href="https://doi.org/10.5281/zenodo.20793535">doi</a> &middot; <a href="https://github.com/hjyi2027/litefno-repro">code</a></p>
+  <p>a from-scratch reproduction of the lightweight fourier neural operator, plus a parameter-matched low-rank cnn ablation the original paper does not include. on gray-scott at 32x32 across three seeds the cnn baseline matches or beats litefno on one-step error and on autoregressive rollout, so the study finds no consistent evidence for a fourier inductive-bias advantage at this scale.</p>
+</div>
+
+<div class="item" id="specscope">
+  <h3><a href="https://github.com/AIscend-Research/litefno-extension">specscope: what did the operator learn?</a></h3>
+  <p class="meta">2026 &middot; extension of the litefno reproduction &middot; <a href="https://github.com/AIscend-Research/litefno-extension">code and notes</a></p>
   <p>treats a trained fourier neural operator's spectral weights as an empirical transfer function of the system rather than as opaque parameters, and pulls out their pole structure with classical system identification. two questions: does that readout predict where the surrogate fails, and do the learned factors transplant across regimes? the testbed is an exactly solvable oscillatory pde, so the per-mode poles are known in closed form and "what the network should have learned" is not a matter of opinion.</p>
 </div>
 
-<h2>number theory</h2><hr class="rule">
+<h2 id="number-theory">number theory</h2>
 
-<div class="item">
-  <h3>partitions and q-series</h3>
-  <p class="meta">in progress</p>
-  <p>ongoing work on integer partitions, q-series, and special values of l-functions.</p>
+<div class="item" id="basel">
+  <h3><a href="https://github.com/hjyi2027/jun-yi-math-research/blob/main/projects/basel-sum.md">the basel problem and the riemann zeta function</a></h3>
+  <p class="meta">2025 &middot; expository &middot; <a href="https://github.com/hjyi2027/jun-yi-math-research/blob/main/projects/basel-sum.md">writeup</a></p>
+  <p>several routes to &zeta;(2) = &pi;&sup2;/6, including euler's product argument, then the bernoulli-number machinery that hands you every even zeta value at once, and why the odd ones stay out of reach.</p>
 </div>
 
-<div class="item">
-  <h3>the basel problem and the riemann zeta function</h3>
-  <p class="meta">expository &middot; <a href="https://hjyi2027.github.io/jun-yi-math-research/">writeup</a></p>
-  <p>several routes to &zeta;(2) = &pi;&sup2;/6, then the bernoulli-number machinery that hands you every even zeta value at once, and why the odd ones stay out of reach.</p>
+<div class="item" id="zeta-experiments">
+  <h3><a href="https://github.com/hjyi2027/jun-yi-math-research/blob/main/projects/zeta-experiment.py">computational experiments with &zeta;(s)</a></h3>
+  <p class="meta">2025 &middot; python &middot; <a href="https://github.com/hjyi2027/jun-yi-math-research/blob/main/projects/zeta-experiment.py">code</a> &middot; <a href="https://github.com/hjyi2027/jun-yi-math-research/blob/main/projects/zeta-experiment-output.txt">output</a></p>
+  <p>convergence rates for the naive series against euler-maclaurin corrections, verification of even zeta values against the bernoulli formula, and how many terms you actually need for a given accuracy.</p>
 </div>
 
-<div class="item">
-  <h3>computational experiments with &zeta;(s)</h3>
-  <p class="meta">notes and python &middot; <a href="https://github.com/hjyi2027">code</a></p>
-  <p>convergence rates for the naive series against euler-maclaurin corrections, and how many terms you actually need for a given accuracy.</p>
+<div class="item" id="taylor">
+  <h3><a href="https://github.com/hjyi2027/jun-yi-math-research/blob/main/projects/taylor-series-and-convergence.md">taylor series and convergence</a></h3>
+  <p class="meta">2025 &middot; expository &middot; <a href="https://github.com/hjyi2027/jun-yi-math-research/blob/main/projects/taylor-series-and-convergence.md">writeup</a> &middot; <a href="https://github.com/hjyi2027/jun-yi-math-research/blob/main/projects/open-questions.md">open questions</a></p>
+  <p>radius of convergence, the gap between smooth and analytic, and the cases where a taylor series converges but fails to represent the function.</p>
 </div>
+</main>
 <footer>
   <span>&copy; 2026 hyunjun yi</span>
-  <span>seoul, korea</span>
+  <span class="clock" data-tz="Asia/Seoul">seoul</span>
 </footer>
 </div>
 <script src="site.js" defer></script>
