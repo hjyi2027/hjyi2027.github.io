@@ -263,10 +263,10 @@ footer{
 /* ── scroll reveal ──────────────────────────────────────── */
 /* hidden state is gated on .js-reveal, set by an inline script in <head>,
    so nothing flashes and nothing is hidden without js. */
-.js-reveal :is(.hero,.lede,h2,h3.sub,.item,.row,.links,ul.plain,.more):not(.in){
+.js-reveal :is(.hero,.kicker,.lede,h2,h3.sub,.item,.row,.links,ul.plain,.more):not(.in){
   opacity:0;transform:translateY(14px);
 }
-:is(.hero,.lede,h2,h3.sub,.item,.row,.links,ul.plain,.more).in{
+:is(.hero,.kicker,.lede,h2,h3.sub,.item,.row,.links,ul.plain,.more).in{
   transition:opacity 620ms var(--ease),transform 620ms var(--ease-out);
   transition-delay:var(--d,0ms);
 }
@@ -278,8 +278,8 @@ footer{
   ::view-transition-old(root),::view-transition-new(root){animation:none}
   .hero img,h1,.links a,.links a::before,.item::before,.item::after,nav a::after{transition:none}
   .hero:hover img{transform:none}
-  .js-reveal :is(.hero,.lede,h2,h3.sub,.item,.row,.links,ul.plain,.more):not(.in){opacity:1;transform:none}
-  :is(.hero,.lede,h2,h3.sub,.item,.row,.links,ul.plain,.more).in{transition:opacity 200ms ease}
+  .js-reveal :is(.hero,.kicker,.lede,h2,h3.sub,.item,.row,.links,ul.plain,.more):not(.in){opacity:1;transform:none}
+  :is(.hero,.kicker,.lede,h2,h3.sub,.item,.row,.links,ul.plain,.more).in{transition:opacity 200ms ease}
 }
 
 /* ── print ──────────────────────────────────────────────── */
@@ -443,4 +443,87 @@ html.js-reveal.home :is(.num,.cols,.rows,.facts,.poster-sub,.ticker,.rows+.more)
   .facts{grid-template-columns:1fr 1fr}
   .facts div:nth-child(2){border-right:0}
   .facts div:nth-child(-n+2){border-bottom:1px solid var(--rule)}
+}
+
+/* ═══ inner pages: same navy, same frame, editorial index layout ═══════ */
+html.inner{color-scheme:dark}
+html.inner body{
+  --bg:var(--navy);--bg-2:#0f2140;--ink:var(--bone);--ink-2:#cfc6b2;--muted:#8b93a6;
+  --rule:rgba(239,230,211,.16);--rule-soft:rgba(239,230,211,.07);
+  --accent:var(--brass);--accent-2:#e0c176;--chip:rgba(255,255,255,.045);--grain:.18;
+  --glow-a:rgba(201,162,77,.14);--glow-b:rgba(70,110,180,.16);--glow-c:rgba(139,35,50,.10);
+  background:var(--bg);color:var(--ink);
+}
+html.inner body::before{animation-duration:60s}
+html.inner .wrap{max-width:1040px;padding:150px 5vw 80px}
+html.inner nav.bar-links{position:static;margin:0;padding:0;background:none;backdrop-filter:none;-webkit-backdrop-filter:none;mask-image:none;-webkit-mask-image:none}
+html.inner nav.bar-links a::after{content:none}
+html.inner nav.bar-links a[aria-current]{background:var(--bone);color:var(--navy)}
+
+.kicker{margin:0 0 14px;font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--brass)}
+html.inner .page-title{margin:0 0 22px;font-family:var(--display);font-weight:400;text-transform:uppercase;
+  font-size:clamp(4rem,14vw,11rem);line-height:.86;letter-spacing:-.005em;color:var(--bone);
+  background:none;-webkit-text-fill-color:currentColor;-webkit-background-clip:initial;background-clip:initial}
+html.inner .page-title .w{display:block;overflow:hidden}
+html.js-reveal.inner .page-title .w{transition:clip-path 900ms var(--ease-out),transform 900ms var(--ease-out)}
+html.js-reveal.inner .page-title:not(.in) .w{clip-path:inset(0 0 100% 0);transform:translateY(.35em)}
+html.js-reveal.inner .page-title.in .w{clip-path:inset(-.15em 0 -.2em 0);transform:none}
+html.inner .lede{font-family:var(--serif);font-size:clamp(1.1rem,1.6vw,1.35rem);max-width:720px;margin:0 0 20px}
+html.inner .lede.muted{color:var(--ink-2)}
+html.inner .lede a{color:var(--bone);border:0;background-image:linear-gradient(var(--brass),var(--brass))}
+
+/* section heads: mono kicker with a hairline, no counter prefix box */
+html.inner h2{margin:84px 0 0;padding:0 0 14px;font-family:var(--mono);font-size:12px;letter-spacing:.18em;color:var(--brass);border-bottom:1px solid var(--rule)}
+html.inner h2::before{font-family:var(--mono);font-size:12px;color:var(--muted)}
+html.inner h2::after{background:transparent}
+html.inner h3.sub{margin:36px 0 0 0;padding:0 0 10px;font-size:1.15em;color:var(--muted);border-bottom:1px solid var(--rule-soft)}
+
+/* research items: numbered ruled rows, serif titles at index scale */
+html.inner main{counter-reset:sec item}
+html.inner .item{margin:0;padding:30px 0 30px 84px;border-radius:0;border-bottom:1px solid var(--rule);counter-increment:item;transition:none}
+html.inner .item:hover,html.inner .item:target{background:none}
+html.inner .item::before{left:0;top:36px;bottom:auto;width:auto;height:auto;background:none;transform:none;opacity:1;
+  content:counter(item,decimal-leading-zero);font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--brass)}
+html.inner .item::after{inset:0;background:linear-gradient(90deg,var(--bone) 0,var(--bone) 3px,transparent 3px),
+  radial-gradient(320px circle at var(--mx,50%) var(--my,50%),var(--spot),transparent 70%);opacity:0}
+html.inner .item:hover::after,html.inner .item:target::after{opacity:1}
+html.inner .item h3{font-size:clamp(1.5rem,2.6vw,2.15rem);line-height:1.12;letter-spacing:-.015em;margin:0 0 10px;font-weight:400}
+html.inner .item h3 a{color:var(--bone);background-image:linear-gradient(var(--rule),var(--rule))}
+html.inner .item h3 a:hover{background-image:linear-gradient(var(--brass),var(--brass))}
+html.inner .item .meta{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
+html.inner .item .meta a{color:var(--brass);border-bottom:1px solid transparent}
+html.inner .item .meta a:hover{border-color:var(--brass)}
+html.inner .item p{font-family:var(--serif);font-size:1.05rem;line-height:1.62;color:var(--ink-2);max-width:760px}
+html.inner .item:target h3 a{background-image:linear-gradient(var(--brass),var(--brass))}
+
+/* cv rows */
+html.inner .row{grid-template-columns:120px 1fr;gap:28px;margin:0;padding:24px 0;border-bottom:1px solid var(--rule-soft)}
+html.inner .row.undated{grid-template-columns:1fr}
+html.inner .row .when{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);padding-top:8px}
+html.inner .row .what strong{display:block;font-family:var(--serif);font-weight:500;font-size:clamp(1.25rem,2vw,1.6rem);letter-spacing:-.012em;line-height:1.2;color:var(--bone)}
+html.inner .row .what strong a{border-bottom:1px solid var(--rule)}
+html.inner .row .what strong a:hover{border-color:var(--brass)}
+html.inner .row .what p{font-family:var(--serif);font-size:1.02rem;line-height:1.6;color:var(--ink-2);margin:6px 0 0;max-width:760px}
+html.inner .row .what p a{color:var(--brass)}
+html.inner ul.plain{margin:0}
+html.inner ul.plain li{margin:0;padding:16px 0 16px 84px;border-bottom:1px solid var(--rule-soft);font-family:var(--serif);font-size:1.08rem;color:var(--ink-2);counter-increment:item}
+html.inner ul.plain li::before{content:counter(item,decimal-leading-zero);width:auto;height:auto;background:none;top:18px;left:0;
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--brass);opacity:1}
+html.inner h2{counter-reset:item}
+
+@media (max-width:760px){
+  html.inner .wrap{padding:170px 20px 60px}
+  html.inner .item{padding-left:0;padding-top:44px}
+  html.inner .item::before{top:20px}
+  html.inner ul.plain li{padding-left:44px}
+  html.inner .row{grid-template-columns:1fr;gap:4px}
+}
+@media (prefers-reduced-motion:reduce){
+  html.js-reveal.inner .page-title:not(.in) .w{clip-path:none;transform:none}
+}
+@media print{
+  .bar,.kicker{display:none}
+  html.inner .wrap{padding:0}
+  html.inner .page-title,html.inner .item h3 a,html.inner .row .what strong{color:#000}
+  html.inner .item::before,html.inner ul.plain li::before,html.inner .row .when,html.inner h2{color:#555}
 }

@@ -5,13 +5,13 @@
 
   // 1. reveal each block once as it arrives. siblings that enter on the same
   //    frame stagger, so a section lands as a sequence rather than a slab.
-  var sel = '.hero, .lede, h2, h3.sub, .item, .row, .links, ul.plain, .more';
+  var sel = '.hero, .page-title, .kicker, .lede, h2, h3.sub, .item, .row, .links, ul.plain, .more';
   var nodes = Array.prototype.slice.call(document.querySelectorAll(sel));
   // blocks already in the first viewport show at once; the observer takes the rest.
   var vh0 = window.innerHeight;
   nodes = nodes.filter(function (n) {
     var r = n.getBoundingClientRect();
-    if (r.top < vh0 * 0.9 && r.bottom > 0) { n.classList.add('in'); return false; }
+    if (r.top < vh0 * 0.9) { n.classList.add('in'); return false; }
     return true;
   });
   if (!document.querySelector(sel)) root.classList.remove('js-reveal');
@@ -82,7 +82,7 @@
   var vh = window.innerHeight;
   var later = nodes.filter(function (n) {
     var r = n.getBoundingClientRect();
-    if (r.top < vh * 0.9 && r.bottom > 0) { n.classList.add('in'); return false; }
+    if (r.top < vh * 0.9) { n.classList.add('in'); return false; }
     return true;
   });
   if (reduce || !('IntersectionObserver' in window)) {
