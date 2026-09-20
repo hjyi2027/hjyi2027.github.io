@@ -8,14 +8,19 @@
   --rule:rgba(22,21,15,.10);
   --rule-soft:rgba(22,21,15,.055);
   --accent:#8a5a2b;
-  --glow-a:rgba(196,158,110,.20);
-  --glow-b:rgba(140,160,190,.14);
+  --accent-2:#b98a4e;
+  --glow-a:rgba(196,158,110,.26);
+  --glow-b:rgba(140,160,190,.20);
+  --glow-c:rgba(170,120,140,.14);
+  --spot:rgba(138,90,43,.09);
   --chip:rgba(255,255,255,.72);
+  --grain:.5;
   --shadow:0 1px 2px rgba(22,21,15,.04),0 8px 24px -12px rgba(22,21,15,.12);
   --shadow-lift:0 2px 4px rgba(22,21,15,.05),0 18px 40px -18px rgba(22,21,15,.22);
   --serif:"Newsreader",Georgia,"Times New Roman",serif;
   --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
   --ease:cubic-bezier(.22,.61,.36,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
 }
 @media (prefers-color-scheme:dark){
   :root{
@@ -27,12 +32,15 @@
     --rule:rgba(242,239,232,.13);
     --rule-soft:rgba(242,239,232,.07);
     --accent:#d3a469;
-    --glow-a:rgba(196,158,110,.16);
-    --glow-b:rgba(120,150,200,.13);
+    --accent-2:#e5c48f;
+    --glow-a:rgba(196,158,110,.20);
+    --glow-b:rgba(120,150,200,.18);
+    --glow-c:rgba(170,120,140,.12);
+    --spot:rgba(211,164,105,.10);
     --chip:rgba(255,255,255,.045);
+    --grain:.22;
     --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7);
     --shadow-lift:0 2px 6px rgba(0,0,0,.45),0 22px 48px -20px rgba(0,0,0,.85);
-    --grain:.22;
   }
 }
 
@@ -46,47 +54,74 @@ body{
   line-height:1.68;letter-spacing:.001em;
   -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
 }
-/* ambient light behind the page: two slow, wide washes. no motion, no strobe. */
+
+/* ── ambient light: three washes that drift on a forty-second loop ── */
 body::before{
-  content:"";position:fixed;inset:-20vmax;z-index:-2;pointer-events:none;
+  content:"";position:fixed;inset:-30vmax;z-index:-2;pointer-events:none;
   background:
-    radial-gradient(48vmax 38vmax at 18% -6%, var(--glow-a), transparent 62%),
-    radial-gradient(42vmax 34vmax at 96% 8%, var(--glow-b), transparent 60%);
+    radial-gradient(46vmax 36vmax at 20% 10%, var(--glow-a), transparent 62%),
+    radial-gradient(40vmax 32vmax at 90% 18%, var(--glow-b), transparent 60%),
+    radial-gradient(34vmax 30vmax at 55% 95%, var(--glow-c), transparent 60%);
+  animation:aurora 40s ease-in-out infinite alternate;
+  will-change:transform;
 }
-/* grain, so the flat background reads as paper rather than as a blank canvas */
+@keyframes aurora{
+  0%  {transform:translate3d(0,0,0) rotate(0deg) scale(1)}
+  50% {transform:translate3d(3vmax,-2vmax,0) rotate(4deg) scale(1.06)}
+  100%{transform:translate3d(-2vmax,3vmax,0) rotate(-3deg) scale(1.02)}
+}
+/* grain so the ground reads as paper */
 body::after{
-  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:var(--grain,.5);
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:var(--grain);
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
 }
+
+/* ── cross-page transitions (no js; browsers without support ignore) ── */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:220ms var(--ease) both vt-out}
+::view-transition-new(root){animation:360ms var(--ease-out) both vt-in}
+@keyframes vt-out{to{opacity:0;transform:translateY(-6px)}}
+@keyframes vt-in{from{opacity:0;transform:translateY(10px)}}
+nav{view-transition-name:site-nav}
 
 .wrap{max-width:660px;margin:0 auto;padding:0 26px 120px}
 a{color:inherit}
 
-/* ── nav: translucent chrome, content passes under ─────── */
+/* skip link: visible only when focused */
+.skip{position:absolute;left:12px;top:-40px;padding:8px 12px;border-radius:8px;
+  background:var(--accent);color:#fff;text-decoration:none;font-size:14px;z-index:20;
+  transition:top 160ms var(--ease)}
+.skip:focus{top:12px}
+
+/* ── nav: translucent chrome, content passes under, reading-progress hairline on top ── */
 nav{
   position:sticky;top:0;z-index:10;
-  display:flex;gap:26px;align-items:center;
-  margin:0 -26px;padding:16px 26px;
+  margin:0 -26px;padding:16px 26px 26px;
   font-size:14.5px;letter-spacing:.012em;
   background:color-mix(in srgb, var(--bg) 72%, transparent);
   backdrop-filter:blur(18px) saturate(180%);
   -webkit-backdrop-filter:blur(18px) saturate(180%);
   -webkit-mask-image:linear-gradient(to bottom,#000 72%,transparent);
   mask-image:linear-gradient(to bottom,#000 72%,transparent);
-  padding-bottom:26px;
 }
-nav a{
-  position:relative;color:var(--muted);text-decoration:none;
-  transition:color 180ms var(--ease);
-}
+nav ul{list-style:none;margin:0;padding:0;display:flex;gap:26px;align-items:center}
+nav a{position:relative;color:var(--muted);text-decoration:none;transition:color 180ms var(--ease)}
 nav a::after{
   content:"";position:absolute;left:0;right:0;bottom:-5px;height:1px;
   background:var(--accent);transform:scaleX(0);transform-origin:left;
   transition:transform 260ms var(--ease);
 }
 nav a:hover{color:var(--ink)}
-nav a:hover::after,nav a.on::after{transform:scaleX(1)}
-nav a.on{color:var(--ink)}
+nav a:hover::after,nav a[aria-current]::after{transform:scaleX(1)}
+nav a[aria-current]{color:var(--ink)}
+nav::before{
+  content:"";position:absolute;left:0;top:0;height:2px;width:100%;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  transform-origin:left;transform:scaleX(0);
+  animation:progress linear both;animation-timeline:scroll(root);
+}
+@keyframes progress{to{transform:scaleX(1)}}
+@supports not (animation-timeline:scroll()){nav::before{display:none}}
 @media (prefers-reduced-transparency:reduce){
   nav{background:var(--bg);backdrop-filter:none;-webkit-backdrop-filter:none}
 }
@@ -97,15 +132,25 @@ nav a.on{color:var(--ink)}
   width:104px;height:104px;border-radius:50%;object-fit:cover;flex:none;
   background:var(--rule-soft);box-shadow:var(--shadow);
   outline:1px solid var(--rule);outline-offset:-1px;
+  transition:transform 600ms var(--ease-out),box-shadow 600ms var(--ease-out);
+  view-transition-name:portrait;
 }
+.hero:hover img{transform:rotate(-3deg) scale(1.04);box-shadow:var(--shadow-lift)}
 h1{
   font-family:var(--serif);font-optical-sizing:auto;font-weight:400;
   font-size:clamp(2.15rem,4.4vw,2.9rem);line-height:1.04;
   letter-spacing:-.022em;margin:0 0 6px;
+  background:linear-gradient(90deg,var(--ink) 0 45%,var(--accent-2) 50%,var(--ink) 55% 100%);
+  background-size:250% 100%;background-position:100% 0;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  transition:background-position 1.1s var(--ease-out);
 }
+.hero:hover h1,h1:hover{background-position:0 0}
 .hero p{margin:0;color:var(--muted);font-size:14.5px;letter-spacing:.014em}
+.page-title{margin:56px 0 10px}
 
 .lede{font-size:1.055em;line-height:1.72;color:var(--ink-2);margin:0 0 18px}
+.lede.muted{color:var(--muted)}
 .lede a{
   color:var(--ink);text-decoration:none;
   background-image:linear-gradient(var(--accent),var(--accent));
@@ -113,10 +158,14 @@ h1{
   transition:background-size 240ms var(--ease);
 }
 .lede a:hover{background-size:100% 2px}
+.more{margin:12px 0 0;font-size:.95em}
+.more a{color:var(--muted);text-decoration:none;transition:color 180ms var(--ease)}
+.more a:hover{color:var(--accent)}
 
-/* ── pill links ─────────────────────────────────────────── */
+/* ── pill links: lift on hover, a light sweep across the face ── */
 .links{display:flex;flex-wrap:wrap;gap:9px;margin:34px 0 0}
 .links a{
+  position:relative;overflow:hidden;
   display:inline-flex;align-items:center;padding:7px 15px;
   border:1px solid var(--rule);border-radius:999px;background:var(--chip);
   font-size:13.5px;letter-spacing:.015em;color:var(--muted);text-decoration:none;
@@ -124,20 +173,32 @@ h1{
   transition:color 180ms var(--ease),border-color 180ms var(--ease),
              transform 220ms var(--ease),box-shadow 220ms var(--ease);
 }
+.links a::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);
+  transform:translateX(-120%);transition:transform 0s;
+}
 .links a:hover{color:var(--ink);border-color:var(--accent);transform:translateY(-1.5px);box-shadow:var(--shadow-lift)}
+.links a:hover::before{transform:translateX(120%);transition:transform 700ms var(--ease-out)}
 .links a:active{transform:scale(.97);transition-duration:90ms}
 
-/* ── section heads ──────────────────────────────────────── */
+/* ── section heads: numbered, ruled ─────────────────────── */
+main{counter-reset:sec}
 h2{
   display:flex;align-items:center;gap:14px;
   font-family:var(--sans);font-weight:500;font-size:11.5px;
   letter-spacing:.15em;text-transform:uppercase;color:var(--muted);
-  margin:64px 0 6px;
+  margin:64px 0 6px;counter-increment:sec;
 }
+h2::before{content:counter(sec,decimal-leading-zero);font-family:var(--serif);font-size:15px;
+  letter-spacing:0;color:var(--accent);font-variant-numeric:tabular-nums}
 h2::after{content:"";flex:1;height:1px;background:var(--rule-soft)}
-.rule{display:none}
+h3.sub{
+  font-family:var(--serif);font-weight:400;font-style:italic;font-size:1.02em;
+  color:var(--muted);margin:30px 0 4px 18px;
+}
 
-/* ── items ──────────────────────────────────────────────── */
+/* ── items: hover lifts the surface and a spotlight follows the pointer ── */
 .item{
   position:relative;margin:0 -18px 8px;padding:20px 18px;border-radius:12px;
   transition:background 260ms var(--ease);
@@ -148,8 +209,16 @@ h2::after{content:"";flex:1;height:1px;background:var(--rule-soft)}
   transform:scaleY(0);transform-origin:top;opacity:.65;
   transition:transform 320ms var(--ease);
 }
+.item::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),var(--spot),transparent 70%);
+  opacity:0;transition:opacity 300ms var(--ease);
+}
 .item:hover{background:var(--rule-soft)}
 .item:hover::before{transform:scaleY(1)}
+.item:hover::after{opacity:1}
+.item:target{background:var(--rule-soft)}
+.item:target::before{transform:scaleY(1)}
 .item h3{
   font-family:var(--serif);font-optical-sizing:auto;font-weight:500;
   font-size:1.22em;line-height:1.3;letter-spacing:-.011em;margin:0 0 5px;
@@ -160,21 +229,21 @@ h2::after{content:"";flex:1;height:1px;background:var(--rule-soft)}
   transition:background-image 200ms var(--ease);
 }
 .item h3 a:hover{background-image:linear-gradient(var(--accent),var(--accent))}
-.item .meta{font-size:12.5px;letter-spacing:.05em;text-transform:lowercase;color:var(--muted);margin:0 0 9px}
-.item .meta a{color:var(--muted);text-decoration-color:var(--rule)}
+.item .meta{font-size:12.5px;letter-spacing:.05em;color:var(--muted);margin:0 0 9px}
+.item .meta a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color 180ms var(--ease)}
+.item .meta a:hover{border-color:var(--accent)}
 .item p{margin:0;font-size:.955em;color:var(--ink-2)}
-.tag{
-  display:inline-block;margin-left:9px;vertical-align:3px;
-  font-size:10px;letter-spacing:.11em;text-transform:uppercase;font-family:var(--sans);
-  color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 34%,transparent);
-  border-radius:3px;padding:2px 7px;
-}
 
 /* ── cv rows ────────────────────────────────────────────── */
 .row{display:grid;grid-template-columns:104px 1fr;gap:20px;margin:0 0 22px;padding-top:2px}
-.row .when{font-size:12.5px;letter-spacing:.05em;color:var(--muted);padding-top:5px}
+.row.undated{grid-template-columns:1fr}
+.row .when{font-size:12.5px;letter-spacing:.05em;color:var(--muted);padding-top:5px;font-variant-numeric:tabular-nums}
 .row .what strong{font-weight:600;font-size:1.005em;letter-spacing:-.004em}
+.row .what strong a{text-decoration:none;border-bottom:1px solid var(--rule);transition:border-color 180ms var(--ease)}
+.row .what strong a:hover{border-color:var(--accent)}
 .row .what p{margin:3px 0 0;font-size:.945em;color:var(--ink-2)}
+.row .what p a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color 180ms var(--ease)}
+.row .what p a:hover{border-color:var(--accent)}
 ul.plain{margin:0;padding-left:0;list-style:none}
 ul.plain li{position:relative;margin:0 0 9px;padding-left:18px;font-size:.965em;color:var(--ink-2)}
 ul.plain li::before{content:"";position:absolute;left:2px;top:.72em;width:5px;height:1px;background:var(--accent);opacity:.7}
@@ -184,21 +253,41 @@ footer{
   font-size:12.5px;letter-spacing:.04em;color:var(--muted);
   display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 }
+.clock{font-variant-numeric:tabular-nums}
 
 /* ── scroll reveal ──────────────────────────────────────── */
-/* The hidden state is gated on .js-reveal, set by an inline script in <head>,
-   so content never flashes visible and there is nothing to hide without JS. */
-.js-reveal :is(.hero,.lede,h2,.item,.row,.links,ul.plain):not(.in){
+/* hidden state is gated on .js-reveal, set by an inline script in <head>,
+   so nothing flashes and nothing is hidden without js. */
+.js-reveal :is(.hero,.lede,h2,h3.sub,.item,.row,.links,ul.plain,.more):not(.in){
   opacity:0;transform:translateY(14px);
 }
-:is(.hero,.lede,h2,.item,.row,.links,ul.plain).in{
-  transition:opacity 620ms var(--ease),transform 620ms var(--ease);
+:is(.hero,.lede,h2,h3.sub,.item,.row,.links,ul.plain,.more).in{
+  transition:opacity 620ms var(--ease),transform 620ms var(--ease-out);
   transition-delay:var(--d,0ms);
 }
+
+/* ── motion and transparency preferences ────────────────── */
 @media (prefers-reduced-motion:reduce){
-  .js-reveal :is(.hero,.lede,h2,.item,.row,.links,ul.plain):not(.in){opacity:1;transform:none}
-  :is(.hero,.lede,h2,.item,.row,.links,ul.plain).in{transition:opacity 200ms ease}
-  .item::before,.links a,nav a::after{transition:none}
+  body::before{animation:none}
+  nav::before{display:none}
+  ::view-transition-old(root),::view-transition-new(root){animation:none}
+  .hero img,h1,.links a,.links a::before,.item::before,.item::after,nav a::after{transition:none}
+  .hero:hover img{transform:none}
+  .js-reveal :is(.hero,.lede,h2,h3.sub,.item,.row,.links,ul.plain,.more):not(.in){opacity:1;transform:none}
+  :is(.hero,.lede,h2,h3.sub,.item,.row,.links,ul.plain,.more).in{transition:opacity 200ms ease}
+}
+
+/* ── print ──────────────────────────────────────────────── */
+@media print{
+  body{background:#fff;color:#000;font-size:11.5pt}
+  body::before,body::after,nav,.skip,.links,.more,footer,.print{display:none}
+  .wrap{max-width:none;padding:0}
+  h1,.item h3{color:#000;background:none;-webkit-text-fill-color:initial}
+  .item{break-inside:avoid;padding:8px 0;margin:0 0 6px}
+  .item::before,.item::after{display:none}
+  .row{break-inside:avoid;margin-bottom:10px}
+  .lede a,.item .meta a,.row .what p a{color:#000;border:0;background:none}
+  .item .meta a[href^="http"]::after,.row .what p a[href^="http"]::after{content:" (" attr(href) ")";font-size:.85em;color:#555}
 }
 
 @media (max-width:540px){
@@ -207,5 +296,6 @@ footer{
   .item{margin-left:-12px;margin-right:-12px;padding-left:12px;padding-right:12px}
   .row{grid-template-columns:1fr;gap:2px}
   .row .when{padding-top:0}
-  nav{gap:20px}
+  h3.sub{margin-left:0}
+  nav ul{gap:20px}
 }
