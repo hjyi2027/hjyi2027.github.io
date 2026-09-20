@@ -7,7 +7,14 @@
   //    frame stagger, so a section lands as a sequence rather than a slab.
   var sel = '.hero, .lede, h2, h3.sub, .item, .row, .links, ul.plain, .more';
   var nodes = Array.prototype.slice.call(document.querySelectorAll(sel));
-  if (!nodes.length) root.classList.remove('js-reveal');
+  // blocks already in the first viewport show at once; the observer takes the rest.
+  var vh0 = window.innerHeight;
+  nodes = nodes.filter(function (n) {
+    var r = n.getBoundingClientRect();
+    if (r.top < vh0 * 0.9 && r.bottom > 0) { n.classList.add('in'); return false; }
+    return true;
+  });
+  if (!document.querySelector(sel)) root.classList.remove('js-reveal');
   else if (reduce || !('IntersectionObserver' in window)) {
     nodes.forEach(function (n) { n.classList.add('in'); });
   } else {
