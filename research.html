@@ -40,7 +40,7 @@
 <main id="main">
 <p class="kicker">index &middot; papers and code</p>
 <h1 class="page-title"><span class="w">research</span></h1>
-<p class="lede muted">what language models do when you change something nobody reports, and some analytic number theory. every item links to its paper, code, or both.</p>
+<p class="lede muted">what language models do when you change something nobody reports, and some analytic number theory. three papers accepted to neurips 2026 and one to rescience c. every item links to its paper, code, or both.</p>
 
 <h2 id="language-models">language models</h2>
 
@@ -48,8 +48,14 @@
 
 <div class="item" id="restored-lines">
   <h3><a href="https://aiscend-research.github.io/papers/restored-lines.pdf">restored lines: a model finds the poet's hardest line breaks and declines to write them</a></h3>
-  <p class="meta">2026 &middot; sole author &middot; <a href="https://aiscend-research.github.io/papers/restored-lines.pdf">pdf</a> &middot; <a href="https://github.com/hjyi2027/Restored-Lines">code</a></p>
-  <p>a line break is the smallest unit of poetic will. nothing in the sentence about the red wheelbarrow requires anyone to break it after "wheel". williams did that. this strips the breaks off public-domain poems, asks a model to restore them, and scores breaks that follow the syntax separately from breaks that fight it, using the dependency arcs a break has to cut. the prediction was that models would miss the second kind. on free verse with every surface cue removed, claude opus 5 recovers 70 percent of the hardest enjambments where syntax alone predicts 13 percent. asked to write free verse of its own, it produces those breaks at half the human rate.</p>
+  <p class="meta">2026 &middot; sole author &middot; <a href="https://aiscend-research.github.io/papers.html">accepted</a>, neurips 2026 creative ai &middot; <a href="https://aiscend-research.github.io/papers/restored-lines.pdf">pdf</a> &middot; <a href="https://github.com/hjyi2027/Restored-Lines">code</a></p>
+  <p>a line break is the smallest unit of poetic decision. nothing in the sentence about the red wheelbarrow requires anyone to break it after "wheel". williams did that. this strips the breaks from 2,059 public-domain poems, grades every break by how much dependency structure it severs, and asks claude opus 5 to put them back. on free verse with rhyme, metre and line-initial capitals removed, it recovers 70 percent of the breaks that strand a determiner or a conjunction from its host, where a grammar-and-line-length solver recovers none. asked to write free verse of its own, it produces those breaks at 6.1 percent against the human 12.3. it locates the poet's override of the sentence and does not perform one.</p>
+</div>
+
+<div class="item" id="dead-ear">
+  <h3><a href="https://aiscend-research.github.io/papers/the-dead-ear.pdf">the dead ear: a language model's inherited accent is an archive, not an author</a></h3>
+  <p class="meta">2026 &middot; sole author &middot; <a href="https://aiscend-research.github.io/papers.html">accepted</a>, neurips 2026 creative ai &middot; <a href="https://aiscend-research.github.io/papers/the-dead-ear.pdf">pdf</a> &middot; <a href="https://github.com/hjyi2027/dead-ear-creative">code</a></p>
+  <p>pope rhymed tea with obey. shakespeare rhymed prove with love. both were sounds before they were conventions, and a model that learned rhyme from five centuries of verse learned it in accents nobody speaks. six documented sound changes give 997 dead pairs, crossed against a spelling confound. opus 5 treats dead rhymes as rhyme-like at 40.0 percent against a 1.2 percent floor, and writes them at 0.6 percent, below the most modern half-century in the corpus. the inheritance is a reference library, consulted accurately and kept out of the writing.</p>
 </div>
 
 <div class="item" id="erasure">
@@ -80,15 +86,21 @@
 
 <div class="item" id="sampler-confound">
   <h3><a href="https://github.com/hjyi2027/sampler-confound">the sampler is a confound: decoding configuration rivals model choice in llm mathematical reasoning</a></h3>
-  <p class="meta">2026 &middot; sole author &middot; <a href="https://github.com/hjyi2027/sampler-confound">code and design</a> &middot; full sweep not yet run</p>
-  <p>a math-reasoning number is a function of model, prompt, benchmark, and decoding configuration. the last one is almost never reported and almost never held constant across papers. the design is fully crossed model by sampler with problems as a blocking factor, and it reports two numbers: the sampler's variance share against the model's, and how often a ranking between two models flips when only the sampler moves. the target was math-ai 2026. that deadline passed with the sweep unrun; the benchmarks, grader, runner, and both metrics are public and validated on a smoke run. the repo says exactly what is and is not done.</p>
+  <p class="meta">2026 &middot; sole author &middot; <a href="https://github.com/hjyi2027/sampler-confound">design, audit and code</a> &middot; variance study is future work</p>
+  <p>a math-reasoning number is a function of model, prompt, benchmark, and decoding configuration. the last one is almost never reported and almost never held constant across papers. the design asks how often a ranking between two models flips when only the sampler moves, and how the sampler's variance share compares to the model's. neither number has been measured. a ratio estimated from three near-peer models cannot be tested against the threshold the claim needs, so the sweep was not run, and more compute would not fix that. what the repo holds is a full-scale audit of the evaluation infrastructure and smoke-run illustrations, each labelled as such.</p>
 </div>
 
 <h3 class="sub" id="reproducibility">reproducibility</h3>
 
+<div class="item" id="fno-spectral">
+  <h3><a href="https://aiscend-research.github.io/papers/fno-spectral-diagnostics.pdf">when does a fourier neural operator fail? spectral diagnostics for low-rank surrogates of reaction-diffusion</a></h3>
+  <p class="meta">2026 &middot; first author, with david j. zhang, wenhao lu, jonathan liu and spursh deshpande &middot; <a href="https://aiscend-research.github.io/papers.html">accepted</a>, neurips 2026 workshop on representations for the physical sciences &middot; <a href="https://aiscend-research.github.io/papers/fno-spectral-diagnostics.pdf">pdf</a></p>
+  <p>neural surrogates for pde simulators are judged by one-step error, which hides the failures that matter: error piling up under rollout, and collapse on unseen regimes. on gray-scott, a compact fourier operator's one-step edge and its single-seed rollout advantage both reverse under three-seed averaging. rollout error follows the fate of the high-frequency spectrum, which the cnn over-damps and the operator over-excites. the argument is for spectral diagnostics computed from simulator output alone, before any model is trained.</p>
+</div>
+
 <div class="item" id="litefno">
   <h3><a href="https://aiscend-research.github.io/papers/re-litefno-cnn-ablation.pdf">[re] a novel cnn ablation reveals limited fourier inductive bias in litefno: a reproducibility study</a></h3>
-  <p class="meta">2026 &middot; with jacob goldstein, kristen zhou, wenhao lu, david j. zhang and spursh deshpande &middot; rescience c, under review &middot; <a href="https://aiscend-research.github.io/papers/re-litefno-cnn-ablation.pdf">pdf</a> &middot; <a href="https://doi.org/10.5281/zenodo.20793535">doi</a> &middot; <a href="https://github.com/hjyi2027/litefno-repro">code</a></p>
+  <p class="meta">2026 &middot; with jacob goldstein, kristen zhou, wenhao lu, david j. zhang and spursh deshpande &middot; <a href="https://aiscend-research.github.io/papers.html">accepted</a>, rescience c &middot; <a href="https://aiscend-research.github.io/papers/re-litefno-cnn-ablation.pdf">pdf</a> &middot; <a href="https://doi.org/10.5281/zenodo.20793535">doi</a> &middot; <a href="https://github.com/hjyi2027/litefno-repro">code</a></p>
   <p>a from-scratch reproduction of the lightweight fourier neural operator, plus a parameter-matched low-rank cnn ablation the original paper does not include. on gray-scott at 32x32 across three seeds the cnn baseline matches or beats litefno on one-step error and on autoregressive rollout, so the study finds no consistent evidence for a fourier inductive-bias advantage at this scale.</p>
 </div>
 

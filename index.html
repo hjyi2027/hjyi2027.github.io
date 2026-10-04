@@ -51,7 +51,7 @@
   <div class="ticker" aria-hidden="true"><span>&zeta;(2) = 1.6449340668482264364724151666460251892189499012067984377355582293700074704032008738336289006197587053040043189623371906796287246870050077405 &middot; </span><span>&zeta;(2) = 1.6449340668482264364724151666460251892189499012067984377355582293700074704032008738336289006197587053040043189623371906796287246870050077405 &middot; </span></div>
   <h1 class="poster"><span class="w">hyunjun</span><span class="w">yi</span></h1>
   <p class="poster-sub"><span>ai researcher</span><span>number theorist</span><span>class of 2027</span></p>
-  <div class="ticker rev" aria-hidden="true"><span>&pi;&sup2;/6 &middot; bernoulli &middot; euler-maclaurin &middot; log-odds +0.70 &middot; -0.73 &middot; +0.08 &middot; 70 percent where syntax predicts 13 &middot; 3,000+ registrations &middot; </span><span>&pi;&sup2;/6 &middot; bernoulli &middot; euler-maclaurin &middot; log-odds +0.70 &middot; -0.73 &middot; +0.08 &middot; 70 percent where syntax predicts 13 &middot; 3,000+ registrations &middot; </span></div>
+  <div class="ticker rev" aria-hidden="true"><span>&pi;&sup2;/6 &middot; bernoulli &middot; euler-maclaurin &middot; log-odds +0.70 &middot; -0.73 &middot; +0.08 &middot; 70 percent where a grammar solver recovers 0 &middot; dead rhymes judged at 40.0, written at 0.6 &middot; 3,000+ registrations &middot; </span><span>&pi;&sup2;/6 &middot; bernoulli &middot; euler-maclaurin &middot; log-odds +0.70 &middot; -0.73 &middot; +0.08 &middot; 70 percent where a grammar solver recovers 0 &middot; dead rhymes judged at 40.0, written at 0.6 &middot; 3,000+ registrations &middot; </span></div>
   <a class="cue" href="#about" aria-label="scroll to about"><span></span></a>
 </section>
 
@@ -60,24 +60,52 @@
   <h2 class="big"><span class="w">what changes</span><span class="w">a model's output</span><span class="w">that nobody</span><span class="w">reports?</span></h2>
   <div class="cols">
     <p>hi! i'm hyunjun, a senior at seoul international school. i run ai research at <a href="https://aiscend-research.github.io/">aiscend</a>. most of my work asks the one question above. the decoding sampler. one swapped word in an instruction. where a line breaks.</p>
-    <p>i also do analytic number theory, and i'm a competition director of <a href="https://www.yimo-official.org/">yimo</a>, a free online math olympiad. every claim on this site links to a paper, a repo, or a live page.</p>
+    <p>i also do analytic number theory, and i'm a competition director of <a href="https://www.yimo-official.org/">yimo</a>, a free online math olympiad. three of my papers were accepted to neurips 2026. every claim on this site links to a paper, a repo, or a live page.</p>
+  </div>
+</section>
+
+<section class="ch" id="play">
+  <h2 class="num">02 &mdash; play</h2>
+  <h2 class="big"><span class="w">turn the knob</span><span class="w">nobody reports</span></h2>
+  <div class="play">
+    <div class="panel" id="sampler">
+      <p class="panel-h">the sampler <span>same model, same prompt</span></p>
+      <p class="prompt">17 &times; 24 = <b class="out">408</b></p>
+      <div class="bars" aria-live="off"></div>
+      <div class="knobs">
+        <label>temperature <span class="val" id="o-t">1.00</span><input id="k-t" type="range" min="0.05" max="2" step="0.05" value="1"></label>
+        <label>top-p <span class="val" id="o-p">1.00</span><input id="k-p" type="range" min="0.1" max="1" step="0.05" value="1"></label>
+        <label>top-k <span class="val" id="o-k">8</span><input id="k-k" type="range" min="1" max="8" step="1" value="8"></label>
+      </div>
+      <p class="acc">right answer rate <b id="acc">44%</b></p>
+      <div class="stream" aria-hidden="true"></div>
+      <p class="panel-actions"><button type="button" id="draw">sample 60 answers</button></p>
+      <p class="fine">toy logits chosen for illustration, not model output. the model never changes here, only the decoding settings do, and the score moves anyway. measuring this on real models is <a href="research.html#sampler-confound">future work</a>.</p>
+    </div>
+    <div class="panel" id="breaker">
+      <p class="panel-h">the line break <span>click between the words</span></p>
+      <p class="poem">so much depends<br>upon<br>a red wheel<br>barrow<br>glazed with rain<br>water<br>beside the white<br>chickens</p>
+      <p class="acc" id="score">williams made 7 breaks.</p>
+      <p class="panel-actions"><button type="button" id="b-w">williams</button><button type="button" id="b-p">prose</button></p>
+      <p class="fine">william carlos williams, "the red wheelbarrow", 1923. nothing in the sentence requires a break after "wheel". in <a href="research.html#restored-lines">restored lines</a>, a model recovers 70 percent of breaks like that one and writes them at half the human rate.</p>
+    </div>
   </div>
 </section>
 
 <section class="ch" id="work">
-  <h2 class="num">02 &mdash; research</h2>
+  <h2 class="num">03 &mdash; research</h2>
   <ol class="rows">
-    <li><a href="research.html#restored-lines"><span class="i">01</span><span class="t">restored lines</span><span class="m">2026 &middot; sole author &middot; pdf, code</span><span class="s">a model finds the poet's hardest line breaks and declines to write them.</span></a></li>
-    <li><a href="research.html#erasure"><span class="i">02</span><span class="t">erasure</span><span class="m">2026 &middot; sole author &middot; pdf, code</span><span class="s">one changed word in an instruction reorganises what a model deletes.</span></a></li>
-    <li><a href="research.html#unchosen-word"><span class="i">03</span><span class="t">the unchosen word</span><span class="m">2026 &middot; with wenhao lu &middot; pdf, code</span><span class="s">language models as editors of poetic indeterminacy.</span></a></li>
-    <li><a href="research.html#litefno"><span class="i">04</span><span class="t">[re] litefno</span><span class="m">2026 &middot; rescience c, under review &middot; pdf, doi, code</span><span class="s">a cnn ablation finds no fourier inductive-bias advantage at this scale.</span></a></li>
-    <li><a href="research.html#sampler-confound"><span class="i">05</span><span class="t">the sampler is a confound</span><span class="m">2026 &middot; design and code public &middot; sweep not yet run</span><span class="s">decoding configuration against model choice in math reasoning.</span></a></li>
+    <li><a href="research.html#restored-lines"><span class="i">01</span><span class="t">restored lines</span><span class="m">accepted &middot; neurips 2026 creative ai &middot; sole author</span><span class="s">a model finds the poet's hardest line breaks and declines to write them.</span></a></li>
+    <li><a href="research.html#dead-ear"><span class="i">02</span><span class="t">the dead ear</span><span class="m">accepted &middot; neurips 2026 creative ai &middot; sole author</span><span class="s">a model's inherited accent is an archive, not an author.</span></a></li>
+    <li><a href="research.html#fno-spectral"><span class="i">03</span><span class="t">when does an fno fail?</span><span class="m">accepted &middot; neurips 2026 workshop &middot; first author</span><span class="s">spectral diagnostics for low-rank surrogates of reaction-diffusion.</span></a></li>
+    <li><a href="research.html#litefno"><span class="i">04</span><span class="t">[re] litefno</span><span class="m">accepted &middot; rescience c &middot; pdf, doi, code</span><span class="s">a cnn ablation finds no fourier inductive-bias advantage at this scale.</span></a></li>
+    <li><a href="research.html#erasure"><span class="i">05</span><span class="t">erasure</span><span class="m">2026 &middot; sole author &middot; pdf, code</span><span class="s">one changed word in an instruction reorganises what a model deletes.</span></a></li>
   </ol>
   <p class="more"><a href="research.html">all research, with number theory &rarr;</a></p>
 </section>
 
 <section class="ch" id="yimo">
-  <h2 class="num">03 &mdash; yimo</h2>
+  <h2 class="num">04 &mdash; yimo</h2>
   <h2 class="big"><span class="w">a free</span><span class="w">olympiad</span></h2>
   <dl class="facts">
     <div><dt>registrations</dt><dd><a href="https://www.yimo-official.org/archive">3,000+</a></dd></div>
@@ -89,7 +117,7 @@
 </section>
 
 <section class="ch" id="contact">
-  <h2 class="num">04 &mdash; contact</h2>
+  <h2 class="num">05 &mdash; contact</h2>
   <a class="mail" href="mailto:hjyi2027@gmail.com"><span class="w">hjyi2027</span><span class="w">@gmail.com</span></a>
   <div class="links">
     <a href="https://github.com/hjyi2027">github</a>
