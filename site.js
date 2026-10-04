@@ -75,7 +75,7 @@
   document.querySelectorAll('.poster, .big, .mail').forEach(function (h) {
     h.querySelectorAll('.w').forEach(function (w, k) { w.style.setProperty('--k', k); });
   });
-  var sel = '.poster, .big, .mail, .num, .cols, .rows, .facts, .poster-sub, .ticker, .rows + .more';
+  var sel = '.poster, .big, .mail, .num, .cols, .rows, .facts, .play, .poster-sub, .ticker, .rows + .more';
   var nodes = Array.prototype.slice.call(document.querySelectorAll(sel));
   // anything already in the first viewport reveals on load, no observer needed;
   // the observer handles what scrolls in later.
@@ -93,6 +93,70 @@
     }, { threshold: 0.12 });
     later.forEach(function (n) { io.observe(n); });
   }
+
+  // ── the sampler: fixed toy logits, live decoding knobs ──
+  (function () {
+    var box = document.getElementById('sampler'); if (!box) return;
+    var tok = ['408', '418', '398', '400', '428', '406', '48', '4008'];
+    var lg = [3.2, 2.4, 2.0, 1.7, 1.2, 0.9, 0.2, -0.4];
+    var bars = box.querySelector('.bars'), rows = [], probs = [];
+    tok.forEach(function (t, i) {
+      var r = document.createElement('div'); r.className = 'bar-row' + (i ? '' : ' hit');
+      r.innerHTML = '<span>' + t + '</span><i></i><b></b>'; bars.appendChild(r); rows.push(r);
+    });
+    var kt = box.querySelector('#k-t'), kp = box.querySelector('#k-p'), kk = box.querySelector('#k-k');
+    function calc() {
+      var T = +kt.value, P = +kp.value, K = +kk.value, z = 0, p = lg.map(function (l) { return Math.exp(l / T); });
+      p.forEach(function (v) { z += v; }); p = p.map(function (v) { return v / z; });
+      var keep = [], cum = 0;                       // tokens are already sorted by logit
+      for (var i = 0; i < p.length; i++) { keep[i] = i < K && cum < P; cum += p[i]; }
+      z = 0; p = p.map(function (v, i) { return keep[i] ? v : 0; }); p.forEach(function (v) { z += v; });
+      probs = p.map(function (v) { return v / z; });
+      rows.forEach(function (r, i) {
+        r.classList.toggle('cut', !keep[i]); r.children[1].style.setProperty('--p', probs[i]);
+        r.children[2].textContent = keep[i] ? Math.round(probs[i] * 100) + '%' : 'cut';
+      });
+      box.querySelector('#o-t').textContent = T.toFixed(2); box.querySelector('#o-p').textContent = P.toFixed(2);
+      box.querySelector('#o-k').textContent = K; box.querySelector('#acc').textContent = Math.round(probs[0] * 100) + '%';
+    }
+    [kt, kp, kk].forEach(function (k) { k.addEventListener('input', calc); });
+    calc();
+    var out = box.querySelector('.out'), stream = box.querySelector('.stream'), timer;
+    function pick() { var u = Math.random(), c = 0; for (var i = 0; i < probs.length; i++) { c += probs[i]; if (u < c) return i; } return 0; }
+    box.querySelector('#draw').addEventListener('click', function () {
+      clearInterval(timer); stream.textContent = ''; var n = 0, ok = 0;
+      timer = setInterval(function () {
+        var i = pick(), d = document.createElement('s'); if (!i) { d.className = 'ok'; ok++; }
+        stream.appendChild(d); out.textContent = tok[i]; out.classList.toggle('miss', !!i);
+        if (++n >= 60) { clearInterval(timer); box.querySelector('#acc').textContent = ok + ' of 60'; }
+      }, reduce ? 0 : 28);
+    });
+  })();
+
+  // ── the line break: the red wheelbarrow as prose you can break ──
+  (function () {
+    var box = document.getElementById('breaker'); if (!box) return;
+    var words = 'so much depends upon a red wheel barrow glazed with rain water beside the white chickens'.split(' ');
+    var his = [2, 3, 6, 7, 10, 11, 14], on = {}, poem = box.querySelector('.poem'), score = box.querySelector('#score');
+    his.forEach(function (g) { on[g] = 1; });
+    function draw(changed) {
+      poem.textContent = '';
+      words.forEach(function (w, i) {
+        var s = document.createElement('span'); s.className = 'wd' + (changed === i - 1 ? ' new' : ''); s.textContent = w; poem.appendChild(s);
+        if (i === words.length - 1) return;
+        var g = document.createElement('button'); g.type = 'button'; g.className = 'gap' + (on[i] ? ' on' : '');
+        g.setAttribute('aria-label', (on[i] ? 'remove' : 'add') + ' line break after ' + w);
+        g.addEventListener('click', function () { if (on[i]) delete on[i]; else on[i] = 1; draw(i); });
+        poem.appendChild(g);
+        if (on[i]) poem.appendChild(document.createElement('br'));
+      });
+      var mine = Object.keys(on).map(Number), hit = mine.filter(function (g) { return his.indexOf(g) > -1; }).length, extra = mine.length - hit;
+      score.innerHTML = 'you and williams agree on <b>' + hit + ' of 7</b>' + (extra ? '<span style="display:block;margin-top:6px">plus ' + extra + ' he did not make</span>' : '');
+    }
+    draw();
+    box.querySelector('#b-w').addEventListener('click', function () { on = {}; his.forEach(function (g) { on[g] = 1; }); draw(); });
+    box.querySelector('#b-p').addEventListener('click', function () { on = {}; draw(); });
+  })();
 
   // the line field: vertical lines warped by a value-noise flow that follows
   // the pointer and the scroll velocity. plain canvas 2d, no library.
