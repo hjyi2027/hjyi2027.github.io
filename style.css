@@ -593,3 +593,19 @@ html.inner h2{scroll-margin-top:120px}
 html.inner .item,html.inner h3.sub{scroll-margin-top:120px}
 html.inner .facts div{display:flex;flex-direction:column;justify-content:space-between;gap:10px}
 html.inner .facts dd{margin-top:0}
+
+/* research: result badges and the open-problems table */
+.badge{display:inline-block;margin-right:6px;padding:2px 8px;border:1px solid var(--brass);color:var(--brass);
+  font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;line-height:1.6;vertical-align:1px;white-space:nowrap}
+.badge.solved{background:var(--brass);color:var(--navy)}
+.problems-wrap{overflow-x:auto;margin:28px 0 12px;border:1px solid var(--rule);scroll-margin-top:120px}
+table.problems{width:100%;min-width:680px;border-collapse:collapse;font-family:var(--serif);font-size:1rem}
+table.problems th{text-align:left;font-weight:400;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--rule)}
+table.problems tr.grp th{padding:18px 14px 10px;color:var(--bone);border-bottom:1px solid var(--rule-soft)}
+table.problems td{padding:12px 14px;border-bottom:1px solid var(--rule-soft);vertical-align:top;color:var(--ink-2);line-height:1.45}
+table.problems td:first-child a{color:var(--bone);text-decoration:none;border-bottom:1px solid var(--rule)}
+table.problems td:first-child a:hover{border-color:var(--brass)}
+table.problems td.res{color:var(--bone);font-variant-numeric:tabular-nums}
+table.problems td:last-child{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+table.problems tbody tr:not(.grp):hover td{background:var(--rule-soft)}
+@media print{.problems-wrap{border-color:#999}table.problems td,table.problems td.res,table.problems tr.grp th{color:#000}.badge{color:#000;border-color:#000;background:none}}
