@@ -49,8 +49,9 @@
   <div><dt>under review</dt><dd>8</dd></div>
   <div><dt>jmm 2027 abstracts</dt><dd>7</dd></div>
   <div><dt>accepted, rescience c</dt><dd>1</dd></div>
+  <div class="total"><dt>papers in total</dt><dd>35</dd></div>
 </dl>
-<p class="jump"><a href="#accepted">accepted</a> <a href="#open-problems">open problems</a> <a href="#under-review">under review</a> <a href="#preprints">preprints and code</a> <a href="#working-papers">working papers</a> <a href="#number-theory">earlier</a></p>
+<p class="jump"><a href="#accepted">accepted</a> <a href="#open-problems">open problems</a> <a href="#under-review">under review</a> <a href="#preprints">preprints</a> <a href="#working-papers">working papers</a></p>
 
 <h2 id="accepted">peer-reviewed and accepted</h2>
 
@@ -272,7 +273,7 @@
 </div>
 
 
-<h2 id="preprints">preprints and code</h2>
+<h2 id="preprints">preprints</h2>
 
 <h3 class="sub" id="language-models">language models</h3>
 
@@ -301,30 +302,15 @@
 </div>
 
 
-<h3 class="sub" id="reproducibility">neural operators</h3>
-
-<div class="item" id="specscope">
-  <h3><a href="https://github.com/AIscend-Research/litefno-extension">specscope: what did the operator learn?</a></h3>
-  <p class="meta">2026 &middot; extension of the litefno reproduction &middot; <a href="https://github.com/AIscend-Research/litefno-extension">code and notes</a></p>
-  <p>treats a trained fourier neural operator's spectral weights as an empirical transfer function of the system rather than as opaque parameters, and pulls out their pole structure with classical system identification. two questions: does that readout predict where the surrogate fails, and do the learned factors transplant across regimes? the testbed is an exactly solvable oscillatory pde, so the per-mode poles are known in closed form and "what the network should have learned" is not a matter of opinion.</p>
-</div>
-
-
 <h2 id="working-papers">working papers</h2>
-<p class="lede muted">manuscripts and projects that are not public yet. each line gives its status.</p>
+<p class="lede muted">finished manuscripts that are not public yet.</p>
 
 <h3 class="sub" id="wp-ml">machine learning</h3>
 
 <div class="item" id="decoding-audit">
   <h3>documented, accepted, honoured: an audit of decoding parameters on a hosted llm inference api</h3>
   <p class="meta">2026 &middot; manuscript</p>
-  <p>benchmark results for hosted models assume the provider applies the temperature, nucleus threshold and seed the request asks for. the paper tests that assumption. it checks an assumption the <a href="#sampler-confound">sampler-confound</a> design depends on.</p>
-</div>
-
-<div class="item" id="sampler-confound">
-  <h3><a href="https://github.com/hjyi2027/sampler-confound">the sampler is a confound: decoding configuration rivals model choice in llm mathematical reasoning</a></h3>
-  <p class="meta">2026 &middot; sole author &middot; in progress, pathways program &middot; <a href="https://github.com/hjyi2027/sampler-confound">design, audit and code</a></p>
-  <p>a math-reasoning score depends on model, prompt, benchmark, and decoding configuration, and the last is almost never reported. the design asks how often a ranking between two models flips when only the sampler moves. the design and a full-scale audit of the evaluation infrastructure are public; the variance study itself is future work, because a ratio estimated from three near-peer models cannot be tested against the threshold the claim needs.</p>
+  <p>benchmark results for hosted models assume the provider applies the temperature, nucleus threshold and seed the request asks for. the paper tests that assumption. it checks an assumption that every reported decoding configuration depends on.</p>
 </div>
 
 <div class="item" id="jackknife-plus">
@@ -342,26 +328,6 @@
   <p>strictly 2-local languages over dr + 2 symbols whose optimal positive characteristic sample has d&sup2; words under one-tier hypotheses and exactly d<sup>r</sup> words when hypotheses may use two nested tiers.</p>
 </div>
 
-
-<h2 id="number-theory">earlier work, 2025</h2>
-
-<div class="item" id="basel">
-  <h3><a href="https://github.com/hjyi2027/jun-yi-math-research/blob/main/projects/basel-sum.md">the basel problem and the riemann zeta function</a></h3>
-  <p class="meta">2025 &middot; expository &middot; <a href="https://github.com/hjyi2027/jun-yi-math-research/blob/main/projects/basel-sum.md">writeup</a></p>
-  <p>several routes to &zeta;(2) = &pi;&sup2;/6, including euler's product argument, then the bernoulli-number machinery that hands you every even zeta value at once, and why the odd ones stay out of reach.</p>
-</div>
-
-<div class="item" id="zeta-experiments">
-  <h3><a href="https://github.com/hjyi2027/jun-yi-math-research/blob/main/projects/zeta-experiment.py">computational experiments with &zeta;(s)</a></h3>
-  <p class="meta">2025 &middot; python &middot; <a href="https://github.com/hjyi2027/jun-yi-math-research/blob/main/projects/zeta-experiment.py">code</a> &middot; <a href="https://github.com/hjyi2027/jun-yi-math-research/blob/main/projects/zeta-experiment-output.txt">output</a></p>
-  <p>convergence rates for the naive series against euler-maclaurin corrections, verification of even zeta values against the bernoulli formula, and how many terms you actually need for a given accuracy.</p>
-</div>
-
-<div class="item" id="taylor">
-  <h3><a href="https://github.com/hjyi2027/jun-yi-math-research/blob/main/projects/taylor-series-and-convergence.md">taylor series and convergence</a></h3>
-  <p class="meta">2025 &middot; expository &middot; <a href="https://github.com/hjyi2027/jun-yi-math-research/blob/main/projects/taylor-series-and-convergence.md">writeup</a> &middot; <a href="https://github.com/hjyi2027/jun-yi-math-research/blob/main/projects/open-questions.md">open questions</a></p>
-  <p>radius of convergence, the gap between smooth and analytic, and the cases where a taylor series converges but fails to represent the function.</p>
-</div>
 
 </main>
 </div>
