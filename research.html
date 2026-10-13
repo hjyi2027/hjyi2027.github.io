@@ -40,7 +40,7 @@
 <main id="main">
 <p class="kicker">index &middot; papers and code</p>
 <h1 class="page-title"><span class="w">research</span></h1>
-<p class="lede muted">what language models do when you change something nobody reports, and some analytic number theory. three papers accepted to neurips 2026 and one to rescience c. every item links to its paper, code, or both.</p>
+<p class="lede muted">what language models do when you change something nobody reports, and some analytic number theory. three papers accepted to neurips 2026, one to rescience c, two sole-author preprints in discrete geometry, and four applied preprints with collaborators. every item links to its paper, code, or both.</p>
 
 <h2 id="language-models">language models</h2>
 
@@ -48,13 +48,13 @@
 
 <div class="item" id="restored-lines">
   <h3><a href="https://aiscend-research.github.io/papers/restored-lines.pdf">restored lines: a model finds the poet's hardest line breaks and declines to write them</a></h3>
-  <p class="meta">2026 &middot; sole author &middot; <a href="https://aiscend-research.github.io/papers.html">accepted</a>, neurips 2026 creative ai &middot; <a href="https://aiscend-research.github.io/papers/restored-lines.pdf">pdf</a> &middot; <a href="https://github.com/hjyi2027/Restored-Lines">code</a></p>
+  <p class="meta">2026 &middot; sole author &middot; <a href="https://aiscend-research.github.io/papers.html">accepted</a>, neurips 2026 creative ai &middot; <a href="https://aiscend-research.github.io/papers/restored-lines.pdf">pdf</a> &middot; <a href="https://openreview.net/forum?id=XRjFExVggk">openreview</a> &middot; <a href="https://github.com/hjyi2027/Restored-Lines">code</a></p>
   <p>a line break is the smallest unit of poetic decision. nothing in the sentence about the red wheelbarrow requires anyone to break it after "wheel". williams did that. this strips the breaks from 2,059 public-domain poems, grades every break by how much dependency structure it severs, and asks claude opus 5 to put them back. on free verse with rhyme, metre and line-initial capitals removed, it recovers 70 percent of the breaks that strand a determiner or a conjunction from its host, where a grammar-and-line-length solver recovers none. asked to write free verse of its own, it produces those breaks at 6.1 percent against the human 12.3. it locates the poet's override of the sentence and does not perform one.</p>
 </div>
 
 <div class="item" id="dead-ear">
   <h3><a href="https://aiscend-research.github.io/papers/the-dead-ear.pdf">the dead ear: a language model's inherited accent is an archive, not an author</a></h3>
-  <p class="meta">2026 &middot; sole author &middot; <a href="https://aiscend-research.github.io/papers.html">accepted</a>, neurips 2026 creative ai &middot; <a href="https://aiscend-research.github.io/papers/the-dead-ear.pdf">pdf</a> &middot; <a href="https://github.com/hjyi2027/dead-ear-creative">code</a></p>
+  <p class="meta">2026 &middot; sole author &middot; <a href="https://aiscend-research.github.io/papers.html">accepted</a>, neurips 2026 creative ai &middot; <a href="https://aiscend-research.github.io/papers/the-dead-ear.pdf">pdf</a> &middot; <a href="https://openreview.net/forum?id=BLL8YXu9ar">openreview</a> &middot; <a href="https://github.com/hjyi2027/dead-ear-creative">code</a></p>
   <p>pope rhymed tea with obey. shakespeare rhymed prove with love. both were sounds before they were conventions, and a model that learned rhyme from five centuries of verse learned it in accents nobody speaks. six documented sound changes give 997 dead pairs, crossed against a spelling confound. opus 5 treats dead rhymes as rhyme-like at 40.0 percent against a 1.2 percent floor, and writes them at 0.6 percent, below the most modern half-century in the corpus. the inheritance is a reference library, consulted accurately and kept out of the writing.</p>
 </div>
 
@@ -100,7 +100,7 @@
 
 <div class="item" id="litefno">
   <h3><a href="https://aiscend-research.github.io/papers/re-litefno-cnn-ablation.pdf">[re] a novel cnn ablation reveals limited fourier inductive bias in litefno: a reproducibility study</a></h3>
-  <p class="meta">2026 &middot; with jacob goldstein, kristen zhou, wenhao lu, david j. zhang and spursh deshpande &middot; <a href="https://aiscend-research.github.io/papers.html">accepted</a>, rescience c &middot; <a href="https://aiscend-research.github.io/papers/re-litefno-cnn-ablation.pdf">pdf</a> &middot; <a href="https://doi.org/10.5281/zenodo.20793535">doi</a> &middot; <a href="https://github.com/hjyi2027/litefno-repro">code</a></p>
+  <p class="meta">2026 &middot; with jacob goldstein, kristen zhou, wenhao lu, david j. zhang, spursh deshpande and jayvant rajesh &middot; <a href="https://aiscend-research.github.io/papers.html">accepted</a>, rescience c &middot; <a href="https://aiscend-research.github.io/papers/re-litefno-cnn-ablation.pdf">pdf</a> &middot; <a href="https://doi.org/10.5281/zenodo.23195718">doi</a> &middot; <a href="https://github.com/hjyi2027/litefno-repro">code</a></p>
   <p>a from-scratch reproduction of the lightweight fourier neural operator, plus a parameter-matched low-rank cnn ablation the original paper does not include. on gray-scott at 32x32 across three seeds the cnn baseline matches or beats litefno on one-step error and on autoregressive rollout, so the study finds no consistent evidence for a fourier inductive-bias advantage at this scale.</p>
 </div>
 
@@ -110,7 +110,23 @@
   <p>treats a trained fourier neural operator's spectral weights as an empirical transfer function of the system rather than as opaque parameters, and pulls out their pole structure with classical system identification. two questions: does that readout predict where the surrogate fails, and do the learned factors transplant across regimes? the testbed is an exactly solvable oscillatory pde, so the per-mode poles are known in closed form and "what the network should have learned" is not a matter of opinion.</p>
 </div>
 
-<h2 id="number-theory">number theory</h2>
+<h2 id="mathematics">mathematics</h2>
+
+<h3 class="sub" id="discrete-geometry">discrete geometry</h3>
+
+<div class="item" id="isosceles-sets">
+  <h3><a href="https://doi.org/10.5281/zenodo.22928431">isosceles sets in euclidean spaces of dimension nine to twenty-one</a></h3>
+  <p class="meta">september 2026 &middot; sole author &middot; preprint &middot; <a href="https://doi.org/10.5281/zenodo.22928431">doi</a></p>
+  <p>a finite set is isosceles if every three of its points form an isosceles triangle. erd&#337;s asked in 1946 for the largest such set in dimension d, and the answer was known only up to d = 8. this proves iso(d) = (d+1 choose 2) + 1 for 9 &le; d &le; 21, with the unique extremal set the edge-midpoints of a regular simplex plus its centroid, and adds thirteen terms to oeis a175769. the proof runs blokhuis' decomposition into orthogonal two-distance sets (with a short new proof via gallai colourings) against the recent determination of maximum two-distance sets and musin's bound.</p>
+</div>
+
+<div class="item" id="equiangular-277">
+  <h3><a href="https://doi.org/10.5281/zenodo.22928468">uniqueness of the two-distance extension of the 276 equiangular lines in r<sup>23</sup></a></h3>
+  <p class="meta">september 2026 &middot; sole author &middot; preprint &middot; <a href="https://doi.org/10.5281/zenodo.22928468">doi</a></p>
+  <p>ge, koolen and munemasa built a 277-point two-distance set in r<sup>23</sup> by adding one point to representatives of the 276 equiangular lines, and asked whether a set of that size is unique. in the leech lattice model every extension point is a norm-6 lattice vector; there are exactly 257,600 of them and co<sub>3</sub> &times; 2 permutes them transitively, so every such 277-point set is congruent to theirs. the automorphism group is 3<sup>5</sup>:(2 &times; m<sub>11</sub>), and maximality gets a two-line proof that previously needed a large magma computation.</p>
+</div>
+
+<h3 class="sub" id="number-theory">analytic number theory</h3>
 
 <div class="item" id="basel">
   <h3><a href="https://github.com/hjyi2027/jun-yi-math-research/blob/main/projects/basel-sum.md">the basel problem and the riemann zeta function</a></h3>
@@ -128,6 +144,38 @@
   <h3><a href="https://github.com/hjyi2027/jun-yi-math-research/blob/main/projects/taylor-series-and-convergence.md">taylor series and convergence</a></h3>
   <p class="meta">2025 &middot; expository &middot; <a href="https://github.com/hjyi2027/jun-yi-math-research/blob/main/projects/taylor-series-and-convergence.md">writeup</a> &middot; <a href="https://github.com/hjyi2027/jun-yi-math-research/blob/main/projects/open-questions.md">open questions</a></p>
   <p>radius of convergence, the gap between smooth and analytic, and the cases where a taylor series converges but fails to represent the function.</p>
+</div>
+
+<h2 id="applied">applied mathematics, with collaborators</h2>
+
+<div class="item" id="nanocrystal-quenching">
+  <h3><a href="https://doi.org/10.5281/zenodo.23066082">diffusion-limited quenching of shaped nanocrystals: rigorous bounds and the weak contribution of sharp edges</a></h3>
+  <p class="meta">september 2026 &middot; with raiyan mazhar &middot; preprint &middot; <a href="https://doi.org/10.5281/zenodo.23066082">doi</a></p>
+  <p>for a spherical emitter the stern-volmer constant has a closed form; for the cubes, plates and rods that colloidal nanocrystals actually are, the finite-lifetime term does not. the paper shows that for any shape the low-concentration constant equals &tau;d times the particle's screened capacity at inverse diffusion length, so at equal volume the sphere is quenched least at every lifetime, and a convex particle is bounded above and below by its surface area and integrated mean curvature.</p>
+</div>
+
+<div class="item" id="catalyst-pellets">
+  <h3><a href="https://doi.org/10.5281/zenodo.23021960">which catalyst pellets can beat the slab? a sharp bound on first-order effectiveness factors from inner parallel surfaces</a></h3>
+  <p class="meta">september 2026 &middot; with raiyan mazhar &middot; preprint &middot; <a href="https://doi.org/10.5281/zenodo.23021960">doi</a></p>
+  <p>the slab formula &eta; = tanh &phi; / &phi; is applied to catalyst pellets of any shape. the paper proves it is a rigorous upper bound for an isothermal first-order reaction whenever no inner parallel surface of the pellet exceeds its external surface, which covers every convex pellet and every prismatic pellet with at most one hole. the proof reduces any pellet to a one-dimensional problem on its inner parallel surfaces.</p>
+</div>
+
+<div class="item" id="ball-pass-harmonics">
+  <h3><a href="https://doi.org/10.5281/zenodo.23019449">ball-pass harmonics of varying compliance in radially loaded rolling bearings: legendre-function closed forms, scaling laws and silent load zones</a></h3>
+  <p class="meta">september 2026 &middot; with roberto moura de souza le&atilde;o &middot; preprint &middot; <a href="https://doi.org/10.5281/zenodo.23019449">doi</a></p>
+  <p>a bearing with z rolling elements vibrates at the ball-pass frequency even with perfect geometry. poisson summation splits the contact-force sum into the load-distribution integral plus ball-pass harmonics, each a ferrers function of half-odd-integer degree for a partial load zone and a gauss hypergeometric function when every element is loaded. at fixed load-zone angle the relative amplitude decays as z<sup>&minus;(n+1)</sup>.</p>
+</div>
+
+<div class="item" id="which-accusation-sticks">
+  <h3><a href="https://doi.org/10.5281/zenodo.23005046">which accusation sticks? the referent of a moral charge determines how consumers neutralize it</a></h3>
+  <p class="meta">september 2026 &middot; with chloe dayul kim &middot; preprint &middot; <a href="https://doi.org/10.5281/zenodo.23005046">doi</a></p>
+  <p>brand transgressions levy several accusations at once, some specific to the firm and some standard across the category, and the difference governs how consumers neutralize them. the case is the 2024 documentary on one fast-fashion retailer: wikipedia pageviews for the brand rose 16.8-fold, and a synthetic control over 19 donor brands finds no detectable demand response.</p>
+</div>
+
+<div class="item" id="flu-forecast">
+  <h3><a href="https://doi.org/10.5281/zenodo.22988800">the cdc influenza forecast ensemble predicts changes that are too small</a></h3>
+  <p class="meta">september 2026 &middot; sole author &middot; submitted to the columbia junior science journal &middot; <a href="https://doi.org/10.5281/zenodo.22988800">code and data</a></p>
+  <p>the paper is under review; what is public is the frozen archive: scripts that rebuild every table and figure from the public flusight, covid-19 and rsv forecast hub repositories at pinned commits, the derived tables, and a pre-registered protocol with frozen rescaling factors for a prospective test.</p>
 </div>
 </main>
 </div>
