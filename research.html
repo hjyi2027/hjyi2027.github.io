@@ -133,7 +133,7 @@
 <div class="item" id="flu-forecast">
   <h3><a href="https://doi.org/10.5281/zenodo.22988800">the cdc influenza forecast ensemble predicts changes that are too small</a></h3>
   <p class="meta">september 2026 &middot; sole author &middot; submitted to the columbia junior science journal &middot; <a href="https://doi.org/10.5281/zenodo.22988800">code and data</a></p>
-  <p>the paper is under review; what is public is the frozen archive: scripts that rebuild every table and figure from the public flusight, covid-19 and rsv forecast hub repositories at pinned commits, the derived tables, and a pre-registered protocol with frozen rescaling factors for a prospective test.</p>
+  <p>the cdc combines weekly hospital-admission forecasts from many teams by taking their median. across 35,162 ensemble forecasts from the flusight, covid-19 and rsv forecast hubs for 2023 to 2026, regressing the change that happened on the change predicted gives a slope of 1.65 (95% ci 1.29 to 1.94) for influenza four weeks ahead, above 1 in all 52 jurisdictions: the ensemble&rsquo;s predicted changes are too small. most individual team models show the opposite, and the median strips out their disagreement and leaves a shared change that is too small. rescaling by the slope fitted on earlier seasons improved the hubs&rsquo; standard accuracy score by 2% and 9% in the two later seasons.</p>
 </div>
 
 
@@ -190,6 +190,7 @@
     <tr><td><a href="#ordinary-lines-15">sylvester-gallai ordinary lines, 15 points</a></td><td>7 to 9</td><td class="res">m(15) = 9</td><td>team &middot; jmm 2027 abstract</td></tr>
     <tr><td><a href="#equiangular-277">uniqueness of the 277-point two-distance set in r<sup>23</sup></a></td><td>asked by ge, koolen and munemasa</td><td class="res">unique up to congruence</td><td>sole author &middot; preprint</td></tr>
     <tr><td><a href="#neumaier">neumaier graphs with e = s &minus; 2</a></td><td>question of abiad, de boeck and zeijlemaker</td><td class="res">&mu; odd forces 4 | s</td><td>team &middot; jmm 2027 abstract</td></tr>
+    <tr><td><a href="#admissible-digits">elsholtz-klahn-lipnik digit-set table, p &le; 31</a></td><td>17 entries known only as lower bounds</td><td class="res">all determined; two increase</td><td>draft</td></tr>
     <tr class="grp"><th colspan="4" scope="rowgroup"><span class="badge">new record</span> improved bounds</th></tr>
     <tr><td><a href="#chowla-half-constant">chowla&rsquo;s cosine problem, upper bound</a></td><td>constant 1/&radic;2 since the classical construction</td><td class="res">constant 1/2</td><td>co-first author &middot; arxiv forthcoming</td></tr>
     <tr><td><a href="#nonlinear-roth">nonlinear roth, {x, x+y, x+y<sup>2</sup>}</a></td><td>exponent 0.76850 (younis)</td><td class="res">0.77509</td><td>team &middot; jmm 2027 abstract</td></tr>
@@ -197,6 +198,7 @@
     <tr><td><a href="#few-distance">few-distance sets in r<sup>6</sup> to r<sup>8</sup></a></td><td>504 points in r<sup>8</sup> for s = 6</td><td class="res">910</td><td>team &middot; manuscript</td></tr>
     <tr><td><a href="#sarkozy-function-fields">cube differences in f<sub>q</sub>[t]</a></td><td>exponent 0.863882 (naslund)</td><td class="res">0.864495</td><td>draft</td></tr>
     <tr><td><a href="#cube-differences">sets with no cube differences</a></td><td>exponent 0.861681 (lewko)</td><td class="res">0.861763</td><td>draft</td></tr>
+    <tr><td><a href="#x-y-cubed">sets lacking {x, x+y, x+y<sup>3</sup>}</a></td><td>0.8617631, from cube-difference-free sets</td><td class="res">0.8703797</td><td>draft</td></tr>
     </tbody>
   </table>
 </div>
@@ -272,12 +274,6 @@
 
 <h3 class="sub" id="wp-ml">machine learning</h3>
 
-<div class="item" id="selection-diversity">
-  <h3>selection consumes diversity: a closed-form ceiling on self-improvement from verifier-filtered data</h3>
-  <p class="meta">september 2026 &middot; manuscript</p>
-  <p>a closed-form ceiling on how much a model can improve itself by training on data that a verifier has filtered.</p>
-</div>
-
 <div class="item" id="decoding-audit">
   <h3>documented, accepted, honoured: an audit of decoding parameters on a hosted llm inference api</h3>
   <p class="meta">2026 &middot; manuscript</p>
@@ -327,14 +323,14 @@
 
 <div class="item" id="x-y-cubed">
   <h3>lower bound for sets lacking {x, x+y, x+y<sup>3</sup>}</h3>
-  <p class="meta">september 2026 &middot; draft complete</p>
-  <p>a period-two chain construction modulo 91 gives exponent 0.8703797389 for sets with no pattern {x, x+y, x+y<sup>3</sup>}.</p>
+  <p class="meta"><span class="badge">new record</span> september 2026 &middot; draft complete</p>
+  <p>the first explicit lower bound for sets lacking {x, x+y, x+y<sup>3</sup>} that goes beyond what sets without cube differences give: exponent 0.8703797&hellip; against 0.8617631&hellip;. the construction runs younis&rsquo;s iterated-difference framework with a two-step chain of subsets of z/91z of sizes 13 and 28, and an exact dynamic program proves that no chain of any length modulo 91 does better.</p>
 </div>
 
 <div class="item" id="admissible-digits">
   <h3>largest admissible digit sets modulo primes up to 31</h3>
-  <p class="meta">september 2026 &middot; draft complete</p>
-  <p>computes the largest admissible digit sets in the elsholtz-klahn-lipnik construction of progression-free sets in z<sub>p</sub><sup>n</sup> for every prime up to 31, certified by linear programming.</p>
+  <p class="meta"><span class="badge solved">solved</span> september 2026 &middot; draft complete</p>
+  <p>elsholtz, klahn and lipnik build large progression-free sets from admissible digit sets and tabulated the largest they could find for primes up to 31; seventeen entries were recorded only as lower bounds. this determines all seventeen. two increase, modulo 31 to 23 for k = 5 and 24 for k = 6, and the other fifteen are optimal. for three-term progressions the largest admissible digit set modulo any odd prime p has exactly (p+1)/2 elements. the key observation is that admissibility is a linear program, so gordan&rsquo;s theorem gives short certificates checkable in exact integer arithmetic.</p>
 </div>
 
 <h3 class="sub" id="wp-math">formal languages</h3>
@@ -345,14 +341,6 @@
   <p>strictly 2-local languages over dr + 2 symbols whose optimal positive characteristic sample has d&sup2; words under one-tier hypotheses and exactly d<sup>r</sup> words when hypotheses may use two nested tiers.</p>
 </div>
 
-
-<h3 class="sub" id="wp-quant">quantitative finance</h3>
-
-<div class="item" id="capacity-dsr">
-  <h3>a capacity-aware correction to the deflated sharpe ratio</h3>
-  <p class="meta">2026 &middot; aiscend summer arc project</p>
-  <p>a correction to the deflated sharpe ratio that accounts for how much capital a strategy can absorb.</p>
-</div>
 
 <h2 id="number-theory">earlier work, 2025</h2>
 
