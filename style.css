@@ -581,3 +581,15 @@ html.js-reveal.home .play.in{opacity:1;transform:none;transition:opacity 600ms v
   .panel+.panel{border-left:0;border-top:1px solid var(--rule)}
   .knobs label{grid-template-columns:96px 40px 1fr}
 }
+
+/* research: at-a-glance counts and section jump links */
+html.inner .facts{margin:34px 0 18px}
+html.inner .facts dd{font-size:clamp(2.2rem,5vw,4rem)}
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 8px}
+.jump a{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--ink-2);
+  padding:7px 12px;border:1px solid var(--rule);transition:background 160ms var(--ease),color 160ms var(--ease)}
+.jump a:hover{background:var(--bone);color:var(--navy)}
+html.inner h2{scroll-margin-top:120px}
+html.inner .item,html.inner h3.sub{scroll-margin-top:120px}
+html.inner .facts div{display:flex;flex-direction:column;justify-content:space-between;gap:10px}
+html.inner .facts dd{margin-top:0}

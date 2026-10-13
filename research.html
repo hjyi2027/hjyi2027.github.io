@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>research | hyunjun yi</title>
-<meta name="description" content="papers and code by hyunjun yi: poetics and decoding in language models, a litefno reproducibility study, and analytic number theory writeups.">
+<meta name="description" content="research by hyunjun yi on ai evaluation: three papers accepted to neurips 2026, one to rescience c, eight under review, and sole-author preprints in discrete geometry.">
 <meta name="author" content="Hyunjun Yi">
 <link rel="canonical" href="https://hjyi2027.github.io/research.html">
 <meta name="theme-color" content="#0a1a33">
 <meta property="og:type" content="website">
 <meta property="og:title" content="research | hyunjun yi">
-<meta property="og:description" content="papers and code: poetics and decoding in language models, a litefno reproducibility study, analytic number theory.">
+<meta property="og:description" content="ai evaluation research: three papers accepted to neurips 2026, one to rescience c, eight under review.">
 <meta property="og:url" content="https://hjyi2027.github.io/research.html">
 <meta property="og:image" content="https://hjyi2027.github.io/photo.jpg">
 <meta name="twitter:card" content="summary">
@@ -40,11 +40,17 @@
 <main id="main">
 <p class="kicker">index &middot; papers and code</p>
 <h1 class="page-title"><span class="w">research</span></h1>
-<p class="lede muted">what language models do when you change something nobody reports, and some analytic number theory. three papers accepted to neurips 2026, one to rescience c, two sole-author preprints in discrete geometry, eight papers under review, and four working papers. every item links to its paper, code, or both.</p>
+<p class="lede muted">most of my work is about ai evaluation: what a benchmark, a metric, or a decoding setting actually measures, and where a model's ability and its behaviour come apart. every public item below links to its paper, code, or both.</p>
 
-<h2 id="language-models">language models</h2>
+<dl class="facts">
+  <div><dt>accepted, neurips 2026</dt><dd>3</dd></div>
+  <div><dt>accepted, rescience c</dt><dd>1</dd></div>
+  <div><dt>under review</dt><dd>8</dd></div>
+  <div><dt>sole-author math preprints</dt><dd>2</dd></div>
+</dl>
+<p class="jump"><a href="#accepted">accepted</a> <a href="#under-review">under review</a> <a href="#preprints">preprints and code</a> <a href="#mathematics">mathematics</a> <a href="#working-papers">working papers</a> <a href="#number-theory">earlier</a></p>
 
-<h3 class="sub" id="poetics">poetics</h3>
+<h2 id="accepted">peer-reviewed and accepted</h2>
 
 <div class="item" id="restored-lines">
   <h3><a href="https://aiscend-research.github.io/papers/restored-lines.pdf">restored lines: a model finds the poet's hardest line breaks and declines to write them</a></h3>
@@ -58,40 +64,6 @@
   <p>pope rhymed tea with obey. shakespeare rhymed prove with love. both were sounds before they were conventions, and a model that learned rhyme from five centuries of verse learned it in accents nobody speaks. six documented sound changes give 997 dead pairs, crossed against a spelling confound. opus 5 treats dead rhymes as rhyme-like at 40.0 percent against a 1.2 percent floor, and writes them at 0.6 percent, below the most modern half-century in the corpus. the inheritance is a reference library, consulted accurately and kept out of the writing.</p>
 </div>
 
-<div class="item" id="erasure">
-  <h3><a href="https://aiscend-research.github.io/papers/erasure.pdf">erasure: a stated goal reorganises what a language model deletes</a></h3>
-  <p class="meta">2026 &middot; sole author &middot; <a href="https://aiscend-research.github.io/papers/erasure.pdf">pdf</a> &middot; <a href="https://github.com/hjyi2027/erasure">code</a></p>
-  <p>give a model a passage and a single operator, delete. change one word of the instruction. asked for a summary, opus 5 keeps proper nouns at +0.70 log-odds. asked for a poem, it cuts them at -0.73. random deletion sits at +0.08. the words that go to zero survival are the ones that say which thing this is (president, north, pursuant). the words that survive are home, wildlife, shadow, water, hope. run the same design on gpt-oss-120b and half of it reverses.</p>
-</div>
-
-<div class="item" id="unchosen-word">
-  <h3><a href="https://aiscend-research.github.io/papers/the-unchosen-word.pdf">the unchosen word: language models as editors of poetic indeterminacy</a></h3>
-  <p class="meta">2026 &middot; with wenhao lu &middot; <a href="https://aiscend-research.github.io/papers/the-unchosen-word.pdf">pdf</a> &middot; <a href="https://github.com/hjyi2027/unchosen-word">code</a></p>
-  <p>dickinson wrote alternative words beside her lines and crossed none of them out. for most of the late fragments no fair copy was ever made, so the alternatives are the poem, a field of readings held open on purpose. printed editions close that field. this asks what a language model does with the same manuscripts, and whether the demand for one fluent output is itself an editorial act.</p>
-</div>
-
-<div class="item" id="compulsory-hope">
-  <h3><a href="https://aiscend-research.github.io/papers/compulsory-hope.pdf">compulsory hope: instruction tuning teaches poems to evade, not to console</a></h3>
-  <p class="meta">2026 &middot; sole author &middot; <a href="https://aiscend-research.github.io/papers/compulsory-hope.pdf">pdf</a> &middot; <a href="https://github.com/hjyi2027/compulsory-hope">code</a></p>
-  <p>hardy's "hap" argues that suffering is meaningless chance. handed its opening, olmo 2 1b instruct finishes it with a guardian angel and eternal peace with god. its own base checkpoint, given a byte-identical prompt, does not. the paper measures that gap across checkpoints that differ only in how much preference training they received, with an ending-uplift metric built for poems.</p>
-</div>
-
-<h3 class="sub" id="decoding">decoding</h3>
-
-<div class="item" id="unauthored-by-design">
-  <h3><a href="https://aiscend-research.github.io/papers/unauthored-by-design.pdf">unauthored by design: the seed's share of a generated artifact</a></h3>
-  <p class="meta">2026 &middot; with wenhao lu and adithya balakumar &middot; <a href="https://aiscend-research.github.io/papers/unauthored-by-design.pdf">pdf</a> &middot; <a href="https://github.com/AIscend-Research/seed-study-creative">code</a></p>
-  <p>when an artist prompts a generative model, how much of the result did they determine? a fully crossed design isolates the random seed's share of the variance from the prompt's and the model's, so that authorship of a generated artifact has a number attached to it.</p>
-</div>
-
-<div class="item" id="sampler-confound">
-  <h3><a href="https://github.com/hjyi2027/sampler-confound">the sampler is a confound: decoding configuration rivals model choice in llm mathematical reasoning</a></h3>
-  <p class="meta">2026 &middot; sole author &middot; <a href="https://github.com/hjyi2027/sampler-confound">design, audit and code</a> &middot; variance study is future work</p>
-  <p>a math-reasoning number is a function of model, prompt, benchmark, and decoding configuration. the last one is almost never reported and almost never held constant across papers. the design asks how often a ranking between two models flips when only the sampler moves, and how the sampler's variance share compares to the model's. neither number has been measured. a ratio estimated from three near-peer models cannot be tested against the threshold the claim needs, so the sweep was not run, and more compute would not fix that. what the repo holds is a full-scale audit of the evaluation infrastructure and smoke-run illustrations, each labelled as such.</p>
-</div>
-
-<h3 class="sub" id="reproducibility">reproducibility</h3>
-
 <div class="item" id="fno-spectral">
   <h3><a href="https://aiscend-research.github.io/papers/fno-spectral-diagnostics.pdf">when does a fourier neural operator fail? spectral diagnostics for low-rank surrogates of reaction-diffusion</a></h3>
   <p class="meta">2026 &middot; first author, with david j. zhang, wenhao lu, jonathan liu and spursh deshpande &middot; <a href="https://aiscend-research.github.io/papers.html">accepted</a>, neurips 2026 workshop on representations for the physical sciences &middot; <a href="https://aiscend-research.github.io/papers/fno-spectral-diagnostics.pdf">pdf</a></p>
@@ -104,11 +76,104 @@
   <p>a from-scratch reproduction of the lightweight fourier neural operator, plus a parameter-matched low-rank cnn ablation the original paper does not include. on gray-scott at 32x32 across three seeds the cnn baseline matches or beats litefno on one-step error and on autoregressive rollout, so the study finds no consistent evidence for a fourier inductive-bias advantage at this scale.</p>
 </div>
 
+
+<h2 id="under-review">under review</h2>
+<p class="lede muted">submitted in september and october 2026. most are in double-blind review, so there is no public link yet; titles only.</p>
+
+<h3 class="sub" id="ur-cv">benchmark audits, wacv 2027</h3>
+
+<div class="item" id="image-blind-baselines">
+  <h3>image-blind baselines for single-scene hyperspectral and multimodal land-cover benchmarks</h3>
+  <p class="meta">wacv 2027, cv4eo workshop &middot; under review</p>
+  <p>on a standard single-scene hyperspectral split, pixel coordinates alone reach 95.5 percent overall accuracy. the paper sets image-blind baselines that any reported model should have to beat.</p>
+</div>
+
+<div class="item" id="answerable-without-watching">
+  <h3>answerable without watching: option and split provenance in social-iq 2.0 and its derivatives</h3>
+  <p class="meta">wacv 2027, datasets track &middot; under review</p>
+  <p>how much of a four-way video question-answering benchmark, and the test sets derived from it, can be answered from the answer options and split construction without the video.</p>
+</div>
+
+<div class="item" id="registration-leaks">
+  <h3>registration leaks the label: synthetic-to-measured sar atr revisited, with lessons for hypothesis-testing agents</h3>
+  <p class="meta">wacv 2027 &middot; under review</p>
+  <p>synthetic-to-measured sar target recognition revisited, with a registration artifact that carries the class label on its own.</p>
+</div>
+
+<div class="item" id="crossing-frame">
+  <h3>crossing or leaving the frame? an audit of event anchoring in pedestrian crossing prediction benchmarks</h3>
+  <p class="meta">wacv 2027 &middot; under review</p>
+  <p>an audit of how crossing-prediction benchmarks anchor the event they ask a model to predict, and what a model can read off the anchoring alone.</p>
+</div>
+
+<div class="item" id="cmmd">
+  <h3>cmmd measures the mean: the moment weights of the clip maximum mean discrepancy</h3>
+  <p class="meta">wacv 2027 &middot; under review</p>
+  <p>cmmd scores an image generator by a gaussian-kernel mmd between clip embeddings of generated and real images. the paper works out which moments of the embedding distribution that score actually weighs at the standard bandwidth.</p>
+</div>
+
+
+<h3 class="sub" id="ur-lt">learning theory, alt 2027</h3>
+
+<div class="item" id="rtd-vc2">
+  <h3>the recursive teaching dimension of classes of vc dimension two is at most five</h3>
+  <p class="meta">alt 2027 &middot; under review</p>
+  <p>the recursive teaching dimension is the worst-case number of labelled examples a cooperative teacher needs; for vc dimension two the paper bounds it by five.</p>
+</div>
+
+<div class="item" id="nctd-vcd">
+  <h3>the non-clashing teaching dimension can exceed the vc dimension</h3>
+  <p class="meta">alt 2027 &middot; under review</p>
+  <p>non-clashing teaching is the most efficient batch teaching model; the paper separates its dimension from the vc dimension.</p>
+</div>
+
+
+<h3 class="sub" id="ur-forecast">forecasting</h3>
+
+<div class="item" id="flu-forecast">
+  <h3><a href="https://doi.org/10.5281/zenodo.22988800">the cdc influenza forecast ensemble predicts changes that are too small</a></h3>
+  <p class="meta">september 2026 &middot; sole author &middot; submitted to the columbia junior science journal &middot; <a href="https://doi.org/10.5281/zenodo.22988800">code and data</a></p>
+  <p>the paper is under review; what is public is the frozen archive: scripts that rebuild every table and figure from the public flusight, covid-19 and rsv forecast hub repositories at pinned commits, the derived tables, and a pre-registered protocol with frozen rescaling factors for a prospective test.</p>
+</div>
+
+
+<h2 id="preprints">preprints and code</h2>
+
+<h3 class="sub" id="language-models">language models</h3>
+
+<div class="item" id="erasure">
+  <h3><a href="https://aiscend-research.github.io/papers/erasure.pdf">erasure: a stated goal reorganises what a language model deletes</a></h3>
+  <p class="meta">2026 &middot; sole author &middot; <a href="https://aiscend-research.github.io/papers/erasure.pdf">pdf</a> &middot; <a href="https://github.com/hjyi2027/erasure">code</a></p>
+  <p>give a model a passage and a single operator, delete. change one word of the instruction. asked for a summary, opus 5 keeps proper nouns at +0.70 log-odds. asked for a poem, it cuts them at -0.73. random deletion sits at +0.08. the words that go to zero survival are the ones that say which thing this is (president, north, pursuant). the words that survive are home, wildlife, shadow, water, hope. run the same design on gpt-oss-120b and half of it reverses.</p>
+</div>
+
+<div class="item" id="compulsory-hope">
+  <h3><a href="https://aiscend-research.github.io/papers/compulsory-hope.pdf">compulsory hope: instruction tuning teaches poems to evade, not to console</a></h3>
+  <p class="meta">2026 &middot; sole author &middot; <a href="https://aiscend-research.github.io/papers/compulsory-hope.pdf">pdf</a> &middot; <a href="https://github.com/hjyi2027/compulsory-hope">code</a></p>
+  <p>hardy's "hap" argues that suffering is meaningless chance. handed its opening, olmo 2 1b instruct finishes it with a guardian angel and eternal peace with god. its own base checkpoint, given a byte-identical prompt, does not. the paper measures that gap across checkpoints that differ only in how much preference training they received, with an ending-uplift metric built for poems.</p>
+</div>
+
+<div class="item" id="unchosen-word">
+  <h3><a href="https://aiscend-research.github.io/papers/the-unchosen-word.pdf">the unchosen word: language models as editors of poetic indeterminacy</a></h3>
+  <p class="meta">2026 &middot; with wenhao lu &middot; <a href="https://aiscend-research.github.io/papers/the-unchosen-word.pdf">pdf</a> &middot; <a href="https://github.com/hjyi2027/unchosen-word">code</a></p>
+  <p>dickinson wrote alternative words beside her lines and crossed none of them out. for most of the late fragments no fair copy was ever made, so the alternatives are the poem, a field of readings held open on purpose. printed editions close that field. this asks what a language model does with the same manuscripts, and whether the demand for one fluent output is itself an editorial act.</p>
+</div>
+
+<div class="item" id="unauthored-by-design">
+  <h3><a href="https://aiscend-research.github.io/papers/unauthored-by-design.pdf">unauthored by design: the seed's share of a generated artifact</a></h3>
+  <p class="meta">2026 &middot; with wenhao lu and adithya balakumar &middot; <a href="https://aiscend-research.github.io/papers/unauthored-by-design.pdf">pdf</a> &middot; <a href="https://github.com/AIscend-Research/seed-study-creative">code</a></p>
+  <p>when an artist prompts a generative model, how much of the result did they determine? a fully crossed design isolates the random seed's share of the variance from the prompt's and the model's, so that authorship of a generated artifact has a number attached to it.</p>
+</div>
+
+
+<h3 class="sub" id="reproducibility">neural operators</h3>
+
 <div class="item" id="specscope">
   <h3><a href="https://github.com/AIscend-Research/litefno-extension">specscope: what did the operator learn?</a></h3>
   <p class="meta">2026 &middot; extension of the litefno reproduction &middot; <a href="https://github.com/AIscend-Research/litefno-extension">code and notes</a></p>
   <p>treats a trained fourier neural operator's spectral weights as an empirical transfer function of the system rather than as opaque parameters, and pulls out their pole structure with classical system identification. two questions: does that readout predict where the surrogate fails, and do the learned factors transplant across regimes? the testbed is an exactly solvable oscillatory pde, so the per-mode poles are known in closed form and "what the network should have learned" is not a matter of opinion.</p>
 </div>
+
 
 <h2 id="mathematics">mathematics</h2>
 
@@ -126,7 +191,47 @@
   <p>ge, koolen and munemasa built a 277-point two-distance set in r<sup>23</sup> by adding one point to representatives of the 276 equiangular lines, and asked whether a set of that size is unique. in the leech lattice model every extension point is a norm-6 lattice vector; there are exactly 257,600 of them and co<sub>3</sub> &times; 2 permutes them transitively, so every such 277-point set is congruent to theirs. the automorphism group is 3<sup>5</sup>:(2 &times; m<sub>11</sub>), and maximality gets a two-line proof that previously needed a large magma computation.</p>
 </div>
 
-<h3 class="sub" id="number-theory">analytic number theory</h3>
+
+<h2 id="working-papers">working papers</h2>
+<p class="lede muted">finished or nearly finished manuscripts and projects, not yet submitted or posted.</p>
+
+<h3 class="sub" id="wp-ml">machine learning</h3>
+
+<div class="item" id="decoding-audit">
+  <h3>documented, accepted, honoured: an audit of decoding parameters on a hosted llm inference api</h3>
+  <p class="meta">2026 &middot; manuscript</p>
+  <p>benchmark results for hosted models assume the provider applies the temperature, nucleus threshold and seed the request asks for. the paper tests that assumption. it checks an assumption the <a href="#sampler-confound">sampler-confound</a> design depends on.</p>
+</div>
+
+<div class="item" id="sampler-confound">
+  <h3><a href="https://github.com/hjyi2027/sampler-confound">the sampler is a confound: decoding configuration rivals model choice in llm mathematical reasoning</a></h3>
+  <p class="meta">2026 &middot; sole author &middot; <a href="https://github.com/hjyi2027/sampler-confound">design, audit and code</a></p>
+  <p>a math-reasoning score depends on model, prompt, benchmark, and decoding configuration, and the last is almost never reported. the design asks how often a ranking between two models flips when only the sampler moves. the design and a full-scale audit of the evaluation infrastructure are public; the variance study itself is future work, because a ratio estimated from three near-peer models cannot be tested against the threshold the claim needs.</p>
+</div>
+
+<div class="item" id="jackknife-plus">
+  <h3>exact worst-case coverage of the jackknife+ and a 3/2 law for two-fold cross-validation conformal prediction</h3>
+  <p class="meta">2026 &middot; manuscript</p>
+  <p>jackknife+, cv+ and cross-conformal predictors build distribution-free intervals without a calibration split; the paper gives their exact worst-case coverage and a 3/2 law for the two-fold case.</p>
+</div>
+
+
+<h3 class="sub" id="wp-math">mathematics and formal languages</h3>
+
+<div class="item" id="chowla-half-constant">
+  <h3>a half-constant upper bound for chowla&rsquo;s cosine problem</h3>
+  <p class="meta">2026 &middot; manuscript</p>
+  <p>for a set a of n positive integers, the classical sidon-difference construction gives a cosine-sum excursion of (1+o(1))&radic;(n/2). the paper constructs sets with leading constant 1/2, so lim sup &lambda;(n)/&radic;n &le; 1/2.</p>
+</div>
+
+<div class="item" id="two-tier-sl">
+  <h3>exponential positive-evidence requirements for two-tier strictly local languages</h3>
+  <p class="meta">2026 &middot; manuscript</p>
+  <p>strictly 2-local languages over dr + 2 symbols whose optimal positive characteristic sample has d&sup2; words under one-tier hypotheses and exactly d<sup>r</sup> words when hypotheses may use two nested tiers.</p>
+</div>
+
+
+<h2 id="number-theory">earlier work, 2025</h2>
 
 <div class="item" id="basel">
   <h3><a href="https://github.com/hjyi2027/jun-yi-math-research/blob/main/projects/basel-sum.md">the basel problem and the riemann zeta function</a></h3>
@@ -144,91 +249,6 @@
   <h3><a href="https://github.com/hjyi2027/jun-yi-math-research/blob/main/projects/taylor-series-and-convergence.md">taylor series and convergence</a></h3>
   <p class="meta">2025 &middot; expository &middot; <a href="https://github.com/hjyi2027/jun-yi-math-research/blob/main/projects/taylor-series-and-convergence.md">writeup</a> &middot; <a href="https://github.com/hjyi2027/jun-yi-math-research/blob/main/projects/open-questions.md">open questions</a></p>
   <p>radius of convergence, the gap between smooth and analytic, and the cases where a taylor series converges but fails to represent the function.</p>
-</div>
-
-<h2 id="under-review">under review</h2>
-<p class="lede muted">submitted in september and october 2026. most are in double-blind review, so there is no public link yet; titles only.</p>
-
-<h3 class="sub" id="ur-cv">computer vision</h3>
-
-<div class="item" id="cmmd">
-  <h3>cmmd measures the mean: the moment weights of the clip maximum mean discrepancy</h3>
-  <p class="meta">wacv 2027 &middot; under review</p>
-  <p>cmmd scores an image generator by a gaussian-kernel mmd between clip embeddings of generated and real images. the paper works out which moments of the embedding distribution that score actually weighs at the standard bandwidth.</p>
-</div>
-
-<div class="item" id="crossing-frame">
-  <h3>crossing or leaving the frame? an audit of event anchoring in pedestrian crossing prediction benchmarks</h3>
-  <p class="meta">wacv 2027 &middot; under review</p>
-  <p>an audit of how crossing-prediction benchmarks anchor the event they ask a model to predict, and what a model can read off the anchoring alone.</p>
-</div>
-
-<div class="item" id="registration-leaks">
-  <h3>registration leaks the label: synthetic-to-measured sar atr revisited, with lessons for hypothesis-testing agents</h3>
-  <p class="meta">wacv 2027 &middot; under review</p>
-  <p>synthetic-to-measured sar target recognition revisited, with a registration artifact that carries the class label on its own.</p>
-</div>
-
-<div class="item" id="answerable-without-watching">
-  <h3>answerable without watching: option and split provenance in social-iq 2.0 and its derivatives</h3>
-  <p class="meta">wacv 2027, datasets track &middot; under review</p>
-  <p>how much of a four-way video question-answering benchmark, and the test sets derived from it, can be answered from the answer options and split construction without the video.</p>
-</div>
-
-<div class="item" id="image-blind-baselines">
-  <h3>image-blind baselines for single-scene hyperspectral and multimodal land-cover benchmarks</h3>
-  <p class="meta">wacv 2027, cv4eo workshop &middot; under review</p>
-  <p>on a standard single-scene hyperspectral split, pixel coordinates alone reach 95.5 percent overall accuracy. the paper sets image-blind baselines that any reported model should have to beat.</p>
-</div>
-
-<h3 class="sub" id="ur-lt">learning theory</h3>
-
-<div class="item" id="nctd-vcd">
-  <h3>the non-clashing teaching dimension can exceed the vc dimension</h3>
-  <p class="meta">alt 2027 &middot; under review</p>
-  <p>non-clashing teaching is the most efficient batch teaching model; the paper separates its dimension from the vc dimension.</p>
-</div>
-
-<div class="item" id="rtd-vc2">
-  <h3>the recursive teaching dimension of classes of vc dimension two is at most five</h3>
-  <p class="meta">alt 2027 &middot; under review</p>
-  <p>the recursive teaching dimension is the worst-case number of labelled examples a cooperative teacher needs; for vc dimension two the paper bounds it by five.</p>
-</div>
-
-<div class="item" id="flu-forecast">
-  <h3><a href="https://doi.org/10.5281/zenodo.22988800">the cdc influenza forecast ensemble predicts changes that are too small</a></h3>
-  <p class="meta">september 2026 &middot; sole author &middot; submitted to the columbia junior science journal &middot; <a href="https://doi.org/10.5281/zenodo.22988800">code and data</a></p>
-  <p>the paper is under review; what is public is the frozen archive: scripts that rebuild every table and figure from the public flusight, covid-19 and rsv forecast hub repositories at pinned commits, the derived tables, and a pre-registered protocol with frozen rescaling factors for a prospective test.</p>
-</div>
-<h2 id="working-papers">working papers</h2>
-<p class="lede muted">finished or nearly finished manuscripts, not yet submitted or posted. titles only for now.</p>
-
-<h3 class="sub" id="wp-ml">machine learning</h3>
-
-<div class="item" id="decoding-audit">
-  <h3>documented, accepted, honoured: an audit of decoding parameters on a hosted llm inference api</h3>
-  <p class="meta">2026 &middot; manuscript</p>
-  <p>benchmark results for hosted models assume the provider applies the temperature, nucleus threshold and seed the request asks for. the paper tests that assumption. it checks an assumption the <a href="#sampler-confound">sampler-confound</a> design depends on.</p>
-</div>
-
-<div class="item" id="jackknife-plus">
-  <h3>exact worst-case coverage of the jackknife+ and a 3/2 law for two-fold cross-validation conformal prediction</h3>
-  <p class="meta">2026 &middot; manuscript</p>
-  <p>jackknife+, cv+ and cross-conformal predictors build distribution-free intervals without a calibration split; the paper gives their exact worst-case coverage and a 3/2 law for the two-fold case.</p>
-</div>
-
-<h3 class="sub" id="wp-math">mathematics and formal languages</h3>
-
-<div class="item" id="chowla-half-constant">
-  <h3>a half-constant upper bound for chowla&rsquo;s cosine problem</h3>
-  <p class="meta">2026 &middot; manuscript</p>
-  <p>for a set a of n positive integers, the classical sidon-difference construction gives a cosine-sum excursion of (1+o(1))&radic;(n/2). the paper constructs sets with leading constant 1/2, so lim sup &lambda;(n)/&radic;n &le; 1/2.</p>
-</div>
-
-<div class="item" id="two-tier-sl">
-  <h3>exponential positive-evidence requirements for two-tier strictly local languages</h3>
-  <p class="meta">2026 &middot; manuscript</p>
-  <p>strictly 2-local languages over dr + 2 symbols whose optimal positive characteristic sample has d&sup2; words under one-tier hypotheses and exactly d<sup>r</sup> words when hypotheses may use two nested tiers.</p>
 </div>
 
 </main>
