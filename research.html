@@ -48,7 +48,7 @@
   <div><dt>under review</dt><dd>8</dd></div>
   <div><dt>sole-author math preprints</dt><dd>2</dd></div>
 </dl>
-<p class="jump"><a href="#accepted">accepted</a> <a href="#under-review">under review</a> <a href="#preprints">preprints and code</a> <a href="#mathematics">mathematics</a> <a href="#working-papers">working papers</a> <a href="#number-theory">earlier</a></p>
+<p class="jump"><a href="#accepted">accepted</a> <a href="#under-review">under review</a> <a href="#preprints">preprints and code</a> <a href="#open-problems">open problems</a> <a href="#mathematics">mathematics</a> <a href="#working-papers">working papers</a> <a href="#number-theory">earlier</a></p>
 
 <h2 id="accepted">peer-reviewed and accepted</h2>
 
@@ -176,34 +176,106 @@
 
 
 <h2 id="mathematics">mathematics</h2>
+<p class="lede muted">exact answers to old questions in discrete geometry, and new records in additive combinatorics. each row links to its entry below; the status column says which are public.</p>
 
-<h3 class="sub" id="harmonic-analysis">harmonic analysis</h3>
-
-<div class="item" id="chowla-half-constant">
-  <h3>a half-constant upper bound for chowla&rsquo;s cosine problem</h3>
-  <p class="meta">2026 &middot; co-first author &middot; arxiv preprint forthcoming</p>
-  <p>chowla asked in 1965 how deep the negative dip of a cosine sum with n frequencies has to be. call the least possible depth &lambda;(n). the best known lower bound is of order n<sup>1/5</sup> (<a href="https://arxiv.org/abs/2509.05260">bedert, 2025</a>), and the classical sidon-difference construction gives the upper bound (1+o(1))&radic;(n/2). this paper lowers the leading constant to 1/2: &lambda;(n) &le; &frac12;&radic;n + O(n<sup>1/4</sup>&radic;log n). the construction combines a two-sided sidon square identity with a singer difference set, a fej&eacute;r-kernel majorant, a parity-biased deletion and an exact-cardinality random selection. in the other direction it carries the l<sup>1</sup> norm through bedert&rsquo;s estimate, giving a lower bound of order n<sup>1/4</sup> for sets inside [1, cn] and one that recovers the exponent 1/5 and improves it when the l<sup>1</sup> norm is small.</p>
+<div class="problems-wrap" id="open-problems">
+  <table class="problems">
+    <thead><tr><th scope="col">problem</th><th scope="col">before</th><th scope="col">result</th><th scope="col">status</th></tr></thead>
+    <tbody>
+    <tr class="grp"><th colspan="4" scope="rowgroup"><span class="badge solved">solved</span> open problems and questions</th></tr>
+    <tr><td><a href="#isosceles-sets">erd&#337;s&rsquo;s isosceles-set problem, d = 9 to 21</a></td><td>posed 1946; known only to d = 8</td><td class="res">iso(d) = (d+1 choose 2) + 1, extremal set unique</td><td>sole author &middot; preprint</td></tr>
+    <tr><td><a href="#orchard-15">orchard-planting problem, 15 points</a></td><td>31 or 32, open since 1974</td><td class="res">t<sub>3</sub>(15) = 31</td><td>team &middot; jmm 2027 abstract</td></tr>
+    <tr><td><a href="#two-distance-9-12">largest two-distance set in r<sup>9</sup></a></td><td>45 to 55, open since 1997</td><td class="res">g(9) = 45</td><td>team &middot; jmm 2027 abstract</td></tr>
+    <tr><td><a href="#ordinary-lines-15">sylvester-gallai ordinary lines, 15 points</a></td><td>7 to 9</td><td class="res">m(15) = 9</td><td>team &middot; jmm 2027 abstract</td></tr>
+    <tr><td><a href="#equiangular-277">uniqueness of the 277-point two-distance set in r<sup>23</sup></a></td><td>asked by ge, koolen and munemasa</td><td class="res">unique up to congruence</td><td>sole author &middot; preprint</td></tr>
+    <tr><td><a href="#neumaier">neumaier graphs with e = s &minus; 2</a></td><td>question of abiad, de boeck and zeijlemaker</td><td class="res">&mu; odd forces 4 | s</td><td>team &middot; jmm 2027 abstract</td></tr>
+    <tr class="grp"><th colspan="4" scope="rowgroup"><span class="badge">new record</span> improved bounds</th></tr>
+    <tr><td><a href="#chowla-half-constant">chowla&rsquo;s cosine problem, upper bound</a></td><td>constant 1/&radic;2 since the classical construction</td><td class="res">constant 1/2</td><td>co-first author &middot; arxiv forthcoming</td></tr>
+    <tr><td><a href="#nonlinear-roth">nonlinear roth, {x, x+y, x+y<sup>2</sup>}</a></td><td>exponent 0.76850 (younis)</td><td class="res">0.77509</td><td>team &middot; jmm 2027 abstract</td></tr>
+    <tr><td><a href="#almost-equidistant">almost-equidistant sets, 20 &le; d &le; 57</a></td><td>f(d) &ge; 2d + 4</td><td class="res">beaten for every d; f(22) &ge; 100</td><td>team &middot; jmm 2027 abstract</td></tr>
+    <tr><td><a href="#vanishing-sums">minimal vanishing sums of roots of unity</a></td><td>classified to weight 12</td><td class="res">classified to weight 23</td><td>team &middot; jmm 2027 abstract</td></tr>
+    <tr><td><a href="#sarkozy-function-fields">cube differences in f<sub>q</sub>[t]</a></td><td>exponent 0.863882 (naslund)</td><td class="res">0.864495</td><td>draft</td></tr>
+    <tr><td><a href="#cube-differences">sets with no cube differences</a></td><td>exponent 0.861681 (lewko)</td><td class="res">0.861763</td><td>draft</td></tr>
+    </tbody>
+  </table>
 </div>
 
 <h3 class="sub" id="discrete-geometry">discrete geometry</h3>
 
 <div class="item" id="isosceles-sets">
   <h3><a href="https://doi.org/10.5281/zenodo.22928431">isosceles sets in euclidean spaces of dimension nine to twenty-one</a></h3>
-  <p class="meta">september 2026 &middot; sole author &middot; preprint &middot; <a href="https://doi.org/10.5281/zenodo.22928431">doi</a></p>
+  <p class="meta"><span class="badge solved">solved &middot; erd&#337;s, 1946</span> september 2026 &middot; sole author &middot; preprint &middot; <a href="https://doi.org/10.5281/zenodo.22928431">doi</a></p>
   <p>a finite set is isosceles if every three of its points form an isosceles triangle. erd&#337;s asked in 1946 for the largest such set in dimension d, and the answer was known only up to d = 8. this proves iso(d) = (d+1 choose 2) + 1 for 9 &le; d &le; 21, with the unique extremal set the edge-midpoints of a regular simplex plus its centroid, and adds thirteen terms to oeis a175769. the proof runs blokhuis' decomposition into orthogonal two-distance sets (with a short new proof via gallai colourings) against the recent determination of maximum two-distance sets and musin's bound.</p>
+</div>
+
+<div class="item" id="orchard-15">
+  <h3>the orchard-planting problem for fifteen points</h3>
+  <p class="meta"><span class="badge solved">solved &middot; open since 1974</span> september 2026 &middot; team paper &middot; jmm 2027 abstract submitted, decision pending</p>
+  <p>proves t<sub>3</sub>(15) = 31, the largest number of three-point lines through fifteen points. burr, gr&uuml;nbaum and sloane narrowed it to 31 or 32 in 1974, and oeis still lists it that way (<a href="https://oeis.org/A003035">a003035</a>), so 15 is not an exception to their formula. the proof classifies 7,955,290 incidence structures with exact gr&ouml;bner-basis computations, and confirms t<sub>3</sub>(13) = 22 and t<sub>3</sub>(14) = 26 along the way.</p>
+</div>
+
+<div class="item" id="two-distance-9-12">
+  <h3>maximum two-distance sets in dimensions nine, ten, eleven and twelve</h3>
+  <p class="meta"><span class="badge solved">solved &middot; open since 1997</span> september 2026 &middot; team paper &middot; jmm 2027 abstract submitted, decision pending</p>
+  <p>proves g(9) = 45, open since lison&#283;k&rsquo;s 1997 work left 45 &le; g(9) &le; 55, and g(10) = 55, g(11) = 66, g(12) = 78, with the extremal sets unique. the method is a root-lattice reduction plus a symmetry-reduced exhaustive search, cross-checked by an independent sat solver. my <a href="#isosceles-sets">isosceles-sets paper</a> builds on this result.</p>
+</div>
+
+<div class="item" id="ordinary-lines-15">
+  <h3>fifteen points determine at least nine ordinary lines</h3>
+  <p class="meta"><span class="badge solved">solved</span> september 2026 &middot; team paper &middot; jmm 2027 abstract submitted, decision pending</p>
+  <p>proves m(15) = 9 for the sylvester-gallai ordinary lines problem, where only 7 &le; m(15) &le; 9 was known; the lower-bound line of work goes back to kelly and moser in 1958. the proof classifies 23,174,731 incidence structures, with every rejection confirmed by an independent sat test.</p>
 </div>
 
 <div class="item" id="equiangular-277">
   <h3><a href="https://doi.org/10.5281/zenodo.22928468">uniqueness of the two-distance extension of the 276 equiangular lines in r<sup>23</sup></a></h3>
-  <p class="meta">september 2026 &middot; sole author &middot; preprint &middot; <a href="https://doi.org/10.5281/zenodo.22928468">doi</a></p>
+  <p class="meta"><span class="badge solved">answers an open question</span> september 2026 &middot; sole author &middot; preprint &middot; <a href="https://doi.org/10.5281/zenodo.22928468">doi</a></p>
   <p>ge, koolen and munemasa built a 277-point two-distance set in r<sup>23</sup> by adding one point to representatives of the 276 equiangular lines, and asked whether a set of that size is unique. in the leech lattice model every extension point is a norm-6 lattice vector; there are exactly 257,600 of them and co<sub>3</sub> &times; 2 permutes them transitively, so every such 277-point set is congruent to theirs. the automorphism group is 3<sup>5</sup>:(2 &times; m<sub>11</sub>), and maximality gets a two-line proof that previously needed a large magma computation.</p>
 </div>
 
+<div class="item" id="almost-equidistant">
+  <h3>large almost-equidistant sets from triangle-free strongly regular graphs</h3>
+  <p class="meta"><span class="badge">new record</span> september 2026 &middot; team paper &middot; jmm 2027 abstract submitted, decision pending</p>
+  <p>builds almost-equidistant sets from the hoffman-singleton, gewirtz, m<sub>22</sub> and higman-sims graphs, beating the previous best bound f(d) &ge; 2d + 4 for every 20 &le; d &le; 57, with f(22) &ge; 100. this answers a question of polyanskii for n = 100.</p>
+</div>
+
+<h3 class="sub" id="harmonic-analysis">harmonic analysis and additive combinatorics</h3>
+
+<div class="item" id="chowla-half-constant">
+  <h3>a half-constant upper bound for chowla&rsquo;s cosine problem</h3>
+  <p class="meta"><span class="badge">new record</span> 2026 &middot; co-first author &middot; arxiv preprint forthcoming</p>
+  <p>chowla asked in 1965 how deep the negative dip of a cosine sum with n frequencies has to be. call the least possible depth &lambda;(n). the best known lower bound is of order n<sup>1/5</sup> (<a href="https://arxiv.org/abs/2509.05260">bedert, 2025</a>), and the classical sidon-difference construction gives the upper bound (1+o(1))&radic;(n/2). this paper lowers the leading constant to 1/2: &lambda;(n) &le; &frac12;&radic;n + O(n<sup>1/4</sup>&radic;log n). the construction combines a two-sided sidon square identity with a singer difference set, a fej&eacute;r-kernel majorant, a parity-biased deletion and an exact-cardinality random selection. in the other direction it carries the l<sup>1</sup> norm through bedert&rsquo;s estimate, giving a lower bound of order n<sup>1/4</sup> for sets inside [1, cn] and one that recovers the exponent 1/5 and improves it when the l<sup>1</sup> norm is small.</p>
+</div>
+
+<div class="item" id="nonlinear-roth">
+  <h3>an improved lower bound in the nonlinear roth theorem</h3>
+  <p class="meta"><span class="badge">new record</span> september 2026 &middot; team paper &middot; jmm 2027 abstract submitted, decision pending</p>
+  <p>builds subsets of {1, &hellip;, n} of size n<sup>0.77509</sup> with no configuration {x, x+y, x+y<sup>2</sup>}, improving younis&rsquo;s exponent 0.76850. the exact optimisation at moduli 65 and 85 is solved and certified with big-integer certificates.</p>
+</div>
+
+<h3 class="sub" id="algebra">algebraic combinatorics</h3>
+
+<div class="item" id="neumaier">
+  <h3>a parity obstruction for neumaier graphs with e = s &minus; 2</h3>
+  <p class="meta"><span class="badge solved">answers an open question</span> september 2026 &middot; team paper &middot; jmm 2027 abstract submitted, decision pending</p>
+  <p>proves that if &mu; is odd then 4 divides s, which explains why these parameter sets vanish in the computations of abiad, de boeck and zeijlemaker and answers their question. it also eliminates five further open parameter sets from their table.</p>
+</div>
+
+<div class="item" id="vanishing-sums">
+  <h3>the complete classification of minimal vanishing sums of roots of unity up to weight 23</h3>
+  <p class="meta"><span class="badge">new record</span> september 2026 &middot; team paper &middot; jmm 2027 abstract submitted, decision pending</p>
+  <p>a certified classification of every minimal vanishing sum of roots of unity up to weight 23. the previous complete classification stopped at weight 12; the new terms extend <a href="https://oeis.org/A273096">oeis a273096</a> from weight 12 to weight 23.</p>
+</div>
 
 <h2 id="working-papers">working papers</h2>
-<p class="lede muted">finished or nearly finished manuscripts and projects, not yet submitted or posted.</p>
+<p class="lede muted">manuscripts and projects that are not public yet. each line gives its status.</p>
 
 <h3 class="sub" id="wp-ml">machine learning</h3>
+
+<div class="item" id="selection-diversity">
+  <h3>selection consumes diversity: a closed-form ceiling on self-improvement from verifier-filtered data</h3>
+  <p class="meta">september 2026 &middot; submitted to the neurips 2026 opt workshop</p>
+  <p>a closed-form ceiling on how much a model can improve itself by training on data that a verifier has filtered.</p>
+</div>
 
 <div class="item" id="decoding-audit">
   <h3>documented, accepted, honoured: an audit of decoding parameters on a hosted llm inference api</h3>
@@ -213,7 +285,7 @@
 
 <div class="item" id="sampler-confound">
   <h3><a href="https://github.com/hjyi2027/sampler-confound">the sampler is a confound: decoding configuration rivals model choice in llm mathematical reasoning</a></h3>
-  <p class="meta">2026 &middot; sole author &middot; <a href="https://github.com/hjyi2027/sampler-confound">design, audit and code</a></p>
+  <p class="meta">2026 &middot; sole author &middot; in progress, pathways program &middot; <a href="https://github.com/hjyi2027/sampler-confound">design, audit and code</a></p>
   <p>a math-reasoning score depends on model, prompt, benchmark, and decoding configuration, and the last is almost never reported. the design asks how often a ranking between two models flips when only the sampler moves. the design and a full-scale audit of the evaluation infrastructure are public; the variance study itself is future work, because a ratio estimated from three near-peer models cannot be tested against the threshold the claim needs.</p>
 </div>
 
@@ -224,6 +296,32 @@
 </div>
 
 
+<h3 class="sub" id="wp-addcomb">additive combinatorics</h3>
+
+<div class="item" id="sarkozy-function-fields">
+  <h3>s&aacute;rk&ouml;zy&rsquo;s theorem in function fields</h3>
+  <p class="meta"><span class="badge">new record</span> september 2026 &middot; draft complete</p>
+  <p>proves r<sub>3,2</sub>(f<sub>13</sub>) = 21 using independent sets in products of generalised paley graphs, raising naslund&rsquo;s exponent from 0.863882 to 0.864495 for cube differences in f<sub>q</sub>[t].</p>
+</div>
+
+<div class="item" id="cube-differences">
+  <h3>improved lower bound for sets with no cube differences</h3>
+  <p class="meta"><span class="badge">new record</span> september 2026 &middot; draft complete</p>
+  <p>a 116-element cube-difference-free set modulo 3367 = 7 &times; 13 &times; 37 raises lewko&rsquo;s exponent from 0.861681 to 0.861763.</p>
+</div>
+
+<div class="item" id="x-y-cubed">
+  <h3>lower bound for sets lacking {x, x+y, x+y<sup>3</sup>}</h3>
+  <p class="meta">september 2026 &middot; draft complete</p>
+  <p>a period-two chain construction modulo 91 gives exponent 0.8703797389 for sets with no pattern {x, x+y, x+y<sup>3</sup>}.</p>
+</div>
+
+<div class="item" id="admissible-digits">
+  <h3>largest admissible digit sets modulo primes up to 31</h3>
+  <p class="meta">september 2026 &middot; draft complete</p>
+  <p>computes the largest admissible digit sets in the elsholtz-klahn-lipnik construction of progression-free sets in z<sub>p</sub><sup>n</sup> for every prime up to 31, certified by linear programming.</p>
+</div>
+
 <h3 class="sub" id="wp-math">formal languages</h3>
 
 <div class="item" id="two-tier-sl">
@@ -232,6 +330,14 @@
   <p>strictly 2-local languages over dr + 2 symbols whose optimal positive characteristic sample has d&sup2; words under one-tier hypotheses and exactly d<sup>r</sup> words when hypotheses may use two nested tiers.</p>
 </div>
 
+
+<h3 class="sub" id="wp-quant">quantitative finance</h3>
+
+<div class="item" id="capacity-dsr">
+  <h3>a capacity-aware correction to the deflated sharpe ratio</h3>
+  <p class="meta">2026 &middot; aiscend summer arc project</p>
+  <p>a correction to the deflated sharpe ratio that accounts for how much capital a strategy can absorb.</p>
+</div>
 
 <h2 id="number-theory">earlier work, 2025</h2>
 
