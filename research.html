@@ -40,7 +40,7 @@
 <main id="main">
 <p class="kicker">index &middot; papers and code</p>
 <h1 class="page-title"><span class="w">research</span></h1>
-<p class="lede muted">what language models do when you change something nobody reports, and some analytic number theory. three papers accepted to neurips 2026, one to rescience c, two sole-author preprints in discrete geometry, and four applied preprints with collaborators. every item links to its paper, code, or both.</p>
+<p class="lede muted">what language models do when you change something nobody reports, and some analytic number theory. three papers accepted to neurips 2026, one to rescience c, two sole-author preprints in discrete geometry, and twelve more under review. every item links to its paper, code, or both.</p>
 
 <h2 id="language-models">language models</h2>
 
@@ -146,30 +146,81 @@
   <p>radius of convergence, the gap between smooth and analytic, and the cases where a taylor series converges but fails to represent the function.</p>
 </div>
 
-<h2 id="applied">applied mathematics, with collaborators</h2>
+<h2 id="under-review">under review</h2>
+<p class="lede muted">submitted in september and october 2026. these are in double-blind review, so there is no public link yet; titles only.</p>
 
-<div class="item" id="nanocrystal-quenching">
-  <h3><a href="https://doi.org/10.5281/zenodo.23066082">diffusion-limited quenching of shaped nanocrystals: rigorous bounds and the weak contribution of sharp edges</a></h3>
-  <p class="meta">september 2026 &middot; with raiyan mazhar &middot; preprint &middot; <a href="https://doi.org/10.5281/zenodo.23066082">doi</a></p>
-  <p>for a spherical emitter the stern-volmer constant has a closed form; for the cubes, plates and rods that colloidal nanocrystals actually are, the finite-lifetime term does not. the paper shows that for any shape the low-concentration constant equals &tau;d times the particle's screened capacity at inverse diffusion length, so at equal volume the sphere is quenched least at every lifetime, and a convex particle is bounded above and below by its surface area and integrated mean curvature.</p>
+<h3 class="sub" id="ur-cv">computer vision</h3>
+
+<div class="item" id="cmmd">
+  <h3>cmmd measures the mean: the moment weights of the clip maximum mean discrepancy</h3>
+  <p class="meta">wacv 2027 &middot; under review</p>
+  <p>cmmd scores an image generator by a gaussian-kernel mmd between clip embeddings of generated and real images. the paper works out which moments of the embedding distribution that score actually weighs at the standard bandwidth.</p>
 </div>
 
-<div class="item" id="catalyst-pellets">
-  <h3><a href="https://doi.org/10.5281/zenodo.23021960">which catalyst pellets can beat the slab? a sharp bound on first-order effectiveness factors from inner parallel surfaces</a></h3>
-  <p class="meta">september 2026 &middot; with raiyan mazhar &middot; preprint &middot; <a href="https://doi.org/10.5281/zenodo.23021960">doi</a></p>
-  <p>the slab formula &eta; = tanh &phi; / &phi; is applied to catalyst pellets of any shape. the paper proves it is a rigorous upper bound for an isothermal first-order reaction whenever no inner parallel surface of the pellet exceeds its external surface, which covers every convex pellet and every prismatic pellet with at most one hole. the proof reduces any pellet to a one-dimensional problem on its inner parallel surfaces.</p>
+<div class="item" id="crossing-frame">
+  <h3>crossing or leaving the frame? an audit of event anchoring in pedestrian crossing prediction benchmarks</h3>
+  <p class="meta">wacv 2027 &middot; under review</p>
+  <p>an audit of how crossing-prediction benchmarks anchor the event they ask a model to predict, and what a model can read off the anchoring alone.</p>
 </div>
 
-<div class="item" id="ball-pass-harmonics">
-  <h3><a href="https://doi.org/10.5281/zenodo.23019449">ball-pass harmonics of varying compliance in radially loaded rolling bearings: legendre-function closed forms, scaling laws and silent load zones</a></h3>
-  <p class="meta">september 2026 &middot; with roberto moura de souza le&atilde;o &middot; preprint &middot; <a href="https://doi.org/10.5281/zenodo.23019449">doi</a></p>
-  <p>a bearing with z rolling elements vibrates at the ball-pass frequency even with perfect geometry. poisson summation splits the contact-force sum into the load-distribution integral plus ball-pass harmonics, each a ferrers function of half-odd-integer degree for a partial load zone and a gauss hypergeometric function when every element is loaded. at fixed load-zone angle the relative amplitude decays as z<sup>&minus;(n+1)</sup>.</p>
+<div class="item" id="registration-leaks">
+  <h3>registration leaks the label: synthetic-to-measured sar atr revisited, with lessons for hypothesis-testing agents</h3>
+  <p class="meta">wacv 2027 &middot; under review</p>
+  <p>synthetic-to-measured sar target recognition revisited, with a registration artifact that carries the class label on its own.</p>
 </div>
 
-<div class="item" id="which-accusation-sticks">
-  <h3><a href="https://doi.org/10.5281/zenodo.23005046">which accusation sticks? the referent of a moral charge determines how consumers neutralize it</a></h3>
-  <p class="meta">september 2026 &middot; with chloe dayul kim &middot; preprint &middot; <a href="https://doi.org/10.5281/zenodo.23005046">doi</a></p>
-  <p>brand transgressions levy several accusations at once, some specific to the firm and some standard across the category, and the difference governs how consumers neutralize them. the case is the 2024 documentary on one fast-fashion retailer: wikipedia pageviews for the brand rose 16.8-fold, and a synthetic control over 19 donor brands finds no detectable demand response.</p>
+<div class="item" id="answerable-without-watching">
+  <h3>answerable without watching: option and split provenance in social-iq 2.0 and its derivatives</h3>
+  <p class="meta">wacv 2027, datasets track &middot; under review</p>
+  <p>how much of a four-way video question-answering benchmark, and the test sets derived from it, can be answered from the answer options and split construction without the video.</p>
+</div>
+
+<div class="item" id="image-blind-baselines">
+  <h3>image-blind baselines for single-scene hyperspectral and multimodal land-cover benchmarks</h3>
+  <p class="meta">wacv 2027, cv4eo workshop &middot; under review</p>
+  <p>on a standard single-scene hyperspectral split, pixel coordinates alone reach 95.5 percent overall accuracy. the paper sets image-blind baselines that any reported model should have to beat.</p>
+</div>
+
+<h3 class="sub" id="ur-lt">learning theory</h3>
+
+<div class="item" id="nctd-vcd">
+  <h3>the non-clashing teaching dimension can exceed the vc dimension</h3>
+  <p class="meta">alt 2027 &middot; under review</p>
+  <p>non-clashing teaching is the most efficient batch teaching model; the paper separates its dimension from the vc dimension.</p>
+</div>
+
+<div class="item" id="rtd-vc2">
+  <h3>the recursive teaching dimension of classes of vc dimension two is at most five</h3>
+  <p class="meta">alt 2027 &middot; under review</p>
+  <p>the recursive teaching dimension is the worst-case number of labelled examples a cooperative teacher needs; for vc dimension two the paper bounds it by five.</p>
+</div>
+
+<div class="item" id="jackknife-plus">
+  <h3>exact worst-case coverage of the jackknife+ and a 3/2 law for two-fold cross-validation conformal prediction</h3>
+  <p class="meta">tmlr &middot; under review</p>
+  <p>jackknife+, cv+ and cross-conformal predictors build distribution-free intervals without a calibration split; the paper gives their exact worst-case coverage and a 3/2 law for the two-fold case.</p>
+</div>
+
+<h3 class="sub" id="ur-lm">language models</h3>
+
+<div class="item" id="decoding-audit">
+  <h3>documented, accepted, honoured: an audit of decoding parameters on a hosted llm inference api</h3>
+  <p class="meta">tmlr &middot; under review</p>
+  <p>benchmark results for hosted models assume the provider applies the temperature, nucleus threshold and seed the request asks for. the paper tests that assumption. it checks an assumption the <a href="#sampler-confound">sampler-confound</a> design depends on.</p>
+</div>
+
+<h3 class="sub" id="ur-math">mathematics and formal languages</h3>
+
+<div class="item" id="chowla-half-constant">
+  <h3>a half-constant upper bound for chowla&rsquo;s cosine problem</h3>
+  <p class="meta">under review</p>
+  <p>for a set a of n positive integers, the classical sidon-difference construction gives a cosine-sum excursion of (1+o(1))&radic;(n/2). the paper constructs sets with leading constant 1/2, so lim sup &lambda;(n)/&radic;n &le; 1/2.</p>
+</div>
+
+<div class="item" id="two-tier-sl">
+  <h3>exponential positive-evidence requirements for two-tier strictly local languages</h3>
+  <p class="meta">journal of logic, language and information &middot; under review</p>
+  <p>strictly 2-local languages over dr + 2 symbols whose optimal positive characteristic sample has d&sup2; words under one-tier hypotheses and exactly d<sup>r</sup> words when hypotheses may use two nested tiers.</p>
 </div>
 
 <div class="item" id="flu-forecast">
