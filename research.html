@@ -196,7 +196,7 @@
     <tr><td><a href="#nonlinear-roth">nonlinear roth, {x, x+y, x+y<sup>2</sup>}</a></td><td>exponent 0.76850 (younis)</td><td class="res">0.77509</td><td>team &middot; jmm 2027 abstract</td></tr>
     <tr><td><a href="#almost-equidistant">almost-equidistant sets</a></td><td>f(d) &ge; 2d + 4</td><td class="res">beaten at d = 10 and every 20 &le; d &le; 57; f(22) &ge; 100</td><td>team &middot; jmm 2027 abstract</td></tr>
     <tr><td><a href="#few-distance">few-distance sets in r<sup>6</sup> to r<sup>8</sup></a></td><td>504 points in r<sup>8</sup> for s = 6</td><td class="res">910</td><td>team &middot; manuscript</td></tr>
-    <tr><td><a href="#sarkozy-function-fields">cube differences in f<sub>q</sub>[t]</a></td><td>exponent 0.863882 (naslund)</td><td class="res">0.864495</td><td>draft</td></tr>
+    <tr><td><a href="#sarkozy-function-fields">cube differences in f<sub>q</sub>[t]</a></td><td>exponent 0.863882 (naslund)</td><td class="res">0.864495; also fourth and seventh powers</td><td>draft</td></tr>
     <tr><td><a href="#cube-differences">sets with no cube differences</a></td><td>exponent 0.861681 (lewko)</td><td class="res">0.861763</td><td>draft</td></tr>
     <tr><td><a href="#x-y-cubed">sets lacking {x, x+y, x+y<sup>3</sup>}</a></td><td>0.8617631, from cube-difference-free sets</td><td class="res">0.8703797</td><td>draft</td></tr>
     </tbody>
@@ -310,15 +310,15 @@
 <h3 class="sub" id="wp-addcomb">additive combinatorics</h3>
 
 <div class="item" id="sarkozy-function-fields">
-  <h3>s&aacute;rk&ouml;zy&rsquo;s theorem in function fields</h3>
+  <h3>improved lower bounds for s&aacute;rk&ouml;zy&rsquo;s theorem in function fields from independent sets in products of generalized paley graphs</h3>
   <p class="meta"><span class="badge">new record</span> september 2026 &middot; draft complete</p>
-  <p>proves r<sub>3,2</sub>(f<sub>13</sub>) = 21 using independent sets in products of generalised paley graphs, raising naslund&rsquo;s exponent from 0.863882 to 0.864495 for cube differences in f<sub>q</sub>[t].</p>
+  <p>naslund built large sets of polynomials over f<sub>q</sub> with no two elements differing by a nonzero k-th power, with the size governed by the independence number r<sub>k,2</sub>(f<sub>q</sub>) of a generalised paley graph product. two independent exhaustive computations give r<sub>3,2</sub>(f<sub>13</sub>) = 21, raising the exponent for cube differences from naslund&rsquo;s 0.863882 to 0.864495, the largest this method has produced. verified independent sets also give exponents 0.913841 for fourth powers over f<sub>17</sub> (previously 0.875) and 0.961815 for seventh powers over f<sub>29</sub> (previously 0.928571), and there is an infinite family of exactly computable cases from subfields.</p>
 </div>
 
 <div class="item" id="cube-differences">
-  <h3>improved lower bound for sets with no cube differences</h3>
+  <h3>an improved lower bound for sets with no cube differences</h3>
   <p class="meta"><span class="badge">new record</span> september 2026 &middot; draft complete</p>
-  <p>a 116-element cube-difference-free set modulo 3367 = 7 &times; 13 &times; 37 raises lewko&rsquo;s exponent from 0.861681 to 0.861763.</p>
+  <p>ruzsa&rsquo;s construction turns a subset of z/mz with no nonzero cube difference into a large subset of {1, &hellip;, n} with the same property. the best exponent recorded was 0.861681, from lewko&rsquo;s 14-element set modulo 91. an explicit 116-element set modulo 3367 = 7 &times; 13 &times; 37 raises it to 0.861763. the modulus came from a structural analysis that rules out every modulus 7p with p &le; 163 and singles out 3367, and the set itself from a tabu search; every finite claim is checked by a standard-library script.</p>
 </div>
 
 <div class="item" id="x-y-cubed">
