@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>research | hyunjun yi</title>
-<meta name="description" content="research by hyunjun yi: four neurips 2026 acceptances on ai evaluation, eight open problems and questions settled in discrete geometry, seven new records, thirteen papers under review.">
+<meta name="description" content="research by hyunjun yi: four neurips 2026 acceptances on ai evaluation, eight open problems and questions settled in discrete geometry, seven new records, fourteen papers under review.">
 <meta name="author" content="Hyunjun Yi">
 <link rel="canonical" href="https://hjyi2027.github.io/research.html">
 <meta name="theme-color" content="#0a1a33">
 <meta property="og:type" content="website">
 <meta property="og:title" content="research | hyunjun yi">
-<meta property="og:description" content="four neurips 2026 acceptances, eight open problems settled, seven new records, thirteen papers under review.">
+<meta property="og:description" content="four neurips 2026 acceptances, eight open problems settled, seven new records, fourteen papers under review.">
 <meta property="og:url" content="https://hjyi2027.github.io/research.html">
 <meta property="og:image" content="https://hjyi2027.github.io/photo.jpg">
 <meta name="twitter:card" content="summary">
@@ -46,10 +46,10 @@
   <div><dt>neurips 2026 acceptances</dt><dd>4</dd></div>
   <div><dt>open problems and questions settled</dt><dd>8</dd></div>
   <div><dt>new records</dt><dd>7</dd></div>
-  <div><dt>under review</dt><dd>13</dd></div>
+  <div><dt>under review</dt><dd>14</dd></div>
   <div><dt>jmm 2027 abstracts</dt><dd>7</dd></div>
   <div><dt>accepted, rescience c</dt><dd>1</dd></div>
-  <div class="total"><dt>papers in total</dt><dd>40</dd></div>
+  <div class="total"><dt>papers in total</dt><dd>41</dd></div>
 </dl>
 <p class="jump"><a href="#accepted">accepted</a> <a href="#open-problems">open problems</a> <a href="#under-review">under review</a> <a href="#preprints">preprints</a></p>
 
@@ -294,6 +294,14 @@
   <h3>when retries repeat mistakes: verification and rollback for small-model agents</h3>
   <p class="meta">oe-agent 2026 &middot; under review</p>
   <p>small open models can run agents on two cpu cores, but over long tasks their step errors compound. the usual fix verifies every k steps, rolls back on a flag and retries. the paper gives the exact success probability and cost of that loop, and proves that acting on single flags stretches the reachable horizon by at most (1&minus;f)/(1&minus;d). small models break the assumption that a retry is a fresh draw: a resampled failed qwen2.5-1.5b step fails again with probability 0.63, though the mean error rate is 4.2%. retries by a different model fix 80% of flagged steps at the first retry instead of 33%. with a strong verifier, retry diversity rather than model size is the limit.</p>
+</div>
+
+<h3 class="sub" id="ur-robotics">robotics</h3>
+
+<div class="item" id="hertz-not-reactivity">
+  <h3>hertz is not reactivity: reaction latency of chunked robot policies under stochastic inference latency</h3>
+  <p class="meta">corl 2026, eeai workshop &middot; under review</p>
+  <p>speed results for robot foundation models are reported as frequencies, and none of them says how old the observation behind the executing action is. modelling chunked execution under random inference latency as a renewal process gives the mean reaction latency in closed form, &mu; + e[t<sup>2</sup>]/(2e[t]). under heavy-tailed latency, delaying each inference start to a computable threshold cuts reaction latency by 13 to 20% at no cost in motion. across 88 simulated configurations, predicted reaction latency ranks tracking error with spearman &rho; = 0.98, against 0.84 and 0.75 for the two frequencies people usually report.</p>
 </div>
 
 <h3 class="sub" id="ur-forecast">forecasting</h3>
