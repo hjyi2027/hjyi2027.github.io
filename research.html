@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>research | hyunjun yi</title>
-<meta name="description" content="research by hyunjun yi: four neurips 2026 acceptances on ai evaluation, eight open problems and questions settled in discrete geometry, seven new records, fourteen papers under review.">
+<meta name="description" content="research by hyunjun yi: four neurips 2026 acceptances on ai evaluation, eight open problems and questions settled in discrete geometry, seven new records, sixteen papers under review.">
 <meta name="author" content="Hyunjun Yi">
 <link rel="canonical" href="https://hjyi2027.github.io/research.html">
 <meta name="theme-color" content="#0a1a33">
 <meta property="og:type" content="website">
 <meta property="og:title" content="research | hyunjun yi">
-<meta property="og:description" content="four neurips 2026 acceptances, eight open problems settled, seven new records, fourteen papers under review.">
+<meta property="og:description" content="four neurips 2026 acceptances, eight open problems settled, seven new records, sixteen papers under review.">
 <meta property="og:url" content="https://hjyi2027.github.io/research.html">
 <meta property="og:image" content="https://hjyi2027.github.io/photo.jpg">
 <meta name="twitter:card" content="summary">
@@ -46,10 +46,10 @@
   <div><dt>neurips 2026 acceptances</dt><dd>4</dd></div>
   <div><dt>open problems and questions settled</dt><dd>8</dd></div>
   <div><dt>new records</dt><dd>7</dd></div>
-  <div><dt>under review</dt><dd>14</dd></div>
+  <div><dt>under review</dt><dd>16</dd></div>
   <div><dt>jmm 2027 abstracts</dt><dd>7</dd></div>
   <div><dt>accepted, rescience c</dt><dd>1</dd></div>
-  <div class="total"><dt>papers in total</dt><dd>41</dd></div>
+  <div class="total"><dt>papers in total</dt><dd>43</dd></div>
 </dl>
 <p class="jump"><a href="#accepted">accepted</a> <a href="#open-problems">open problems</a> <a href="#under-review">under review</a> <a href="#preprints">preprints</a></p>
 
@@ -285,6 +285,18 @@
   <h3>lost before any attack: auditing the invisible watermark shipped with sdxl and flux.1</h3>
   <p class="meta">wacv 2027, signal workshop &middot; under review</p>
   <p>the reference code of stable diffusion xl and flux.1 marks every output with an open-source invisible watermark, and stability ai distributes a detector for it. auditing the shipped chain from embedder to detector shows most marks are unreadable before any processing: the embedder and detector disagree on a colour offset (0.5 against 128), and flux.1&rsquo;s documented 48-bit message has 46 bits. the official detector flags only 45.5% of sdxl-generated images as watermarked. a one-line detector change raises that to 90.9%, and a repaired embedder reaches 100%.</p>
+</div>
+
+<div class="item" id="sharper-not-truer">
+  <h3>sharper is not truer: super-resolution rewrites license plates before they are read</h3>
+  <p class="meta">wacv 2027, rws workshop &middot; under review</p>
+  <p>super-resolution is the usual proposal for plates captured too small to read. across six general-purpose upscalers and two open plate readers on the openalpr benchmark, only one of 48 comparisons with plain bicubic interpolation read more plates with confidence, by 2.6 points, and gan training cost 10 to 28 points. real-esrgan changed the read of 58% of plates and broke half the reads bicubic got right. the paper proves no upscaler can raise the bayes accuracy of plate reading, and two diffusion runs on the same capture disagreed on 40% of plates. voting over five captured frames helped where upscaling hurt.</p>
+</div>
+
+<div class="item" id="slow-walkers">
+  <h3>slow walkers count more: how the eth/ucy test protocol weights pedestrians</h3>
+  <p class="meta">wacv 2027, urbanstate workshop &middot; under review</p>
+  <p>pedestrian forecasting is still ranked on eth/ucy with a loader that cuts recordings into overlapping 8-second windows. the reported error is a weighted mean in which each pedestrian counts once per window they fill, so slow walkers dominate and anyone who crosses in under 8 seconds counts zero: 39% of pedestrians are never evaluated, and one who barely moves supplies 9.7% of the zara2 test samples. counting each pedestrian once raises average error by 10 to 57% and reverses one published model ranking, and confidence intervals are 2.3 to 8.1 times too narrow.</p>
 </div>
 
 
