@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>research | hyunjun yi</title>
-<meta name="description" content="research by hyunjun yi: four neurips 2026 acceptances on ai evaluation, eight open problems and questions settled in discrete geometry, seven new records, sixteen papers under review.">
+<meta name="description" content="research by hyunjun yi: four neurips 2026 acceptances on ai evaluation, eight open problems and questions settled in discrete geometry, seven new records, twenty-five papers under review.">
 <meta name="author" content="Hyunjun Yi">
 <link rel="canonical" href="https://hjyi2027.github.io/research.html">
 <meta name="theme-color" content="#0a1a33">
 <meta property="og:type" content="website">
 <meta property="og:title" content="research | hyunjun yi">
-<meta property="og:description" content="four neurips 2026 acceptances, eight open problems settled, seven new records, sixteen papers under review.">
+<meta property="og:description" content="four neurips 2026 acceptances, eight open problems settled, seven new records, twenty-five papers under review.">
 <meta property="og:url" content="https://hjyi2027.github.io/research.html">
 <meta property="og:image" content="https://hjyi2027.github.io/photo.jpg">
 <meta name="twitter:card" content="summary">
@@ -46,10 +46,10 @@
   <div><dt>neurips 2026 acceptances</dt><dd>4</dd></div>
   <div><dt>open problems and questions settled</dt><dd>8</dd></div>
   <div><dt>new records</dt><dd>7</dd></div>
-  <div><dt>under review</dt><dd>16</dd></div>
+  <div><dt>under review</dt><dd>25</dd></div>
   <div><dt>jmm 2027 abstracts</dt><dd>7</dd></div>
   <div><dt>accepted, rescience c</dt><dd>1</dd></div>
-  <div class="total"><dt>papers in total</dt><dd>43</dd></div>
+  <div class="total"><dt>papers in total</dt><dd>52</dd></div>
 </dl>
 <p class="jump"><a href="#accepted">accepted</a> <a href="#open-problems">open problems</a> <a href="#under-review">under review</a> <a href="#preprints">preprints</a></p>
 
@@ -216,7 +216,7 @@
 <h2 id="under-review">under review</h2>
 <p class="lede muted">submitted in september and october 2026. most are in double-blind review, so there is no public link yet; titles only.</p>
 
-<h3 class="sub" id="ur-lt">learning theory, alt 2027</h3>
+<h3 class="sub" id="ur-lt">learning theory</h3>
 
 <div class="item" id="rtd-vc2">
   <h3>the recursive teaching dimension of classes of vc dimension two is at most five</h3>
@@ -228,6 +228,12 @@
   <h3>the non-clashing teaching dimension can exceed the vc dimension</h3>
   <p class="meta">alt 2027 &middot; under review</p>
   <p>non-clashing teaching is the most efficient batch teaching model; the paper separates its dimension from the vc dimension.</p>
+</div>
+
+<div class="item" id="selection-diversity">
+  <h3>selection consumes diversity: a closed-form ceiling on self-improvement from verifier-filtered data</h3>
+  <p class="meta">fsml 2026 &middot; under review</p>
+  <p>rejection-sampling fine-tuning, star-style bootstrapping and self-rewarding models share one loop: sample, keep what a verifier scores highly, refit. each round is truncation selection, so the breeder&rsquo;s equation applies. with a noiseless verifier the total gain over all rounds is finite and closed-form, and the gain being linear in the remaining spread is exactly the entropy-performance law reported for reinforcement learning of reasoning models. on real image data with a learned reward model, one pre-loop measurement predicts the total gain: 9.69 predicted, 9.74 measured.</p>
 </div>
 
 
@@ -299,6 +305,48 @@
   <p>pedestrian forecasting is still ranked on eth/ucy with a loader that cuts recordings into overlapping 8-second windows. the reported error is a weighted mean in which each pedestrian counts once per window they fill, so slow walkers dominate and anyone who crosses in under 8 seconds counts zero: 39% of pedestrians are never evaluated, and one who barely moves supplies 9.7% of the zara2 test samples. counting each pedestrian once raises average error by 10 to 57% and reverses one published model ranking, and confidence intervals are 2.3 to 8.1 times too narrow.</p>
 </div>
 
+<div class="item" id="camera-moved">
+  <h3>the camera moved: a violence detection benchmark separated by its recording sessions</h3>
+  <p class="meta">wacv 2027, rws workshop &middot; under review</p>
+  <p>violence detectors are compared on small benchmarks with reported accuracies above 95%. on airtlab the published split puts chunks of every test clip in training, and a nearest-neighbour rule on 36 &times; 64 grey thumbnails scores 99.3%, above every published model. much of what remains comes from the recording session: pasting each test clip&rsquo;s moving people onto a background of the other class drops balanced accuracy from 86.1% to 43.1%, below chance.</p>
+</div>
+
+<div class="item" id="sarlang-no-image">
+  <h3>no image needed: answer priors and a lenient scorer in a sar vision-language benchmark</h3>
+  <p class="meta">wacv 2027, sense workshop &middot; under review</p>
+  <p>auditing the question-answering part of sarlang-1m without opening a single image: answering each question with the most common training answer for its template scores 65.0% under strict exact match. the released scorer counts a prediction as correct whenever the reference appears anywhere inside it, so the string &ldquo;yes | no&rdquo; scores 42.7% and one 965-character string scores 100.0% on 99,522 test questions. two more remote-sensing scorers share the substring rule, and three give an empty answer full marks.</p>
+</div>
+
+<div class="item" id="hrsid-split">
+  <h3>half the test ships are in the training crops: auditing the hrsid split for sar ship detection</h3>
+  <p class="meta">wacv 2027, sense workshop &middot; under review</p>
+  <p>hrsid splits overlapping crops of 136 source images rather than the images themselves. 94.8% of test crops share pixels with a training crop and 53.5% of test ships lie entirely inside one, so pasting training boxes into the test crops, with no detector at all, scores 42.4 coco ap. the overlap strips act as a natural experiment: a detector recalls 3.8 points more of the test ships it saw in training.</p>
+</div>
+
+<div class="item" id="synergy-noise-floors">
+  <h3>is the synergy above the noise? noise floors for understanding-generation claims in unified multimodal models</h3>
+  <p class="meta">wacv 2027, unimug workshop &middot; under review</p>
+  <p>unified multimodal models are justified by synergy between generating and understanding images, usually from ablations run once. seed variance turns out to be a stable multiple of binomial variance, so every accuracy-type benchmark has a noise floor computable from its size and score. of 261 results from 28 papers, 42% lie within their floor, claimed benefits clear it less often than claimed harms, and no paper reports seed variation. the paper gives minimum detectable differences for 25 benchmarks.</p>
+</div>
+
+<div class="item" id="seen-scenes">
+  <h3>seen scenes, blind answers: an audit of the reva drone video qa benchmark</h3>
+  <p class="meta">wacv 2027, mavu workshop &middot; under review</p>
+  <p>reva&rsquo;s paper states its splits are disjoint by video sequence. the public annotation files show 1,012 of 1,014 test clips also appear in training, and the validation file publishes the answers of 392 test items. copying labelled answers plus a text-only classifier scores 90.5% on validation without a single pixel, and on genuinely held-out recordings the text-only classifier still scores 58.1% against 25% chance.</p>
+</div>
+
+<div class="item" id="holds-free-probes">
+  <h3>holds as free probes: timing-aware temporal evaluation of anime video</h3>
+  <p class="meta">wacv 2027, ainime workshop &middot; under review</p>
+  <p>anime holds each drawing for several frames, and temporal metrics built for live action cannot tell a held drawing from a stable one: re-exposing motion on fours raises vbench&rsquo;s motion smoothness although three quarters of the drawings are gone. holds are also useful, since any change a restoration model makes inside a held region is its own flicker. that measure needs no reference, and it shows the recurrent animesr changing by 0.81 levels on bit-identical input against at most 0.16 for per-frame models.</p>
+</div>
+
+<div class="item" id="retailaction-no-pixels">
+  <h3>retailaction without pixels: metadata baselines and metric checks</h3>
+  <p class="meta">wacv 2027, praw workshop &middot; under review</p>
+  <p>every retailaction sample, including the hidden challenge split, ships with metadata from the provider&rsquo;s tracking pipeline. a three-layer transformer that reads only that metadata scores 71.9 map, against 41.7 for the best published video model, and the face track alone scores 52.2. the paper also finds the temporal labels misdescribed in the dataset card and a contact-point rule that adds 11.2 points.</p>
+</div>
+
 
 <h3 class="sub" id="ur-agents">agents</h3>
 
@@ -314,6 +362,12 @@
   <h3>hertz is not reactivity: reaction latency of chunked robot policies under stochastic inference latency</h3>
   <p class="meta">corl 2026, eeai workshop &middot; under review</p>
   <p>speed results for robot foundation models are reported as frequencies, and none of them says how old the observation behind the executing action is. modelling chunked execution under random inference latency as a renewal process gives the mean reaction latency in closed form, &mu; + e[t<sup>2</sup>]/(2e[t]). under heavy-tailed latency, delaying each inference start to a computable threshold cuts reaction latency by 13 to 20% at no cost in motion. across 88 simulated configurations, predicted reaction latency ranks tracking error with spearman &rho; = 0.98, against 0.84 and 0.75 for the two frequencies people usually report.</p>
+</div>
+
+<div class="item" id="left-right-stop">
+  <h3>left, right, stop: a vision-free floor for room-to-room navigation</h3>
+  <p class="meta">sisren 2026 &middot; under review</p>
+  <p>zero-shot llm navigators report 17 to 51% success on room-to-room, and none compares against an agent that cannot see. a vision-free executor that parses each instruction into left, right, stairs and stop succeeds on 32.8% of 2,349 val-unseen instructions, against 15.3% for random. swapping left and right drops it to 19.5%. navgpt reports 34%, about one point above it, and three published gpt-3.5 navigators score below the executor&rsquo;s range.</p>
 </div>
 
 <h3 class="sub" id="ur-forecast">forecasting</h3>
