@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>research | hyunjun yi</title>
-<meta name="description" content="research by hyunjun yi: four neurips 2026 acceptances on ai evaluation, eight open problems and questions settled in discrete geometry, seven new records, twenty-five papers under review.">
+<meta name="description" content="research by hyunjun yi: four neurips 2026 acceptances on ai evaluation, eight open problems and questions settled in discrete geometry, seven new records, thirty papers under review.">
 <meta name="author" content="Hyunjun Yi">
 <link rel="canonical" href="https://hjyi2027.github.io/research.html">
 <meta name="theme-color" content="#0a1a33">
 <meta property="og:type" content="website">
 <meta property="og:title" content="research | hyunjun yi">
-<meta property="og:description" content="four neurips 2026 acceptances, eight open problems settled, seven new records, twenty-five papers under review.">
+<meta property="og:description" content="four neurips 2026 acceptances, eight open problems settled, seven new records, thirty papers under review.">
 <meta property="og:url" content="https://hjyi2027.github.io/research.html">
 <meta property="og:image" content="https://hjyi2027.github.io/photo.jpg">
 <meta name="twitter:card" content="summary">
@@ -46,10 +46,10 @@
   <div><dt>neurips 2026 acceptances</dt><dd>4</dd></div>
   <div><dt>open problems and questions settled</dt><dd>8</dd></div>
   <div><dt>new records</dt><dd>7</dd></div>
-  <div><dt>under review</dt><dd>25</dd></div>
+  <div><dt>under review</dt><dd>30</dd></div>
   <div><dt>jmm 2027 abstracts</dt><dd>7</dd></div>
   <div><dt>accepted, rescience c</dt><dd>1</dd></div>
-  <div class="total"><dt>papers in total</dt><dd>52</dd></div>
+  <div class="total"><dt>papers in total</dt><dd>57</dd></div>
 </dl>
 <p class="jump"><a href="#accepted">accepted</a> <a href="#open-problems">open problems</a> <a href="#under-review">under review</a> <a href="#preprints">preprints</a></p>
 
@@ -347,6 +347,30 @@
   <p>every retailaction sample, including the hidden challenge split, ships with metadata from the provider&rsquo;s tracking pipeline. a three-layer transformer that reads only that metadata scores 71.9 map, against 41.7 for the best published video model, and the face track alone scores 52.2. the paper also finds the temporal labels misdescribed in the dataset card and a contact-point rule that adds 11.2 points.</p>
 </div>
 
+<div class="item" id="sharper-not-closer">
+  <h3>sharper is not closer: what no-reference metrics reward in anime restoration</h3>
+  <p class="meta">wacv 2027, ainime workshop &middot; under review</p>
+  <p>real degraded anime has no clean reference, so restoration is ranked with no-reference quality metrics. degrading 40 frames so each source serves as its own reference shows what they reward: maniqa prefers a sharpened copy of the source to the source itself in 90% of clips, and one unsharp mask that lowers psnr in every clip is preferred by four learned metrics in every clip. maniqa and hyperiqa even rank one restoration above its own source frame in every clip.</p>
+</div>
+
+<div class="item" id="same-plate-both-splits">
+  <h3>same plate, both splits: train-test leakage in nutrition5k and what it does to food foundation-model probes</h3>
+  <p class="meta">wacv 2027, fabric workshop &middot; under review</p>
+  <p>nutrition5k&rsquo;s authors state that no plate appears in both splits. the scan times and weighed ingredient masses it already ships reveal 4,211 pairs of scans of the same food, against 8.1 expected by chance, and 9.0% of the side-view test dishes are repeat scans of training food with identical labels. a frozen clip nearest-neighbour probe retrieves the training repeat for 57 of 63 leaked dishes, and the leak cuts its error from 92.4 to 81.0 kcal.</p>
+</div>
+
+<div class="item" id="drone-been-here">
+  <h3>the drone has been here before: shared places between the training and test splits of visdrone</h3>
+  <p class="meta">wacv 2027, rws workshop &middot; under review</p>
+  <p>visdrone2019-det&rsquo;s authors state its splits were captured at different locations. homographies fitted to matched features show 16.8% of validation images, and about a tenth of test frames, film a place seen in training, because the splits interleave along the video numbering. the shared content is the place rather than the objects, and a detector gains nothing measurable from it: removing the seen places costs seen and unseen validation images equally.</p>
+</div>
+
+<div class="item" id="one-in-how-many">
+  <h3>one in how many? false alert rates of live facial recognition in london, from controlled test to routine use</h3>
+  <p class="meta">wacv 2027, rws workshop &middot; under review</p>
+  <p>the metropolitan police cite a controlled test putting false positives at about 1 in 6,000 passers. transcribing all 729 routine deployments from 2023 to 2026, 10.1 million recorded faces and 58 false alerts, shows the denominator is unstable: recorded faces per hour at the same sites differ elevenfold between periods. the records cannot bound the rate at the level the test predicts, and detecting a twofold demographic difference would take 6 to 8 years of deployments.</p>
+</div>
+
 
 <h3 class="sub" id="ur-agents">agents</h3>
 
@@ -368,6 +392,12 @@
   <h3>left, right, stop: a vision-free floor for room-to-room navigation</h3>
   <p class="meta">sisren 2026 &middot; under review</p>
   <p>zero-shot llm navigators report 17 to 51% success on room-to-room, and none compares against an agent that cannot see. a vision-free executor that parses each instruction into left, right, stairs and stop succeeds on 32.8% of 2,349 val-unseen instructions, against 15.3% for random. swapping left and right drops it to 19.5%. navgpt reports 34%, about one point above it, and three published gpt-3.5 navigators score below the executor&rsquo;s range.</p>
+</div>
+
+<div class="item" id="seconds-to-spare">
+  <h3>seconds to spare: interception slack for fair and graded robot tennis benchmarks</h3>
+  <p class="meta">roboletics 2026 &middot; under review</p>
+  <p>sport benchmarks for human-robot interaction compare bodies that differ in speed, reach and latency, and a raw success rate mixes what a body allows with what its controller achieves. interception slack, the spare time with which a body could reach the ball, gives an exact feasibility ceiling, and factoring success into ceiling and efficiency reverses raw rankings. slack marks 12 to 67% of shots as impossible for a given body, and wheelchair tennis&rsquo;s two-bounce rule is worth 0.05 to 0.13 s against a gap of at least 0.88 s to an able-bodied player.</p>
 </div>
 
 <h3 class="sub" id="ur-forecast">forecasting</h3>
