@@ -48,9 +48,9 @@
   <div><dt>under review</dt><dd>32</dd></div>
   <div><dt>jmm 2027 talks accepted</dt><dd>3</dd></div>
   <div><dt>accepted, rescience c</dt><dd>1</dd></div>
-  <div class="total"><dt>papers in total</dt><dd>61</dd></div>
+  <div class="total"><dt>papers in total</dt><dd>54</dd></div>
 </dl>
-<p class="jump"><a href="#accepted">accepted</a> <a href="#open-problems">open problems</a> <a href="#under-review">under review</a> <a href="#preprints">preprints</a></p>
+<p class="jump"><a href="#accepted">accepted</a> <a href="#open-problems">open problems</a> <a href="#under-review">under review</a></p>
 
 <h2 id="accepted">peer-reviewed and accepted</h2>
 
@@ -431,57 +431,6 @@
   <h3><a href="https://doi.org/10.5281/zenodo.22988800">the cdc influenza forecast ensemble predicts changes that are too small</a></h3>
   <p class="meta">september 2026 &middot; sole author &middot; submitted to the columbia junior science journal &middot; <a href="https://doi.org/10.5281/zenodo.22988800">code and data</a></p>
   <p>the cdc combines weekly hospital-admission forecasts from many teams by taking their median. across 35,162 ensemble forecasts from the flusight, covid-19 and rsv forecast hubs for 2023 to 2026, regressing the change that happened on the change predicted gives a slope of 1.65 (95% ci 1.29 to 1.94) for influenza four weeks ahead, above 1 in all 52 jurisdictions: the ensemble&rsquo;s predicted changes are too small. most individual team models show the opposite, and the median strips out their disagreement and leaves a shared change that is too small. rescaling by the slope fitted on earlier seasons improved the hubs&rsquo; standard accuracy score by 2% and 9% in the two later seasons.</p>
-</div>
-
-
-<h2 id="preprints">preprints</h2>
-
-<h3 class="sub" id="wp-ml">machine learning</h3>
-
-<div class="item" id="decoding-audit">
-  <h3><a href="https://doi.org/10.5281/zenodo.23343488">documented, accepted, honoured: an audit of decoding parameters on a hosted llm inference api</a></h3>
-  <p class="meta">2026 &middot; <a href="https://doi.org/10.5281/zenodo.23343488">doi</a></p>
-  <p>benchmark results for hosted models assume the provider applies the temperature, nucleus threshold and seed the request asks for. the paper tests that assumption. it checks an assumption that every reported decoding configuration depends on.</p>
-</div>
-
-<div class="item" id="jackknife-plus">
-  <h3><a href="https://doi.org/10.5281/zenodo.23343500">exact worst-case coverage of the jackknife+ and a 3/2 law for two-fold cross-validation conformal prediction</a></h3>
-  <p class="meta">2026 &middot; <a href="https://doi.org/10.5281/zenodo.23343500">doi</a></p>
-  <p>jackknife+, cv+ and cross-conformal predictors build distribution-free intervals without a calibration split; the paper gives their exact worst-case coverage and a 3/2 law for the two-fold case.</p>
-</div>
-
-<h3 class="sub" id="wp-math">formal languages</h3>
-
-<div class="item" id="two-tier-sl">
-  <h3><a href="https://doi.org/10.5281/zenodo.23343529">exponential positive-evidence requirements for two-tier strictly local languages</a></h3>
-  <p class="meta">2026 &middot; <a href="https://doi.org/10.5281/zenodo.23343529">doi</a></p>
-  <p>strictly 2-local languages over dr + 2 symbols whose optimal positive characteristic sample has d&sup2; words under one-tier hypotheses and exactly d<sup>r</sup> words when hypotheses may use two nested tiers.</p>
-</div>
-
-<h3 class="sub" id="language-models">language models</h3>
-
-<div class="item" id="erasure">
-  <h3><a href="https://aiscend-research.github.io/papers/erasure.pdf">erasure: a stated goal reorganises what a language model deletes</a></h3>
-  <p class="meta">2026 &middot; sole author &middot; <a href="https://aiscend-research.github.io/papers/erasure.pdf">pdf</a> &middot; <a href="https://github.com/hjyi2027/erasure">code</a></p>
-  <p>give a model a passage and a single operator, delete. change one word of the instruction. asked for a summary, opus 5 keeps proper nouns at +0.70 log-odds. asked for a poem, it cuts them at -0.73. random deletion sits at +0.08. the words that go to zero survival are the ones that say which thing this is (president, north, pursuant). the words that survive are home, wildlife, shadow, water, hope. run the same design on gpt-oss-120b and half of it reverses.</p>
-</div>
-
-<div class="item" id="compulsory-hope">
-  <h3><a href="https://aiscend-research.github.io/papers/compulsory-hope.pdf">compulsory hope: instruction tuning teaches poems to evade, not to console</a></h3>
-  <p class="meta">2026 &middot; sole author &middot; <a href="https://aiscend-research.github.io/papers/compulsory-hope.pdf">pdf</a> &middot; <a href="https://github.com/hjyi2027/compulsory-hope">code</a></p>
-  <p>hardy's "hap" argues that suffering is meaningless chance. handed its opening, olmo 2 1b instruct finishes it with a guardian angel and eternal peace with god. its own base checkpoint, given a byte-identical prompt, does not. the paper measures that gap across checkpoints that differ only in how much preference training they received, with an ending-uplift metric built for poems.</p>
-</div>
-
-<div class="item" id="unchosen-word">
-  <h3><a href="https://aiscend-research.github.io/papers/the-unchosen-word.pdf">the unchosen word: language models as editors of poetic indeterminacy</a></h3>
-  <p class="meta">2026 &middot; with wenhao lu &middot; <a href="https://aiscend-research.github.io/papers/the-unchosen-word.pdf">pdf</a> &middot; <a href="https://github.com/hjyi2027/unchosen-word">code</a></p>
-  <p>dickinson wrote alternative words beside her lines and crossed none of them out. for most of the late fragments no fair copy was ever made, so the alternatives are the poem, a field of readings held open on purpose. printed editions close that field. this asks what a language model does with the same manuscripts, and whether the demand for one fluent output is itself an editorial act.</p>
-</div>
-
-<div class="item" id="unauthored-by-design">
-  <h3><a href="https://aiscend-research.github.io/papers/unauthored-by-design.pdf">unauthored by design: the seed's share of a generated artifact</a></h3>
-  <p class="meta">2026 &middot; with wenhao lu and adithya balakumar &middot; <a href="https://aiscend-research.github.io/papers/unauthored-by-design.pdf">pdf</a> &middot; <a href="https://github.com/AIscend-Research/seed-study-creative">code</a></p>
-  <p>when an artist prompts a generative model, how much of the result did they determine? a fully crossed design isolates the random seed's share of the variance from the prompt's and the model's, so that authorship of a generated artifact has a number attached to it.</p>
 </div>
 
 
