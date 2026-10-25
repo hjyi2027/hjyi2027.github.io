@@ -616,5 +616,3 @@ html.inner .facts.six div{background:var(--bg);border:0}
 @media (max-width:760px){html.inner .facts.six{grid-template-columns:1fr 1fr}html.inner .facts.six div{border:0}}
 html.inner .facts.six .total{grid-column:1/-1;flex-direction:row;align-items:baseline;justify-content:space-between}
 html.inner .facts.six .total dd{font-size:clamp(2.6rem,6vw,4.8rem)}
-html.inner .facts.six.four{grid-template-columns:repeat(4,1fr)}
-@media (max-width:760px){html.inner .facts.six.four{grid-template-columns:1fr 1fr}}
