@@ -94,12 +94,12 @@
     <thead><tr><th scope="col">problem</th><th scope="col">before</th><th scope="col">result</th><th scope="col">status</th></tr></thead>
     <tbody>
     <tr class="grp"><th colspan="4" scope="rowgroup"><span class="badge solved">solved</span> 8 open problems and questions</th></tr>
-    <tr><td><a href="#isosceles-sets">erd&#337;s&rsquo;s isosceles-set problem, d = 9 to 21</a></td><td>posed 1946; known only to d = 8</td><td class="res">iso(d) = (d+1 choose 2) + 1, extremal set unique</td><td>sole author &middot; preprint</td></tr>
+    <tr><td><a href="#isosceles-sets">erd&#337;s&rsquo;s isosceles-set problem, d = 9 to 21</a></td><td>posed 1946; known only to d = 8</td><td class="res">iso(d) = (d+1 choose 2) + 1, extremal set unique</td><td>team &middot; arxiv</td></tr>
     <tr><td><a href="#three-diametral">bezdek and l&aacute;ngi&rsquo;s 3-diametral question</a></td><td>2d+2 known only for d &le; 3</td><td class="res">2d+2 in every dimension, extremal configuration unique</td><td>sole author &middot; preprint</td></tr>
     <tr><td><a href="#orchard-15">orchard-planting problem, 15 points</a></td><td>31 or 32, open since 1974</td><td class="res">t<sub>3</sub>(15) = 31</td><td>team &middot; preprint &middot; jmm 2027</td></tr>
     <tr><td><a href="#ordinary-lines-15">sylvester-gallai ordinary lines, 15 points</a></td><td>7 to 9</td><td class="res">m(15) = 9</td><td>team &middot; preprint</td></tr>
     <tr><td><a href="#two-distance-9-12">largest two-distance set in r<sup>9</sup></a></td><td>45 to 55, open since 1997</td><td class="res">g(9) = 45</td><td>team &middot; preprint</td></tr>
-    <tr><td><a href="#two-distance-d21">largest two-distance sets, 13 &le; d &le; 22</a></td><td>open</td><td class="res">g(d) = d(d+1)/2 for d &le; 21; g(22) = 275; no exhaustive search</td><td>team &middot; arxiv</td></tr>
+    <tr><td><a href="#two-distance-d21">largest two-distance sets, 13 &le; d &le; 21</a></td><td>open</td><td class="res">g(d) = (d+1 choose 2), extremal set unique</td><td>team &middot; preprint</td></tr>
     <tr><td><a href="#equiangular-277">uniqueness of the 277-point two-distance set in r<sup>23</sup></a></td><td>asked by ge, koolen and munemasa</td><td class="res">unique up to congruence</td><td>sole author &middot; preprint</td></tr>
     <tr><td><a href="#neumaier">neumaier graphs with e = s &minus; 2</a></td><td>question of abiad, de boeck and zeijlemaker</td><td class="res">&mu; odd forces 4 | s</td><td>team &middot; preprint &middot; jmm 2027</td></tr>
     <tr class="grp"><th colspan="4" scope="rowgroup"><span class="badge">new record</span> 8 improved bounds</th></tr>
@@ -118,8 +118,8 @@
 <h3 class="sub" id="solved">solved</h3>
 
 <div class="item" id="isosceles-sets">
-  <h3><a href="https://doi.org/10.5281/zenodo.22928431">isosceles sets in euclidean spaces of dimension nine to twenty-one</a></h3>
-  <p class="meta"><span class="badge solved">solved &middot; erd&#337;s, 1946</span> september 2026 &middot; sole author &middot; preprint &middot; <a href="https://doi.org/10.5281/zenodo.22928431">doi</a></p>
+  <h3><a href="https://arxiv.org/abs/2610.40367">isosceles sets in euclidean spaces of dimension nine to twenty-one</a></h3>
+  <p class="meta"><span class="badge solved">solved &middot; erd&#337;s, 1946</span> october 2026 &middot; with bryan bu, chin-yen lee, yu-hang sheng, meng-tsung tsai and wei-hsuan yu &middot; <a href="https://arxiv.org/abs/2610.40367">arxiv:2610.40367</a></p>
   <p>a finite set is isosceles if every three of its points form an isosceles triangle. erd&#337;s asked in 1946 for the largest such set in dimension d, and the answer was known only up to d = 8. this proves iso(d) = (d+1 choose 2) + 1 for 9 &le; d &le; 21, with the unique extremal set the edge-midpoints of a regular simplex plus its centroid, and adds thirteen terms to oeis a175769. the proof runs blokhuis' decomposition into orthogonal two-distance sets (with a short new proof via gallai colourings) against the recent determination of maximum two-distance sets and musin's bound.</p>
 </div>
 
@@ -144,13 +144,13 @@
 <div class="item" id="two-distance-9-12">
   <h3><a href="https://doi.org/10.5281/zenodo.23343351">maximum two-distance sets in dimensions nine, ten, eleven and twelve</a></h3>
   <p class="meta"><span class="badge solved">solved &middot; open since 1997</span> september 2026 &middot; with bryan zachary bu and karam gill &middot; <a href="https://doi.org/10.5281/zenodo.23343351">doi</a></p>
-  <p>proves g(9) = 45, open since lison&#283;k&rsquo;s 1997 work left 45 &le; g(9) &le; 55, and shows that up to similarity there are exactly two 45-point two-distance sets in r<sup>9</sup>. it also proves g(10) = 55, g(11) = 66 and g(12) = 78, each attained only by the simplex-midpoint set. the method is a root-lattice reduction plus a symmetry-reduced exhaustive search, cross-checked by an independent sat-based implementation. my <a href="#isosceles-sets">isosceles-sets paper</a> builds on this result.</p>
+  <p>proves g(9) = 45, open since lison&#283;k&rsquo;s 1997 work left 45 &le; g(9) &le; 55, and shows that up to similarity there are exactly two 45-point two-distance sets in r<sup>9</sup>. it also proves g(10) = 55, g(11) = 66 and g(12) = 78, each attained only by the simplex-midpoint set. the method is a root-lattice reduction plus a symmetry-reduced exhaustive search, cross-checked by an independent sat-based implementation. the <a href="#isosceles-sets">isosceles-sets paper</a> builds on this result.</p>
 </div>
 
 <div class="item" id="two-distance-d21">
-  <h3><a href="https://arxiv.org/abs/2610.40367">johnson optimality and uniqueness for distance ratio 1:&radic;2</a></h3>
-  <p class="meta"><span class="badge solved">solved</span> october 2026 &middot; with bryan bu, chin-yen lee, yu-hang sheng, meng-tsung tsai and wei-hsuan yu &middot; <a href="https://arxiv.org/abs/2610.40367">arxiv:2610.40367</a></p>
-  <p>proves that a two-distance set in r<sup>d</sup> with distance ratio 1:&radic;2 has at most d(d+1)/2 points for every d &ge; 9, with equality in full affine dimension only for the johnson construction, the simplex-midpoint set; for d &ge; 10 full dimension is automatic. the proof splits on whether the short-distance graph is connected: the connected case uses root lattices and intersection theorems, the disconnected case an orthogonal decomposition into component direction spaces. a relative bound for euclidean two-distance sets, whose equality case forces sphericity, combines with the larman-rogers-seidel theorem to give the maximum two-distance set size d(d+1)/2 for 9 &le; d &le; 21 and 275 for d = 22, without exhaustive enumeration. my <a href="#isosceles-sets">isosceles-sets paper</a> also uses this result.</p>
+  <h3><a href="https://doi.org/10.5281/zenodo.23343372">maximum two-distance sets in euclidean spaces of dimension up to twenty-one</a></h3>
+  <p class="meta"><span class="badge solved">solved</span> september 2026 &middot; joint with bryan zachary bu and yu&rsquo;s group &middot; <a href="https://doi.org/10.5281/zenodo.23343372">doi</a></p>
+  <p>proves g(d) = (d+1 choose 2) for every 13 &le; d &le; 21, with the simplex-midpoint set the only extremal set, and reproves d = 10 to 12 without the computer-assisted clique searches used there. the searches are replaced by a combinatorial argument: in the lattice a<sub>n</sub> the problem becomes a uniform set family with two intersection sizes, handled by ray-chaudhuri-wilson and ahlswede-khachatrian, and in d<sub>n</sub> it becomes a binary code bounded by barg and musin. the <a href="#isosceles-sets">isosceles-sets paper</a> also uses this result.</p>
 </div>
 
 <div class="item" id="equiangular-277">
