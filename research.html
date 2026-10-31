@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>research | hyunjun yi</title>
-<meta name="description" content="research by hyunjun yi: four neurips 2026 acceptances on ai evaluation, eight open problems and questions settled in discrete geometry, eight new records, two new discoveries, thirty papers under review.">
+<meta name="description" content="research by hyunjun yi: four neurips 2026 acceptances on ai evaluation, eight open problems and questions settled in discrete geometry, eight new records, two new discoveries, twenty-seven papers under review.">
 <meta name="author" content="Hyunjun Yi">
 <link rel="canonical" href="https://hjyi2027.github.io/research.html">
 <meta name="theme-color" content="#0a1a33">
 <meta property="og:type" content="website">
 <meta property="og:title" content="research | hyunjun yi">
-<meta property="og:description" content="four neurips 2026 acceptances, eight open problems settled, eight new records, two new discoveries, thirty papers under review.">
+<meta property="og:description" content="four neurips 2026 acceptances, eight open problems settled, eight new records, two new discoveries, twenty-seven papers under review.">
 <meta property="og:url" content="https://hjyi2027.github.io/research.html">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%230a1a33'/%3E%3Ctext%20x='32'%20y='46'%20text-anchor='middle'%20font-family='Georgia,serif'%20font-size='40'%20fill='%23efe6d3'%3Ey%3C/text%3E%3C/svg%3E">
@@ -45,10 +45,10 @@
   <div><dt>neurips 2026 acceptances</dt><dd>4</dd></div>
   <div><dt>open problems and questions settled</dt><dd>8</dd></div>
   <div><dt>new records</dt><dd>8</dd></div>
-  <div><dt>under review</dt><dd>30</dd></div>
+  <div><dt>under review</dt><dd>27</dd></div>
   <div><dt>jmm 2027 talks accepted</dt><dd>3</dd></div>
-  <div><dt>accepted, rescience c and fsml</dt><dd>2</dd></div>
-  <div class="total"><dt>papers in total</dt><dd>54</dd></div>
+  <div><dt>other acceptances: rescience c, fsml, wacv workshops</dt><dd>4</dd></div>
+  <div class="total"><dt>papers in total</dt><dd>53</dd></div>
 </dl>
 <p class="jump"><a href="#accepted">accepted</a> <a href="#open-problems">open problems</a> <a href="#under-review">under review</a></p>
 
@@ -83,6 +83,19 @@
   <h3><a href="https://openreview.net/pdf?id=MQDgIUQB7U">selection consumes diversity: a closed-form ceiling on self-improvement from verifier-filtered data</a></h3>
   <p class="meta">2026 &middot; accepted, fsml 2026 workshop track (poster, split, croatia, december 14) &middot; <a href="https://openreview.net/pdf?id=MQDgIUQB7U">pdf</a> &middot; <a href="https://openreview.net/forum?id=MQDgIUQB7U">openreview</a></p>
   <p>rejection-sampling fine-tuning, star-style bootstrapping and self-rewarding models share one loop: sample, keep what a verifier scores highly, refit. each round is truncation selection, so the breeder&rsquo;s equation applies. with a noiseless verifier the total gain over all rounds is finite and closed-form, and the gain being linear in the remaining spread is exactly the entropy-performance law reported for reinforcement learning of reasoning models. on real image data with a learned reward model, one pre-loop measurement predicts the total gain: 9.69 predicted, 9.74 measured.</p>
+</div>
+
+
+<div class="item" id="slow-walkers">
+  <h3>slow walkers count more: how the eth/ucy test protocol weights pedestrians</h3>
+  <p class="meta">2026 &middot; accepted, wacv 2027 urbanstate workshop</p>
+  <p>pedestrian forecasting is still ranked on eth/ucy with a loader that cuts recordings into overlapping 8-second windows. the reported error is a weighted mean in which each pedestrian counts once per window they fill, so slow walkers dominate and anyone who crosses in under 8 seconds counts zero: 39% of pedestrians are never evaluated, and one who barely moves supplies 9.7% of the zara2 test samples. counting each pedestrian once raises average error by 10 to 57% and reverses one published model ranking, and confidence intervals are 2.3 to 8.1 times too narrow.</p>
+</div>
+
+<div class="item" id="capped-at-100">
+  <h3>capped at 100: per-image detection limits and the comparability of sku-110k scores</h3>
+  <p class="meta">2026 &middot; accepted, wacv 2027 praw workshop</p>
+  <p>sku-110k is scored with coco-style average precision, which keeps 100 detections per image by default, yet 95.9% of its test images hold more than 100 products. from the annotations alone, no detector can exceed 0.675 recall or 0.673 ap under that cap. common toolchains apply the cap inconsistently, so the same detections from one detector score anywhere from 0.326 to 0.470 ap depending on the convention, and the cap even reverses which nms threshold looks best. only 3 of 10 published results state the cap.</p>
 </div>
 
 
@@ -320,12 +333,6 @@
   <p>super-resolution is the usual proposal for plates captured too small to read. across six general-purpose upscalers and two open plate readers on the openalpr benchmark, only one of 48 comparisons with plain bicubic interpolation read more plates with confidence, by 2.6 points, and gan training cost 10 to 28 points. real-esrgan changed the read of 58% of plates and broke half the reads bicubic got right. the paper proves no upscaler can raise the bayes accuracy of plate reading, and two diffusion runs on the same capture disagreed on 40% of plates. voting over five captured frames helped where upscaling hurt.</p>
 </div>
 
-<div class="item" id="slow-walkers">
-  <h3>slow walkers count more: how the eth/ucy test protocol weights pedestrians</h3>
-  <p class="meta">wacv 2027, urbanstate workshop &middot; under review</p>
-  <p>pedestrian forecasting is still ranked on eth/ucy with a loader that cuts recordings into overlapping 8-second windows. the reported error is a weighted mean in which each pedestrian counts once per window they fill, so slow walkers dominate and anyone who crosses in under 8 seconds counts zero: 39% of pedestrians are never evaluated, and one who barely moves supplies 9.7% of the zara2 test samples. counting each pedestrian once raises average error by 10 to 57% and reverses one published model ranking, and confidence intervals are 2.3 to 8.1 times too narrow.</p>
-</div>
-
 <div class="item" id="camera-moved">
   <h3>the camera moved: a violence detection benchmark separated by its recording sessions</h3>
   <p class="meta">wacv 2027, rws workshop &middot; under review</p>
@@ -360,18 +367,6 @@
   <h3>holds as free probes: timing-aware temporal evaluation of anime video</h3>
   <p class="meta">wacv 2027, ainime workshop &middot; under review</p>
   <p>anime holds each drawing for several frames, and temporal metrics built for live action cannot tell a held drawing from a stable one: re-exposing motion on fours raises vbench&rsquo;s motion smoothness although three quarters of the drawings are gone. holds are also useful, since any change a restoration model makes inside a held region is its own flicker. that measure needs no reference, and it shows the recurrent animesr changing by 0.81 levels on bit-identical input against at most 0.16 for per-frame models.</p>
-</div>
-
-<div class="item" id="retailaction-no-pixels">
-  <h3>retailaction without pixels: metadata baselines and metric checks</h3>
-  <p class="meta">wacv 2027, praw workshop &middot; under review</p>
-  <p>every retailaction sample, including the hidden challenge split, ships with metadata from the provider&rsquo;s tracking pipeline. a three-layer transformer that reads only that metadata scores 71.9 map, against 41.7 for the best published video model, and the face track alone scores 52.2. the paper also finds the temporal labels misdescribed in the dataset card and a contact-point rule that adds 11.2 points.</p>
-</div>
-
-<div class="item" id="capped-at-100">
-  <h3>capped at 100: per-image detection limits and the comparability of sku-110k scores</h3>
-  <p class="meta">wacv 2027, praw workshop &middot; under review</p>
-  <p>sku-110k is scored with coco-style average precision, which keeps 100 detections per image by default, yet 95.9% of its test images hold more than 100 products. from the annotations alone, no detector can exceed 0.675 recall or 0.673 ap under that cap. common toolchains apply the cap inconsistently, so the same detections from one detector score anywhere from 0.326 to 0.470 ap depending on the convention, and the cap even reverses which nms threshold looks best. only 3 of 10 published results state the cap.</p>
 </div>
 
 <div class="item" id="sharper-not-closer">
