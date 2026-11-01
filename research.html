@@ -81,7 +81,7 @@
 
 <div class="item" id="selection-diversity">
   <h3><a href="https://openreview.net/pdf?id=MQDgIUQB7U">selection consumes diversity: a closed-form ceiling on self-improvement from verifier-filtered data</a></h3>
-  <p class="meta">2026 &middot; accepted, fsml 2026 workshop track (poster, split, croatia, december 14) &middot; <a href="https://openreview.net/pdf?id=MQDgIUQB7U">pdf</a> &middot; <a href="https://openreview.net/forum?id=MQDgIUQB7U">openreview</a></p>
+  <p class="meta">2026 &middot; first author, with bryan bu, june young kim and raiyan mazhar &middot; accepted, fsml 2026 workshop track (poster, split, croatia, december 14) &middot; <a href="https://openreview.net/pdf?id=MQDgIUQB7U">pdf</a> &middot; <a href="https://openreview.net/forum?id=MQDgIUQB7U">openreview</a></p>
   <p>rejection-sampling fine-tuning, star-style bootstrapping and self-rewarding models share one loop: sample, keep what a verifier scores highly, refit. each round is truncation selection, so the breeder&rsquo;s equation applies. with a noiseless verifier the total gain over all rounds is finite and closed-form, and the gain being linear in the remaining spread is exactly the entropy-performance law reported for reinforcement learning of reasoning models. on real image data with a learned reward model, one pre-loop measurement predicts the total gain: 9.69 predicted, 9.74 measured.</p>
 </div>
 
@@ -100,13 +100,13 @@
 
 <div class="item" id="slow-walkers">
   <h3>slow walkers count more: how the eth/ucy test protocol weights pedestrians</h3>
-  <p class="meta">2026 &middot; accepted, wacv 2027 urbanstate workshop</p>
+  <p class="meta">2026 &middot; first author, with bryan bu, june young kim and raiyan mazhar &middot; accepted, wacv 2027 urbanstate workshop</p>
   <p>pedestrian forecasting is still ranked on eth/ucy with a loader that cuts recordings into overlapping 8-second windows. the reported error is a weighted mean in which each pedestrian counts once per window they fill, so slow walkers dominate and anyone who crosses in under 8 seconds counts zero: 39% of pedestrians are never evaluated, and one who barely moves supplies 9.7% of the zara2 test samples. counting each pedestrian once raises average error by 10 to 57% and reverses one published model ranking, and confidence intervals are 2.3 to 8.1 times too narrow.</p>
 </div>
 
 <div class="item" id="capped-at-100">
   <h3>capped at 100: per-image detection limits and the comparability of sku-110k scores</h3>
-  <p class="meta">2026 &middot; accepted, wacv 2027 praw workshop</p>
+  <p class="meta">2026 &middot; first author, with bryan bu, june young kim and raiyan mazhar &middot; accepted, wacv 2027 physical retail ai (praw) workshop, poster</p>
   <p>sku-110k is scored with coco-style average precision, which keeps 100 detections per image by default, yet 95.9% of its test images hold more than 100 products. from the annotations alone, no detector can exceed 0.675 recall or 0.673 ap under that cap. common toolchains apply the cap inconsistently, so the same detections from one detector score anywhere from 0.326 to 0.470 ap depending on the convention, and the cap even reverses which nms threshold looks best. only 3 of 10 published results state the cap.</p>
 </div>
 
