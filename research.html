@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>research | hyunjun yi</title>
-<meta name="description" content="research by hyunjun yi: four neurips 2026 acceptances on ai evaluation, eight open problems and questions settled in discrete geometry, seven new records, two new discoveries, twenty-four papers under review.">
+<meta name="description" content="research by hyunjun yi: four neurips 2026 acceptances on ai evaluation, eight open problems and questions settled in discrete geometry, seven new records, two new discoveries, twenty-two papers under review.">
 <meta name="author" content="Hyunjun Yi">
 <link rel="canonical" href="https://hjyi2027.github.io/research.html">
 <meta name="theme-color" content="#0a1a33">
 <meta property="og:type" content="website">
 <meta property="og:title" content="research | hyunjun yi">
-<meta property="og:description" content="four neurips 2026 acceptances, eight open problems settled, seven new records, two new discoveries, twenty-four papers under review.">
+<meta property="og:description" content="four neurips 2026 acceptances, eight open problems settled, seven new records, two new discoveries, twenty-two papers under review.">
 <meta property="og:url" content="https://hjyi2027.github.io/research.html">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%230a1a33'/%3E%3Ctext%20x='32'%20y='46'%20text-anchor='middle'%20font-family='Georgia,serif'%20font-size='40'%20fill='%23efe6d3'%3Ey%3C/text%3E%3C/svg%3E">
@@ -45,9 +45,9 @@
   <div><dt>neurips 2026 acceptances</dt><dd>4</dd></div>
   <div><dt>open problems and questions settled</dt><dd>8</dd></div>
   <div><dt>new records</dt><dd>7</dd></div>
-  <div><dt>under review</dt><dd>24</dd></div>
+  <div><dt>under review</dt><dd>22</dd></div>
   <div><dt>jmm 2027 talks accepted</dt><dd>3</dd></div>
-  <div><dt>other acceptances: rescience c, fsml, wacv workshops</dt><dd>7</dd></div>
+  <div><dt>other acceptances: rescience c, fsml, wacv workshops</dt><dd>9</dd></div>
   <div class="total"><dt>papers in total</dt><dd>52</dd></div>
 </dl>
 <p class="jump"><a href="#accepted">accepted</a> <a href="#open-problems">open problems</a> <a href="#under-review">under review</a></p>
@@ -78,13 +78,23 @@
   <p>the reference code of stable diffusion xl and flux.1 marks every output with an open-source invisible watermark, and stability ai distributes a detector for it. auditing the shipped chain from embedder to detector shows most marks are unreadable before any processing: the embedder and detector disagree on a colour offset (0.5 against 128), and flux.1&rsquo;s documented 48-bit message has 46 bits. the official detector flags only 45.5% of sdxl-generated images as watermarked. a one-line detector change raises that to 90.9%, and a repaired embedder reaches 100%.</p>
 </div>
 
+<div class="item" id="holds-free-probes">
+  <h3><a href="https://openreview.net/forum?id=jRCPkloPBu">holds as free probes: timing-aware temporal evaluation of anime video</a></h3>
+  <p class="meta">2026 &middot; accepted for oral presentation and the workshop proceedings, wacv 2027 ainime workshop &middot; <a href="https://openreview.net/forum?id=jRCPkloPBu">openreview</a></p>
+  <p>anime holds each drawing for several frames, and temporal metrics built for live action cannot tell a held drawing from a stable one: re-exposing motion on fours raises vbench&rsquo;s motion smoothness although three quarters of the drawings are gone. holds are also useful, since any change a restoration model makes inside a held region is its own flicker. that measure needs no reference, and it shows the recurrent animesr changing by 0.81 levels on bit-identical input against at most 0.16 for per-frame models.</p>
+</div>
+
+<div class="item" id="sharper-not-closer">
+  <h3><a href="https://openreview.net/forum?id=WJRgT5iiKP">sharper is not closer: what no-reference metrics reward in anime restoration</a></h3>
+  <p class="meta">2026 &middot; accepted for oral presentation and the workshop proceedings, wacv 2027 ainime workshop &middot; <a href="https://openreview.net/forum?id=WJRgT5iiKP">openreview</a></p>
+  <p>real degraded anime has no clean reference, so restoration is ranked with no-reference quality metrics. degrading 40 frames so each source serves as its own reference shows what they reward: maniqa prefers a sharpened copy of the source to the source itself in 90% of clips, and one unsharp mask that lowers psnr in every clip is preferred by four learned metrics in every clip. maniqa and hyperiqa even rank one restoration above its own source frame in every clip.</p>
+</div>
 
 <div class="item" id="litefno">
   <h3><a href="https://aiscend-research.github.io/papers/re-litefno-cnn-ablation.pdf">[re] a novel cnn ablation reveals limited fourier inductive bias in litefno: a reproducibility study</a></h3>
   <p class="meta">2026 &middot; with jacob goldstein, kristen zhou, wenhao lu, david j. zhang, spursh deshpande and jayvant rajesh &middot; <a href="https://aiscend-research.github.io/papers.html">accepted</a>, rescience c &middot; <a href="https://aiscend-research.github.io/papers/re-litefno-cnn-ablation.pdf">pdf</a> &middot; <a href="https://doi.org/10.5281/zenodo.23195718">doi</a> &middot; <a href="https://github.com/hjyi2027/litefno-repro">code</a></p>
   <p>a from-scratch reproduction of the lightweight fourier neural operator, plus a parameter-matched low-rank cnn ablation the original paper does not include. on gray-scott at 32x32 across three seeds the cnn baseline matches or beats litefno on one-step error and on autoregressive rollout, so the study finds no consistent evidence for a fourier inductive-bias advantage at this scale.</p>
 </div>
-
 
 <div class="item" id="selection-diversity">
   <h3><a href="https://openreview.net/pdf?id=MQDgIUQB7U">selection consumes diversity: a closed-form ceiling on self-improvement from verifier-filtered data</a></h3>
@@ -360,18 +370,6 @@
   <h3>seen scenes, blind answers: an audit of the reva drone video qa benchmark</h3>
   <p class="meta">wacv 2027, mavu workshop &middot; under review</p>
   <p>reva&rsquo;s paper states its splits are disjoint by video sequence. the public annotation files show 1,012 of 1,014 test clips also appear in training, and the validation file publishes the answers of 392 test items. copying labelled answers plus a text-only classifier scores 90.5% on validation without a single pixel, and on genuinely held-out recordings the text-only classifier still scores 58.1% against 25% chance.</p>
-</div>
-
-<div class="item" id="holds-free-probes">
-  <h3>holds as free probes: timing-aware temporal evaluation of anime video</h3>
-  <p class="meta">wacv 2027, ainime workshop &middot; under review</p>
-  <p>anime holds each drawing for several frames, and temporal metrics built for live action cannot tell a held drawing from a stable one: re-exposing motion on fours raises vbench&rsquo;s motion smoothness although three quarters of the drawings are gone. holds are also useful, since any change a restoration model makes inside a held region is its own flicker. that measure needs no reference, and it shows the recurrent animesr changing by 0.81 levels on bit-identical input against at most 0.16 for per-frame models.</p>
-</div>
-
-<div class="item" id="sharper-not-closer">
-  <h3>sharper is not closer: what no-reference metrics reward in anime restoration</h3>
-  <p class="meta">wacv 2027, ainime workshop &middot; under review</p>
-  <p>real degraded anime has no clean reference, so restoration is ranked with no-reference quality metrics. degrading 40 frames so each source serves as its own reference shows what they reward: maniqa prefers a sharpened copy of the source to the source itself in 90% of clips, and one unsharp mask that lowers psnr in every clip is preferred by four learned metrics in every clip. maniqa and hyperiqa even rank one restoration above its own source frame in every clip.</p>
 </div>
 
 <div class="item" id="same-plate-both-splits">
