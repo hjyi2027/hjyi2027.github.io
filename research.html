@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>research | hyunjun yi</title>
-<meta name="description" content="research by hyunjun yi: four neurips 2026 acceptances on ai evaluation, eight open problems and questions settled in discrete geometry, seven new records, two new discoveries, twenty-two papers under review.">
+<meta name="description" content="research by hyunjun yi: four neurips 2026 acceptances on ai evaluation, eight open problems and questions settled in discrete geometry, seven new records, two new discoveries, twenty-one papers under review.">
 <meta name="author" content="Hyunjun Yi">
 <link rel="canonical" href="https://hjyi2027.github.io/research.html">
 <meta name="theme-color" content="#0a1a33">
 <meta property="og:type" content="website">
 <meta property="og:title" content="research | hyunjun yi">
-<meta property="og:description" content="four neurips 2026 acceptances, eight open problems settled, seven new records, two new discoveries, twenty-two papers under review.">
+<meta property="og:description" content="four neurips 2026 acceptances, eight open problems settled, seven new records, two new discoveries, twenty-one papers under review.">
 <meta property="og:url" content="https://hjyi2027.github.io/research.html">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%230a1a33'/%3E%3Ctext%20x='32'%20y='46'%20text-anchor='middle'%20font-family='Georgia,serif'%20font-size='40'%20fill='%23efe6d3'%3Ey%3C/text%3E%3C/svg%3E">
@@ -45,9 +45,9 @@
   <div><dt>neurips 2026 acceptances</dt><dd>4</dd></div>
   <div><dt>open problems and questions settled</dt><dd>8</dd></div>
   <div><dt>new records</dt><dd>7</dd></div>
-  <div><dt>under review</dt><dd>22</dd></div>
+  <div><dt>under review</dt><dd>21</dd></div>
   <div><dt>jmm 2027 talks accepted</dt><dd>3</dd></div>
-  <div><dt>other acceptances: rescience c, fsml, wacv workshops</dt><dd>9</dd></div>
+  <div><dt>other acceptances: rescience c, fsml, wacv workshops</dt><dd>10</dd></div>
   <div class="total"><dt>papers in total</dt><dd>52</dd></div>
 </dl>
 <p class="jump"><a href="#accepted">accepted</a> <a href="#open-problems">open problems</a> <a href="#under-review">under review</a></p>
@@ -118,6 +118,12 @@
   <h3>capped at 100: per-image detection limits and the comparability of sku-110k scores</h3>
   <p class="meta">2026 &middot; first author, with bryan bu, june young kim and raiyan mazhar &middot; accepted, wacv 2027 physical retail ai (praw) workshop, poster</p>
   <p>sku-110k is scored with coco-style average precision, which keeps 100 detections per image by default, yet 95.9% of its test images hold more than 100 products. from the annotations alone, no detector can exceed 0.675 recall or 0.673 ap under that cap. common toolchains apply the cap inconsistently, so the same detections from one detector score anywhere from 0.326 to 0.470 ap depending on the convention, and the cap even reverses which nms threshold looks best. only 3 of 10 published results state the cap.</p>
+</div>
+
+<div class="item" id="seen-scenes">
+  <h3><a href="https://openreview.net/forum?id=wyXhV01u3W">seen scenes, blind answers: an audit of the reva drone video qa benchmark</a></h3>
+  <p class="meta">2026 &middot; accepted, wacv 2027 mavu workshop, poster &middot; <a href="https://openreview.net/forum?id=wyXhV01u3W">openreview</a></p>
+  <p>reva&rsquo;s paper states its splits are disjoint by video sequence. the public annotation files show 1,012 of 1,014 test clips also appear in training, and the validation file publishes the answers of 392 test items. copying labelled answers plus a text-only classifier scores 90.5% on validation without a single pixel, and on genuinely held-out recordings the text-only classifier still scores 58.1% against 25% chance.</p>
 </div>
 
 <div class="item" id="fifty-ms-late">
@@ -364,12 +370,6 @@
   <h3>is the synergy above the noise? noise floors for understanding-generation claims in unified multimodal models</h3>
   <p class="meta">wacv 2027, unimug workshop &middot; under review</p>
   <p>unified multimodal models are justified by synergy between generating and understanding images, usually from ablations run once. seed variance turns out to be a stable multiple of binomial variance, so every accuracy-type benchmark has a noise floor computable from its size and score. of 261 results from 28 papers, 42% lie within their floor, claimed benefits clear it less often than claimed harms, and no paper reports seed variation. the paper gives minimum detectable differences for 25 benchmarks.</p>
-</div>
-
-<div class="item" id="seen-scenes">
-  <h3>seen scenes, blind answers: an audit of the reva drone video qa benchmark</h3>
-  <p class="meta">wacv 2027, mavu workshop &middot; under review</p>
-  <p>reva&rsquo;s paper states its splits are disjoint by video sequence. the public annotation files show 1,012 of 1,014 test clips also appear in training, and the validation file publishes the answers of 392 test items. copying labelled answers plus a text-only classifier scores 90.5% on validation without a single pixel, and on genuinely held-out recordings the text-only classifier still scores 58.1% against 25% chance.</p>
 </div>
 
 <div class="item" id="same-plate-both-splits">
