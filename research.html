@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>research | hyunjun yi</title>
-<meta name="description" content="research by hyunjun yi: four neurips 2026 acceptances on ai evaluation, eight open problems and questions settled in discrete geometry, seven new records, two new discoveries, eighteen papers under review.">
+<meta name="description" content="research by hyunjun yi: four neurips 2026 acceptances on ai evaluation, eight open problems and questions settled in discrete geometry, seven new records, two new discoveries, six papers under review.">
 <meta name="author" content="Hyunjun Yi">
 <link rel="canonical" href="https://hjyi2027.github.io/research.html">
 <meta name="theme-color" content="#0a1a33">
 <meta property="og:type" content="website">
 <meta property="og:title" content="research | hyunjun yi">
-<meta property="og:description" content="four neurips 2026 acceptances, eight open problems settled, seven new records, two new discoveries, eighteen papers under review.">
+<meta property="og:description" content="four neurips 2026 acceptances, eight open problems settled, seven new records, two new discoveries, six papers under review.">
 <meta property="og:url" content="https://hjyi2027.github.io/research.html">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%230a1a33'/%3E%3Ctext%20x='32'%20y='46'%20text-anchor='middle'%20font-family='Georgia,serif'%20font-size='40'%20fill='%23efe6d3'%3Ey%3C/text%3E%3C/svg%3E">
@@ -45,10 +45,10 @@
   <div><dt>neurips 2026 acceptances</dt><dd>4</dd></div>
   <div><dt>open problems and questions settled</dt><dd>8</dd></div>
   <div><dt>new records</dt><dd>7</dd></div>
-  <div><dt>under review</dt><dd>18</dd></div>
+  <div><dt>under review</dt><dd>6</dd></div>
   <div><dt>jmm 2027 talks accepted</dt><dd>3</dd></div>
-  <div><dt>other acceptances: rescience c, fsml, wacv and corl workshops</dt><dd>13</dd></div>
-  <div class="total"><dt>papers in total</dt><dd>52</dd></div>
+  <div><dt>other acceptances: rescience c, fsml, wacv and corl workshops</dt><dd>22</dd></div>
+  <div class="total"><dt>papers in total</dt><dd>49</dd></div>
 </dl>
 <p class="jump"><a href="#accepted">accepted</a> <a href="#open-problems">open problems</a> <a href="#under-review">under review</a></p>
 
@@ -90,6 +90,18 @@
   <p>real degraded anime has no clean reference, so restoration is ranked with no-reference quality metrics. degrading 40 frames so each source serves as its own reference shows what they reward: maniqa prefers a sharpened copy of the source to the source itself in 90% of clips, and one unsharp mask that lowers psnr in every clip is preferred by four learned metrics in every clip. maniqa and hyperiqa even rank one restoration above its own source frame in every clip.</p>
 </div>
 
+<div class="item" id="registration-leaks">
+  <h3><a href="https://openreview.net/forum?id=wQnmktDaVt">registration leaks the label: synthetic-to-measured sar atr revisited, with lessons for hypothesis-testing agents</a></h3>
+  <p class="meta">2026 &middot; accepted for the workshop proceedings, wacv 2027 sense workshop &middot; <a href="https://openreview.net/forum?id=wQnmktDaVt">openreview</a></p>
+  <p>synthetic-to-measured sar target recognition revisited, with a registration artifact that carries the class label on its own.</p>
+</div>
+
+<div class="item" id="hrsid-split">
+  <h3><a href="https://openreview.net/forum?id=KiC6CwBoxf">half the test ships are in the training crops: auditing the hrsid split for sar ship detection</a></h3>
+  <p class="meta">2026 &middot; accepted for the workshop proceedings, wacv 2027 sense workshop &middot; <a href="https://openreview.net/forum?id=KiC6CwBoxf">openreview</a></p>
+  <p>hrsid splits overlapping crops of 136 source images rather than the images themselves. 94.8% of test crops share pixels with a training crop and 53.5% of test ships lie entirely inside one, so pasting training boxes into the test crops, with no detector at all, scores 42.4 coco ap. the overlap strips act as a natural experiment: a detector recalls 3.8 points more of the test ships it saw in training.</p>
+</div>
+
 <div class="item" id="litefno">
   <h3><a href="https://aiscend-research.github.io/papers/re-litefno-cnn-ablation.pdf">[re] a novel cnn ablation reveals limited fourier inductive bias in litefno: a reproducibility study</a></h3>
   <p class="meta">2026 &middot; with jacob goldstein, kristen zhou, wenhao lu, david j. zhang, spursh deshpande and jayvant rajesh &middot; <a href="https://aiscend-research.github.io/papers.html">accepted</a>, rescience c &middot; <a href="https://aiscend-research.github.io/papers/re-litefno-cnn-ablation.pdf">pdf</a> &middot; <a href="https://doi.org/10.5281/zenodo.23195718">doi</a> &middot; <a href="https://github.com/hjyi2027/litefno-repro">code</a></p>
@@ -100,6 +112,24 @@
   <h3><a href="https://openreview.net/pdf?id=MQDgIUQB7U">selection consumes diversity: a closed-form ceiling on self-improvement from verifier-filtered data</a></h3>
   <p class="meta">2026 &middot; first author, with bryan bu, june young kim and raiyan mazhar &middot; accepted, fsml 2026 workshop track (poster, split, croatia, december 14) &middot; <a href="https://openreview.net/pdf?id=MQDgIUQB7U">pdf</a> &middot; <a href="https://openreview.net/forum?id=MQDgIUQB7U">openreview</a></p>
   <p>rejection-sampling fine-tuning, star-style bootstrapping and self-rewarding models share one loop: sample, keep what a verifier scores highly, refit. each round is truncation selection, so the breeder&rsquo;s equation applies. with a noiseless verifier the total gain over all rounds is finite and closed-form, and the gain being linear in the remaining spread is exactly the entropy-performance law reported for reinforcement learning of reasoning models. on real image data with a learned reward model, one pre-loop measurement predicts the total gain: 9.69 predicted, 9.74 measured.</p>
+</div>
+
+<div class="item" id="one-in-how-many">
+  <h3><a href="https://openreview.net/forum?id=HlBYOAY7sI">one in how many? false alert rates of live facial recognition in london, from controlled test to routine use</a></h3>
+  <p class="meta">2026 &middot; accepted for oral and poster presentation, wacv 2027 rws workshop &middot; <a href="https://openreview.net/forum?id=HlBYOAY7sI">openreview</a></p>
+  <p>the metropolitan police cite a controlled test putting false positives at about 1 in 6,000 passers. transcribing all 729 routine deployments from 2023 to 2026, 10.1 million recorded faces and 58 false alerts, shows the denominator is unstable: recorded faces per hour at the same sites differ elevenfold between periods. the records cannot bound the rate at the level the test predicts, and detecting a twofold demographic difference would take 6 to 8 years of deployments.</p>
+</div>
+
+<div class="item" id="clothing-description">
+  <h3><a href="https://openreview.net/forum?id=4xNYvTW0N9">what a clothing description reveals: singling out, linkability and inference in pedestrian attribute search under eu law</a></h3>
+  <p class="meta">2026 &middot; accepted for oral and poster presentation, wacv 2027 rws workshop &middot; <a href="https://openreview.net/forum?id=4xNYvTW0N9">openreview</a></p>
+  <p>the eu ai act treats sex, age and hair colour as biometric categories, so a natural fix for attribute-based person search is to keep clothing only. this turns the three anonymisation tests of european data protection guidance into statistics and runs them on 224,589 annotated images. clothing alone singles out 59.0% of people in random groups of 100, links a person across market-1501 cameras at rank one in 38.9% of cases against 0.09% chance, and predicts the annotated sex label with auc 0.67 to 0.79 on held-out datasets. each measurement is mapped to the gdpr and ai act provisions it informs.</p>
+</div>
+
+<div class="item" id="image-blind-baselines">
+  <h3><a href="https://openreview.net/forum?id=9uTXyRItGH">image-blind baselines for single-scene hyperspectral and multimodal land-cover benchmarks</a></h3>
+  <p class="meta">2026 &middot; first author, with bryan bu, june young kim and raiyan mazhar &middot; accepted, wacv 2027 cv4eo workshop &middot; <a href="https://openreview.net/forum?id=9uTXyRItGH">openreview</a></p>
+  <p>on a standard single-scene hyperspectral split, pixel coordinates alone reach 95.5 percent overall accuracy. the paper sets image-blind baselines that any reported model should have to beat.</p>
 </div>
 
 <div class="item" id="counting-ink">
@@ -126,10 +156,22 @@
   <p>how much of a four-way video question-answering benchmark, and the test sets derived from it, can be answered from the answer options and split construction without the video.</p>
 </div>
 
+<div class="item" id="synergy-noise-floors">
+  <h3><a href="https://openreview.net/forum?id=PVmYloBnLR">is the synergy above the noise? noise floors for understanding-generation claims in unified multimodal models</a></h3>
+  <p class="meta">2026 &middot; accepted, wacv 2027 unimug workshop &middot; <a href="https://openreview.net/forum?id=PVmYloBnLR">openreview</a></p>
+  <p>unified multimodal models are justified by synergy between generating and understanding images, usually from ablations run once. seed variance turns out to be a stable multiple of binomial variance, so every accuracy-type benchmark has a noise floor computable from its size and score. of 261 results from 28 papers, 42% lie within their floor, claimed benefits clear it less often than claimed harms, and no paper reports seed variation. the paper gives minimum detectable differences for 25 benchmarks.</p>
+</div>
+
 <div class="item" id="seconds-to-spare">
   <h3><a href="https://openreview.net/forum?id=Lj0aErWl0u">seconds to spare: interception slack for fair and graded robot tennis benchmarks</a></h3>
   <p class="meta">2026 &middot; accepted, roboletics 3.0 workshop at corl 2026 (3-minute talk and poster) &middot; <a href="https://openreview.net/forum?id=Lj0aErWl0u">openreview</a></p>
   <p>sport benchmarks for human-robot interaction compare bodies that differ in speed, reach and latency, and a raw success rate mixes what a body allows with what its controller achieves. interception slack, the spare time with which a body could reach the ball, gives an exact feasibility ceiling, and factoring success into ceiling and efficiency reverses raw rankings. slack marks 12 to 67% of shots as impossible for a given body, and wheelchair tennis&rsquo;s two-bounce rule is worth 0.05 to 0.13 s against a gap of at least 0.88 s to an able-bodied player.</p>
+</div>
+
+<div class="item" id="hertz-not-reactivity">
+  <h3><a href="https://openreview.net/forum?id=wUAHiqqioS">hertz is not reactivity: reaction latency of chunked robot policies under stochastic inference latency</a></h3>
+  <p class="meta">2026 &middot; accepted, efficient foundation models for real-time embodied ai (eeai) workshop at corl 2026, poster &middot; <a href="https://openreview.net/forum?id=wUAHiqqioS">openreview</a></p>
+  <p>speed results for robot foundation models are reported as frequencies, and none of them says how old the observation behind the executing action is. modelling chunked execution under random inference latency as a renewal process gives the mean reaction latency in closed form, &mu; + e[t<sup>2</sup>]/(2e[t]). under heavy-tailed latency, delaying each inference start to a computable threshold cuts reaction latency by 13 to 20% at no cost in motion. across 88 simulated configurations, predicted reaction latency ranks tracking error with spearman &rho; = 0.98, against 0.84 and 0.75 for the two frequencies people usually report.</p>
 </div>
 
 <div class="item" id="capped-at-100">
@@ -140,8 +182,20 @@
 
 <div class="item" id="seen-scenes">
   <h3><a href="https://openreview.net/forum?id=wyXhV01u3W">seen scenes, blind answers: an audit of the reva drone video qa benchmark</a></h3>
-  <p class="meta">2026 &middot; accepted, wacv 2027 mavu workshop, poster &middot; <a href="https://openreview.net/forum?id=wyXhV01u3W">openreview</a></p>
+  <p class="meta">2026 &middot; first author, with bryan bu, june young kim and raiyan mazhar &middot; accepted, wacv 2027 mavu workshop, poster &middot; <a href="https://openreview.net/forum?id=wyXhV01u3W">openreview</a></p>
   <p>reva&rsquo;s paper states its splits are disjoint by video sequence. the public annotation files show 1,012 of 1,014 test clips also appear in training, and the validation file publishes the answers of 392 test items. copying labelled answers plus a text-only classifier scores 90.5% on validation without a single pixel, and on genuinely held-out recordings the text-only classifier still scores 58.1% against 25% chance.</p>
+</div>
+
+<div class="item" id="sharper-not-truer">
+  <h3><a href="https://openreview.net/forum?id=iJcwwNo4TH">sharper is not truer: super-resolution rewrites license plates before they are read</a></h3>
+  <p class="meta">2026 &middot; accepted, wacv 2027 rws workshop, poster &middot; <a href="https://openreview.net/forum?id=iJcwwNo4TH">openreview</a></p>
+  <p>super-resolution is the usual proposal for plates captured too small to read. across six general-purpose upscalers and two open plate readers on the openalpr benchmark, only one of 48 comparisons with plain bicubic interpolation read more plates with confidence, by 2.6 points, and gan training cost 10 to 28 points. real-esrgan changed the read of 58% of plates and broke half the reads bicubic got right. the paper proves no upscaler can raise the bayes accuracy of plate reading, and two diffusion runs on the same capture disagreed on 40% of plates. voting over five captured frames helped where upscaling hurt.</p>
+</div>
+
+<div class="item" id="sarlang-no-image">
+  <h3><a href="https://openreview.net/forum?id=4r9Wlw0WrW">no image needed: answer priors and a lenient scorer in a sar vision-language benchmark</a></h3>
+  <p class="meta">2026 &middot; accepted as a non-archival presentation, wacv 2027 sense workshop &middot; <a href="https://openreview.net/forum?id=4r9Wlw0WrW">openreview</a></p>
+  <p>auditing the question-answering part of sarlang-1m without opening a single image: answering each question with the most common training answer for its template scores 65.0% under strict exact match. the released scorer counts a prediction as correct whenever the reference appears anywhere inside it, so the string &ldquo;yes | no&rdquo; scores 42.7% and one 965-character string scores 100.0% on 99,522 test questions. two more remote-sensing scorers share the substring rule, and three give an empty answer full marks.</p>
 </div>
 
 <div class="item" id="fifty-ms-late">
@@ -318,23 +372,6 @@
 
 <h3 class="sub" id="ur-cv">computer vision, wacv 2027</h3>
 
-<div class="item" id="image-blind-baselines">
-  <h3>image-blind baselines for single-scene hyperspectral and multimodal land-cover benchmarks</h3>
-  <p class="meta">wacv 2027, cv4eo workshop &middot; under review</p>
-  <p>on a standard single-scene hyperspectral split, pixel coordinates alone reach 95.5 percent overall accuracy. the paper sets image-blind baselines that any reported model should have to beat.</p>
-</div>
-
-<div class="item" id="self-judged-scores">
-  <h3>what do self-judged scores measure? an audit of reciprocal evaluation in unified multimodal models</h3>
-  <p class="meta">wacv 2027, unimug workshop &middot; under review</p>
-  <p>a unified multimodal model can grade its own images: it generates an image, answers multiple-choice questions about it, and the accuracy becomes its score, as in unieval&rsquo;s uniscore. the paper shows that the published scores cannot identify the &ldquo;understanding part&rdquo; they are used to report, and gives sharp bounds on it. an audit of the released benchmark finds that a reader that always answers &ldquo;a&rdquo; scores 0.351, because the gold letters are skewed and never shuffled, and that one model&rsquo;s self-judged scores equal that reader&rsquo;s in 77 of 81 tags. it also proves that cross-reading among four or more models identifies each reader&rsquo;s self-excess.</p>
-</div>
-
-<div class="item" id="registration-leaks">
-  <h3>registration leaks the label: synthetic-to-measured sar atr revisited, with lessons for hypothesis-testing agents</h3>
-  <p class="meta">wacv 2027, sense workshop &middot; under review</p>
-  <p>synthetic-to-measured sar target recognition revisited, with a registration artifact that carries the class label on its own.</p>
-</div>
 
 <div class="item" id="cmmd">
   <h3>cmmd measures the mean: the moment weights of the clip maximum mean discrepancy</h3>
@@ -342,58 +379,10 @@
   <p>cmmd scores an image generator by a gaussian-kernel mmd between clip embeddings of generated and real images. the paper works out which moments of the embedding distribution that score actually weighs at the standard bandwidth.</p>
 </div>
 
-<div class="item" id="clothing-description">
-  <h3>what a clothing description reveals: singling out, linkability and inference in pedestrian attribute search under eu law</h3>
-  <p class="meta">wacv 2027, rws workshop &middot; under review</p>
-  <p>the eu ai act treats sex, age and hair colour as biometric categories, so a natural fix for attribute-based person search is to keep clothing only. this turns the three anonymisation tests of european data protection guidance into statistics and runs them on 224,589 annotated images. clothing alone singles out 59.0% of people in random groups of 100, links a person across market-1501 cameras at rank one in 38.9% of cases against 0.09% chance, and predicts the annotated sex label with auc 0.67 to 0.79 on held-out datasets. each measurement is mapped to the gdpr and ai act provisions it informs.</p>
-</div>
-
-<div class="item" id="sharper-not-truer">
-  <h3>sharper is not truer: super-resolution rewrites license plates before they are read</h3>
-  <p class="meta">wacv 2027, rws workshop &middot; under review</p>
-  <p>super-resolution is the usual proposal for plates captured too small to read. across six general-purpose upscalers and two open plate readers on the openalpr benchmark, only one of 48 comparisons with plain bicubic interpolation read more plates with confidence, by 2.6 points, and gan training cost 10 to 28 points. real-esrgan changed the read of 58% of plates and broke half the reads bicubic got right. the paper proves no upscaler can raise the bayes accuracy of plate reading, and two diffusion runs on the same capture disagreed on 40% of plates. voting over five captured frames helped where upscaling hurt.</p>
-</div>
-
-<div class="item" id="camera-moved">
-  <h3>the camera moved: a violence detection benchmark separated by its recording sessions</h3>
-  <p class="meta">wacv 2027, rws workshop &middot; under review</p>
-  <p>violence detectors are compared on small benchmarks with reported accuracies above 95%. on airtlab the published split puts chunks of every test clip in training, and a nearest-neighbour rule on 36 &times; 64 grey thumbnails scores 99.3%, above every published model. much of what remains comes from the recording session: pasting each test clip&rsquo;s moving people onto a background of the other class drops balanced accuracy from 86.1% to 43.1%, below chance.</p>
-</div>
-
-<div class="item" id="sarlang-no-image">
-  <h3>no image needed: answer priors and a lenient scorer in a sar vision-language benchmark</h3>
-  <p class="meta">wacv 2027, sense workshop &middot; under review</p>
-  <p>auditing the question-answering part of sarlang-1m without opening a single image: answering each question with the most common training answer for its template scores 65.0% under strict exact match. the released scorer counts a prediction as correct whenever the reference appears anywhere inside it, so the string &ldquo;yes | no&rdquo; scores 42.7% and one 965-character string scores 100.0% on 99,522 test questions. two more remote-sensing scorers share the substring rule, and three give an empty answer full marks.</p>
-</div>
-
-<div class="item" id="hrsid-split">
-  <h3>half the test ships are in the training crops: auditing the hrsid split for sar ship detection</h3>
-  <p class="meta">wacv 2027, sense workshop &middot; under review</p>
-  <p>hrsid splits overlapping crops of 136 source images rather than the images themselves. 94.8% of test crops share pixels with a training crop and 53.5% of test ships lie entirely inside one, so pasting training boxes into the test crops, with no detector at all, scores 42.4 coco ap. the overlap strips act as a natural experiment: a detector recalls 3.8 points more of the test ships it saw in training.</p>
-</div>
-
-<div class="item" id="synergy-noise-floors">
-  <h3>is the synergy above the noise? noise floors for understanding-generation claims in unified multimodal models</h3>
-  <p class="meta">wacv 2027, unimug workshop &middot; under review</p>
-  <p>unified multimodal models are justified by synergy between generating and understanding images, usually from ablations run once. seed variance turns out to be a stable multiple of binomial variance, so every accuracy-type benchmark has a noise floor computable from its size and score. of 261 results from 28 papers, 42% lie within their floor, claimed benefits clear it less often than claimed harms, and no paper reports seed variation. the paper gives minimum detectable differences for 25 benchmarks.</p>
-</div>
-
 <div class="item" id="same-plate-both-splits">
   <h3>same plate, both splits: train-test leakage in nutrition5k and what it does to food foundation-model probes</h3>
   <p class="meta">wacv 2027, fabric workshop &middot; under review</p>
   <p>nutrition5k&rsquo;s authors state that no plate appears in both splits. the scan times and weighed ingredient masses it already ships reveal 4,211 pairs of scans of the same food, against 8.1 expected by chance, and 9.0% of the side-view test dishes are repeat scans of training food with identical labels. a frozen clip nearest-neighbour probe retrieves the training repeat for 57 of 63 leaked dishes, and the leak cuts its error from 92.4 to 81.0 kcal.</p>
-</div>
-
-<div class="item" id="drone-been-here">
-  <h3>the drone has been here before: shared places between the training and test splits of visdrone</h3>
-  <p class="meta">wacv 2027, rws workshop &middot; under review</p>
-  <p>visdrone2019-det&rsquo;s authors state its splits were captured at different locations. homographies fitted to matched features show 16.8% of validation images, and about a tenth of test frames, film a place seen in training, because the splits interleave along the video numbering. the shared content is the place rather than the objects, and a detector gains nothing measurable from it: removing the seen places costs seen and unseen validation images equally.</p>
-</div>
-
-<div class="item" id="one-in-how-many">
-  <h3>one in how many? false alert rates of live facial recognition in london, from controlled test to routine use</h3>
-  <p class="meta">wacv 2027, rws workshop &middot; under review</p>
-  <p>the metropolitan police cite a controlled test putting false positives at about 1 in 6,000 passers. transcribing all 729 routine deployments from 2023 to 2026, 10.1 million recorded faces and 58 false alerts, shows the denominator is unstable: recorded faces per hour at the same sites differ elevenfold between periods. the records cannot bound the rate at the level the test predicts, and detecting a twofold demographic difference would take 6 to 8 years of deployments.</p>
 </div>
 
 
@@ -403,14 +392,6 @@
   <h3>when retries repeat mistakes: verification and rollback for small-model agents</h3>
   <p class="meta">oe-agent 2026 &middot; under review</p>
   <p>small open models can run agents on two cpu cores, but over long tasks their step errors compound. the usual fix verifies every k steps, rolls back on a flag and retries. the paper gives the exact success probability and cost of that loop, and proves that acting on single flags stretches the reachable horizon by at most (1&minus;f)/(1&minus;d). small models break the assumption that a retry is a fresh draw: a resampled failed qwen2.5-1.5b step fails again with probability 0.63, though the mean error rate is 4.2%. retries by a different model fix 80% of flagged steps at the first retry instead of 33%. with a strong verifier, retry diversity rather than model size is the limit.</p>
-</div>
-
-<h3 class="sub" id="ur-robotics">robotics</h3>
-
-<div class="item" id="hertz-not-reactivity">
-  <h3>hertz is not reactivity: reaction latency of chunked robot policies under stochastic inference latency</h3>
-  <p class="meta">corl 2026, eeai workshop &middot; under review</p>
-  <p>speed results for robot foundation models are reported as frequencies, and none of them says how old the observation behind the executing action is. modelling chunked execution under random inference latency as a renewal process gives the mean reaction latency in closed form, &mu; + e[t<sup>2</sup>]/(2e[t]). under heavy-tailed latency, delaying each inference start to a computable threshold cuts reaction latency by 13 to 20% at no cost in motion. across 88 simulated configurations, predicted reaction latency ranks tracking error with spearman &rho; = 0.98, against 0.84 and 0.75 for the two frequencies people usually report.</p>
 </div>
 
 
