@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>research | hyunjun yi</title>
-<meta name="description" content="research by hyunjun yi: four neurips 2026 acceptances on ai evaluation, eight open problems and questions settled in discrete geometry, seven new records, two new discoveries, six papers under review.">
+<meta name="description" content="research by hyunjun yi: four neurips 2026 acceptances on ai evaluation, eight open problems and questions settled in discrete geometry, seven new records, two new discoveries, five papers under review.">
 <meta name="author" content="Hyunjun Yi">
 <link rel="canonical" href="https://hjyi2027.github.io/research.html">
 <meta name="theme-color" content="#0a1a33">
 <meta property="og:type" content="website">
 <meta property="og:title" content="research | hyunjun yi">
-<meta property="og:description" content="four neurips 2026 acceptances, eight open problems settled, seven new records, two new discoveries, six papers under review.">
+<meta property="og:description" content="four neurips 2026 acceptances, eight open problems settled, seven new records, two new discoveries, five papers under review.">
 <meta property="og:url" content="https://hjyi2027.github.io/research.html">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%230a1a33'/%3E%3Ctext%20x='32'%20y='46'%20text-anchor='middle'%20font-family='Georgia,serif'%20font-size='40'%20fill='%23efe6d3'%3Ey%3C/text%3E%3C/svg%3E">
@@ -45,9 +45,9 @@
   <div><dt>neurips 2026 acceptances</dt><dd>4</dd></div>
   <div><dt>open problems and questions settled</dt><dd>8</dd></div>
   <div><dt>new records</dt><dd>7</dd></div>
-  <div><dt>under review</dt><dd>6</dd></div>
+  <div><dt>under review</dt><dd>5</dd></div>
   <div><dt>jmm 2027 talks accepted</dt><dd>3</dd></div>
-  <div><dt>other acceptances: rescience c, fsml, wacv and corl workshops</dt><dd>22</dd></div>
+  <div><dt>other acceptances: rescience c, fsml, wacv and corl workshops</dt><dd>23</dd></div>
   <div class="total"><dt>papers in total</dt><dd>49</dd></div>
 </dl>
 <p class="jump"><a href="#accepted">accepted</a> <a href="#open-problems">open problems</a> <a href="#under-review">under review</a></p>
@@ -100,6 +100,12 @@
   <h3><a href="https://openreview.net/forum?id=KiC6CwBoxf">half the test ships are in the training crops: auditing the hrsid split for sar ship detection</a></h3>
   <p class="meta">2026 &middot; accepted for the workshop proceedings, wacv 2027 sense workshop &middot; <a href="https://openreview.net/forum?id=KiC6CwBoxf">openreview</a></p>
   <p>hrsid splits overlapping crops of 136 source images rather than the images themselves. 94.8% of test crops share pixels with a training crop and 53.5% of test ships lie entirely inside one, so pasting training boxes into the test crops, with no detector at all, scores 42.4 coco ap. the overlap strips act as a natural experiment: a detector recalls 3.8 points more of the test ships it saw in training.</p>
+</div>
+
+<div class="item" id="same-plate-both-splits">
+  <h3><a href="https://openreview.net/forum?id=iXfz4OgVkP">same plate, both splits: train-test leakage in nutrition5k and what it does to food foundation-model probes</a></h3>
+  <p class="meta">2026 &middot; accepted for the workshop proceedings, wacv 2027 fabric workshop &middot; <a href="https://openreview.net/forum?id=iXfz4OgVkP">openreview</a></p>
+  <p>nutrition5k&rsquo;s authors state that no plate appears in both splits. the scan times and weighed ingredient masses it already ships reveal 4,211 pairs of scans of the same food, against 8.1 expected by chance, and 9.0% of the side-view test dishes are repeat scans of training food with identical labels. a frozen clip nearest-neighbour probe retrieves the training repeat for 57 of 63 leaked dishes, and the leak cuts its error from 92.4 to 81.0 kcal.</p>
 </div>
 
 <div class="item" id="litefno">
@@ -378,13 +384,6 @@
   <p class="meta">wacv 2027, wvaq workshop &middot; under review</p>
   <p>cmmd scores an image generator by a gaussian-kernel mmd between clip embeddings of generated and real images. the paper works out which moments of the embedding distribution that score actually weighs at the standard bandwidth.</p>
 </div>
-
-<div class="item" id="same-plate-both-splits">
-  <h3>same plate, both splits: train-test leakage in nutrition5k and what it does to food foundation-model probes</h3>
-  <p class="meta">wacv 2027, fabric workshop &middot; under review</p>
-  <p>nutrition5k&rsquo;s authors state that no plate appears in both splits. the scan times and weighed ingredient masses it already ships reveal 4,211 pairs of scans of the same food, against 8.1 expected by chance, and 9.0% of the side-view test dishes are repeat scans of training food with identical labels. a frozen clip nearest-neighbour probe retrieves the training repeat for 57 of 63 leaked dishes, and the leak cuts its error from 92.4 to 81.0 kcal.</p>
-</div>
-
 
 <h3 class="sub" id="ur-agents">agents</h3>
 
