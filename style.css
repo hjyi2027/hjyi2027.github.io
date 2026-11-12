@@ -616,3 +616,79 @@ html.inner .facts.six div{background:var(--bg);border:0}
 @media (max-width:760px){html.inner .facts.six{grid-template-columns:1fr 1fr}html.inner .facts.six div{border:0}}
 html.inner .facts.six .total{grid-column:1/-1;flex-direction:row;align-items:baseline;justify-content:space-between}
 html.inner .facts.six .total dd{font-size:clamp(2.6rem,6vw,4.8rem)}
+
+/* ═══ november 2026: progress hairline, focus ring, paper filter, section rail,
+       permalinks, the split instrument, homepage counts ═════════════════════ */
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+/* reading progress drawn along the bottom edge of the frame bar */
+.bar::after{content:"";position:absolute;left:-1px;right:-1px;bottom:-1px;height:1px;background:var(--brass);
+  transform-origin:left;transform:scaleX(0);animation:progress linear both;animation-timeline:scroll(root);pointer-events:none}
+@supports not (animation-timeline:scroll()){.bar::after{display:none}}
+
+/* research: filter the index by word or by venue */
+.filter{display:grid;grid-template-columns:minmax(200px,300px) 1fr;gap:14px 22px;align-items:center;margin:22px 0 0;padding:16px 18px;border:1px solid var(--rule)}
+.filter label{display:grid;gap:4px;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass)}
+.filter input{width:100%;min-width:0;font:inherit;font-family:var(--serif);font-size:1.08rem;letter-spacing:0;text-transform:none;color:var(--bone);
+  background:transparent;border:0;border-bottom:1px solid var(--rule);border-radius:0;padding:5px 0 7px;-webkit-appearance:none;appearance:none}
+.filter input::placeholder{color:var(--muted);opacity:1}
+.filter input:focus{outline:0;border-color:var(--brass)}
+.filter input::-webkit-search-cancel-button{-webkit-appearance:none}
+.f-chips{display:flex;flex-wrap:wrap;gap:6px}
+.f-chips button{font:inherit;font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;padding:7px 10px;
+  background:none;color:var(--ink-2);border:1px solid var(--rule);border-radius:0;cursor:pointer;transition:background 160ms var(--ease),color 160ms var(--ease),border-color 160ms var(--ease)}
+.f-chips button i{font-style:normal;color:var(--muted);margin-left:6px;font-variant-numeric:tabular-nums}
+.f-chips button:hover{border-color:var(--bone);color:var(--bone)}
+.f-chips button[aria-pressed="true"]{background:var(--bone);color:var(--navy);border-color:var(--bone)}
+.f-chips button[aria-pressed="true"] i{color:var(--navy);opacity:.6}
+.f-n{grid-column:1/-1;margin:0;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.f-n b{font-weight:400;color:var(--bone)}
+.f-n button{font:inherit;letter-spacing:inherit;text-transform:inherit;margin-left:10px;padding:0;background:none;border:0;border-bottom:1px solid var(--brass);color:var(--brass);cursor:pointer}
+main.filtering .problems-wrap,main.filtering h2 + .lede{display:none}
+main.filtering h2{margin-top:56px}
+
+/* research: where you are in a long page */
+.rail{position:fixed;left:22px;top:50%;transform:translateY(-50%);z-index:5;display:none;width:172px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+@media (min-width:1360px){.rail{display:block}}
+.rail a{display:flex;align-items:center;gap:10px;padding:6px 0;color:var(--muted);text-decoration:none;transition:color 180ms var(--ease)}
+.rail a::before{content:"";flex:none;width:12px;height:1px;background:currentColor;transition:width 260ms var(--ease-out)}
+.rail a.sub{padding-left:12px;opacity:.85}
+.rail a:hover{color:var(--bone)}
+.rail a.on{color:var(--brass)}
+.rail a.on::before{width:28px}
+
+/* research: a copyable link to each entry, under its number */
+.pl{position:absolute;left:0;top:58px;z-index:1;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;opacity:0;transition:opacity 180ms var(--ease),color 180ms var(--ease)}
+.item:hover .pl,.item:target .pl,.pl:focus-visible,.pl.done{opacity:1}
+.pl:hover,.pl.done{color:var(--brass)}
+@media (hover:none){.pl{opacity:.55}}
+@media (max-width:760px){.pl{left:auto;right:0;top:20px}.filter{grid-template-columns:1fr}}
+
+/* homepage: counts above the research rows */
+.facts.glance{margin:0 0 44px}
+.facts.glance dd a{border-bottom-width:1px}
+.facts.glance div{transition:background 200ms var(--ease)}
+
+/* homepage: the third instrument spans the grid */
+.panel.wide{grid-column:1/-1;border-left:0;border-top:1px solid var(--rule);display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:0 36px;align-items:start}
+.panel.wide .panel-h{grid-column:1/-1}
+.split-fig{display:block;width:100%;height:auto;margin:0 0 14px;overflow:visible}
+.split-fig rect{fill:rgba(239,230,211,.05);stroke:rgba(239,230,211,.34);stroke-width:1;transition:fill 220ms var(--ease),stroke 220ms var(--ease);vector-effect:non-scaling-stroke}
+.split-fig rect.te{fill:rgba(201,162,77,.10);stroke:var(--brass)}
+.split-fig rect.lk{fill:var(--brass);fill-opacity:.82;stroke:none}
+#touch{display:block;margin-top:8px}
+.split-fig text{font-family:var(--mono);font-size:9px;letter-spacing:.12em;fill:var(--muted);text-transform:uppercase}
+.key{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0 0 6px;padding:0;list-style:none;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.key li{display:flex;align-items:center;gap:7px}
+.key i{width:14px;height:10px;border:1px solid rgba(239,230,211,.34);background:rgba(239,230,211,.05)}
+.key i.te{border-color:var(--brass);background:rgba(201,162,77,.10)}
+.key i.lk{border-color:var(--brass);background:var(--brass)}
+.panel button[aria-pressed="true"]{background:var(--bone);color:var(--navy);border-color:var(--bone)}
+.panel-actions{flex-wrap:wrap}
+@media (max-width:860px){.panel.wide{grid-template-columns:1fr}}
+@media (max-width:760px){.facts.glance{margin-bottom:28px}}
+@media (prefers-reduced-motion:reduce){.bar::after{display:none}.split-fig rect,.rail a::before{transition:none}}
+@media print{.rail,.filter,.pl{display:none}}

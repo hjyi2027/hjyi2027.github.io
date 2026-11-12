@@ -12,7 +12,11 @@
 <meta property="og:title" content="hyunjun yi">
 <meta property="og:description" content="ai research at aiscend, analytic number theory, competition director of yimo. seoul.">
 <meta property="og:url" content="https://hjyi2027.github.io/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://hjyi2027.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="hyunjun yi. ai researcher, mathematics, class of 2027.">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%230a1a33'/%3E%3Ctext%20x='32'%20y='46'%20text-anchor='middle'%20font-family='Georgia,serif'%20font-size='40'%20fill='%23efe6d3'%3Ey%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,7 +61,7 @@
   <h2 class="big"><span class="w">what changes</span><span class="w">a model's output</span><span class="w">that nobody</span><span class="w">reports?</span></h2>
   <div class="cols">
     <p>hi! i'm hyunjun, a senior at seoul international school. i run ai research at <a href="https://aiscend-research.github.io/">aiscend</a>. most of my work asks the one question above. the decoding sampler. one swapped word in an instruction. where a line breaks.</p>
-    <p>i also do mathematics, lately exact answers to old problems in discrete geometry, and i'm a competition director of <a href="https://www.yimo-official.org/">yimo</a>, a free online math olympiad. three of my papers were accepted to neurips 2026, and five more are under review. every public result links to its paper or code.</p>
+    <p>i also do mathematics, lately exact answers to old problems in discrete geometry, and i'm a competition director of <a href="https://www.yimo-official.org/">yimo</a>, a free online math olympiad. three of my papers were accepted to neurips 2026, and three more are under review. every public result links to its paper or code.</p>
   </div>
 </section>
 
@@ -86,11 +90,32 @@
       <p class="panel-actions"><button type="button" id="b-w">williams</button><button type="button" id="b-p">prose</button></p>
       <p class="fine">william carlos williams, "the red wheelbarrow", 1923. nothing in the sentence requires a break after "wheel". in <a href="research.html#restored-lines">restored lines</a>, a model recovers 70 percent of breaks like that one and writes them at half the human rate.</p>
     </div>
+    <div class="panel wide" id="split">
+      <p class="panel-h">the split <span>same images, two ways to hold out a test set</span></p>
+      <div>
+        <svg class="split-fig" role="img" aria-label="five source images, each cut into eight overlapping crops, coloured by train or test"></svg>
+        <ul class="key"><li><i></i>train crop</li><li><i class="te"></i>test crop</li><li><i class="lk"></i>test pixels also in a train crop</li></ul>
+      </div>
+      <div>
+        <p class="acc">test pixels that also sit in a training crop <b id="leak">0%</b><span id="touch"></span></p>
+        <div class="knobs">
+          <label>crop overlap <span class="val" id="o-o">50%</span><input id="k-o" type="range" min="0" max="75" step="5" value="50"></label>
+        </div>
+        <p class="panel-actions"><button type="button" id="s-crop" aria-pressed="true">split by crop</button><button type="button" id="s-img" aria-pressed="false">split by image</button><button type="button" id="s-mix">reshuffle</button></p>
+        <p class="fine">toy layout for illustration: five source images, eight crops each, one fifth held out. the hrsid ship-detection benchmark was split by crop, and 94.8% of its test crops share pixels with a training crop. the audit is <a href="research.html#hrsid-split">half the test ships are in the training crops</a>.</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="ch" id="work">
   <h2 class="num">03 &mdash; research</h2>
+  <dl class="facts glance">
+    <div><dt>neurips 2026 acceptances</dt><dd><a href="research.html#accepted">4</a></dd></div>
+    <div><dt>open problems settled</dt><dd><a href="research.html#open-problems">8</a></dd></div>
+    <div><dt>new records</dt><dd><a href="research.html#new-records">7</a></dd></div>
+    <div><dt>papers in total</dt><dd><a href="research.html">48</a></dd></div>
+  </dl>
   <ol class="rows">
     <li><a href="research.html#restored-lines"><span class="i">01</span><span class="t">restored lines</span><span class="m">accepted &middot; neurips 2026 creative ai &middot; sole author</span><span class="s">a model finds the poet's hardest line breaks and declines to write them.</span></a></li>
     <li><a href="research.html#dead-ear"><span class="i">02</span><span class="t">the dead ear</span><span class="m">accepted &middot; neurips 2026 creative ai &middot; sole author</span><span class="s">a model's inherited accent is an archive, not an author.</span></a></li>
