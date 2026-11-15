@@ -113,7 +113,6 @@
     ['contact', 'home', at('./#contact')],
     ['peer-reviewed and accepted', 'research', at('research.html#accepted')],
     ['open problems table', 'research', at('research.html#open-problems')],
-    ['under review', 'research', at('research.html#under-review')],
     ['github', 'elsewhere', 'https://github.com/hjyi2027'],
     ['orcid', 'elsewhere', 'https://orcid.org/0009-0006-1197-0063'],
     ['linkedin', 'elsewhere', 'https://www.linkedin.com/in/hyunjun-yi-3424573a0/'],

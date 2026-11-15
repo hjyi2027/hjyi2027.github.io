@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>research | hyunjun yi</title>
-<meta name="description" content="research by hyunjun yi: four neurips 2026 acceptances on ai evaluation, eight open problems and questions settled in discrete geometry, seven new records, two new discoveries, six papers under review.">
+<meta name="description" content="research by hyunjun yi: four neurips 2026 acceptances on ai evaluation, eight open problems and questions settled in discrete geometry, seven new records, two new discoveries.">
 <meta name="author" content="Hyunjun Yi">
 <link rel="canonical" href="https://hjyi2027.github.io/research.html">
 <meta name="theme-color" content="#0a1a33">
 <meta name="color-scheme" content="dark">
 <meta property="og:type" content="website">
 <meta property="og:title" content="research | hyunjun yi">
-<meta property="og:description" content="four neurips 2026 acceptances, eight open problems settled, seven new records, two new discoveries, six papers under review.">
+<meta property="og:description" content="four neurips 2026 acceptances, eight open problems settled, seven new records, two new discoveries.">
 <meta property="og:url" content="https://hjyi2027.github.io/research.html">
 <meta property="og:image" content="https://hjyi2027.github.io/og.png">
 <meta property="og:image:width" content="1200">
@@ -44,18 +44,17 @@
 <main id="main">
 <p class="kicker">index &middot; papers and code</p>
 <h1 class="page-title"><span class="w">research</span></h1>
-<p class="lede muted">two threads. in ai, how evaluation goes wrong: what a benchmark, a metric, or a decoding setting actually measures, and where a model&rsquo;s ability and its behaviour come apart. in mathematics, exact answers to open problems in discrete geometry and new records in additive combinatorics. every public item links to its paper, code, or both, and everything else says where it stands.</p>
+<p class="lede muted">two threads. in ai, how evaluation goes wrong: what a benchmark, a metric, or a decoding setting actually measures, and where a model&rsquo;s ability and its behaviour come apart. in mathematics, exact answers to open problems in discrete geometry and new records in additive combinatorics. every entry links to its paper, its code, or both.</p>
 
 <dl class="facts six">
   <div><dt>neurips 2026 acceptances</dt><dd>4</dd></div>
   <div><dt>open problems and questions settled</dt><dd>8</dd></div>
   <div><dt>new records</dt><dd>7</dd></div>
-  <div><dt>under review</dt><dd>6</dd></div>
   <div><dt>jmm 2027 talks accepted</dt><dd>3</dd></div>
-  <div><dt>other acceptances: rescience c, fsml, wacv, corl and acml workshops</dt><dd>24</dd></div>
-  <div class="total"><dt>papers in total</dt><dd>51</dd></div>
+  <div class="span2"><dt>other acceptances: rescience c, fsml, wacv, corl and acml workshops</dt><dd>24</dd></div>
+  <div class="total"><dt>papers in total</dt><dd>45</dd></div>
 </dl>
-<p class="jump"><a href="#accepted">accepted</a> <a href="#open-problems">open problems</a> <a href="#under-review">under review</a> <span class="stamp">updated <time datetime="2026-11-15">15 november 2026</time></span></p>
+<p class="jump"><a href="#accepted">accepted</a> <a href="#open-problems">open problems</a> <span class="stamp">updated <time datetime="2026-11-15">15 november 2026</time></span></p>
 
 <h2 id="accepted">peer-reviewed and accepted</h2>
 
@@ -150,8 +149,8 @@
 </div>
 
 <div class="item" id="slow-walkers">
-  <h3>slow walkers count more: how the eth/ucy test protocol weights pedestrians</h3>
-  <p class="meta">2026 &middot; first author, with bryan bu, june young kim and raiyan mazhar &middot; accepted for the workshop proceedings, wacv 2027 urbanstate workshop</p>
+  <h3><a href="https://openreview.net/forum?id=aH7ICOqXAp">slow walkers count more: how the eth/ucy test protocol weights pedestrians</a></h3>
+  <p class="meta">2026 &middot; first author, with bryan bu, june young kim and raiyan mazhar &middot; accepted for the workshop proceedings, wacv 2027 urbanstate workshop &middot; <a href="https://openreview.net/forum?id=aH7ICOqXAp">openreview</a></p>
   <p>pedestrian forecasting is still ranked on eth/ucy with a loader that cuts recordings into overlapping 8-second windows. the reported error is a weighted mean in which each pedestrian counts once per window they fill, so slow walkers dominate and anyone who crosses in under 8 seconds counts zero: 39% of pedestrians are never evaluated, and one who barely moves supplies 9.7% of the zara2 test samples. counting each pedestrian once raises average error by 10 to 57% and reverses one published model ranking, and confidence intervals are 2.3 to 8.1 times too narrow.</p>
 </div>
 
@@ -192,8 +191,8 @@
 </div>
 
 <div class="item" id="capped-at-100">
-  <h3>capped at 100: per-image detection limits and the comparability of sku-110k scores</h3>
-  <p class="meta">2026 &middot; first author, with bryan bu, june young kim and raiyan mazhar &middot; accepted, wacv 2027 physical retail ai (praw) workshop, poster</p>
+  <h3><a href="https://openreview.net/forum?id=M9vcpS65wU">capped at 100: per-image detection limits and the comparability of sku-110k scores</a></h3>
+  <p class="meta">2026 &middot; first author, with bryan bu, june young kim and raiyan mazhar &middot; accepted, wacv 2027 physical retail ai (praw) workshop, poster &middot; <a href="https://openreview.net/forum?id=M9vcpS65wU">openreview</a></p>
   <p>sku-110k is scored with coco-style average precision, which keeps 100 detections per image by default, yet 95.9% of its test images hold more than 100 products. from the annotations alone, no detector can exceed 0.675 recall or 0.673 ap under that cap. common toolchains apply the cap inconsistently, so the same detections from one detector score anywhere from 0.326 to 0.470 ap depending on the convention, and the cap even reverses which nms threshold looks best. only 3 of 10 published results state the cap.</p>
 </div>
 
@@ -366,54 +365,6 @@
   <h3>the complete classification of minimal vanishing sums of roots of unity up to weight 23</h3>
   <p class="meta">september 2026 &middot; with bryan zachary bu and karam gill &middot; in revision</p>
   <p>a classification of every minimal vanishing sum of roots of unity up to weight 23. the previous complete classification stopped at weight 12 (poonen and rubinstein, 1998), which is where <a href="https://oeis.org/A273096">oeis a273096</a> currently ends. the paper is being revised before journal submission.</p>
-</div>
-
-
-<h2 id="under-review">under review</h2>
-<p class="lede muted">submitted between september and november 2026. most are in double-blind review, so there is no public link yet; titles only.</p>
-
-<h3 class="sub" id="ur-cv">computer vision</h3>
-
-<div class="item" id="rain13k-leakage">
-  <h3>train-test leakage in the rain13k deraining benchmark</h3>
-  <p class="meta">with bryan bu, ryan david and daniel fu &middot; under review</p>
-  <p>rain13k is the standard training set for single-image deraining, and most methods report on the same five test sets. four of the five are partly or entirely contained in the training set: all 100 rain100h and all 100 rain100l test images have a copy of their clean image among the training targets, as do 43 of 98 test100 and 952 of 2,800 test2800 images. a lookup that removes no rain and returns the matching training image scores 35.95 db on rain100h, 4.49 db above restormer. the released networks themselves gain little from having seen a photograph, but the protocol would reward any method that retrieves it.</p>
-</div>
-
-<h3 class="sub" id="ur-lt">learning theory</h3>
-
-<div class="item" id="rtd-vc2">
-  <h3>the recursive teaching dimension of classes of vc dimension two is at most five</h3>
-  <p class="meta">alt 2027 &middot; under review</p>
-  <p>the recursive teaching dimension is the worst-case number of labelled examples a cooperative teacher needs; for vc dimension two the paper bounds it by five.</p>
-</div>
-
-<div class="item" id="nctd-vcd">
-  <h3>the non-clashing teaching dimension can exceed the vc dimension</h3>
-  <p class="meta">alt 2027 &middot; under review</p>
-  <p>non-clashing teaching is the most efficient batch teaching model; the paper separates its dimension from the vc dimension.</p>
-</div>
-
-<h3 class="sub" id="ur-causal">causal inference</h3>
-
-<div class="item" id="attributable-fractions">
-  <h3>sharp bounds and e-values for attributable and impact fractions under unmeasured confounding</h3>
-  <p class="meta">clear 2027 &middot; under review</p>
-  <p>attributable and impact fractions are what public health agencies use to rank exposures, and they have had no counterpart of the e-value. the paper supplies one: bounds on the attributable fraction under unmeasured confounding, extended to multi-level exposures and partial interventions, and a closed-form e-value at any threshold. the interheart joint attributable fraction of 90.4% for myocardial infarction needs a confounder of strength at least 20.3 with every risk-factor pattern, far above any single factor.</p>
-</div>
-
-<div class="item" id="tumor-growth-policy">
-  <h3>who gets treated at test time? a policy bug in the tumor-growth benchmark for counterfactual treatment-response forecasting</h3>
-  <p class="meta">medwm 2027 &middot; under review</p>
-  <p>counterfactual treatment-response forecasting is mostly benchmarked on one tumor-growth simulator. the shared test-set generators, introduced with the counterfactual recurrent network and reused in three later codebases, read each test patient&rsquo;s treatment policy from the wrong row of a matrix, so test patients are treated according to another patient&rsquo;s history. at the highest confounding level the original paper reported, errors on the reference test sets are 3.8 to 4.9 times those on corrected ones, and for the predictors the paper trains, most of the degradation with confounding comes from the defect. the fix is one line.</p>
-</div>
-
-<h3 class="sub" id="ur-audio">music captioning</h3>
-
-<div class="item" id="musiccaps-writer">
-  <h3>who wrote the reference? writer identity outscores musical content in musiccaps captioning metrics</h3>
-  <p class="meta">eaim 2027 workshop &middot; under review</p>
-  <p>music captioning systems are compared on musiccaps against one reference caption per clip, written by one of ten musicians. one training caption given for all 2,839 test clips, with no audio, outscores the published supervised lp-musiccaps model on every reported metric (meteor 23.6 against 20.6), so the scores largely measure whose writing a caption resembles. the paper proposes same-writer discrimination, a check that needs only the author field musiccaps already provides.</p>
 </div>
 
 
