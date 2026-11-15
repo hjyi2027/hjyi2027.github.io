@@ -1,9 +1,34 @@
 # hjyi2027.github.io
 
-personal site of hyunjun yi. hand-written html and css, one small script, no build step, no dependencies, no analytics.
+personal site of hyunjun yi. hand-written html, one stylesheet, one script. no build step, no dependencies, no analytics, no cookies.
 
-- `index.html`, `research.html`, `cv.html`: the three pages
-- `style.css`: design tokens, light and dark themes, reduced-motion and reduced-transparency paths
-- `site.js`: scroll reveal and small hover effects; the pages are fully readable with it disabled
+## pages
+
+- `index.html`: home. hero, about, three small instruments, selected research, yimo, contact
+- `research.html`: every paper with its status and links. the source of truth for the counts
+- `cv.html`: curriculum vitae, with a print stylesheet
+- `404.html`: not-found page (absolute paths, since it is served from any url)
+
+## files
+
+- `style.css`: tokens, base, frame, homepage, inner pages, research tools, search, motion, print. one navy theme
+- `site.js`: reveals, the search box, the research filter and rail, the homepage instruments. every part is optional and the pages read the same with it off
+- `og.png`: 1200x630 link-preview image
+- `sitemap.xml`, `robots.txt`, `.nojekyll`
+
+## when a paper changes status
+
+1. edit its entry in `research.html` (title link, the `.meta` line, position in the list)
+2. update the counts strip at the top of `research.html`, the two description metas, and the `updated` stamp
+3. update the counts strip, the about paragraph and the `latest` list in `index.html`, and the research paragraph in `cv.html` if the totals it quotes moved
+4. bump `lastmod` in `sitemap.xml`
+
+the search box and the filter chips read `research.html` directly, so they need no edits.
+
+## preview
+
+```
+python3 -m http.server 4321
+```
 
 code: mit. text and photo: all rights reserved.
