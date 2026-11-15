@@ -31,4 +31,4 @@ the search box and the filter chips read `research.html` directly, so they need 
 python3 -m http.server 4321
 ```
 
-code: mit. text and photo: all rights reserved.
+code: mit. text: all rights reserved.
