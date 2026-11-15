@@ -237,8 +237,8 @@
     <tr><td><a href="#two-distance-d21">largest two-distance sets, 13 &le; d &le; 22</a></td><td>open</td><td class="res">g(d) = d(d+1)/2 for d &le; 21; g(22) = 275; no exhaustive search</td><td>team &middot; arxiv</td></tr>
     <tr><td><a href="#orchard-15">orchard-planting problem, 15 points</a></td><td>31 or 32, open since 1974</td><td class="res">t<sub>3</sub>(15) = 31</td><td>team &middot; preprint &middot; jmm 2027</td></tr>
     <tr><td><a href="#two-distance-9-12">largest two-distance set in r<sup>9</sup></a></td><td>45 to 55, open since 1997</td><td class="res">g(9) = 45</td><td>team &middot; preprint</td></tr>
-    <tr><td><a href="#watson-complements">watson&rsquo;s question on complements of topologies at singular cardinals</a></td><td>asked 1994; counted only for sets of size &alefsym;<sub>n</sub></td><td class="res">independent of zfc; complements counted on every infinite set</td><td>team &middot; preprint</td></tr>
     <tr><td><a href="#ordinary-lines-15">sylvester-gallai ordinary lines, 15 points</a></td><td>7 to 9</td><td class="res">m(15) = 9</td><td>team &middot; preprint</td></tr>
+    <tr><td><a href="#watson-complements">watson&rsquo;s question on complements of topologies at singular cardinals</a></td><td>asked 1994; counted only for sets of size &alefsym;<sub>n</sub></td><td class="res">independent of zfc; complements counted on every infinite set</td><td>team &middot; preprint</td></tr>
     <tr><td><a href="#equiangular-277">uniqueness of the 277-point two-distance set in r<sup>23</sup></a></td><td>asked by ge, koolen and munemasa</td><td class="res">unique up to congruence</td><td>sole author &middot; preprint</td></tr>
     <tr><td><a href="#neumaier">neumaier graphs with e = s &minus; 2</a></td><td>question of abiad, de boeck and zeijlemaker</td><td class="res">&mu; odd forces 4 | s</td><td>team &middot; preprint &middot; jmm 2027</td></tr>
     <tr class="grp"><th colspan="4" scope="rowgroup"><span class="badge">new record</span> 7 improved bounds</th></tr>
@@ -285,16 +285,16 @@
   <p>proves g(9) = 45, open since lison&#283;k&rsquo;s 1997 work left 45 &le; g(9) &le; 55, and shows that up to similarity there are exactly two 45-point two-distance sets in r<sup>9</sup>. it also proves g(10) = 55, g(11) = 66 and g(12) = 78, each attained only by the simplex-midpoint set. the method is a root-lattice reduction plus a symmetry-reduced exhaustive search, cross-checked by an independent sat-based implementation. my <a href="#isosceles-sets">isosceles-sets paper</a> builds on this result.</p>
 </div>
 
-<div class="item" id="watson-complements">
-  <h3><a href="https://doi.org/10.5281/zenodo.23904686">complements in the lattice of topologies on a set of singular cardinality</a></h3>
-  <p class="meta"><span class="badge solved">settled &middot; watson, 1994</span> november 2026 &middot; with wyatt choi &middot; preprint &middot; <a href="https://doi.org/10.5281/zenodo.23904686">doi</a></p>
-  <p>two topologies on a set are complements if their join is discrete and their meet is indiscrete. watson determined in 1994 how many complements a topology on a set of size &alefsym;<sub>n</sub> can have, and asked what happens at singular cardinals: can a topology on &alefsym;<sub>&omega;</sub> have more than 2<sup>&alefsym;<sub>&omega;</sub></sup> and more than sup<sub>n</sub> 2<sup>2<sup>&alefsym;<sub>n</sub></sup></sup> complements, yet fewer than 2<sup>2<sup>&alefsym;<sub>&omega;</sub></sup></sup>? this paper counts the complements of every topology on every infinite set: apart from the discrete and indiscrete topologies and the free unions of an indiscrete and a discrete space, a topology &tau; on &kappa; has exactly 2<sup>&kappa;&middot;2<sup>&lt;&lambda;(&tau;)</sup></sup> complements. watson&rsquo;s question then has a positive answer in a model obtained by easton forcing and a negative one whenever &alefsym;<sub>&omega;</sub> is a strong limit, so it is independent of zfc. the paper also corrects a lemma of watson that fails at limit cardinals in some models.</p>
-</div>
-
 <div class="item" id="ordinary-lines-15">
   <h3><a href="https://doi.org/10.5281/zenodo.23343345">fifteen points determine at least nine ordinary lines</a></h3>
   <p class="meta"><span class="badge solved">solved</span> september 2026 &middot; with bryan zachary bu and karam gill &middot; <a href="https://doi.org/10.5281/zenodo.23343345">doi</a></p>
   <p>proves m(15) = 9 for the sylvester-gallai ordinary lines problem. only 7 &le; m(15) &le; 9 was known, the lower bound being the kelly-moser bound of 1958, and it was the first unknown entry of <a href="https://oeis.org/A003034">oeis a003034</a>. the proof classifies 23,174,731 incidence structures and shows none is realisable over the reals, with every algebraic rejection confirmed by an independent sat test. one system turns out to be realisable over q(&radic;&minus;3) but not over the reals. it follows that the green-tao formula holds for every 6 &le; n &le; 16 except 13.</p>
+</div>
+
+<div class="item" id="watson-complements">
+  <h3><a href="https://doi.org/10.5281/zenodo.23904686">complements in the lattice of topologies on a set of singular cardinality</a></h3>
+  <p class="meta"><span class="badge solved">answers an open question</span> november 2026 &middot; with wyatt choi &middot; preprint &middot; <a href="https://doi.org/10.5281/zenodo.23904686">doi</a></p>
+  <p>watson asked in 1994 whether a topology on &alefsym;<sub>&omega;</sub> can have more than 2<sup>&alefsym;<sub>&omega;</sub></sup> and more than sup<sub>n</sub> 2<sup>2<sup>&alefsym;<sub>n</sub></sup></sup> complements, yet fewer than 2<sup>2<sup>&alefsym;<sub>&omega;</sub></sup></sup>. this paper shows the question is independent of zfc: the answer is yes in a model obtained by easton forcing and no whenever &alefsym;<sub>&omega;</sub> is a strong limit. two topologies on a set are complements if their join is discrete and their meet is indiscrete, and behind the result is a count for every infinite set: apart from the discrete and indiscrete topologies and the free unions of an indiscrete and a discrete space, a topology &tau; on &kappa; has exactly 2<sup>&kappa;&middot;2<sup>&lt;&lambda;(&tau;)</sup></sup> complements. watson&rsquo;s own spaces co(&lt;&lambda;, &kappa;) have 2<sup>&kappa;&middot;2<sup>&lt;&lambda;</sup></sup> complements, so the list of values in his problem 6.1 needs correcting, as does a lemma of his that fails at limit cardinals in some models.</p>
 </div>
 
 <div class="item" id="equiangular-277">
