@@ -51,7 +51,7 @@
   <div><dt>open problems and questions settled</dt><dd>8</dd></div>
   <div><dt>new records</dt><dd>7</dd></div>
   <div><dt>jmm 2027 talks accepted</dt><dd>3</dd></div>
-  <div class="span2"><dt>other acceptances: rescience c, fsml, wacv, corl and acml workshops</dt><dd>24</dd></div>
+  <div class="span2"><dt>other acceptances: fsml 2026 and wacv, corl and acml workshops</dt><dd>23</dd></div>
   <div class="total"><dt>papers in total</dt><dd>45</dd></div>
 </dl>
 <p class="jump"><a href="#accepted">accepted</a> <a href="#open-problems">open problems</a> <span class="stamp">updated <time datetime="2026-11-15">15 november 2026</time></span></p>
@@ -110,12 +110,6 @@
   <h3><a href="https://openreview.net/forum?id=iXfz4OgVkP">same plate, both splits: train-test leakage in nutrition5k and what it does to food foundation-model probes</a></h3>
   <p class="meta">2026 &middot; accepted for the workshop proceedings, wacv 2027 fabric workshop &middot; <a href="https://openreview.net/forum?id=iXfz4OgVkP">openreview</a></p>
   <p>nutrition5k&rsquo;s authors state that no plate appears in both splits. the scan times and weighed ingredient masses it already ships reveal 4,211 pairs of scans of the same food, against 8.1 expected by chance, and 9.0% of the side-view test dishes are repeat scans of training food with identical labels. a frozen clip nearest-neighbour probe retrieves the training repeat for 57 of 63 leaked dishes, and the leak cuts its error from 92.4 to 81.0 kcal.</p>
-</div>
-
-<div class="item" id="litefno">
-  <h3><a href="https://aiscend-research.github.io/papers/re-litefno-cnn-ablation.pdf">[re] a novel cnn ablation reveals limited fourier inductive bias in litefno: a reproducibility study</a></h3>
-  <p class="meta">2026 &middot; with jacob goldstein, kristen zhou, wenhao lu, david j. zhang, spursh deshpande and jayvant rajesh &middot; <a href="https://aiscend-research.github.io/papers.html">accepted</a>, rescience c &middot; <a href="https://aiscend-research.github.io/papers/re-litefno-cnn-ablation.pdf">pdf</a> &middot; <a href="https://doi.org/10.5281/zenodo.23195718">doi</a> &middot; <a href="https://github.com/hjyi2027/litefno-repro">code</a></p>
-  <p>a from-scratch reproduction of the lightweight fourier neural operator, plus a parameter-matched low-rank cnn ablation the original paper does not include. on gray-scott at 32x32 across three seeds the cnn baseline matches or beats litefno on one-step error and on autoregressive rollout, so the study finds no consistent evidence for a fourier inductive-bias advantage at this scale.</p>
 </div>
 
 <div class="item" id="selection-diversity">
@@ -221,6 +215,15 @@
 </div>
 
 
+<h2 id="in-review">in open review</h2>
+
+<div class="item" id="litefno">
+  <h3><a href="https://aiscend-research.github.io/papers/re-litefno-cnn-ablation.pdf">[re] a novel cnn ablation reveals limited fourier inductive bias in litefno: a reproducibility study</a></h3>
+  <p class="meta">2026 &middot; with jacob goldstein, kristen zhou, wenhao lu, david j. zhang, spursh deshpande and jayvant rajesh &middot; under open review at rescience c &middot; <a href="https://github.com/ReScience/submissions/issues/111">review thread</a> &middot; <a href="https://aiscend-research.github.io/papers/re-litefno-cnn-ablation.pdf">pdf</a> &middot; <a href="https://doi.org/10.5281/zenodo.23195718">doi</a> &middot; <a href="https://github.com/hjyi2027/litefno-repro">code</a></p>
+  <p>a from-scratch reproduction of the lightweight fourier neural operator, plus a parameter-matched low-rank cnn ablation the original paper does not include. on gray-scott at 32x32 across three seeds the cnn baseline matches or beats litefno on one-step error and on autoregressive rollout, so the study finds no consistent evidence for a fourier inductive-bias advantage at this scale.</p>
+</div>
+
+
 <h2 id="mathematics">open problems and new records</h2>
 <p class="lede muted">8 open problems and questions settled, 7 records improved and 2 new discoveries, in discrete geometry, additive combinatorics and harmonic analysis. each row links to its entry below, and every entry links to its paper.</p>
 
@@ -229,7 +232,7 @@
     <thead><tr><th scope="col">problem</th><th scope="col">before</th><th scope="col">result</th><th scope="col">status</th></tr></thead>
     <tbody>
     <tr class="grp"><th colspan="4" scope="rowgroup"><span class="badge solved">solved</span> 8 open problems and questions</th></tr>
-    <tr><td><a href="#isosceles-sets">erd&#337;s&rsquo;s isosceles-set problem, d = 9 to 21</a></td><td>posed 1946; known only to d = 8</td><td class="res">iso(d) = (d+1 choose 2) + 1, extremal set unique</td><td>sole author &middot; preprint</td></tr>
+    <tr><td><a href="#isosceles-sets">erd&#337;s&rsquo;s isosceles-set problem, d = 9 to 22</a></td><td>posed 1946; known only to d = 8</td><td class="res">iso(d) = (d+1 choose 2) + 1 for d &le; 21; iso(22) = 276; extremal set unique</td><td>sole author &middot; arxiv</td></tr>
     <tr><td><a href="#three-diametral">bezdek and l&aacute;ngi&rsquo;s 3-diametral question</a></td><td>2d+2 known only for d &le; 3</td><td class="res">2d+2 in every dimension, extremal configuration unique</td><td>sole author &middot; preprint</td></tr>
     <tr><td><a href="#two-distance-d21">largest two-distance sets, 13 &le; d &le; 22</a></td><td>open</td><td class="res">g(d) = d(d+1)/2 for d &le; 21; g(22) = 275; no exhaustive search</td><td>team &middot; arxiv</td></tr>
     <tr><td><a href="#orchard-15">orchard-planting problem, 15 points</a></td><td>31 or 32, open since 1974</td><td class="res">t<sub>3</sub>(15) = 31</td><td>team &middot; preprint &middot; jmm 2027</td></tr>
@@ -252,9 +255,9 @@
 <h3 class="sub" id="solved">solved</h3>
 
 <div class="item" id="isosceles-sets">
-  <h3><a href="https://doi.org/10.5281/zenodo.22928431">isosceles sets in euclidean spaces of dimension nine to twenty-one</a></h3>
-  <p class="meta"><span class="badge solved">solved &middot; erd&#337;s, 1946</span> september 2026 &middot; sole author &middot; preprint &middot; <a href="https://doi.org/10.5281/zenodo.22928431">doi</a></p>
-  <p>a finite set is isosceles if every three of its points form an isosceles triangle. erd&#337;s asked in 1946 for the largest such set in dimension d, and the answer was known only up to d = 8. this proves iso(d) = (d+1 choose 2) + 1 for 9 &le; d &le; 21, with the unique extremal set the edge-midpoints of a regular simplex plus its centroid, and adds thirteen terms to oeis a175769. the proof runs blokhuis' decomposition into orthogonal two-distance sets (with a short new proof via gallai colourings) against the recent determination of maximum two-distance sets and musin's bound.</p>
+  <h3><a href="https://arxiv.org/abs/2611.05421">isosceles sets and two-distance sets in euclidean space</a></h3>
+  <p class="meta"><span class="badge solved">solved &middot; erd&#337;s, 1946</span> november 2026 &middot; sole author &middot; <a href="https://arxiv.org/abs/2611.05421">arxiv:2611.05421</a> &middot; <a href="https://doi.org/10.5281/zenodo.22928431">earlier version, doi</a></p>
+  <p>a finite set is isosceles if every three of its points form an isosceles triangle. erd&#337;s asked in 1946 for the largest such set in dimension d, and the answer was known only up to d = 8. this proves iso(d) = max{g(d), m(d) + 1, m(d&minus;1) + 3} for every d &ge; 2, where g and m count the largest two-distance and spherical two-distance sets, which reduces the question to those two classical ones. with the recent values of g it gives iso(d) = (d+1 choose 2) + 1 for 9 &le; d &le; 21 and iso(22) = 276, each with a unique extremal set: the edge-midpoints of a regular simplex plus its centroid for d &le; 21, and the mclaughlin configuration plus its centre for d = 22. it also shows g(23) &le; 299, so iso(23) = max{g(23), 278} &le; 299. the proofs start from blokhuis&rsquo; decomposition of isosceles sets into mutually orthogonal two-distance sets.</p>
 </div>
 
 <div class="item" id="three-diametral">
@@ -265,7 +268,7 @@
 
 <div class="item" id="two-distance-d21">
   <h3><a href="https://arxiv.org/abs/2610.40367">johnson optimality and uniqueness for distance ratio 1:&radic;2</a></h3>
-  <p class="meta"><span class="badge solved">solved</span> october 2026 &middot; with bryan bu, chin-yen lee, yu-hang sheng, meng-tsung tsai and wei-hsuan yu &middot; <a href="https://arxiv.org/abs/2610.40367">arxiv:2610.40367</a></p>
+  <p class="meta"><span class="badge solved">solved</span> october 2026 &middot; with bryan bu, chin-yen lee, yu-hang sheng, meng-tsung tsai and wei-hsuan yu &middot; <a href="https://arxiv.org/abs/2610.40367">arxiv:2610.40367</a> &middot; submitted to discrete mathematics</p>
   <p>proves that a two-distance set in r<sup>d</sup> with distance ratio 1:&radic;2 has at most d(d+1)/2 points for every d &ge; 9, with equality in full affine dimension only for the johnson construction, the simplex-midpoint set; for d &ge; 10 full dimension is automatic. the proof splits on whether the short-distance graph is connected: the connected case uses root lattices and intersection theorems, the disconnected case an orthogonal decomposition into component direction spaces. a relative bound for euclidean two-distance sets, whose equality case forces sphericity, combines with the larman-rogers-seidel theorem to give the maximum two-distance set size d(d+1)/2 for 9 &le; d &le; 21 and 275 for d = 22, without exhaustive enumeration. my <a href="#isosceles-sets">isosceles-sets paper</a> also uses this result.</p>
 </div>
 

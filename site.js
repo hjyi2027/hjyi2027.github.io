@@ -119,7 +119,7 @@
     ['email', 'elsewhere', 'mailto:hjyi2027@gmail.com']
   ].map(function (e) { return { t: e[0], k: e[1], u: e[2], x: (e[0] + ' ' + e[1]).toLowerCase() }; });
   var papers = null, loading = false;
-  var names = { accepted: 'accepted', mathematics: 'mathematics', 'under-review': 'under review' };
+  var names = { accepted: 'accepted', 'in-review': 'in review', mathematics: 'mathematics' };
 
   function read(doc) {
     var out = [], sec = '', main = doc.getElementById('main');
