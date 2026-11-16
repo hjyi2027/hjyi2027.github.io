@@ -212,6 +212,20 @@ p.cols{display:block;margin:0}
   transition:color 160ms var(--ease)}
 .rows .s{grid-area:s;max-width:62ch;font-size:15px;line-height:1.6;color:var(--muted)}
 
+/* the homepage rows carry a small figure each, and a disc for the arrow */
+.rows.pics li a{grid-template-columns:44px minmax(0,264px) minmax(0,1fr) auto;grid-template-areas:"i f b a";column-gap:clamp(18px,2.8vw,40px);align-items:center;padding:26px 0}
+.rows.pics .i{align-self:start;padding-top:6px}
+.rows.pics .fig{grid-area:f;border-radius:16px}
+.rows.pics .r-body{grid-area:b;min-width:0}
+.rows.pics .m .tl-s{display:inline-block;margin-right:12px;vertical-align:1px;font-weight:400}
+.rows.pics .t{margin:12px 0 10px;font-size:clamp(30px,3.7vw,54px)}
+.rows.pics li a::after{display:grid;place-items:center;width:56px;height:56px;padding:0;border:1px solid var(--line-strong);border-radius:999px;
+  font-family:var(--sans);font-size:18px;color:var(--fg);
+  transition:background-color 240ms var(--ease),color 240ms var(--ease),border-color 240ms var(--ease),transform 400ms var(--ease-out)}
+.rows.pics li a:is(:hover,:focus-visible)::after{background:var(--fg);border-color:var(--fg);color:var(--on-fg);transform:translateX(6px)}
+.rows.pics a:hover .fig{border-color:var(--line-strong)}
+.rows.pics a:hover .fig svg{transform:scale(1.035)}
+
 /* latest: a timeline under the rows; one dot a day, one row a result */
 .latest{margin:clamp(72px,9vw,128px) 0 0;display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);gap:24px;align-items:start}
 .latest-head{position:sticky;top:calc(var(--bar-h) + 28px)}
@@ -631,7 +645,12 @@ html.pal-open{overflow:hidden}
   .mark{font-size:19px}
   .poster-sub,.lede{font-size:17.5px}
   .rows li a{grid-template-columns:28px minmax(0,1fr);grid-template-areas:"i m" "i t" "i s";column-gap:12px}
-  .rows li a::after{display:none}
+  .rows li a::after,.rows.pics li a::after{display:none}
+  .rows.pics li a{grid-template-columns:minmax(0,112px) minmax(0,1fr);grid-template-areas:"f b";column-gap:16px;align-items:start;padding:22px 0}
+  .rows.pics .i{display:none}
+  .rows.pics .fig{aspect-ratio:1/1;border-radius:14px}
+  .rows.pics .t{margin:8px 0;font-size:26px}
+  .rows.pics .m .tl-s{display:table;margin:0 0 8px}
   .facts{grid-template-columns:1fr 1fr}
   .facts div{padding:22px 16px 18px}
   .facts div:nth-child(odd){border-left:0;padding-left:0}
