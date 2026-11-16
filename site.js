@@ -282,6 +282,65 @@
     if (h.tagName === 'H2') { h._count = document.createElement('span'); h._count.className = 'h-n'; h.appendChild(h._count); }
   });
 
+  // each entry is written as a title, one record line and an abstract. here the
+  // record line is laid out in parts: status above the title, authorship under
+  // it, and the links as buttons after the abstract. the written line stays in
+  // the page, hidden, so the filter, the search box and a script-free reader
+  // all still use it. an entry that has a highlight card borrows its figure.
+  var WHEN = /^((january|february|march|april|may|june|july|august|september|october|november|december) )?\d{4}$/;
+  var LINK = /^(pdf|openreview|code|doi|zenodo|review thread|arxiv:\S+|earlier version, doi)$/;
+  var WHO = /^(sole author|first author|co-first author|with )/;
+  var figs = {};
+  Array.prototype.forEach.call(document.querySelectorAll('.feature .card'), function (c) {
+    var f = c.querySelector('.fig'); if (f) figs[(c.getAttribute('href') || '').slice(1)] = f;
+  });
+  function make(tag, cls) { var e = document.createElement(tag); e.className = cls; return e; }
+  items.forEach(function (it) {
+    var meta = it.querySelector('.meta'), h = it.querySelector('h3');
+    if (!meta || !h) return;
+    var segs = [[]], top = make('p', 'm-top'), by = make('p', 'm-by'), act = make('p', 'm-act'), when = '';
+    Array.prototype.forEach.call(meta.childNodes, function (n) {
+      if (n.nodeType === 1 && n.classList.contains('badge')) { top.appendChild(n.cloneNode(true)); return; }
+      if (n.nodeType !== 3) { segs[segs.length - 1].push(n.cloneNode(true)); return; }
+      n.nodeValue.split('·').forEach(function (part, i) {
+        if (i) segs.push([]);
+        if (part) segs[segs.length - 1].push(document.createTextNode(part));
+      });
+    });
+    segs.forEach(function (seg) {
+      var text = seg.map(function (n) { return n.textContent; }).join('').replace(/\s+/g, ' ').trim();
+      if (!text) return;
+      while (seg.length && seg[0].nodeType === 3 && !seg[0].nodeValue.trim()) seg.shift();
+      while (seg.length && seg[seg.length - 1].nodeType === 3 && !seg[seg.length - 1].nodeValue.trim()) seg.pop();
+      var low = text.toLowerCase(), first = seg[0], last = seg[seg.length - 1];
+      if (first.nodeType === 3) first.nodeValue = first.nodeValue.replace(/^\s+/, '');
+      if (last.nodeType === 3) last.nodeValue = last.nodeValue.replace(/\s+$/, '');
+      var link = seg.filter(function (n) { return n.nodeType === 1 && n.tagName === 'A'; })[0];
+      if (WHEN.test(low)) when = text;
+      else if (link && LINK.test(low)) { link.className = 'act'; link.textContent = text; act.appendChild(link); }
+      else if (WHO.test(low)) { if (by.childNodes.length) by.appendChild(document.createTextNode(' · ')); seg.forEach(function (n) { by.appendChild(n); }); }
+      else {
+        var st = make('span', 'm-st');
+        if (first.nodeType === 1 && first.tagName === 'A' && /^accepted$/i.test(first.textContent)) first.className = 'chip';
+        else if (first.nodeType === 3 && /^Accepted\b/.test(first.nodeValue)) {
+          var chip = make('span', 'chip'); chip.textContent = 'Accepted'; st.appendChild(chip);
+          first.nodeValue = first.nodeValue.slice(8);
+        }
+        seg.forEach(function (n) { st.appendChild(n); });
+        // "accepted, venue" reads as chip then venue; drop the comma that joined them
+        var after = st.firstChild && st.firstChild.nextSibling;
+        if (st.firstChild.className === 'chip' && after && after.nodeType === 3) after.nodeValue = after.nodeValue.replace(/^,?\s*/, '');
+        top.appendChild(st);
+      }
+    });
+    if (when) { var d = make('span', 'm-date'); d.textContent = when; top.appendChild(d); }
+    it.insertBefore(top, h);
+    if (by.childNodes.length) it.insertBefore(by, h.nextSibling);
+    if (act.childNodes.length) it.appendChild(act);
+    meta.hidden = true; it.classList.add('rich');
+    if (figs[it.id]) { var t = figs[it.id].cloneNode(true); t.classList.add('thumb'); it.insertBefore(t, top); it.classList.add('has-fig'); }
+  });
+
   items.forEach(function (it) {
     // a copyable link under the entry number
     var a = document.createElement('a'); a.className = 'pl'; a.href = '#' + it.id; a.textContent = 'Link';
