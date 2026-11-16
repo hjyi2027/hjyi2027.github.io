@@ -130,6 +130,14 @@
   var papers = null, loading = false;
   var names = { accepted: 'Accepted', 'in-review': 'In review', mathematics: 'Mathematics' };
 
+  // the venue and authorship of a paper, without its date or its links
+  var SKIP = /^(((january|february|march|april|may|june|july|august|september|october|november|december) )?\d{4}|pdf|openreview|code|doi|zenodo|review thread|arxiv:\S+|earlier version, doi)$/i;
+  function brief(m) {
+    if (!m) return '';
+    var c = m.cloneNode(true), b = c.querySelector('.badge'); if (b) b.parentNode.removeChild(b);
+    return c.textContent.split('\u00b7').map(function (p) { return p.replace(/\s+/g, ' ').trim(); })
+      .filter(function (p) { return p && !SKIP.test(p); }).join(' \u00b7 ');
+  }
   function read(doc) {
     var out = [], sec = '', main = doc.getElementById('main');
     if (!main) return out;
@@ -139,7 +147,7 @@
         var h = k.querySelector('h3'), m = k.querySelector('.meta');
         if (!h) return;
         var t = h.textContent.trim();
-        out.push({ t: t, k: sec, u: at('research.html#' + k.id), x: (t + ' ' + (m ? m.textContent : '') + ' ' + sec).toLowerCase() });
+        out.push({ t: t, k: sec, s: brief(m), u: at('research.html#' + k.id), x: (t + ' ' + (m ? m.textContent : '') + ' ' + sec).toLowerCase() });
       }
     });
     return out;
@@ -155,12 +163,29 @@
 
   var pal = document.createElement('div'); pal.className = 'pal'; pal.hidden = true;
   pal.setAttribute('role', 'dialog'); pal.setAttribute('aria-modal', 'true'); pal.setAttribute('aria-label', 'Search this site');
-  pal.innerHTML = '<div class="pal-box"><input type="search" placeholder="A paper, a venue, a page" autocomplete="off" spellcheck="false" ' +
-    'role="combobox" aria-expanded="true" aria-controls="pal-list" aria-label="Search this site">' +
-    '<ol id="pal-list" role="listbox"></ol><p class="pal-foot"><span>&uarr;&darr; to move</span><span>Enter to open</span><span>Esc to close</span><span class="pal-n"></span></p></div>';
+  var LENS = '<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="5.5"/><path d="M13.2 13.2 17 17"/></svg>';
+  pal.innerHTML = '<div class="pal-box"><div class="pal-in">' + LENS + '<input type="search" placeholder="Search papers, venues and pages" autocomplete="off" spellcheck="false" ' +
+    'role="combobox" aria-expanded="true" aria-controls="pal-list" aria-label="Search this site"><kbd>esc</kbd></div>' +
+    '<ol id="pal-list" role="listbox"></ol><p class="pal-foot"><span><kbd>&uarr;</kbd><kbd>&darr;</kbd> to move</span><span><kbd>&crarr;</kbd> to open</span><span class="pal-n"></span></p></div>';
   document.body.appendChild(pal);
   var input = pal.querySelector('input'), list = pal.querySelector('ol'), count = pal.querySelector('.pal-n'), shown = [], cur = 0, back = null;
 
+  var GLYPH = { Page: '\u2192', Home: '#', Research: '#', Elsewhere: '\u2197' };
+  var HEAD = { Page: 'Pages', Home: 'On the homepage', Research: 'On the research page', Elsewhere: 'Elsewhere' };
+  var rows = [];
+  // the title, with each matched word marked
+  function marked(el, text, words) {
+    var low = text.toLowerCase(), i = 0;
+    while (words.length && i < text.length) {
+      var at0 = -1, len = 0;
+      words.forEach(function (w) { var p = low.indexOf(w, i); if (p > -1 && (at0 < 0 || p < at0)) { at0 = p; len = w.length; } });
+      if (at0 < 0) break;
+      if (at0 > i) el.appendChild(document.createTextNode(text.slice(i, at0)));
+      var m = document.createElement('mark'); m.textContent = text.slice(at0, at0 + len); el.appendChild(m);
+      i = at0 + len;
+    }
+    if (i < text.length) el.appendChild(document.createTextNode(text.slice(i)));
+  }
   function draw() {
     var words = input.value.toLowerCase().split(/\s+/).filter(Boolean), pool = fixed.concat(papers || []);
     if (words.length) {
@@ -168,25 +193,34 @@
       // a hit in the title outranks a hit in the venue line
       var inTitle = function (e) { return words.every(function (w) { return e.t.toLowerCase().indexOf(w) > -1; }) ? 0 : 1; };
       shown = shown.map(function (e, i) { return [inTitle(e), i, e]; }).sort(function (a, b) { return a[0] - b[0] || a[1] - b[1]; }).map(function (a) { return a[2]; });
-    } else shown = fixed.slice(0, 10);
+    } else shown = fixed.slice();
     var total = shown.length; shown = shown.slice(0, 40); cur = Math.min(cur, Math.max(shown.length - 1, 0));
-    list.textContent = '';
+    list.textContent = ''; rows = [];
+    var lastKind = null;
     shown.forEach(function (e, i) {
-      var li = document.createElement('li'), b = document.createElement('b'), k = document.createElement('i');
+      if (!words.length && e.k !== lastKind) {                 // with nothing typed, the list is a map of the site
+        lastKind = e.k;
+        var hd = document.createElement('li'); hd.className = 'pal-h'; hd.setAttribute('role', 'presentation'); hd.textContent = HEAD[e.k] || e.k; list.appendChild(hd);
+      }
+      var li = document.createElement('li'), g = document.createElement('span'), body = document.createElement('span'), b = document.createElement('b');
       li.id = 'pal-' + i; li.setAttribute('role', 'option'); li.setAttribute('aria-selected', i === cur ? 'true' : 'false');
-      b.textContent = e.t; k.textContent = e.k; li.appendChild(b); li.appendChild(k);
+      g.className = 'pal-g'; g.setAttribute('aria-hidden', 'true'); g.textContent = GLYPH[e.k] || '\u00b6';
+      body.className = 'pal-b'; marked(b, e.t, words); body.appendChild(b);
+      if (e.s) { var sm = document.createElement('small'); sm.textContent = e.s; body.appendChild(sm); }
+      li.appendChild(g); li.appendChild(body);
+      if (words.length || !HEAD[e.k]) { var k = document.createElement('i'); k.textContent = e.k; li.appendChild(k); }
       li.addEventListener('click', function () { go(e); });
       li.addEventListener('pointermove', function () { if (cur !== i) { cur = i; mark(); } });
-      list.appendChild(li);
+      list.appendChild(li); rows.push(li);
     });
     if (!shown.length) { var n = document.createElement('li'); n.className = 'pal-none'; n.textContent = loading ? 'Reading the research page' : 'Nothing matches'; list.appendChild(n); }
     input.setAttribute('aria-activedescendant', shown.length ? 'pal-' + cur : '');
     count.textContent = words.length ? total + (total === 1 ? ' match' : ' matches') : (papers ? papers.length + ' papers indexed' : '');
   }
   function mark() {
-    Array.prototype.forEach.call(list.children, function (li, i) { li.setAttribute('aria-selected', i === cur ? 'true' : 'false'); });
+    rows.forEach(function (li, i) { li.setAttribute('aria-selected', i === cur ? 'true' : 'false'); });
     input.setAttribute('aria-activedescendant', 'pal-' + cur);
-    var el = list.children[cur]; if (el && el.scrollIntoView) el.scrollIntoView({ block: 'nearest' });
+    var el = rows[cur]; if (el && el.scrollIntoView) el.scrollIntoView({ block: 'nearest' });
   }
   function open() {
     if (!pal.hidden) return;
@@ -221,7 +255,7 @@
   });
 
   var btn = document.createElement('button'); btn.type = 'button'; btn.setAttribute('aria-haspopup', 'dialog'); btn.setAttribute('aria-label', 'Search this site');
-  btn.innerHTML = 'Search<kbd>' + (/Mac|iPhone|iPad/.test(navigator.platform || '') ? '&#8984;K' : 'Ctrl K') + '</kbd>';
+  btn.innerHTML = LENS + 'Search<kbd>' + (/Mac|iPhone|iPad/.test(navigator.platform || '') ? '&#8984;K' : 'Ctrl K') + '</kbd>';
   btn.addEventListener('click', open);
   btn.addEventListener('pointerenter', load);                // warm the index before the click
   links.appendChild(btn);
@@ -380,10 +414,15 @@
     ['First author', function (i) { return /first author/.test(i._meta); }]
   ];
   var box = document.createElement('div'); box.className = 'filter'; box.setAttribute('role', 'search');
-  box.innerHTML = '<label>Filter<input type="search" placeholder="A title, a venue, a word" autocomplete="off" spellcheck="false"></label>' +
-    '<div class="f-chips" role="group" aria-label="Filter by venue or authorship"></div><p class="f-n" aria-live="polite"></p>' +
-    '<div class="f-view"><button type="button" aria-pressed="false">Titles only</button></div>';
-  var input = box.querySelector('input'), row = box.querySelector('.f-chips'), note = box.querySelector('.f-n'), view = box.querySelector('.f-view button'), cur = 0;
+  box.innerHTML = '<div class="f-field"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="5.5"/><path d="M13.2 13.2 17 17"/></svg>' +
+    '<input type="search" placeholder="Filter by title, venue or any word" autocomplete="off" spellcheck="false" aria-label="Filter the entries">' +
+    '<kbd class="f-key">/</kbd><button type="button" class="f-clear" aria-label="Clear the filter" hidden>&times;</button></div>' +
+    '<p class="f-n" aria-live="polite"></p>' +
+    '<div class="f-view" role="group" aria-label="How much of each entry to show"><button type="button" aria-pressed="true">Full</button><button type="button" aria-pressed="false">Titles</button></div>' +
+    '<div class="f-chips" role="group" aria-label="Filter by venue or authorship"></div>' +
+    '<span class="f-meter" aria-hidden="true"><i></i></span>';
+  var input = box.querySelector('input'), row = box.querySelector('.f-chips'), note = box.querySelector('.f-n'), cur = 0;
+  var views = box.querySelectorAll('.f-view button'), wipe = box.querySelector('.f-clear'), meter = box.querySelector('.f-meter i');
   chips.forEach(function (c, k) {
     var n = items.filter(c[1]).length; if (!n) return;
     var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-pressed', k ? 'false' : 'true');
@@ -394,13 +433,42 @@
   var anchor = main.querySelector('.jump') || main.querySelector('.facts');
   if (anchor) anchor.parentNode.insertBefore(box, anchor.nextSibling);
 
+  // matched words are tinted where they stand, without touching the page's markup
+  var paint = window.CSS && CSS.highlights && window.Highlight && document.createTreeWalker;
+  function tint(words) {
+    if (!paint) return;
+    CSS.highlights.delete('find');
+    if (!words.length) return;
+    var ranges = [];
+    items.forEach(function (it) {
+      if (it.hidden || ranges.length > 1500) return;
+      Array.prototype.forEach.call(it.querySelectorAll('h3, p:not(.meta)'), function (el) {
+        var walk = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null), node;
+        while ((node = walk.nextNode())) {
+          var low = node.nodeValue.toLowerCase();
+          words.forEach(function (w) {
+            for (var p = low.indexOf(w); p > -1; p = low.indexOf(w, p + w.length)) {
+              var r = document.createRange(); r.setStart(node, p); r.setEnd(node, p + w.length); ranges.push(r);
+            }
+          });
+        }
+      });
+    });
+    if (ranges.length) CSS.highlights.set('find', new (Function.prototype.bind.apply(Highlight, [null].concat(ranges)))());
+  }
   var keys = window.matchMedia('(hover: hover)').matches;
   function apply() {
     var words = input.value.toLowerCase().split(/\s+/).filter(Boolean), active = !!words.length || cur !== 0, n = 0;
-    chips.forEach(function (c, k) { if (c[2]) c[2].setAttribute('aria-pressed', k === cur ? 'true' : 'false'); });
+    var hit = function (it) { return words.every(function (w) { return it._text.indexOf(w) > -1; }); };
+    chips.forEach(function (c, k) {
+      if (!c[2]) return;
+      c[2].setAttribute('aria-pressed', k === cur ? 'true' : 'false');
+      var m = items.filter(function (it) { return c[1](it) && hit(it); }).length;        // each chip counts what it would show now
+      c[2].lastChild.textContent = m; c[2].classList.toggle('none', !m);
+    });
     main.classList.toggle('filtering', active);
     items.forEach(function (it) {
-      var ok = chips[cur][1](it) && words.every(function (w) { return it._text.indexOf(w) > -1; });
+      var ok = chips[cur][1](it) && hit(it);
       it.hidden = !ok; if (ok) { n++; if (active) it.classList.add('in'); }
     });
     // a heading stays only while something under it does, and carries the count
@@ -412,11 +480,15 @@
     });
     heads.forEach(function (h) { h.hidden = active && !h._n; if (active) h.classList.add('in'); if (h._count) h._count.textContent = h._n; });
     note.innerHTML = active
-      ? '<b>' + n + '</b> of ' + items.length + ' entries' + (n ? '' : '. Nothing matches') + '<button type="button">Clear</button>'
-      : '<b>' + items.length + '</b> entries' + (keys ? '. Press / to search' : '');
+      ? '<b>' + n + '</b> of ' + items.length + (n ? '' : ', nothing matches') + '<button type="button">Clear</button>'
+      : '<b>' + items.length + '</b> entries';
     var clr = note.querySelector('button');
     if (clr) clr.addEventListener('click', function () { showAll(); input.focus(); });
+    wipe.hidden = !input.value; box.querySelector('.f-key').hidden = !keys || !!input.value;
+    meter.style.setProperty('--f', n / items.length); box.classList.toggle('on', active);
+    tint(words);
   }
+  wipe.addEventListener('click', function () { input.value = ''; apply(); input.focus(); });
   function showAll() { input.value = ''; cur = 0; apply(); }
   window.__showAll = showAll;                                 // the search box calls this before jumping to a hidden entry
   input.addEventListener('input', apply);
@@ -429,7 +501,8 @@
 
   // titles only: remembered between visits; an entry linked by its #id arrives open
   function compact(yes) {
-    main.classList.toggle('compact', yes); view.setAttribute('aria-pressed', yes ? 'true' : 'false');
+    main.classList.toggle('compact', yes);
+    views[0].setAttribute('aria-pressed', yes ? 'false' : 'true'); views[1].setAttribute('aria-pressed', yes ? 'true' : 'false');
     if (!yes) items.forEach(function (it) { if (it.classList.contains('open')) unfold(it, false); });
     else aim();
   }
@@ -437,7 +510,18 @@
     var el = location.hash.length > 1 && document.getElementById(location.hash.slice(1));
     if (el && el._ex && main.classList.contains('compact')) unfold(el, true);
   }
-  view.addEventListener('click', function () { var yes = !main.classList.contains('compact'); compact(yes); store.set('hy:view', yes ? 'compact' : 'full'); });
+  Array.prototype.forEach.call(views, function (b, k) {
+    b.addEventListener('click', function () { compact(k === 1); store.set('hy:view', k === 1 ? 'compact' : 'full'); });
+  });
+  // on wide screens the toolbar follows the reader down the list
+  var pinned = false, pinQ = false;
+  function pin() {
+    pinQ = false;
+    var y = getComputedStyle(box).position === 'sticky' && box.getBoundingClientRect().top <= parseFloat(getComputedStyle(box).top) + 1 && window.scrollY > 40;
+    if (y !== pinned) { pinned = y; box.classList.toggle('stuck', y); }
+  }
+  window.addEventListener('scroll', function () { if (!pinQ) { pinQ = true; requestAnimationFrame(pin); } }, { passive: true });
+  pin();
   window.addEventListener('hashchange', aim);
   if (store.get('hy:view') === 'compact') compact(true);
 
