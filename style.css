@@ -10,7 +10,7 @@
   --display:"Instrument Serif",ui-serif,Georgia,"Times New Roman",serif;
   --sans:"Geist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
   --mono:"Geist Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
-  --maxw:1280px;--gutter:clamp(20px,4vw,48px);--bar-h:68px;
+  --maxw:1280px;--gutter:clamp(20px,4vw,48px);--bar-h:72px;
   --ease:cubic-bezier(.22,.61,.36,1);
   --ease-out:cubic-bezier(.16,1,.3,1);
   --shadow:0 1px 2px rgba(23,23,26,.05),0 24px 60px -24px rgba(23,23,26,.22);
@@ -48,26 +48,57 @@ a{color:inherit}
 .skip:focus{top:12px}
 
 /* ── frame: the bar on every page, the footer ───────────── */
-.bar{position:sticky;top:0;z-index:20;
-  background:color-mix(in srgb,var(--base) 86%,transparent);
-  backdrop-filter:blur(14px) saturate(150%);-webkit-backdrop-filter:blur(14px) saturate(150%)}
-/* reading progress drawn along the bottom edge of the bar */
-.bar::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--fg);
-  transform-origin:left;transform:scaleX(0);animation:progress linear both;animation-timeline:scroll(root);pointer-events:none}
+/* at the top of a page the bar is only its contents. once the page moves it
+   draws in to a floating capsule, with the reading progress along the top edge. */
+.bar{position:sticky;top:0;z-index:20;padding:8px var(--gutter);pointer-events:none}
+.bar::before{content:"";position:fixed;left:0;right:0;top:0;height:2px;background:var(--fg);
+  transform-origin:left;transform:scaleX(0);animation:progress linear both;animation-timeline:scroll(root)}
 @keyframes progress{to{transform:scaleX(1)}}
-@supports not (animation-timeline:scroll()){.bar::after{display:none}}
-.bar-in{max-width:var(--maxw);height:var(--bar-h);margin:0 auto;padding:0 var(--gutter);display:flex;align-items:center;gap:32px}
+@supports not (animation-timeline:scroll()){.bar::before{display:none}}
+.bar-in{pointer-events:auto;max-width:calc(var(--maxw) - 2*var(--gutter));height:56px;margin:0 auto;padding:0;display:flex;align-items:center;gap:32px;
+  border:1px solid transparent;border-radius:999px;
+  background:color-mix(in srgb,var(--base) 82%,transparent);
+  backdrop-filter:blur(16px) saturate(160%);-webkit-backdrop-filter:blur(16px) saturate(160%);
+  transition:max-width 700ms var(--ease-out),padding 700ms var(--ease-out),border-color 300ms var(--ease),box-shadow 300ms var(--ease),background-color 300ms var(--ease)}
+.scrolled .bar-in{max-width:920px;padding:0 9px 0 20px;border-color:var(--line);
+  background:color-mix(in srgb,var(--surface) 76%,transparent);
+  box-shadow:0 1px 2px rgba(23,23,26,.05),0 18px 44px -20px rgba(23,23,26,.24)}
 .mark{display:inline-flex;align-items:center;gap:10px;font-weight:500;font-size:21px;line-height:1;letter-spacing:-.035em;text-decoration:none;white-space:nowrap}
 .mark::before{content:"y";content:"y" / "";display:grid;place-items:center;width:27px;height:27px;padding-bottom:4px;border-radius:8px;
   background:var(--fg);color:var(--on-fg);font-family:var(--display);font-weight:400;font-size:21px;letter-spacing:0}
 .bar-links{margin-left:auto;display:flex;align-items:center;gap:30px;font-size:15px}
-.bar-links :is(a,button){display:inline-flex;align-items:center;padding:0;border:0;background:none;font:inherit;
-  color:var(--muted);text-decoration:none;cursor:pointer;transition:color 160ms var(--ease)}
+.bar-links :is(a,button){position:relative;display:inline-flex;align-items:center;padding:0;border:0;background:none;font:inherit;
+  color:var(--muted);text-decoration:none;cursor:pointer;transition:color 160ms var(--ease),border-color 160ms var(--ease)}
 .bar-links :is(a,button):hover,.bar-links a[aria-current]{color:var(--fg)}
+/* a rule that draws itself under the link in hand, and stays under the page you are on */
+.bar-links a::after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:1px;background:currentColor;
+  transform:scaleX(0);transform-origin:left;transition:transform 320ms var(--ease-out)}
+.bar-links a:hover::after,.bar-links a[aria-current]::after{transform:scaleX(1)}
 /* research is the primary button; its text link shows only where the button is hidden */
 .bar-links .dup{display:none}
-.bar-links kbd{margin-left:8px;padding:2px 6px;border:1px solid var(--line-strong);border-radius:6px;
+/* search reads as a field */
+.bar-links button{height:36px;padding:0 7px 0 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
+.bar-links button:hover{border-color:var(--line-strong)}
+.bar-links kbd{margin-left:10px;padding:3px 7px;border-radius:999px;background:var(--surface-2);
   font-family:var(--mono);font-size:11px;line-height:1.3;color:var(--muted)}
+
+/* phones: the links fold into a full-screen menu (added by the script) */
+.menu-btn{display:none}
+.menu{position:fixed;inset:0;z-index:19;display:flex;flex-direction:column;justify-content:space-between;gap:32px;
+  padding:calc(var(--bar-h) + 20px) var(--gutter) 32px;background:var(--base);overflow-y:auto;animation:menu-in 240ms var(--ease) both}
+@keyframes menu-in{from{opacity:0}}
+.menu ul{list-style:none;margin:0;padding:0}
+.menu-big{border-top:1px solid var(--line)}
+.menu-big li{animation:menu-rise 600ms var(--ease-out) both;animation-delay:calc(var(--k)*70ms + 60ms)}
+@keyframes menu-rise{from{opacity:0;transform:translateY(18px)}}
+.menu-big a{display:flex;align-items:baseline;gap:14px;padding:18px 0 20px;border-bottom:1px solid var(--line);
+  font-family:var(--display);font-size:48px;line-height:1;letter-spacing:-.015em;text-decoration:none;color:var(--fg)}
+.menu-big a[aria-current]{color:color-mix(in srgb,var(--fg) 52%,transparent)}
+.menu-big span{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted)}
+.menu-small{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:26px!important;font-size:16px}
+.menu-small a{color:var(--muted);text-decoration:none}
+.menu .pill{width:100%;justify-content:space-between}
+html.menu-open{overflow:hidden}
 
 /* the one button shape: a dark pill with its arrow in a disc */
 .pill{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:8px 8px 8px 22px;border-radius:999px;
@@ -645,10 +676,21 @@ html.pal-open{overflow:hidden}
 }
 @media (max-width:760px){
   :root{--bar-h:60px}
-  .bar-in{gap:18px}
+  .bar{padding:6px var(--gutter)}
+  .bar-in{height:48px;gap:14px}
+  .scrolled .bar-in{padding:0 8px 0 14px}
   .bar-links{gap:20px}
   .bar-links .ext,.bar .pill,.bar-links kbd{display:none}
   .bar-links .dup{display:inline-flex}
+  .bar-links button{height:34px;padding:0 14px;font-size:14px}
+  .has-menu .bar-links a{display:none}
+  .menu-btn{display:inline-flex;align-items:center;gap:10px;height:36px;padding:0 4px;border:0;background:none;font:inherit;font-size:15px;color:var(--fg);cursor:pointer}
+  .menu-i{position:relative;display:block;width:16px;height:9px}
+  .menu-i i{position:absolute;left:0;right:0;height:1.5px;background:currentColor;transition:transform 320ms var(--ease-out)}
+  .menu-i i:first-child{top:0}
+  .menu-i i:last-child{bottom:0}
+  .menu-btn[aria-expanded="true"] .menu-i i:first-child{transform:translateY(3.75px) rotate(45deg)}
+  .menu-btn[aria-expanded="true"] .menu-i i:last-child{transform:translateY(-3.75px) rotate(-45deg)}
   .feature{grid-template-columns:1fr;gap:32px;margin:40px 0}
   /* the second tier becomes a row to swipe through */
   .feature.more{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:calc(var(--gutter)*-1);padding:0 var(--gutter) 8px;scrollbar-width:none}
@@ -716,21 +758,22 @@ html.pal-open{overflow:hidden}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .ticker span,.stream s,.poem .wd.new,.pal,.pal-box,.js-reveal .hero-fig,.js-reveal .lab-stage .panel{animation:none}
-  .bar::after{display:none}
+  .bar::before{display:none}
+  .bar-in,.menu,.menu-big li{transition:none;animation:none}
   ::view-transition-old(root),::view-transition-new(root){animation:none}
   .pill-dot,.arrow,.mail-go,.tl a::after,.hbars i::after,.fig svg,.lab-tabs .td,.rows li a::after,.item::after,.bar-row i::after,.split-fig rect,.rail a::before,.link,.item h3 a{transition:none}
   .js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big):not(.in){opacity:1;filter:none;transform:none}
   .js-reveal :is(.poster,.big,.mail,.page-title):not(.in) .w{clip-path:none;transform:none}
 }
 @media (prefers-reduced-transparency:reduce){
-  .bar,.pal{background:var(--base);backdrop-filter:none;-webkit-backdrop-filter:none}
+  .bar-in,.pal{background:var(--base);backdrop-filter:none;-webkit-backdrop-filter:none}
 }
 
 /* ── print: ink on paper ────────────────────────────────── */
 @media print{
   :root{--base:#fff;--surface:#fff;--surface-2:#fff;--fg:#000;--fg-2:#1a1a1a;--muted:#555;--line:#ccc;--line-strong:#999}
   body{font-size:11pt}
-  .bar,.skip,.foot,.kicker,.jump,.filter,.rail,.pl,.ex,.pal,.print,.hero-fig,.fig-note,.ticker,.play,.hero-cta,.feature{display:none!important}
+  .bar,.menu,.skip,.foot,.kicker,.jump,.filter,.rail,.pl,.ex,.pal,.print,.hero-fig,.fig-note,.ticker,.play,.hero-cta,.feature{display:none!important}
   .wrap{max-width:none;padding:0}
   .page-title{font-size:36pt;margin-bottom:8pt}
   .lede{font-size:11pt}

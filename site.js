@@ -42,6 +42,11 @@
     nodes.forEach(function (n) { io.observe(n); });
   }
 
+  // the bar draws in to a capsule once the page has moved.
+  var moved = false;
+  function onScroll() { var y = window.scrollY > 24; if (y !== moved) { moved = y; root.classList.toggle('scrolled', y); } }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
   // the footer shows the local time in seoul; without js it just says "seoul".
   var clocks = document.querySelectorAll('.clock');
   if (clocks.length && window.Intl && Intl.DateTimeFormat) {
@@ -220,6 +225,37 @@
   btn.addEventListener('click', open);
   btn.addEventListener('pointerenter', load);                // warm the index before the click
   links.appendChild(btn);
+
+  // phones: the links fold into a full-screen menu behind one button.
+  var barIn = document.querySelector('.bar-in'), root = document.documentElement;
+  if (barIn) {
+    var mb = document.createElement('button'); mb.type = 'button'; mb.className = 'menu-btn';
+    mb.setAttribute('aria-expanded', 'false'); mb.setAttribute('aria-controls', 'menu');
+    mb.innerHTML = '<span class="menu-w">Menu</span><span class="menu-i" aria-hidden="true"><i></i><i></i></span>';
+    var menu = document.createElement('div'); menu.id = 'menu'; menu.className = 'menu'; menu.hidden = true;
+    var here = location.pathname.replace(/index\.html$/, '');
+    var big = [['Home', at('./')], ['Research', at('research.html')], ['CV', at('cv.html')]];
+    var small = [['GitHub', 'https://github.com/hjyi2027'], ['ORCID', 'https://orcid.org/0009-0006-1197-0063'], ['LinkedIn', 'https://www.linkedin.com/in/hyunjun-yi-3424573a0/']];
+    menu.innerHTML = '<nav aria-label="Menu"><ul class="menu-big">' + big.map(function (e, i) {
+      var cur = new URL(e[1]).pathname.replace(/index\.html$/, '') === here ? ' aria-current="page"' : '';
+      return '<li style="--k:' + i + '"><a href="' + e[1] + '"' + cur + '><span>0' + (i + 1) + '</span>' + e[0] + '</a></li>';
+    }).join('') + '</ul><ul class="menu-small">' + small.map(function (e) { return '<li><a href="' + e[1] + '">' + e[0] + '</a></li>'; }).join('') +
+      '</ul></nav><a class="pill" href="mailto:hjyi2027@gmail.com">hjyi2027@gmail.com<span class="pill-dot" aria-hidden="true">&rarr;</span></a>';
+    var setMenu = function (open, refocus) {
+      menu.hidden = !open; mb.setAttribute('aria-expanded', open ? 'true' : 'false');
+      mb.firstChild.textContent = open ? 'Close' : 'Menu';
+      root.classList.toggle('menu-open', open);
+      if (open) { var first = menu.querySelector('a'); if (first) first.focus(); } else if (refocus) mb.focus();
+    };
+    mb.addEventListener('click', function () { setMenu(menu.hidden); });
+    menu.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('a')) setMenu(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.hidden) setMenu(false, true); });
+    if (window.matchMedia) {
+      var wide = window.matchMedia('(min-width: 761px)'), shut = function () { if (wide.matches && !menu.hidden) setMenu(false); };
+      if (wide.addEventListener) wide.addEventListener('change', shut); else if (wide.addListener) wide.addListener(shut);
+    }
+    barIn.appendChild(mb); document.body.appendChild(menu); root.classList.add('has-menu');
+  }
 })();
 
 // ── 3. research page ─────────────────────────────────────────────────────
