@@ -13,7 +13,7 @@
   // reveal each block once as it arrives. siblings that enter on the same
   // frame stagger, so a section lands as a sequence rather than a slab.
   var sel = '.kicker, .num, .eyebrow, .lede, h2, h3.sub, .item, .row, ul.plain, .links, .latest, ' +
-            '.page-title, .poster, .big, .mail, .cols, .rows, .facts, .play, .poster-sub, .hero-cta, .sec-head, .ticker, .feature, .hero-at, .fig-note, .nf-fig, .night, .sponsors, .about-fig, .points, .tl-day';
+            '.page-title, .poster, .big, .mail, .cols, .rows, .facts, .play, .poster-sub, .hero-cta, .sec-head, .ticker, .feature, .hero-at, .fig-note, .nf-fig, .night, .sponsors, .about-fig, .points, .tl-day, .foot-in, .foot-big';
   document.querySelectorAll('.poster, .big, .mail, .page-title').forEach(function (h) {
     h.querySelectorAll('.w').forEach(function (w, k) { w.style.setProperty('--k', k); });
   });

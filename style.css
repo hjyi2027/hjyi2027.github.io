@@ -94,12 +94,25 @@ a{color:inherit}
 .arrow{display:inline-block;transition:transform 320ms var(--ease-out)}
 a:hover .arrow{transform:translateX(4px)}
 
-.foot{margin-top:clamp(64px,9vw,128px);border-top:1px solid var(--line)}
-.foot-in{max-width:var(--maxw);margin:0 auto;padding:28px var(--gutter) 36px;display:flex;align-items:center;justify-content:space-between;gap:16px 32px;flex-wrap:wrap}
-.foot nav{display:flex;flex-wrap:wrap;gap:8px 26px;font-size:15px}
-.foot nav a{color:var(--muted);text-decoration:none;transition:color 160ms var(--ease)}
-.foot nav a:hover{color:var(--fg)}
-.foot p{margin:0;font-size:13px;color:var(--muted)}
+/* the footer: the page ends in a dark room, with the name set as large as the screen allows */
+.foot{--fg:#f5f5f2;--fg-2:rgba(245,245,242,.74);--muted:rgba(245,245,242,.56);--line:rgba(245,245,242,.14);--line-strong:rgba(245,245,242,.32);--on-fg:#141416;--accent:#9db0ff;
+  margin-top:clamp(72px,10vw,144px);overflow:hidden;background:#141416;color:var(--fg)}
+.foot ::selection{background:#f5f5f2;color:#141416}
+.foot-in{max-width:var(--maxw);margin:0 auto;padding:clamp(48px,7vw,96px) var(--gutter) 0;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px;align-items:start}
+.foot-id p{max-width:34ch;margin:18px 0 26px;font-size:15px;line-height:1.6;color:var(--fg-2)}
+.foot-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.foot-h{margin:0 0 14px;font-family:var(--mono);font-size:11px;line-height:1.5;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.foot-cols a{display:block;width:fit-content;padding:5px 0;font-size:15px;color:var(--fg-2);text-decoration:none;transition:color 160ms var(--ease)}
+.foot-cols a:hover{color:var(--fg)}
+.foot-big{margin:clamp(40px,6vw,88px) 0 0;padding:0 var(--gutter);text-align:center;white-space:nowrap;
+  font-family:var(--display);font-size:clamp(64px,19.5vw,340px);line-height:.9;letter-spacing:-.03em;
+  background:linear-gradient(rgba(245,245,242,.3),rgba(245,245,242,.03) 88%);-webkit-background-clip:text;background-clip:text;color:transparent;
+  -webkit-user-select:none;user-select:none}
+.foot-base{max-width:var(--maxw);margin:0 auto;padding:22px var(--gutter) 30px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;
+  border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.foot-base p{margin:0}
+.foot-base a{color:var(--fg-2);text-decoration:none;transition:color 160ms var(--ease)}
+.foot-base a:hover{color:var(--fg)}
 .clock{font-variant-numeric:tabular-nums}
 
 /* ── shared pieces ──────────────────────────────────────── */
@@ -589,8 +602,8 @@ html.pal-open{overflow:hidden}
 /* hidden state is gated on .js-reveal, set by an inline script in <head>,
    so nothing flashes and nothing is hidden without js. each block comes
    into focus as it arrives: up a little, out of a soft blur. */
-.js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day):not(.in){opacity:0;filter:blur(8px);transform:translateY(18px)}
-:is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day).in{
+.js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big):not(.in){opacity:0;filter:blur(8px);transform:translateY(18px)}
+:is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big).in{
   transition:opacity 900ms var(--ease-out),transform 1000ms var(--ease-out),filter 900ms var(--ease-out);transition-delay:var(--d,0ms)}
 /* headline lines rise out of their own baseline, one after another */
 .js-reveal :is(.poster,.big,.mail,.page-title) .w{transition:clip-path 1000ms var(--ease-out),transform 1000ms var(--ease-out);transition-delay:calc(var(--k,0)*90ms)}
@@ -694,7 +707,9 @@ html.pal-open{overflow:hidden}
   .f-view{justify-self:start}
   .stamp{margin-left:0;flex-basis:100%;margin-top:6px}
   .pal{padding-top:84px}
-  .foot-in{flex-direction:column;align-items:flex-start}
+  .foot-in{grid-template-columns:1fr;gap:44px}
+  .foot-cols{gap:16px}
+  .foot-base{flex-direction:column}
 }
 
 /* ── motion and transparency preferences ────────────────── */
@@ -704,7 +719,7 @@ html.pal-open{overflow:hidden}
   .bar::after{display:none}
   ::view-transition-old(root),::view-transition-new(root){animation:none}
   .pill-dot,.arrow,.mail-go,.tl a::after,.hbars i::after,.fig svg,.lab-tabs .td,.rows li a::after,.item::after,.bar-row i::after,.split-fig rect,.rail a::before,.link,.item h3 a{transition:none}
-  .js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day):not(.in){opacity:1;filter:none;transform:none}
+  .js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big):not(.in){opacity:1;filter:none;transform:none}
   .js-reveal :is(.poster,.big,.mail,.page-title):not(.in) .w{clip-path:none;transform:none}
 }
 @media (prefers-reduced-transparency:reduce){
