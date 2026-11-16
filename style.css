@@ -843,6 +843,7 @@ main.filtering .feature{display:none}
 .row .what .cv-lead{margin:0;max-width:62ch}
 .row .what .cv-k{margin:28px 0 10px;font-family:var(--mono);font-size:11px;line-height:1.5;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .row .what .cv-figs + .cv-k{margin-top:4px}
+.row .what .cv-yl + .cv-figs{margin-top:20px}
 .cv-sel,.cv-res{margin:0;padding:0;list-style:none;border-top:1px solid var(--line-strong)}
 .cv-sel li,.cv-res li{border-bottom:1px solid var(--line)}
 .cv-sel a,.cv-res a{position:relative;display:block;padding:14px 48px 15px 0;color:var(--fg);text-decoration:none}
@@ -874,8 +875,22 @@ main.filtering .feature{display:none}
 .act.go::after{content:"\2192"}
 .act.go:hover::after{transform:translateX(3px)}
 @media (hover:hover){
-  .cv-body .row:has(.cv-sel,.cv-res):hover::after{opacity:0}
+  .cv-body .row:has(.cv-sel,.cv-res,.cv-yimo):hover::after{opacity:0}
 }
+/* leadership: yimo as a small night panel, as on the homepage: its figures,
+   the format drawing and the sponsors */
+.cv-yimo{--fg:#f5f5f2;--fg-2:rgba(245,245,242,.74);--muted:rgba(245,245,242,.58);--line:rgba(245,245,242,.15);--line-strong:rgba(245,245,242,.34);--accent:#9db0ff;
+  margin:18px 0 0;padding:26px 28px 22px;border-radius:24px;background:#141416;color:var(--fg)}
+.cv-yimo ::selection{background:#f5f5f2;color:#141416}
+.row .what .cv-yl{max-width:42ch;margin:0;font-family:var(--display);font-size:clamp(24px,2.5vw,32px);line-height:1.12;letter-spacing:-.01em;color:var(--fg);text-wrap:balance}
+.cv-yl em{font-style:normal;color:color-mix(in srgb,var(--fg) 52%,transparent)}
+.row .what strong + .cv-yl{margin-top:12px}
+.cv-yimo .cv-figs{margin:22px 0 0}
+.yf{display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;align-items:start;margin:22px 0 0}
+.row .what .yf-h{margin:0;font-family:var(--mono);font-size:11px;line-height:1.5;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.cv-yimo .yimo-fig{max-width:400px}
+.cv-yimo .sponsors{margin:20px 0 0;padding-top:16px;border-top:1px solid var(--line)}
+.cv-yimo .sponsors span{display:inline-block;width:96px;margin-right:16px}
 .js-reveal .row:not(.in) .cv-figs div{opacity:0;transform:translateY(12px)}
 .row.in .cv-figs div{transition:opacity 700ms var(--ease-out) 160ms,transform 700ms var(--ease-out) 160ms}
 .row.in .cv-figs div:nth-child(2){transition-delay:250ms}
@@ -1124,6 +1139,9 @@ html.pal-open{overflow:hidden}
   .cv-res a{grid-template-columns:1fr;gap:4px;padding-right:44px}
   .res-v{grid-row:auto;font-size:24px}
   .cv-sel a{padding-right:44px}
+  .cv-yimo{padding:20px 18px 18px;border-radius:20px}
+  .yf{grid-template-columns:1fr;gap:12px}
+  .cv-yimo .sponsors span{display:block;width:auto;margin:0 0 4px}
   .cv-toc{padding:16px 18px 18px}
   .cv-toc ol a{grid-template-columns:26px auto minmax(10px,1fr) auto 14px;gap:0 8px}
   .cv-facts div,.cv-facts div:first-child,.cv-facts div:nth-child(odd),.cv-facts div:nth-child(n+3){min-height:200px;padding:18px 18px 16px;border:0}
@@ -1288,7 +1306,7 @@ html.pal-open{overflow:hidden}
   .wrap .cv-sec h2::before,.cv-sec::before,.cv-sub,.cv-figs,.cv-tag,.now,.cv-body .row::after{display:none}
   .print-only{display:inline}
   p.print-only{display:block}
-  .cv-lead,.cv-sel,.cv-res,.cv-venues,.row .what .cv-k{display:none}
+  .cv-lead,.cv-sel,.cv-res,.cv-venues,.row .what .cv-k,.cv-yimo,.cv-yl{display:none}
   .wrap .cv-sec h2 em{display:inline;font-size:inherit;color:inherit}
   .cv-head{position:static;break-after:avoid}
   .cv-body .row:first-child{break-before:avoid;break-inside:avoid}
