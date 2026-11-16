@@ -131,10 +131,19 @@ a:hover .arrow{transform:translateX(4px)}
 .poster .w,.big .w,.mail .w,.page-title .w{display:block}
 .poster-sub{margin:28px 0 0;max-width:40ch;font-size:19px;line-height:1.55;color:var(--fg-2);text-wrap:pretty}
 .hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin:36px 0 0}
-/* the line field: a drawing that fades into the page on every side */
-.hero-fig{position:absolute;inset:0 0 0 46%;
-  -webkit-mask-image:radial-gradient(62% 56% at 54% 50%,#000 30%,transparent 100%);mask-image:radial-gradient(62% 56% at 54% 50%,#000 30%,transparent 100%)}
+.hero-at{margin:44px 0 0;max-width:46ch;font-size:13px;line-height:1.6;color:var(--muted)}
+.hero-at span{margin-right:6px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+/* the hero figure: a live diagram on drafting paper that fades into the page */
+.hero-fig{position:absolute;inset:0 0 0 45%}
+.hero-fig::before{content:"";position:absolute;inset:0;
+  background-image:linear-gradient(rgba(39,71,212,.075) 1px,transparent 1px),linear-gradient(90deg,rgba(39,71,212,.075) 1px,transparent 1px);
+  background-size:28px 28px;
+  -webkit-mask-image:radial-gradient(60% 54% at 50% 50%,#000 25%,transparent 100%);mask-image:radial-gradient(60% 54% at 50% 50%,#000 25%,transparent 100%)}
 .field{position:absolute;inset:0;width:100%;height:100%;display:block}
+.fig-note{position:absolute;right:var(--gutter);bottom:30px;z-index:1;margin:0;max-width:44ch;text-align:right;
+  font-family:var(--mono);font-size:12px;line-height:1.65;color:var(--muted)}
+.fig-note sup{font-size:.75em;line-height:0}
+.fig-note a{color:var(--fg);text-decoration:none;white-space:nowrap}
 
 .ticker{display:flex;overflow:hidden;white-space:nowrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
   font-family:var(--mono);font-size:12px;line-height:1.5;color:var(--muted);padding:11px 0;
@@ -422,8 +431,8 @@ html.pal-open{overflow:hidden}
 /* hidden state is gated on .js-reveal, set by an inline script in <head>,
    so nothing flashes and nothing is hidden without js. each block comes
    into focus as it arrives: up a little, out of a soft blur. */
-.js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature):not(.in){opacity:0;filter:blur(8px);transform:translateY(18px)}
-:is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature).in{
+.js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note):not(.in){opacity:0;filter:blur(8px);transform:translateY(18px)}
+:is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note).in{
   transition:opacity 900ms var(--ease-out),transform 1000ms var(--ease-out),filter 900ms var(--ease-out);transition-delay:var(--d,0ms)}
 /* headline lines rise out of their own baseline, one after another */
 .js-reveal :is(.poster,.big,.mail,.page-title) .w{transition:clip-path 1000ms var(--ease-out),transform 1000ms var(--ease-out);transition-delay:calc(var(--k,0)*90ms)}
@@ -436,7 +445,8 @@ html.pal-open{overflow:hidden}
 @media (max-width:960px){
   .hero-in{display:block;min-height:0}
   .hero-text{width:auto;padding:48px 0 0}
-  .hero-fig{position:relative;inset:auto;height:300px;margin:8px calc(var(--gutter)*-1) 0}
+  .hero-fig{position:relative;inset:auto;height:360px;margin:8px calc(var(--gutter)*-1) 0}
+  .fig-note{position:static;max-width:none;text-align:left;margin:4px 0 36px}
   .two{grid-template-columns:1fr;align-items:start;gap:32px}
   .play{grid-template-columns:1fr}
   .panel.wide{grid-template-columns:1fr}
@@ -495,7 +505,7 @@ html.pal-open{overflow:hidden}
   .bar::after{display:none}
   ::view-transition-old(root),::view-transition-new(root){animation:none}
   .pill-dot,.arrow,.fig svg,.rows li a::after,.item::after,.bar-row i::after,.split-fig rect,.rail a::before,.link,.item h3 a{transition:none}
-  .js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature):not(.in){opacity:1;filter:none;transform:none}
+  .js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note):not(.in){opacity:1;filter:none;transform:none}
   .js-reveal :is(.poster,.big,.mail,.page-title):not(.in) .w{clip-path:none;transform:none}
 }
 @media (prefers-reduced-transparency:reduce){
@@ -506,7 +516,7 @@ html.pal-open{overflow:hidden}
 @media print{
   :root{--base:#fff;--surface:#fff;--surface-2:#fff;--fg:#000;--fg-2:#1a1a1a;--muted:#555;--line:#ccc;--line-strong:#999}
   body{font-size:11pt}
-  .bar,.skip,.foot,.kicker,.jump,.filter,.rail,.pl,.ex,.pal,.print,.hero-fig,.ticker,.play,.hero-cta,.feature{display:none!important}
+  .bar,.skip,.foot,.kicker,.jump,.filter,.rail,.pl,.ex,.pal,.print,.hero-fig,.fig-note,.ticker,.play,.hero-cta,.feature{display:none!important}
   .wrap{max-width:none;padding:0}
   .page-title{font-size:44pt;margin-bottom:10pt}
   .lede{font-size:11pt}

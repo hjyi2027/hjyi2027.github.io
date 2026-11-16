@@ -3,7 +3,7 @@
 //   1. shared: reveals, clock, print link, counts
 //   2. search: one box that reaches every page, section and paper
 //   3. research page: filter, titles-only view, section rail, copyable links
-//   4. homepage: three instruments, the line field
+//   4. homepage: three instruments, the hero figure
 
 // ── 1. shared ────────────────────────────────────────────────────────────
 (function () {
@@ -13,7 +13,7 @@
   // reveal each block once as it arrives. siblings that enter on the same
   // frame stagger, so a section lands as a sequence rather than a slab.
   var sel = '.kicker, .num, .eyebrow, .lede, h2, h3.sub, .item, .row, ul.plain, .links, .latest, ' +
-            '.page-title, .poster, .big, .mail, .cols, .rows, .facts, .play, .poster-sub, .hero-cta, .sec-head, .ticker, .feature';
+            '.page-title, .poster, .big, .mail, .cols, .rows, .facts, .play, .poster-sub, .hero-cta, .sec-head, .ticker, .feature, .hero-at, .fig-note';
   document.querySelectorAll('.poster, .big, .mail, .page-title').forEach(function (h) {
     h.querySelectorAll('.w').forEach(function (w, k) { w.style.setProperty('--k', k); });
   });
@@ -469,70 +469,139 @@
     set('crop');
   })();
 
-  // the line field: vertical lines warped by a value-noise flow that follows
-  // the pointer and the scroll velocity. plain canvas 2d, no library.
-  // with reduced motion it draws one still frame.
+  // the hero figure: the largest isosceles set in nine dimensions. it is the 45
+  // edge midpoints of a regular simplex plus the simplex's centroid, 46 points,
+  // drawn turning in projection. any three of them form an isosceles triangle,
+  // and the figure marks one such triangle at a time.
+  // plain canvas 2d, no library. with reduced motion it draws one still frame.
   var cv = document.querySelector('canvas.field');
   if (!cv) return;
   var host = cv.closest('.hero') || cv.parentNode;
-  var ctx = cv.getContext('2d'), W = 0, H = 0, dpr = 1;
-  var px = -1e4, py = -1e4, tx = px, ty = py, vel = 0, lastY = window.scrollY, t = 0, on = true;
-
-  // tiny 2d value noise
-  var P = new Uint8Array(512);
-  for (var i = 0; i < 256; i++) P[i] = i;
-  for (i = 255; i > 0; i--) { var j = (Math.random() * (i + 1)) | 0, s = P[i]; P[i] = P[j]; P[j] = s; }
-  for (i = 0; i < 256; i++) P[256 + i] = P[i];
-  function fade(u) { return u * u * (3 - 2 * u); }
-  function noise(x, y) {
-    var X = Math.floor(x) & 255, Y = Math.floor(y) & 255; x -= Math.floor(x); y -= Math.floor(y);
-    var a = P[P[X] + Y] / 255, b = P[P[X + 1] + Y] / 255, c = P[P[X] + Y + 1] / 255, d = P[P[X + 1] + Y + 1] / 255;
-    var u = fade(x), v = fade(y);
-    return (a + (b - a) * u) + ((c + (d - c) * u) - (a + (b - a) * u)) * v;
+  var ctx = cv.getContext('2d'), W = 0, H = 0, dpr = 1, on = true, raf = 0;
+  var D = 10, i, j, k;
+  // a seeded generator, so the figure opens the same way on every visit
+  var seed = 20261105;
+  function rnd() { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; }
+  // three orthonormal directions inside the simplex's own hyperplane
+  var ax = [];
+  for (k = 0; k < 3; k++) {
+    var v = [], m = 0, n = 0;
+    for (i = 0; i < D; i++) { v[i] = rnd() - 0.5; m += v[i]; }
+    for (i = 0; i < D; i++) v[i] -= m / D;
+    for (j = 0; j < k; j++) { var dot = 0; for (i = 0; i < D; i++) dot += v[i] * ax[j][i]; for (i = 0; i < D; i++) v[i] -= dot * ax[j][i]; }
+    for (i = 0; i < D; i++) n += v[i] * v[i];
+    n = Math.sqrt(n); for (i = 0; i < D; i++) v[i] /= n;
+    ax.push(v);
   }
+  var pairs = []; for (i = 0; i < D; i++) for (j = i + 1; j < D; j++) pairs.push([i, j]);
+  var speed = [0.11, -0.07, 0.05, 0.09, -0.04];      // radians a second, one per coordinate plane
+  var P = [], M = [], tiltX = 0, tiltY = 0, aimX = 0, aimY = 0;
+  var hl = { a: 3, b: 17, t0: -1e9 }, lead = null, lead2 = null, HOLD = 4.2;
 
   function size() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     W = cv.clientWidth; H = cv.clientHeight;
     cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
-  size(); window.addEventListener('resize', function () { size(); if (reduce) kick(); });
-
+  size(); window.addEventListener('resize', function () { size(); kick(); });
   host.addEventListener('pointermove', function (e) {
-    var r = cv.getBoundingClientRect(); tx = e.clientX - r.left; ty = e.clientY - r.top;
+    var r = cv.getBoundingClientRect();
+    aimX = Math.max(-1, Math.min(1, (e.clientX - r.left - r.width / 2) / (r.width / 2)));
+    aimY = Math.max(-1, Math.min(1, (e.clientY - r.top - r.height / 2) / (r.height / 2)));
   }, { passive: true });
-  host.addEventListener('pointerleave', function () { tx = -1e4; ty = -1e4; });
-  window.addEventListener('scroll', function () { vel += Math.abs(window.scrollY - lastY); lastY = window.scrollY; }, { passive: true });
+  host.addEventListener('pointerleave', function () { aimX = 0; aimY = 0; });
   document.addEventListener('visibilitychange', function () { on = !document.hidden; if (on) kick(); });
   new IntersectionObserver(function (es) { on = es[0].isIntersecting && !document.hidden; if (on) kick(); }).observe(cv);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(kick);
 
-  var ink = 'rgba(23,23,26,', accent = 'rgba(39,71,212,';
-  var raf = 0;
-  function kick() { if (!raf) raf = requestAnimationFrame(frame); }
-  function frame() {
-    raf = 0;
-    if (!on) return;
-    t += 0.004; vel *= 0.92;
-    px += (tx - px) * 0.08; py += (ty - py) * 0.08;
-    ctx.clearRect(0, 0, W, H);
-    var gap = W < 700 ? 14 : 18, n = Math.ceil(W / gap) + 2, step = 10;
-    var amp = 26 + Math.min(vel, 60) * 0.6;
-    for (var i = 0; i < n; i++) {
-      var x0 = i * gap - gap;
-      ctx.beginPath();
-      for (var y = -step; y <= H + step; y += step) {
-        var nx = noise(x0 * 0.004 + t, y * 0.003 - t * 0.6) - 0.5;
-        var dx = x0 - px, dy = y - py, d2 = dx * dx + dy * dy, r = 220;
-        var pull = d2 < r * r ? (1 - Math.sqrt(d2) / r) : 0;
-        pull = pull * pull * 90;
-        var x = x0 + nx * amp * 2 + (dx < 0 ? -pull : pull) * 0.5;
-        if (y === -step) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  var INK = 'rgba(23,23,26,', BLUE = 'rgba(39,71,212,', FONT = '11.5px "Geist Mono", ui-monospace, Menlo, monospace';
+  function place(t) {
+    var cx = W / 2, cy = H / 2, s = Math.min(W, H) * 0.56, c;
+    var ca = Math.cos(tiltX * 0.5), sa = Math.sin(tiltX * 0.5), cb = Math.cos(tiltY * 0.4), sb = Math.sin(tiltY * 0.4);
+    for (i = 0; i < D; i++) {
+      var q = []; for (c = 0; c < D; c++) q[c] = (c === i ? 1 : 0) - 1 / D;
+      for (k = 0; k < 5; k++) {                                  // turn the whole simplex in ten dimensions
+        var th = speed[k] * t, co = Math.cos(th), si = Math.sin(th), x0 = q[2 * k], y0 = q[2 * k + 1];
+        q[2 * k] = x0 * co - y0 * si; q[2 * k + 1] = x0 * si + y0 * co;
       }
-      var near = Math.abs(x0 - px) < 260 ? 1 - Math.abs(x0 - px) / 260 : 0;
-      ctx.strokeStyle = (near > 0.25 ? accent : ink) + (0.22 + near * 0.4) + ')';
-      ctx.lineWidth = 1;
-      ctx.stroke();
+      var x = 0, y = 0, z = 0;
+      for (c = 0; c < D; c++) { x += q[c] * ax[0][c]; y += q[c] * ax[1][c]; z += q[c] * ax[2][c]; }
+      var x1 = x * ca + z * sa, z1 = z * ca - x * sa, y1 = y * cb + z1 * sb, z2 = z1 * cb - y * sb;   // lean toward the pointer
+      var f = 1 / (1 - z2 * 0.28);
+      P[i] = [cx + x1 * s * f, cy + y1 * s * f, z2];
     }
+    for (k = 0; k < pairs.length; k++) {
+      var A = P[pairs[k][0]], B = P[pairs[k][1]];
+      M[k] = [(A[0] + B[0]) / 2, (A[1] + B[1]) / 2, (A[2] + B[2]) / 2];
+    }
+  }
+  function label(text, lx, ly, px, py, col) {
+    ctx.font = FONT; ctx.textBaseline = 'middle';
+    var w = ctx.measureText(text).width, left = px < lx + w / 2, ex = left ? lx - 7 : lx + w + 7;
+    ctx.strokeStyle = col + '0.55)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(ex, ly); ctx.stroke();
+    ctx.fillStyle = col + '1)'; ctx.fillText(text, lx, ly);
+  }
+  function tick(ax0, ay0, bx, by) {                               // the mark geometers put on equal sides
+    var mx = (ax0 + bx) / 2, my = (ay0 + by) / 2, dx = bx - ax0, dy = by - ay0, l = Math.sqrt(dx * dx + dy * dy) || 1;
+    ctx.moveTo(mx - dy / l * 5, my + dx / l * 5); ctx.lineTo(mx + dy / l * 5, my - dx / l * 5);
+  }
+  function kick() { if (!raf) raf = requestAnimationFrame(frame); }
+  function frame(now) {
+    raf = 0;
+    if (!on || !W) return;
+    var t = reduce ? 38 : now / 1000, cx = W / 2, cy = H / 2;
+    tiltX += (aimX - tiltX) * 0.05; tiltY += (aimY - tiltY) * 0.05;
+    place(t);
+    ctx.clearRect(0, 0, W, H);
+
+    // the simplex: its 45 edges and 10 vertices, drawn light
+    ctx.beginPath();
+    for (k = 0; k < pairs.length; k++) { var A = P[pairs[k][0]], B = P[pairs[k][1]]; ctx.moveTo(A[0], A[1]); ctx.lineTo(B[0], B[1]); }
+    ctx.strokeStyle = INK + '0.13)'; ctx.lineWidth = 1; ctx.stroke();
+
+    // one isosceles triangle: the centroid and two midpoints, a new pair every few seconds
+    var u = t - hl.t0;
+    if (u > HOLD || u < 0) {                                     // of a dozen random pairs, keep the widest triangle
+      var best = -1;
+      for (k = 0; k < 12; k++) {
+        var pa = (rnd() * 45) | 0, pb = (rnd() * 45) | 0;
+        var ar = Math.abs((M[pa][0] - cx) * (M[pb][1] - cy) - (M[pa][1] - cy) * (M[pb][0] - cx));
+        if (pa !== pb && ar > best) { best = ar; hl.a = pa; hl.b = pb; }
+      }
+      hl.t0 = t; u = 0;
+    }
+    var e = reduce ? 1 : Math.max(0, Math.min(1, u / 0.7, (HOLD - u) / 0.7)), a = M[hl.a], b = M[hl.b];
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.closePath();
+    ctx.fillStyle = BLUE + (0.09 * e) + ')'; ctx.fill();
+    ctx.strokeStyle = BLUE + (0.9 * e) + ')'; ctx.lineWidth = 1.4; ctx.stroke();
+    ctx.beginPath(); tick(cx, cy, a[0], a[1]); tick(cx, cy, b[0], b[1]); ctx.stroke();
+
+    for (i = 0; i < D; i++) {
+      ctx.beginPath(); ctx.arc(P[i][0], P[i][1], 3.4, 0, 6.2832);
+      ctx.fillStyle = '#fafaf8'; ctx.fill(); ctx.strokeStyle = INK + '0.5)'; ctx.lineWidth = 1; ctx.stroke();
+    }
+    for (k = 0; k < M.length; k++) {
+      var d = Math.max(0, Math.min(1, (M[k][2] + 0.5))), hot = k === hl.a || k === hl.b;
+      ctx.beginPath(); ctx.arc(M[k][0], M[k][1], 2.3 + 1.9 * d, 0, 6.2832);
+      ctx.fillStyle = INK + (0.5 + 0.5 * d) + ')'; ctx.fill();
+      if (hot && e > 0) { ctx.fillStyle = BLUE + e + ')'; ctx.fill(); }
+    }
+    ctx.beginPath(); ctx.arc(cx, cy, 9, 0, 6.2832); ctx.fillStyle = BLUE + '0.14)'; ctx.fill();
+    ctx.beginPath(); ctx.arc(cx, cy, 4.6, 0, 6.2832); ctx.fillStyle = BLUE + '1)'; ctx.fill();
+
+    // labels, each tied to the part it names
+    // the midpoint nearest the lower left and the vertex nearest the upper left carry the other two
+    var lo = M[0], hi = P[0], ez = reduce ? 1 : 0.06;
+    for (k = 1; k < M.length; k++) if (M[k][1] - M[k][0] > lo[1] - lo[0]) lo = M[k];
+    for (i = 1; i < D; i++) if (P[i][1] + P[i][0] < hi[1] + hi[0]) hi = P[i];
+    if (!lead) { lead = [lo[0], lo[1]]; lead2 = [hi[0], hi[1]]; }
+    lead[0] += (lo[0] - lead[0]) * ez; lead[1] += (lo[1] - lead[1]) * ez;
+    lead2[0] += (hi[0] - lead2[0]) * ez; lead2[1] += (hi[1] - lead2[1]) * ez;
+    var small = W < 480;
+    label('Centroid', W * (small ? 0.70 : 0.78), H * 0.14, cx, cy, BLUE);
+    label(small ? 'Edge midpoint' : 'Edge midpoint, 1 of 45', W * (small ? 0.04 : 0.06), H * 0.88, lead[0], lead[1], INK);
+    if (!small) label('Regular simplex in nine dimensions', W * 0.04, H * 0.10, lead2[0], lead2[1], INK);
     if (!reduce) kick();
   }
   kick();

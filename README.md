@@ -23,6 +23,8 @@ personal site of hyunjun yi. hand-written html, one stylesheet, one script. no b
 3. update the counts strip, the `all 46 papers` button, the about paragraph and the `latest` list in `index.html`, and the research paragraph in `cv.html` if the totals it quotes moved
 4. bump `lastmod` in `sitemap.xml`
 
+the homepage hero names the venues with acceptances (`.hero-at`); add a venue there when a new one accepts.
+
 the search box and the filter chips read `research.html` directly, so they need no edits.
 
 ## preview
