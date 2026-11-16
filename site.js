@@ -54,7 +54,7 @@
   var p = document.querySelector('.print');
   if (p && window.print) {
     p.hidden = false;
-    p.querySelector('a').addEventListener('click', function (e) { e.preventDefault(); window.print(); });
+    (p.tagName === 'A' ? p : p.querySelector('a')).addEventListener('click', function (e) { e.preventDefault(); window.print(); });
   }
 
   // counts tick up from zero the first time they are seen.
