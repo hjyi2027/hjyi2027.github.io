@@ -2,6 +2,7 @@
    order: tokens, base, frame, shared, homepage, inner pages, research tools, search, motion, print. */
 
 /* ── tokens ─────────────────────────────────────────────── */
+@property --glow{syntax:"<number>";inherits:true;initial-value:0}
 :root{
   --base:#fafaf8;--surface:#fff;--surface-2:#f0f0ed;
   --fg:#17171a;--fg-2:#3f3f46;--muted:#62626b;--faint:#a3a3ab;
@@ -535,8 +536,12 @@ table.problems tbody tr:not(.grp):hover td:last-child{box-shadow:12px 0 0 var(--
 .card span{display:block}
 .fig{aspect-ratio:16/9;overflow:hidden;border:1px solid var(--line);border-radius:20px;
   background-color:#f5f3ea;
-  background-image:linear-gradient(rgba(39,71,212,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(39,71,212,.09) 1px,transparent 1px);
-  background-size:24px 24px;background-position:-1px -1px;transition:border-color 160ms var(--ease)}
+  background-image:radial-gradient(230px circle at var(--mx,50%) var(--my,40%),rgba(255,255,255,calc(var(--glow,0)*.85)),transparent 72%),
+    linear-gradient(rgba(39,71,212,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(39,71,212,.09) 1px,transparent 1px);
+  background-size:auto,24px 24px,24px 24px;background-position:0 0,-1px -1px,-1px -1px;
+  transition:border-color 160ms var(--ease),--glow 300ms var(--ease)}
+/* a light follows the pointer across the paper */
+:is(.card,.rows.pics a):hover .fig{--glow:1}
 .card:hover .fig{border-color:var(--line-strong)}
 .fig svg{display:block;width:100%;height:100%;transition:transform 700ms var(--ease-out)}
 .card:hover .fig svg{transform:scale(1.035)}
@@ -552,6 +557,48 @@ table.problems tbody tr:not(.grp):hover td:last-child{box-shadow:12px 0 0 var(--
 .c-m{margin-top:18px;font-family:var(--mono);font-size:12px;line-height:1.5;color:var(--muted)}
 .c-t{margin:8px 0 6px;font-family:var(--display);font-size:clamp(28px,3vw,38px);line-height:1.06;letter-spacing:-.012em}
 .c-s{max-width:46ch;font-size:15px;line-height:1.6;color:var(--muted)}
+.feat-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:clamp(48px,6vw,80px) 0 0;padding:0 0 14px;border-bottom:1px solid var(--line)}
+.feat-head .num{margin:0}
+.feat-head + .feature{margin-top:28px}
+a:hover .arrow.down{transform:translateY(3px)}
+main.filtering .feat-head{display:none}
+.c-t::after{content:"\2192";display:inline-block;margin-left:.35em;font-family:var(--sans);font-size:.55em;vertical-align:.25em;color:var(--muted);
+  opacity:0;transform:translateX(-6px);transition:opacity 200ms var(--ease),transform 400ms var(--ease-out)}
+.card:hover .c-t::after{opacity:1;transform:none}
+
+/* each figure moves a little while its card is in hand; the drawn lines also
+   draw themselves once as the cards arrive */
+.fig .dr{stroke-dasharray:100;stroke-dashoffset:0}
+.js-reveal .feature:not(.in) .dr{stroke-dashoffset:100}
+.feature.in .dr{transition:stroke-dashoffset 1500ms var(--ease-out) 500ms}
+:is(.card,.rows.pics a):hover .dr{animation:fig-draw 900ms var(--ease-out)}
+@keyframes fig-draw{from{stroke-dashoffset:100}}
+:is(.card,.rows.pics a):hover .f-ear .dash{animation:fig-march 800ms linear infinite}
+@keyframes fig-march{to{stroke-dashoffset:-16}}
+.f-fno .acf rect{transform-box:fill-box;transform-origin:50% 100%}
+:is(.card,.rows.pics a):hover .f-fno .acf rect{animation:fig-bob 620ms var(--ease) infinite alternate}
+.f-fno .acf rect:nth-child(2){animation-delay:90ms}.f-fno .acf rect:nth-child(3){animation-delay:180ms}
+.f-fno .acf rect:nth-child(4){animation-delay:270ms}.f-fno .acf rect:nth-child(5){animation-delay:360ms}
+@keyframes fig-bob{to{transform:scaleY(1.32)}}
+.card:hover .f-wm .miss{animation:fig-blink 900ms steps(1,end) infinite}
+@keyframes fig-blink{50%{opacity:.15}}
+.card:hover .f-hr .lk{animation:fig-pulse 800ms ease-in-out infinite alternate}
+@keyframes fig-pulse{to{fill-opacity:.3}}
+.f-3d .pt.on circle,.f-ch .pt.on circle{transform-box:fill-box;transform-origin:center}
+.card:hover .f-3d .pt.on circle:first-child{animation:fig-left 700ms ease-in-out infinite alternate}
+.card:hover .f-3d .pt.on circle:last-child{animation:fig-right 700ms ease-in-out infinite alternate}
+@keyframes fig-left{to{transform:translateX(-5px)}}
+@keyframes fig-right{to{transform:translateX(5px)}}
+.card:hover .f-ch .pt.on circle{animation:fig-beat 700ms ease-in-out infinite alternate}
+@keyframes fig-beat{to{transform:scale(1.5)}}
+/* the marked triangle steps through three of the isosceles triangles in the set */
+:is(.card,.rows.pics a):hover .f-iso .tri{animation:fig-tri 4200ms var(--ease) infinite}
+@keyframes fig-tri{
+  0%,24%{d:path("M160 32L200 155L120 155Z")}
+  33%,57%{d:path("M160 100L224.7 79L200 155Z")}
+  66%,90%{d:path("M95.3 79L160 32L224.7 79Z")}
+  100%{d:path("M160 32L200 155L120 155Z")}}
+
 /* a second tier: six more, three across */
 .feature:has(+ .feature){margin-bottom:44px}
 .feature + .feature{margin-top:0}
@@ -913,6 +960,8 @@ html.pal-open{overflow:hidden}
 /* ── motion and transparency preferences ────────────────── */
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
+  .fig *{animation:none!important}
+  .feature.in .dr{transition:none}
   .ticker span,.stream s,.poem .wd.new,.pal,.pal-box,.js-reveal .hero-fig,.js-reveal .lab-stage .panel{animation:none}
   .bar::before{display:none}
   .bar-in,.menu,.menu-big li{transition:none;animation:none}
@@ -929,7 +978,7 @@ html.pal-open{overflow:hidden}
 @media print{
   :root{--base:#fff;--surface:#fff;--surface-2:#fff;--fg:#000;--fg-2:#1a1a1a;--muted:#555;--line:#ccc;--line-strong:#999}
   body{font-size:11pt}
-  .bar,.menu,.skip,.foot,.kicker,.jump,.filter,.rail,.r-map,.pl,.ex,.pal,.print,.hero-fig,.fig-note,.ticker,.play,.hero-cta,.feature{display:none!important}
+  .bar,.menu,.skip,.foot,.kicker,.jump,.filter,.rail,.r-map,.feat-head,.pl,.ex,.pal,.print,.hero-fig,.fig-note,.ticker,.play,.hero-cta,.feature{display:none!important}
   .wrap{max-width:none;padding:0}
   .page-title{font-size:36pt;margin-bottom:8pt}
   .lede{font-size:11pt}

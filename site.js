@@ -42,6 +42,17 @@
     nodes.forEach(function (n) { io.observe(n); });
   }
 
+  // a light follows the pointer across the drafting paper of a figure.
+  if (!reduce && window.matchMedia('(hover: hover)').matches) {
+    document.addEventListener('pointermove', function (e) {
+      var host = e.target.closest && e.target.closest('.card, .rows.pics a');
+      var fig = host && host.querySelector('.fig');
+      if (!fig) return;
+      var r = fig.getBoundingClientRect();
+      fig.style.setProperty('--mx', (e.clientX - r.left) + 'px'); fig.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    }, { passive: true });
+  }
+
   // the bar draws in to a capsule once the page has moved.
   var moved = false;
   function onScroll() { var y = window.scrollY > 24; if (y !== moved) { moved = y; root.classList.toggle('scrolled', y); } }
