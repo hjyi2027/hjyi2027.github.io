@@ -117,12 +117,12 @@ html.menu-open{overflow:hidden}
 .pill.sm .pill-dot{width:26px;height:26px;font-size:13px}
 
 /* a text link whose underline draws itself on hover */
-.link,.lede a,.cols a,.fine a,.row .what p a,.item .meta a,.item h3 a,.row .what strong a,table.problems td:first-child a{
+.link,.lede a,.cv-id dd a,.cols a,.fine a,.row .what p a,.item .meta a,.item h3 a,.row .what strong a,table.problems td:first-child a{
   text-decoration:none;
   background-image:linear-gradient(currentColor,currentColor),linear-gradient(var(--line-strong),var(--line-strong));
   background-repeat:no-repeat;background-position:0 100%,0 100%;background-size:0% 1px,100% 1px;
   transition:background-size 320ms var(--ease-out)}
-:is(.link,.lede a,.cols a,.fine a,.row .what p a,.item .meta a,.item h3 a,.row .what strong a,table.problems td:first-child a):is(:hover,:focus-visible){background-size:100% 1px,100% 1px}
+:is(.link,.lede a,.cv-id dd a,.cols a,.fine a,.row .what p a,.item .meta a,.item h3 a,.row .what strong a,table.problems td:first-child a):is(:hover,:focus-visible){background-size:100% 1px,100% 1px}
 .link{display:inline-flex;align-items:baseline;gap:.4em;padding-bottom:2px;font-size:15px}
 .arrow{display:inline-block;transition:transform 320ms var(--ease-out)}
 a:hover .arrow{transform:translateX(4px)}
@@ -703,10 +703,38 @@ main.filtering .feature{display:none}
 .row .what p{max-width:72ch;margin:8px 0 0;font-size:16px;line-height:1.65;color:var(--fg-2);text-wrap:pretty}
 .row .what p a{color:var(--fg)}
 /* cv: a section name held in the left margin while its rows scroll past */
-.cv-links{margin:28px 0 0;align-items:center}
+/* cv hero: who and where on the left, a contents card on the right that
+   counts each section's entries and carries the print button */
+.cv-band{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,5vw,72px);align-items:start;margin-top:clamp(12px,2vw,28px)}
+.cv-id{margin:0;border-top:1px solid var(--line-strong)}
+.cv-id div{display:grid;grid-template-columns:104px minmax(0,1fr);gap:16px;align-items:baseline;padding:16px 0 15px;border-bottom:1px solid var(--line)}
+.cv-id dt{font-family:var(--mono);font-size:11px;line-height:1.5;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.cv-id dd{margin:0;font-family:var(--display);font-size:clamp(22px,2.3vw,30px);line-height:1.15;letter-spacing:-.01em;color:var(--fg);text-wrap:balance}
+.cv-id dd em{font-style:normal;color:color-mix(in srgb,var(--fg) 52%,transparent)}
+.cv-id dd a{color:var(--fg)}
+.cv-mail{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px}
+.cv-id .copy{display:inline-flex;align-items:center;min-height:30px;padding:0 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);
+  font-family:var(--mono);font-size:11px;letter-spacing:.02em;color:var(--fg-2);cursor:pointer;transition:border-color 160ms var(--ease),color 160ms var(--ease),background-color 160ms var(--ease)}
+.cv-id .copy:hover{border-color:var(--fg);background:var(--fg);color:var(--on-fg)}
+.cv-links{margin:24px 0 0;align-items:center}
+.cv-toc{padding:18px 22px 22px;border:1px solid var(--line);border-radius:24px;background:var(--surface);box-shadow:0 1px 2px rgba(23,23,26,.04),0 18px 40px -28px rgba(23,23,26,.22)}
+.toc-h{display:flex;justify-content:space-between;gap:12px;margin:0 0 4px;padding-bottom:12px;border-bottom:1px solid var(--line-strong);
+  font-family:var(--mono);font-size:11px;line-height:1.5;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.cv-toc ol{margin:0;padding:0;list-style:none}
+.cv-toc li + li{border-top:1px solid var(--line)}
+.cv-toc ol a{display:grid;grid-template-columns:30px auto minmax(12px,1fr) auto 16px;align-items:baseline;gap:0 10px;padding:11px 0;color:var(--fg);text-decoration:none}
+.cv-toc ol a::before{content:"";grid-column:3;grid-row:1;align-self:end;margin-bottom:.42em;border-bottom:1px dotted var(--line-strong);transition:border-color 200ms var(--ease)}
+.toc-i{grid-column:1;grid-row:1;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);transition:color 200ms var(--ease)}
+.toc-t{grid-column:2;grid-row:1;font-family:var(--display);font-size:clamp(22px,2.1vw,27px);line-height:1.1;letter-spacing:-.01em}
+.toc-n{grid-column:4;grid-row:1;font-family:var(--mono);font-size:11.5px;color:var(--muted);white-space:nowrap}
+.cv-toc ol a::after{content:"\2192";grid-column:5;grid-row:1;font-size:14px;color:var(--faint);transition:transform 320ms var(--ease-out),color 160ms var(--ease)}
+.cv-toc ol a:is(:hover,:focus-visible)::before{border-color:var(--fg)}
+.cv-toc ol a:is(:hover,:focus-visible)::after{color:var(--fg);transform:translateX(4px)}
+.cv-toc ol a:is(:hover,:focus-visible) .toc-i{color:var(--accent)}
+.cv-toc .pill{display:flex;justify-content:space-between;width:100%;margin-top:14px}
 .links a.pill{min-height:42px;padding:6px 6px 6px 20px;background:var(--fg);border-color:var(--fg);color:var(--on-fg);font-size:14px}
 .links a.pill:hover{background:color-mix(in srgb,var(--fg) 82%,var(--base))}
-.cv-links + .facts{margin-top:clamp(48px,6vw,72px)}
+.cv-band + .facts{margin-top:clamp(48px,6vw,72px)}
 /* cv counts: four cards, the total in ink, each with a unit chart (one dot a
    paper, a problem, or a hundred registrations) that fills as its number runs */
 .facts.cv-facts{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;border:0}
@@ -735,7 +763,6 @@ main.filtering .feature{display:none}
 .cv-facts .total:has(a):hover{background:#2a2a2e}
 .cv-facts .total:has(a)::after{border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.8)}
 .cv-facts .total:has(a):hover::after{background:#fff;border-color:#fff;color:var(--fg)}
-.cv-jump{margin:20px 0 0}
 .cv-sec{position:relative;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:0 clamp(28px,4vw,56px);align-items:start;
   margin-top:clamp(72px,9vw,128px);padding-top:26px;border-top:1px solid var(--line-strong)}
 /* the rule over a section inks itself in as the section comes up the page */
@@ -942,8 +969,8 @@ html.pal-open{overflow:hidden}
 /* hidden state is gated on .js-reveal, set by an inline script in <head>,
    so nothing flashes and nothing is hidden without js. each block comes
    into focus as it arrives: up a little, out of a soft blur. */
-.js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big,.r-map):not(.in){opacity:0;filter:blur(8px);transform:translateY(18px)}
-:is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big,.r-map).in{
+.js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big,.r-map,.cv-id,.cv-toc):not(.in){opacity:0;filter:blur(8px);transform:translateY(18px)}
+:is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big,.r-map,.cv-id,.cv-toc).in{
   transition:opacity 900ms var(--ease-out),transform 1000ms var(--ease-out),filter 900ms var(--ease-out);transition-delay:var(--d,0ms)}
 /* headline lines rise out of their own baseline, one after another */
 .js-reveal :is(.poster,.big,.mail,.page-title) .w{transition:clip-path 1000ms var(--ease-out),transform 1000ms var(--ease-out);transition-delay:calc(var(--k,0)*90ms)}
@@ -1021,6 +1048,9 @@ html.pal-open{overflow:hidden}
   .facts div:nth-child(n+3){border-top:1px solid var(--line)}
   .facts.six{grid-template-columns:1fr 1fr;gap:10px}
   .facts.cv-facts{grid-template-columns:1fr 1fr;gap:10px}
+  .cv-id div{grid-template-columns:80px minmax(0,1fr);gap:12px}
+  .cv-toc{padding:16px 18px 18px}
+  .cv-toc ol a{grid-template-columns:26px auto minmax(10px,1fr) auto 14px;gap:0 8px}
   .cv-facts div,.cv-facts div:first-child,.cv-facts div:nth-child(odd),.cv-facts div:nth-child(n+3){min-height:200px;padding:18px 18px 16px;border:0}
   .cv-facts div:has(a)::after{right:14px;top:14px;width:28px;height:28px}
   .cv-facts dt{padding-right:34px;font-size:14px}
@@ -1064,6 +1094,7 @@ html.pal-open{overflow:hidden}
   .item.has-fig{padding-right:0;min-height:0}
   ul.plain li{padding-left:40px}
   .cv-sec{grid-template-columns:1fr;gap:20px}
+  .cv-band{grid-template-columns:1fr}
   .wrap h2.chap{gap:14px 16px;padding:20px 0 22px}
   .chap .h-t::before{margin-bottom:14px}
   .f-where{display:none!important}
@@ -1134,7 +1165,7 @@ html.pal-open{overflow:hidden}
   .bar-in,.menu,.menu-big li{transition:none;animation:none}
   ::view-transition-old(root),::view-transition-new(root){animation:none}
   .pill-dot,.arrow,.mail-go,.map-c a,.facts.six div,.facts.six div::after,.act::after,.tl a::after,.hbars i::after,.fig svg,.lab-tabs .td,.rows li a::after,.item::after,.bar-row i::after,.split-fig rect,.rail a::before,.link,.item h3 a{transition:none}
-  .js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big,.r-map):not(.in){opacity:1;filter:none;transform:none}
+  .js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big,.r-map,.cv-id,.cv-toc):not(.in){opacity:1;filter:none;transform:none}
   .js-reveal :is(.poster,.big,.mail,.page-title):not(.in) .w{clip-path:none;transform:none}
 }
 @media (prefers-reduced-transparency:reduce){
@@ -1194,6 +1225,15 @@ html.pal-open{overflow:hidden}
   .facts dd{font-size:22pt}
   .facts dt{font-size:9.5pt}
   .cv-links{margin-top:8pt}
+  .cv-toc{display:none}
+  .cv-band{display:block;margin:0}
+  .cv-id{display:block;margin:0;border:0}
+  .cv-id div{display:inline;padding:0;border:0}
+  .cv-id dt,.cv-id .copy{display:none}
+  .cv-id dd,.cv-mail{display:inline;font-family:var(--sans);font-size:11pt;letter-spacing:0;color:var(--fg-2)}
+  .cv-id dd em{color:inherit}
+  .cv-id div:not(:last-child)::after{content:" \00b7  ";color:var(--fg-2)}
+  .cv-band + .facts{margin-top:14pt}
   .links a{min-height:0;padding:0 14pt 0 0;border:0;background:none;font-size:10pt}
   .links a[href^="http"]::after{content:": " attr(href);font-weight:400;color:#555}
   .tools,.langs{display:block}

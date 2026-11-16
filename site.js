@@ -13,7 +13,7 @@
   // reveal each block once as it arrives. siblings that enter on the same
   // frame stagger, so a section lands as a sequence rather than a slab.
   var sel = '.kicker, .num, .eyebrow, .lede, h2, h3.sub, .item, .row, ul.plain, .links, .latest, ' +
-            '.page-title, .poster, .big, .mail, .cols, .rows, .facts, .play, .poster-sub, .hero-cta, .sec-head, .ticker, .feature, .hero-at, .fig-note, .nf-fig, .night, .sponsors, .about-fig, .points, .tl-day, .foot-in, .foot-big, .r-map';
+            '.page-title, .poster, .big, .mail, .cols, .rows, .facts, .play, .poster-sub, .hero-cta, .sec-head, .ticker, .feature, .hero-at, .fig-note, .nf-fig, .night, .sponsors, .about-fig, .points, .tl-day, .foot-in, .foot-big, .r-map, .cv-id, .cv-toc';
   document.querySelectorAll('.poster, .big, .mail, .page-title').forEach(function (h) {
     h.querySelectorAll('.w').forEach(function (w, k) { w.style.setProperty('--k', k); });
   });
@@ -80,6 +80,14 @@
   // 404: name the address that was asked for.
   var nf = document.querySelector('.nf-path');
   if (nf) { nf.textContent = 'No page at ' + location.pathname.slice(0, 80); nf.hidden = false; }
+
+  // cv: the contents card counts the entries under each section.
+  document.querySelectorAll('.cv-toc ol a').forEach(function (a) {
+    var h = document.getElementById(a.getAttribute('href').slice(1)), sec = h && h.closest('.cv-sec'), n = a.querySelector('.toc-n');
+    if (!sec || !n) return;
+    var k = sec.querySelectorAll('.cv-body > .row').length;
+    n.textContent = k + (k === 1 ? ' entry' : ' entries');
+  });
 
   // cv: the print link exists only when printing can be triggered.
   var p = document.querySelector('.print');
