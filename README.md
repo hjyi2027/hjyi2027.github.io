@@ -20,7 +20,7 @@ personal site of hyunjun yi. hand-written html, one stylesheet, one script. no b
 
 1. edit its entry in `research.html` (title link, the `.meta` line, position in the list)
 2. update the counts strip at the top of `research.html`, the two description metas, and the `updated` stamp. the ten highlight cards under the counts repeat a status line each; keep them in step with their entries
-3. update the counts strip, the `all 46 papers` button, the about paragraph and the `latest` timeline in `index.html` (one `.tl-day` per date, one row per result, newest first), and the counts strip and research paragraph in `cv.html` if the totals they quote moved
+3. update the counts strip, the `all 46 papers` button, the about paragraph and the `latest` timeline in `index.html` (one `.tl-day` per date, one row per result, newest first), and the counts strip, the research paragraphs and the figure strips above them (`.cv-figs`) in `cv.html` if the totals they quote moved
 4. bump `lastmod` in `sitemap.xml`
 
 the homepage hero names the venues with acceptances (`.hero-at`); add a venue there when a new one accepts.

@@ -760,11 +760,43 @@ main.filtering .feature{display:none}
 .cv-body .row.undated{grid-template-columns:1fr}
 .cv-body .row:first-child{padding-top:4px}
 .cv-body .row:last-child{border-bottom:0;padding-bottom:0}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 0;padding:0;list-style:none}
-.chips li{display:inline-flex;align-items:baseline;gap:8px;padding:7px 15px;border:1px solid var(--line);border-radius:999px;background:var(--surface);
-  font-size:14.5px;font-weight:500;line-height:1.3;color:var(--fg)}
-.chips li span{font-family:var(--mono);font-size:11.5px;font-weight:400;color:var(--muted)}
-.chips + p{margin-top:14px}
+/* skills: tools as numbered tiles, a method in two voices, languages as a
+   ledger with a five-step level meter that fills when the row comes in */
+.row .what strong em{font-style:normal;color:color-mix(in srgb,var(--fg) 52%,transparent)}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:8px;margin:0;padding:0;list-style:none;counter-reset:tool}
+.cv-body.stack .row{grid-template-columns:1fr;gap:16px}
+.cv-body.stack .row .when{padding-top:0}
+.tools li{display:flex;flex-direction:column;padding:13px 14px 16px;border:1px solid var(--line);border-radius:16px;background:var(--surface);
+  counter-increment:tool;transition:border-color 200ms var(--ease),transform 320ms var(--ease-out),box-shadow 320ms var(--ease)}
+.tools li::before{content:counter(tool,decimal-leading-zero);margin-bottom:30px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted)}
+.tools b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(24px,2.2vw,30px);line-height:1;letter-spacing:-.012em;color:var(--fg)}
+.tools span{display:block;margin-top:7px;font-family:var(--mono);font-size:11px;line-height:1.4;color:var(--muted)}
+@media (hover:hover){
+  .tools li:hover{border-color:var(--line-strong);transform:translateY(-3px);box-shadow:var(--shadow)}
+}
+.js-reveal .row:not(.in) .tools li{opacity:0}
+.row.in .tools li{animation:tile-in 640ms var(--ease-out) 120ms backwards}
+.row.in .tools li:nth-child(2){animation-delay:190ms}
+.row.in .tools li:nth-child(3){animation-delay:260ms}
+.row.in .tools li:nth-child(4){animation-delay:330ms}
+.row.in .tools li:nth-child(5){animation-delay:400ms}
+@keyframes tile-in{from{opacity:0;transform:translateY(12px)}}
+.row .what .cv-act{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
+.langs{margin:0;padding:0;list-style:none}
+.langs li{display:grid;grid-template-columns:minmax(0,1fr) auto 172px;align-items:center;gap:24px;padding:14px 0;border-bottom:1px solid var(--line)}
+.langs li:first-child{padding-top:0}
+.langs b{font-family:var(--display);font-weight:400;font-size:clamp(26px,2.6vw,34px);line-height:1.12;letter-spacing:-.012em;color:var(--fg)}
+.langs small{font-family:var(--mono);font-size:12px;line-height:1.4;color:var(--muted)}
+.lv{display:flex;gap:4px}
+.lv i{position:relative;width:24px;height:6px;overflow:hidden;border-radius:3px;background:var(--line)}
+.lv.l5 i::after,.lv.l3 i:nth-child(-n+3)::after,.lv.l2 i:nth-child(-n+2)::after{content:"";position:absolute;inset:0;background:var(--fg);transform-origin:left}
+.js-reveal .row:not(.in) .lv i::after{transform:scaleX(0)}
+.row.in .lv i::after{transition:transform 420ms var(--ease-out) 200ms}
+.row.in .lv i:nth-child(2)::after{transition-delay:290ms}
+.row.in .lv i:nth-child(3)::after{transition-delay:380ms}
+.row.in .lv i:nth-child(4)::after{transition-delay:470ms}
+.row.in .lv i:nth-child(5)::after{transition-delay:560ms}
+.row .what .lv-note{margin:14px 0 0;font-family:var(--mono);font-size:11.5px;color:var(--muted)}
 ul.plain{margin:0;padding-left:0;list-style:none;counter-reset:item}
 ul.plain li{position:relative;margin:0;padding:16px 0 16px 72px;border-bottom:1px solid var(--line);font-size:16.5px;color:var(--fg-2);counter-increment:item}
 ul.plain li::before{content:counter(item,decimal-leading-zero);position:absolute;left:0;top:21px;
@@ -1026,6 +1058,17 @@ html.pal-open{overflow:hidden}
   .cv-figs div + div{border-top:1px solid var(--line)}
   .cv-figs dd{min-width:3em;font-size:32px}
   .cv-figs dt{max-width:none}
+  /* five tiles do not fit a phone; they become a numbered list like the languages */
+  .tools{grid-template-columns:1fr;gap:0}
+  .tools li{flex-direction:row;align-items:baseline;gap:14px;padding:12px 0;border:0;border-bottom:1px solid var(--line);border-radius:0;background:none}
+  .tools li:first-child{padding-top:0}
+  .tools li::before{min-width:2.4ch;margin:0}
+  .tools b{font-size:26px}
+  .tools span{margin:0 0 0 auto;text-align:right}
+  .langs li{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"n m" "l m";gap:2px 16px}
+  .langs b{grid-area:n}
+  .langs .lv{grid-area:m}
+  .langs small{grid-area:l}
   .row{grid-template-columns:1fr;gap:4px}
   .row .when{padding-top:0}
   .filter{grid-template-columns:minmax(0,1fr) auto;border-radius:22px}
@@ -1045,7 +1088,10 @@ html.pal-open{overflow:hidden}
   html{scroll-behavior:auto}
   .fig *{animation:none!important}
   .cv-sec::before,.now::before{animation:none}
-  .js-reveal .row:not(.in) .cv-figs div{opacity:1;transform:none}
+  .js-reveal .row:not(.in) .cv-figs div,.js-reveal .row:not(.in) .tools li{opacity:1;transform:none}
+  .row.in .tools li{animation:none}
+  .tools li{transition:none}
+  .js-reveal .row:not(.in) .lv i::after{transform:none}
   .feature.in .dr{transition:none}
   .ticker span,.stream s,.poem .wd.new,.pal,.pal-box,.js-reveal .hero-fig,.js-reveal .lab-stage .panel{animation:none}
   .bar::before{display:none}
@@ -1104,7 +1150,18 @@ html.pal-open{overflow:hidden}
   .cv-links{margin-top:8pt}
   .links a{min-height:0;padding:0 14pt 0 0;border:0;background:none;font-size:10pt}
   .links a[href^="http"]::after{content:": " attr(href);font-weight:400;color:#555}
-  .chips li{padding:2pt 8pt;font-size:10pt}
+  .tools,.langs{display:block}
+  .cv-body.stack .row{grid-template-columns:84pt 1fr;gap:12pt}
+  .cv-body.stack .row .when{padding-top:3pt}
+  .tools li,.langs li{display:inline;min-height:0;padding:0;border:0;background:none;font-size:10pt}
+  .tools li::before,.tools span,.lv,.lv-note,.row .what .cv-act{display:none}
+  .tools li:not(:last-child) b::after{content:","}
+  .langs li:not(:last-child)::after{content:" \00b7  "}
+  .tools b,.langs b{display:inline;margin:0;font-family:var(--sans);font-weight:500;font-size:10pt;letter-spacing:0}
+  .langs small{font-family:var(--sans);font-size:10pt;text-transform:lowercase}
+  .langs small::before{content:"("}
+  .langs small::after{content:")"}
+  .row .what strong em{color:inherit}
   .row .what strong{font-size:13pt}
   ul.plain li{padding:6pt 0 6pt 34pt}
   ul.plain li::before{top:8pt}
