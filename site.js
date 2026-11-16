@@ -323,8 +323,8 @@
     }
   });
   heads.forEach(function (h) {
-    h._label = h.textContent.trim();
-    if (h.tagName === 'H2') { h._count = document.createElement('span'); h._count.className = 'h-n'; h.appendChild(h._count); }
+    h._label = h.textContent.replace(/\s+/g, ' ').trim().replace(/\.$/, '');
+    h._count = document.createElement('span'); h._count.className = 'h-n'; h.appendChild(h._count);
   });
 
   // a map of the page beside the lede: one square a paper, grouped by status.
@@ -470,7 +470,7 @@
   var box = document.createElement('div'); box.className = 'filter'; box.setAttribute('role', 'search');
   box.innerHTML = '<div class="f-field"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="5.5"/><path d="M13.2 13.2 17 17"/></svg>' +
     '<input type="search" placeholder="Filter by title, venue or any word" autocomplete="off" spellcheck="false" aria-label="Filter the entries">' +
-    '<kbd class="f-key">/</kbd><button type="button" class="f-clear" aria-label="Clear the filter" hidden>&times;</button></div>' +
+    '<span class="f-where" aria-hidden="true"></span><kbd class="f-key">/</kbd><button type="button" class="f-clear" aria-label="Clear the filter" hidden>&times;</button></div>' +
     '<p class="f-n" aria-live="polite"></p>' +
     '<div class="f-view" role="group" aria-label="How much of each entry to show"><button type="button" aria-pressed="true">Full</button><button type="button" aria-pressed="false">Titles</button></div>' +
     '<div class="f-chips" role="group" aria-label="Filter by venue or authorship"></div>' +
@@ -589,7 +589,7 @@
   var marks = heads.filter(function (h) { return h.id; });
   if (marks.length < 3) return;
   var rail = document.createElement('div'); rail.className = 'rail'; rail.setAttribute('role', 'navigation'); rail.setAttribute('aria-label', 'Sections of this page');
-  var short = { accepted: 'Accepted', mathematics: 'Mathematics' };
+  var short = { accepted: 'Accepted', mathematics: 'Mathematics' }, where = box.querySelector('.f-where');
   var links = marks.map(function (h) {
     var a = document.createElement('a'); a.href = '#' + h.id; a.textContent = short[h.id] || h._label;
     if (h.tagName === 'H3') a.className = 'sub';
@@ -599,7 +599,8 @@
   var queued = false;
   function spy() {
     queued = false; var on = -1;
-    for (var k = 0; k < marks.length; k++) { if (!marks[k].hidden && marks[k].getBoundingClientRect().top < 200) on = k; }
+    for (var k = 0; k < marks.length; k++) { if (!marks[k].hidden && marks[k].getBoundingClientRect().top < 260) on = k; }
+    where.textContent = on > -1 ? links[on].textContent : '';
     links.forEach(function (a, k) { a.classList.toggle('on', k === on); if (k === on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
   }
   window.addEventListener('scroll', function () { if (!queued) { queued = true; requestAnimationFrame(spy); } }, { passive: true });

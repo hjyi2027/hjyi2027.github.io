@@ -444,8 +444,33 @@ p.cols{display:block;margin:0}
 .wrap h2::before{content:counter(sec,decimal-leading-zero);font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.06em;color:var(--muted)}
 .wrap h2 .h-n{margin-left:auto;font-family:var(--mono);font-weight:400;font-size:12px;letter-spacing:0;color:var(--muted)}
 .wrap h2 + .lede{margin-top:24px;font-size:17px}
-h3.sub{margin:56px 0 0;padding:0 0 12px;border-bottom:1px solid var(--line);
-  font-family:var(--display);font-weight:400;font-size:clamp(28px,3vw,38px);line-height:1.08;letter-spacing:-.012em;color:var(--fg)}
+/* on the research page a section opens like a chapter: a rule, its number, the
+   name set large in two tones, and the number of entries under it at the far end.
+   the small square repeats the colour that section has in the map at the top. */
+.wrap h2.chap{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"n c" "t c";align-items:end;gap:18px 28px;
+  margin:clamp(96px,12vw,168px) 0 0;padding:24px 0 28px;border-top:1px solid var(--fg);border-bottom:1px solid var(--line);
+  font-family:var(--display);font-weight:400;font-size:clamp(42px,6.4vw,92px);line-height:.96;letter-spacing:-.02em}
+.wrap h2.chap::before{grid-area:n;align-self:start;content:"Section " counter(sec,decimal-leading-zero);
+  font-family:var(--mono);font-size:11px;line-height:1.5;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.chap .h-t{grid-area:t;display:block;min-width:0}
+.chap .h-t::before{content:"";display:block;width:16px;height:16px;margin:0 0 20px;border:1.5px solid var(--fg);border-radius:5px;background:var(--fg)}
+#in-review .h-t::before{background:none}
+#mathematics .h-t::before{background:var(--accent);border-color:var(--accent)}
+.chap em{display:block;font-style:normal;color:color-mix(in srgb,currentColor 52%,transparent)}
+.wrap h2.chap .h-n{grid-area:c;margin:0;font-family:var(--display);font-size:clamp(56px,9vw,132px);line-height:.8;letter-spacing:-.03em;color:var(--fg);text-align:right}
+.wrap h2.chap .h-n::after{content:"entries";display:block;margin-top:14px;font-family:var(--mono);font-size:11px;line-height:1.5;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+main.filtering h2.chap{margin-top:72px}
+/* a part of a section: the same square, a serif name, its count */
+h3.sub{display:flex;align-items:center;gap:14px;margin:clamp(64px,7vw,96px) 0 0;padding:0 0 18px;border-bottom:1px solid var(--line-strong);
+  font-family:var(--display);font-weight:400;font-size:clamp(32px,4vw,54px);line-height:1.02;letter-spacing:-.015em;color:var(--fg)}
+h3.sub::before{content:"";flex:none;width:14px;height:14px;border:1.5px solid var(--fg);border-radius:4px;background:var(--fg)}
+#solved::before{background:var(--accent);border-color:var(--accent)}
+#new-records::before{background:#dfe5fb;border-color:var(--accent)}
+#new-discoveries::before{background:var(--warm);border-color:var(--warm)}
+#in-revision::before{background:none;border-style:dashed}
+h3.sub .h-n{margin-left:auto;font-family:var(--mono);font-size:12px;letter-spacing:0;color:var(--muted)}
+h3.sub .h-n::after{content:" entries"}
+main.filtering h3.sub{margin-top:48px}
 
 /* research entries: numbered ruled rows, serif titles */
 .item{position:relative;isolation:isolate;margin:0;padding:34px 0 36px 72px;border-bottom:1px solid var(--line);counter-increment:item}
@@ -721,6 +746,9 @@ ul.plain li::before{content:counter(item,decimal-leading-zero);position:absolute
 .f-clear{flex:none;display:grid;place-items:center;width:28px;height:28px;padding:0 0 2px;border:0;border-radius:50%;background:var(--surface-2);
   font:inherit;font-size:18px;line-height:1;color:var(--fg-2);cursor:pointer;transition:background-color 160ms var(--ease),color 160ms var(--ease)}
 .f-clear:hover{background:var(--fg);color:var(--on-fg)}
+/* while the toolbar follows, it also says which section is under it */
+.f-where{display:none;flex:none;max-width:22ch;padding:3px 10px;border-radius:999px;background:var(--surface-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--mono);font-size:12px;color:var(--fg-2)}
+.filter.stuck .f-where:not(:empty){display:block}
 .f-n{margin:0 4px;font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap}
 .f-n b{font-family:var(--display);font-weight:400;font-size:26px;line-height:1;letter-spacing:-.01em;color:var(--fg);margin-right:6px;vertical-align:-3px}
 .f-n button{font:inherit;margin-left:12px;padding:0;background:none;border:0;border-bottom:1px solid var(--fg);color:var(--fg);cursor:pointer}
@@ -925,6 +953,9 @@ html.pal-open{overflow:hidden}
   .item.has-fig{padding-right:0;min-height:0}
   ul.plain li{padding-left:40px}
   .cv-sec{grid-template-columns:1fr;gap:20px}
+  .wrap h2.chap{gap:14px 16px;padding:20px 0 22px}
+  .chap .h-t::before{margin-bottom:14px}
+  .f-where{display:none!important}
   /* the ledger becomes a stack of cards, each cell under its own label */
   table.problems,table.problems tbody,table.problems tr,table.problems td,table.problems th{display:block}
   table.problems thead{display:none}
@@ -983,6 +1014,9 @@ html.pal-open{overflow:hidden}
   .page-title{font-size:36pt;margin-bottom:8pt}
   .lede{font-size:11pt}
   .wrap h2{margin-top:22pt;font-size:13pt}
+  .wrap h2.chap{display:block;margin-top:22pt;padding:8pt 0;font-size:22pt}
+  .wrap h2.chap::before,.chap .h-t::before,.wrap h2.chap .h-n{display:none}
+  .chap em{display:inline}
   h3.sub{margin-top:16pt;font-size:16pt}
   .item,.row,ul.plain li{break-inside:avoid}
   .item{padding:10pt 0 10pt 34pt}
