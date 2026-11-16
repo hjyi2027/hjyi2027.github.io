@@ -347,6 +347,15 @@ table.problems tbody tr:not(.grp):hover td{background:var(--base)}
 .fig .thin{stroke-width:1.6}
 main.filtering .feature{display:none}
 
+/* 404: the missing page drawn as a point missing from a configuration */
+.nf{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(32px,6vw,80px);align-items:center;margin-top:8px}
+.nf .fig{aspect-ratio:4/3}
+.nf-path{margin:0 0 4px;font-family:var(--mono);font-size:12px;line-height:1.6;color:var(--muted);overflow-wrap:anywhere}
+.nf-hint{font-size:14px;color:var(--muted)}
+.nf-hint kbd{padding:2px 7px;border:1px solid var(--line-strong);border-radius:6px;font-family:var(--mono);font-size:12px;color:var(--fg)}
+.fig .gone{fill:none;stroke:var(--accent);stroke-width:1.6;stroke-dasharray:3 3}
+.fig .lbl{font-family:var(--mono);font-size:11px;fill:var(--accent)}
+
 /* research counts: a hairline grid that works for any number of cells */
 .facts.six{grid-template-columns:repeat(3,1fr);gap:1px;margin:44px 0 24px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .facts.six div{padding:22px 24px 20px;border:0;background:var(--base)}
@@ -450,8 +459,8 @@ html.pal-open{overflow:hidden}
 /* hidden state is gated on .js-reveal, set by an inline script in <head>,
    so nothing flashes and nothing is hidden without js. each block comes
    into focus as it arrives: up a little, out of a soft blur. */
-.js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note):not(.in){opacity:0;filter:blur(8px);transform:translateY(18px)}
-:is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note).in{
+.js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig):not(.in){opacity:0;filter:blur(8px);transform:translateY(18px)}
+:is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig).in{
   transition:opacity 900ms var(--ease-out),transform 1000ms var(--ease-out),filter 900ms var(--ease-out);transition-delay:var(--d,0ms)}
 /* headline lines rise out of their own baseline, one after another */
 .js-reveal :is(.poster,.big,.mail,.page-title) .w{transition:clip-path 1000ms var(--ease-out),transform 1000ms var(--ease-out);transition-delay:calc(var(--k,0)*90ms)}
@@ -509,6 +518,7 @@ html.pal-open{overflow:hidden}
   .pl,main.compact .pl{left:auto;right:0;top:20px}
   ul.plain li{padding-left:40px}
   .cv-sec{grid-template-columns:1fr;gap:20px}
+  .nf{grid-template-columns:1fr}
   .wrap .cv-sec h2{position:static}
   .cv-body .row{grid-template-columns:1fr;gap:4px}
   .row{grid-template-columns:1fr;gap:4px}
@@ -527,7 +537,7 @@ html.pal-open{overflow:hidden}
   .bar::after{display:none}
   ::view-transition-old(root),::view-transition-new(root){animation:none}
   .pill-dot,.arrow,.fig svg,.rows li a::after,.item::after,.bar-row i::after,.split-fig rect,.rail a::before,.link,.item h3 a{transition:none}
-  .js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note):not(.in){opacity:1;filter:none;transform:none}
+  .js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig):not(.in){opacity:1;filter:none;transform:none}
   .js-reveal :is(.poster,.big,.mail,.page-title):not(.in) .w{clip-path:none;transform:none}
 }
 @media (prefers-reduced-transparency:reduce){
