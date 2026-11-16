@@ -875,7 +875,7 @@ main.filtering .feature{display:none}
 .act.go::after{content:"\2192"}
 .act.go:hover::after{transform:translateX(3px)}
 @media (hover:hover){
-  .cv-body .row:has(.cv-sel,.cv-res,.cv-yimo):hover::after{opacity:0}
+  .cv-body .row:has(.cv-sel,.cv-res,.cv-yimo,.cv-code):hover::after{opacity:0}
 }
 /* leadership: yimo as a small night panel, as on the homepage: its figures,
    the format drawing and the sponsors */
@@ -950,6 +950,39 @@ main.filtering .feature{display:none}
 .row.in .tools li:nth-child(4){animation-delay:330ms}
 .row.in .tools li:nth-child(5){animation-delay:400ms}
 @keyframes tile-in{from{opacity:0;transform:translateY(12px)}}
+/* code: the public repositories as cards, each naming the paper it backs and
+   which of the listed tools it uses; pointing at a card lifts those tiles */
+.cv-code{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0;padding:0;list-style:none}
+.cv-code a{position:relative;display:flex;flex-direction:column;height:100%;padding:15px 18px 18px;border:1px solid var(--line);border-radius:16px;
+  background:var(--surface);color:var(--fg);text-decoration:none;transition:border-color 200ms var(--ease),transform 320ms var(--ease-out),box-shadow 320ms var(--ease)}
+.cv-code a::after{content:"\2197";position:absolute;top:14px;right:14px;display:grid;place-items:center;width:28px;height:28px;border:1px solid var(--line);border-radius:50%;
+  font-size:12px;color:var(--muted);transition:background-color 200ms var(--ease),border-color 200ms var(--ease),color 200ms var(--ease),transform 320ms var(--ease-out)}
+.cd-n{padding-right:40px;font-family:var(--mono);font-size:15px;line-height:1.35;color:var(--fg);overflow-wrap:anywhere}
+.cd-n span{display:block;margin-bottom:2px;font-size:11px;letter-spacing:.02em;color:var(--muted)}
+.cd-d{display:block;margin:10px 0 18px;font-size:14.5px;line-height:1.5;color:var(--fg-2);text-wrap:pretty}
+.cd-d cite{font-style:normal;color:var(--fg)}
+.cd-s{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.cd-s i{padding:1px 9px;border:1px solid var(--line-strong);border-radius:999px;font-family:var(--mono);font-size:11px;font-style:normal;line-height:1.6;color:var(--fg-2)}
+.cd-s i:first-child::before{content:"";display:inline-block;width:6px;height:6px;margin:0 6px 1px 0;border-radius:50%;background:var(--accent)}
+@media (hover:hover){
+  .cv-code a:hover{border-color:var(--line-strong);transform:translateY(-3px);box-shadow:var(--shadow)}
+  .cv-code a:hover::after{background:var(--fg);border-color:var(--fg);color:var(--on-fg);transform:translate(2px,-2px)}
+  .stack:has(.cv-code a:hover) .tools li{opacity:.42}
+  .stack:has(.cv-code [data-t~=python]:hover) .tools [data-t=python],
+  .stack:has(.cv-code [data-t~=pytorch]:hover) .tools [data-t=pytorch],
+  .stack:has(.cv-code [data-t~=numpy]:hover) .tools [data-t=numpy],
+  .stack:has(.cv-code [data-t~=latex]:hover) .tools [data-t=latex]{opacity:1;border-color:var(--fg);transform:translateY(-3px);box-shadow:var(--shadow)}
+  .tools li{transition:border-color 200ms var(--ease),transform 320ms var(--ease-out),box-shadow 320ms var(--ease),opacity 240ms var(--ease)}
+}
+.cv-code a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.js-reveal .row:not(.in) .cv-code li{opacity:0}
+.row.in .cv-code li{animation:tile-in 640ms var(--ease-out) 120ms backwards}
+.row.in .cv-code li:nth-child(2){animation-delay:200ms}
+.row.in .cv-code li:nth-child(3){animation-delay:280ms}
+.row.in .cv-code li:nth-child(4){animation-delay:360ms}
+.cv-res a[href^="http"]::after{content:"\2197"}
+.cv-meth li:last-child{border-bottom:0}
+.row .what strong + .cv-k{margin-top:24px}
 .row .what .cv-act{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
 .langs{margin:0;padding:0;list-style:none}
 .langs li{display:grid;grid-template-columns:minmax(0,1fr) auto 172px;align-items:center;gap:24px;padding:14px 0;border-bottom:1px solid var(--line)}
@@ -1260,6 +1293,7 @@ html.pal-open{overflow:hidden}
   .tools li::before{min-width:2.4ch;margin:0}
   .tools b{font-size:26px}
   .tools span{margin:0 0 0 auto;text-align:right}
+  .cv-code{grid-template-columns:1fr}
   .langs li{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"n m" "l m";gap:2px 16px}
   .langs b{grid-area:n}
   .langs .lv{grid-area:m}
@@ -1294,7 +1328,9 @@ html.pal-open{overflow:hidden}
   .hon-top li,.hon-fig *{transition:none}
   .js-reveal .row:not(.in) .vb{clip-path:none}
   .row.in .vb{transition:none}
-  .tools li{transition:none}
+  .tools li,.cv-code a,.cv-code a::after{transition:none}
+  .js-reveal .row:not(.in) .cv-code li{opacity:1}
+  .row.in .cv-code li{animation:none}
   .js-reveal .row:not(.in) .lv i::after{transform:none}
   .feature.in .dr{transition:none}
   .ticker span,.stream s,.poem .wd.new,.pal,.pal-box,.js-reveal .hero-fig,.js-reveal .lab-stage .panel{animation:none}
@@ -1347,7 +1383,7 @@ html.pal-open{overflow:hidden}
   p.print-only{display:block}
   .row.print-only{display:grid}
   .hon-top{display:none}
-  .cv-lead,.cv-sel,.cv-res,.cv-venues,.row .what .cv-k,.cv-yimo,.cv-yl{display:none}
+  .cv-lead,.cv-sel,.cv-res,.cv-venues,.row .what .cv-k,.cv-yimo,.cv-yl,.cv-code{display:none}
   .wrap .cv-sec h2 em{display:inline;font-size:inherit;color:inherit}
   .cv-head{position:static;break-after:avoid}
   .cv-body .row:first-child{break-before:avoid;break-inside:avoid}
