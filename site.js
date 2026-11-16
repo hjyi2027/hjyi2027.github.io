@@ -282,6 +282,13 @@
     if (h.tagName === 'H2') { h._count = document.createElement('span'); h._count.className = 'h-n'; h.appendChild(h._count); }
   });
 
+  // the table's status cells become small tags.
+  Array.prototype.forEach.call(document.querySelectorAll('table.problems tbody td:last-child'), function (td) {
+    var parts = td.textContent.split('\u00b7').map(function (p) { return p.trim(); }).filter(Boolean);
+    td.textContent = '';
+    parts.forEach(function (p) { var t = document.createElement('span'); t.className = 'tag' + (/^jmm /i.test(p) ? ' on' : ''); t.textContent = p; td.appendChild(t); });
+  });
+
   // each entry is written as a title, one record line and an abstract. here the
   // record line is laid out in parts: status above the title, authorship under
   // it, and the links as buttons after the abstract. the written line stays in
