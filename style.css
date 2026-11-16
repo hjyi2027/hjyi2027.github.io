@@ -77,6 +77,9 @@ a{color:inherit}
 .pill-dot{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:999px;font-size:14px;
   background:color-mix(in srgb,var(--on-fg) 12%,transparent);transition:transform 320ms var(--ease-out)}
 .pill:hover .pill-dot{transform:translateX(2px)}
+.pill.light{background:#fff;color:#17171a}
+.pill.light:hover{background:#ececea}
+.pill.light .pill-dot{background:rgba(23,23,26,.08)}
 .pill.sm{min-height:40px;padding:6px 6px 6px 18px;font-size:14px}
 .pill.sm .pill-dot{width:26px;height:26px;font-size:13px}
 
@@ -113,12 +116,12 @@ a:hover .arrow{transform:translateX(4px)}
 
 /* small light pills: section jumps, filter chips, instrument controls */
 .jump{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 8px}
-.jump a,.f-chips button,.f-view button,.panel button,.links a{
+.jump a,.f-chips button,.f-view button,.panel button,.links a,.links button{
   display:inline-flex;align-items:center;min-height:36px;padding:0 16px;border:1px solid var(--line);border-radius:999px;
   background:var(--surface);color:var(--fg);font:inherit;font-size:14px;font-weight:500;line-height:1;letter-spacing:-.005em;
   text-decoration:none;white-space:nowrap;cursor:pointer;
   transition:background-color 160ms var(--ease),color 160ms var(--ease),border-color 160ms var(--ease)}
-:is(.jump a,.f-chips button,.f-view button,.panel button,.links a):hover{border-color:var(--line-strong)}
+:is(.jump a,.f-chips button,.f-view button,.panel button,.links a,.links button):hover{border-color:var(--line-strong)}
 :is(.f-chips,.f-view,.panel) button[aria-pressed="true"]{background:var(--fg);color:var(--on-fg);border-color:var(--fg)}
 .stamp{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--muted)}
 
@@ -190,15 +193,38 @@ p.cols{display:block;margin:0}
 .latest time{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap}
 .latest a{color:var(--fg)}
 
-#yimo .facts{margin-top:clamp(48px,6vw,80px)}
+/* yimo: the one dark room on the page */
+.night{--fg:#f5f5f2;--fg-2:rgba(245,245,242,.74);--muted:rgba(245,245,242,.58);--line:rgba(245,245,242,.15);--line-strong:rgba(245,245,242,.34);--accent:#9db0ff;
+  padding:clamp(28px,5.4vw,80px);border-radius:32px;background:#141416;color:var(--fg)}
+.night .two{align-items:center}
+.night .cols{margin-top:28px}
+.night .hero-cta{margin-top:32px}
+.night .facts{margin-top:clamp(40px,5.4vw,72px)}
+.night ::selection{background:#f5f5f2;color:#141416}
+.yimo-fig{display:block;width:100%;height:auto;overflow:visible}
+.yimo-fig text{font-family:var(--mono);font-size:11.5px;fill:var(--muted)}
+.yimo-fig .sq rect{fill:var(--fg)}
+.yimo-fig .dots circle{fill:var(--accent)}
+.yimo-fig .flow{fill:none;stroke:var(--line-strong);stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
+.sponsors{margin:28px 0 0;font-size:14px;line-height:1.6;color:var(--fg-2)}
+.sponsors span{margin-right:8px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 
 /* contact */
-.mail{display:block;margin:0;font-family:var(--display);text-decoration:none;color:var(--fg);
-  font-size:clamp(44px,8.6vw,132px);line-height:.98;letter-spacing:-.02em}
+.mail{display:flex;align-items:center;justify-content:space-between;gap:24px;margin:clamp(40px,5vw,72px) 0 0;padding:clamp(20px,2.6vw,36px) 0;
+  border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);
+  font-family:var(--display);text-decoration:none;color:var(--fg);
+  font-size:clamp(38px,7.4vw,116px);line-height:1;letter-spacing:-.02em}
+.mail .w{min-width:0;padding-bottom:.08em}
 .mail .w em{transition:color 240ms var(--ease)}
 .mail:hover .w em{color:var(--fg)}
-.links{display:flex;flex-wrap:wrap;gap:8px;margin:40px 0 0}
-.links a{min-height:42px;padding:0 20px;font-size:15px}
+.mail-go{flex:none;display:grid;place-items:center;width:clamp(48px,6vw,84px);height:clamp(48px,6vw,84px);border:1px solid var(--line-strong);border-radius:999px;
+  font-family:var(--sans);font-size:clamp(18px,2vw,28px);letter-spacing:0;
+  transition:background-color 240ms var(--ease),color 240ms var(--ease),border-color 240ms var(--ease),transform 400ms var(--ease-out)}
+.mail:hover .mail-go{background:var(--fg);border-color:var(--fg);color:var(--on-fg);transform:translateX(6px)}
+.links{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:28px 0 0}
+.links a,.links button{min-height:42px;padding:0 20px;font-size:15px}
+.links .copy{background:var(--fg);border-color:var(--fg);color:var(--on-fg)}
+.links .copy:hover{background:color-mix(in srgb,var(--fg) 82%,var(--base))}
 
 /* ── homepage playground: three instruments ─────────────── */
 /* without js the three panels stack; with it they share one stage behind a column of tabs */
@@ -503,8 +529,8 @@ html.pal-open{overflow:hidden}
 /* hidden state is gated on .js-reveal, set by an inline script in <head>,
    so nothing flashes and nothing is hidden without js. each block comes
    into focus as it arrives: up a little, out of a soft blur. */
-.js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig):not(.in){opacity:0;filter:blur(8px);transform:translateY(18px)}
-:is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig).in{
+.js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors):not(.in){opacity:0;filter:blur(8px);transform:translateY(18px)}
+:is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors).in{
   transition:opacity 900ms var(--ease-out),transform 1000ms var(--ease-out),filter 900ms var(--ease-out);transition-delay:var(--d,0ms)}
 /* headline lines rise out of their own baseline, one after another */
 .js-reveal :is(.poster,.big,.mail,.page-title) .w{transition:clip-path 1000ms var(--ease-out),transform 1000ms var(--ease-out);transition-delay:calc(var(--k,0)*90ms)}
@@ -520,6 +546,8 @@ html.pal-open{overflow:hidden}
   .hero-fig{position:relative;inset:auto;height:360px;margin:8px calc(var(--gutter)*-1) 0}
   .fig-note{position:static;max-width:none;text-align:left;margin:4px 0 36px}
   .two{grid-template-columns:1fr;align-items:start;gap:32px}
+  .night{border-radius:24px}
+  .yimo-fig{max-width:420px}
   .js-reveal .play{grid-template-columns:minmax(0,1fr);gap:20px}
   .js-reveal .lab-tabs{flex-direction:row;gap:26px;overflow-x:auto;margin-inline:calc(var(--gutter)*-1);padding-inline:var(--gutter);border-top:0;scrollbar-width:none}
   .lab-tabs::-webkit-scrollbar{display:none}
@@ -590,8 +618,8 @@ html.pal-open{overflow:hidden}
   .ticker span,.stream s,.poem .wd.new,.pal,.pal-box,.js-reveal .hero-fig,.js-reveal .lab-stage .panel{animation:none}
   .bar::after{display:none}
   ::view-transition-old(root),::view-transition-new(root){animation:none}
-  .pill-dot,.arrow,.fig svg,.lab-tabs .td,.rows li a::after,.item::after,.bar-row i::after,.split-fig rect,.rail a::before,.link,.item h3 a{transition:none}
-  .js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig):not(.in){opacity:1;filter:none;transform:none}
+  .pill-dot,.arrow,.mail-go,.fig svg,.lab-tabs .td,.rows li a::after,.item::after,.bar-row i::after,.split-fig rect,.rail a::before,.link,.item h3 a{transition:none}
+  .js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors):not(.in){opacity:1;filter:none;transform:none}
   .js-reveal :is(.poster,.big,.mail,.page-title):not(.in) .w{clip-path:none;transform:none}
 }
 @media (prefers-reduced-transparency:reduce){

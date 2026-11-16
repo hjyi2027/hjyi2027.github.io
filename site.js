@@ -13,7 +13,7 @@
   // reveal each block once as it arrives. siblings that enter on the same
   // frame stagger, so a section lands as a sequence rather than a slab.
   var sel = '.kicker, .num, .eyebrow, .lede, h2, h3.sub, .item, .row, ul.plain, .links, .latest, ' +
-            '.page-title, .poster, .big, .mail, .cols, .rows, .facts, .play, .poster-sub, .hero-cta, .sec-head, .ticker, .feature, .hero-at, .fig-note, .nf-fig';
+            '.page-title, .poster, .big, .mail, .cols, .rows, .facts, .play, .poster-sub, .hero-cta, .sec-head, .ticker, .feature, .hero-at, .fig-note, .nf-fig, .night, .sponsors';
   document.querySelectorAll('.poster, .big, .mail, .page-title').forEach(function (h) {
     h.querySelectorAll('.w').forEach(function (w, k) { w.style.setProperty('--k', k); });
   });
@@ -43,11 +43,22 @@
   }
 
   // the footer shows the local time in seoul; without js it just says "seoul".
-  var clock = document.querySelector('.clock');
-  if (clock && window.Intl && Intl.DateTimeFormat) {
-    var fmt = new Intl.DateTimeFormat('en-GB', { timeZone: clock.getAttribute('data-tz'), hour: '2-digit', minute: '2-digit' });
-    var tick = function () { clock.textContent = 'Seoul ' + fmt.format(new Date()); };
+  var clocks = document.querySelectorAll('.clock');
+  if (clocks.length && window.Intl && Intl.DateTimeFormat) {
+    var fmt = new Intl.DateTimeFormat('en-GB', { timeZone: clocks[0].getAttribute('data-tz'), hour: '2-digit', minute: '2-digit' });
+    var tick = function () { var now = 'Seoul ' + fmt.format(new Date()); Array.prototype.forEach.call(clocks, function (c) { c.textContent = now; }); };
     tick(); setInterval(tick, 30000);
+  }
+
+  // contact: a button that puts the address on the clipboard, where that is possible.
+  var cp = document.querySelector('.copy');
+  if (cp && navigator.clipboard && navigator.clipboard.writeText) {
+    cp.hidden = false;
+    cp.addEventListener('click', function () {
+      navigator.clipboard.writeText(cp.getAttribute('data-copy')).then(function () {
+        cp.textContent = 'Copied'; setTimeout(function () { cp.textContent = 'Copy address'; }, 1600);
+      }, function () {});
+    });
   }
 
   // 404: name the address that was asked for.
