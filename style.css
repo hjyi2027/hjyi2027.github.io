@@ -321,6 +321,21 @@ table.problems tbody tr:not(.grp):hover td{background:var(--base)}
 .c-m{margin-top:18px;font-family:var(--mono);font-size:12px;line-height:1.5;color:var(--muted)}
 .c-t{margin:8px 0 6px;font-family:var(--display);font-size:clamp(28px,3vw,38px);line-height:1.06;letter-spacing:-.012em}
 .c-s{max-width:46ch;font-size:15px;line-height:1.6;color:var(--muted)}
+/* a second tier: six more, three across */
+.feature:has(+ .feature){margin-bottom:44px}
+.feature + .feature{margin-top:0}
+.feature.more{grid-template-columns:repeat(3,1fr);gap:36px 20px}
+.feature.more .fig{border-radius:16px}
+.feature.more .c-m{margin-top:14px}
+.feature.more .c-t{font-size:clamp(23px,2.2vw,27px);line-height:1.1}
+.fig .acf rect,.fig .lk{fill:var(--accent)}
+.fig .sq{fill:var(--fg)}
+.fig .sq.lo{fill-opacity:.28}
+.fig .miss{fill:none;stroke:var(--accent);stroke-width:1.6;stroke-dasharray:3 3}
+.fig .cr{fill:var(--surface);stroke:var(--line-strong);stroke-width:1}
+.fig .cr.te{fill:#e3e8fb;stroke:var(--accent)}
+.fig .lk{fill-opacity:.85}
+.fig .thin{stroke-width:1.6}
 main.filtering .feature{display:none}
 
 /* research counts: a hairline grid that works for any number of cells */
@@ -434,6 +449,10 @@ html.pal-open{overflow:hidden}
   .bar-links .ext,.bar .pill,.bar-links kbd{display:none}
   .bar-links .dup{display:inline-flex}
   .feature{grid-template-columns:1fr;gap:32px;margin:40px 0}
+  /* the second tier becomes a row to swipe through */
+  .feature.more{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:calc(var(--gutter)*-1);padding:0 var(--gutter) 8px;scrollbar-width:none}
+  .feature.more::-webkit-scrollbar{display:none}
+  .feature.more .card{flex:0 0 78%;scroll-snap-align:center}
   .sec-head.lead{flex-direction:column;align-items:flex-start}
   .mark{font-size:19px}
   .poster-sub,.lede{font-size:17.5px}

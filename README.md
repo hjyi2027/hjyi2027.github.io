@@ -19,7 +19,7 @@ personal site of hyunjun yi. hand-written html, one stylesheet, one script. no b
 ## when a paper changes status
 
 1. edit its entry in `research.html` (title link, the `.meta` line, position in the list)
-2. update the counts strip at the top of `research.html`, the two description metas, and the `updated` stamp. the four highlight cards under the counts repeat a status line each; keep them in step with their entries
+2. update the counts strip at the top of `research.html`, the two description metas, and the `updated` stamp. the ten highlight cards under the counts repeat a status line each; keep them in step with their entries
 3. update the counts strip, the `all 46 papers` button, the about paragraph and the `latest` list in `index.html`, and the research paragraph in `cv.html` if the totals it quotes moved
 4. bump `lastmod` in `sitemap.xml`
 
