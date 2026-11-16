@@ -98,15 +98,34 @@
 </section>
 
 <section class="ch" id="about">
-<div class="ch-in two">
-  <div>
-    <p class="num">About</p>
-    <h2 class="big"><span class="w">What changes</span><span class="w">a model's output</span><span class="w"><em>that nobody</em></span><span class="w"><em>reports?</em></span></h2>
-  </div>
-  <div class="cols">
+<div class="ch-in">
+  <div class="about">
+    <div>
+      <p class="num">About</p>
+      <h2 class="big"><span class="w">What changes</span><span class="w">a model's output</span><span class="w"><em>that nobody</em></span><span class="w"><em>reports?</em></span></h2>
+      <div class="cols">
     <p>Hi! I'm Hyunjun, a senior at Seoul International School. I run AI research at <a href="https://aiscend-research.github.io/">AIscend</a>. Most of my work asks the one question above. The decoding sampler. One swapped word in an instruction. Where a line breaks.</p>
     <p>I also do mathematics, lately exact answers to old problems in discrete geometry, and I'm a competition director of <a href="https://www.yimo-official.org/">YIMO</a>, a free online math olympiad. Three of my papers were accepted to NeurIPS 2026. Every public result links to its paper or code.</p>
   </div>
+    </div>
+    <figure class="about-fig">
+      <p class="fig-h">Right-answer rate: one model, one prompt, four decoding settings</p>
+      <ul class="hbars">
+        <li><span>Greedy</span><i style="--v:1"></i><b>100%</b></li>
+        <li><span>Top-p 0.5</span><i style="--v:.69"></i><b>69%</b></li>
+        <li><span>Default</span><i style="--v:.44"></i><b>44%</b></li>
+        <li><span>Hot</span><i style="--v:.27"></i><b>27%</b></li>
+      </ul>
+      <figcaption>Illustrative. Toy numbers from <a href="#play">the sampler below</a>, where you can move the settings yourself.</figcaption>
+    </figure>
+  </div>
+  <p class="num points-h">Four answers, each one a paper</p>
+  <ul class="points">
+    <li><a href="research.html#restored-lines"><h3>Where a line breaks</h3><p>A model recovers 70 percent of a poet&rsquo;s hardest line breaks, and writes them at half the human rate.</p><span class="go">The paper <span class="arrow" aria-hidden="true">&rarr;</span></span></a></li>
+    <li><a href="research.html#hrsid-split"><h3>How the test set was split</h3><p>94.8% of the test crops in the HRSID ship benchmark share pixels with a training crop.</p><span class="go">The paper <span class="arrow" aria-hidden="true">&rarr;</span></span></a></li>
+    <li><a href="research.html#sharper-not-closer"><h3>What the metric rewards</h3><p>A no-reference quality metric prefers a sharpened copy to the source itself in 90% of clips.</p><span class="go">The paper <span class="arrow" aria-hidden="true">&rarr;</span></span></a></li>
+    <li><a href="research.html#synergy-noise-floors"><h3>Which seed was run</h3><p>Of 261 published results on unified multimodal models, 42% sit inside their own noise floor.</p><span class="go">The paper <span class="arrow" aria-hidden="true">&rarr;</span></span></a></li>
+  </ul>
 </div>
 </section>
 
