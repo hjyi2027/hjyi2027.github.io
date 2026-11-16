@@ -88,17 +88,41 @@
     (p.tagName === 'A' ? p : p.querySelector('a')).addEventListener('click', function (e) { e.preventDefault(); window.print(); });
   }
 
+  // the cv counts carry a unit chart: a dot for each unit, or for each hundred
+  // when the count runs into the thousands. the dots are drawn from the number
+  // itself, so they cannot drift from it.
+  document.querySelectorAll('.cv-facts div').forEach(function (box) {
+    var dd = box.querySelector('dd'), m = dd && /^\D{0,2}(\d{1,3}(?:,\d{3})+|\d+)/.exec(dd.textContent.trim());
+    if (!m) return;
+    var n = +m[1].replace(/,/g, ''), per = n > 60 ? 100 : 1, k = Math.floor(n / per);
+    if (!k || k > 60) return;
+    var s = document.createElement('span');
+    s.className = 'dots'; s.setAttribute('aria-hidden', 'true'); s._per = per;
+    for (var i = 0; i < k; i++) { var d = document.createElement('i'); d.className = 'on'; s.appendChild(d); }
+    if (per > 1) { var cap = document.createElement('small'); cap.textContent = ('Each dot is ' + per + ' ' + (box.getAttribute('data-unit') || '')).trim(); s.appendChild(cap); }
+    box.insertBefore(s, dd);
+  });
+
   // counts tick up from zero the first time they are seen. a sign or unit
-  // around the number ($, +, k) stays put while the digits run.
+  // around the number ($, +, k) stays put while the digits run, and a unit
+  // chart beside the number fills in step with it.
   if (!reduce && 'IntersectionObserver' in window) {
     var cells = [];
     document.querySelectorAll('.facts dd, .cv-figs dd').forEach(function (dd) {
       var el = dd.children.length === 1 && dd.children[0].tagName === 'A' ? dd.children[0] : dd;
       var m = !el.children.length && /^(\D{0,2})(\d{1,3}(?:,\d{3})+|\d+)(\D{0,3})$/.exec(el.textContent.trim());
       if (!m) return;
-      cells.push({ box: dd, el: el, to: +m[2].replace(/,/g, ''), pre: m[1], post: m[3], comma: m[2].indexOf(',') > -1, end: el.textContent });
+      var dots = dd.parentNode.querySelector('.dots');
+      var c = { box: dd, el: el, to: +m[2].replace(/,/g, ''), pre: m[1], post: m[3], comma: m[2].indexOf(',') > -1, end: el.textContent,
+                dots: dots ? dots.querySelectorAll('i') : null, per: dots ? dots._per : 1 };
+      paint(c, 0);
+      cells.push(c);
     });
     function fmt(c, n) { return c.pre + (c.comma ? n.toLocaleString('en-US') : n) + c.post; }
+    function paint(c, n) {
+      if (!c.dots) return;
+      for (var i = 0, f = Math.floor(n / c.per); i < c.dots.length; i++) c.dots[i].classList.toggle('on', i < f);
+    }
     var cio = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         if (!e.isIntersecting) return;
@@ -106,8 +130,9 @@
         var c = cells.filter(function (x) { return x.box === e.target; })[0], t0 = performance.now(), dur = 700 + Math.min(c.to, 40) * 12;
         (function step(now) {
           var u = Math.min((now - t0) / dur, 1), v = 1 - Math.pow(1 - u, 3);
-          c.el.textContent = fmt(c, Math.round(c.to * v));
-          if (u < 1) requestAnimationFrame(step); else c.el.textContent = c.end;
+          var n = Math.round(c.to * v);
+          c.el.textContent = fmt(c, n); paint(c, n);
+          if (u < 1) requestAnimationFrame(step); else { c.el.textContent = c.end; paint(c, c.to); }
         })(t0);
       });
     }, { threshold: 0.6 });

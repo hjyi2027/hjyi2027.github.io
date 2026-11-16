@@ -707,6 +707,34 @@ main.filtering .feature{display:none}
 .links a.pill{min-height:42px;padding:6px 6px 6px 20px;background:var(--fg);border-color:var(--fg);color:var(--on-fg);font-size:14px}
 .links a.pill:hover{background:color-mix(in srgb,var(--fg) 82%,var(--base))}
 .cv-links + .facts{margin-top:clamp(48px,6vw,72px)}
+/* cv counts: four cards, the total in ink, each with a unit chart (one dot a
+   paper, a problem, or a hundred registrations) that fills as its number runs */
+.facts.cv-facts{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;border:0}
+.cv-facts div,.cv-facts div:first-child{position:relative;flex-direction:column;justify-content:flex-start;gap:0;min-height:236px;padding:22px 24px;
+  border:0;border-radius:24px;background:var(--surface-2);transition:background-color 200ms var(--ease)}
+.cv-facts dt{max-width:20ch;padding-right:40px;font-size:15px;line-height:1.4;color:var(--fg-2)}
+.cv-facts dd{margin-top:auto;font-size:clamp(50px,5.4vw,80px);line-height:.86}
+.cv-facts .dots + dd{margin-top:0}
+.cv-facts dd a,.cv-facts dd a:hover{color:inherit}
+.cv-facts dd a::after{content:"";position:absolute;inset:0;border-radius:24px}          /* the whole card is the link */
+.cv-facts .dots{display:flex;flex-wrap:wrap;gap:5px;margin:auto 0 18px;padding-top:24px}
+.cv-facts .dots i{width:8px;height:8px;border-radius:50%;box-shadow:inset 0 0 0 1px var(--line-strong);transition:background-color 160ms var(--ease),box-shadow 160ms var(--ease)}
+.cv-facts .dots i.on{background:var(--fg);box-shadow:none}
+.cv-facts .dots small{flex-basis:100%;margin-top:6px;font-family:var(--mono);font-size:11px;line-height:1.4;color:var(--muted)}
+.cv-facts div:has(a)::after{content:"\2192";position:absolute;right:20px;top:18px;display:grid;place-items:center;width:32px;height:32px;border-radius:50%;
+  border:1px solid var(--line-strong);font-size:14px;color:var(--fg-2);transition:background-color 200ms var(--ease),color 200ms var(--ease),border-color 200ms var(--ease),transform 400ms var(--ease-out)}
+.cv-facts div:has(a[href^="http"])::after{content:"\2197"}
+.cv-facts div:has(a):hover{background:#e8e8e4}
+.cv-facts div:has(a):hover::after{background:var(--fg);border-color:var(--fg);color:var(--on-fg);transform:translateX(3px)}
+.cv-facts div:has(a[href^="http"]):hover::after{transform:translate(2px,-2px)}
+.cv-facts .total{background:var(--fg);color:var(--on-fg)}
+.cv-facts .total dt,.cv-facts .total .dots small{color:rgba(255,255,255,.72)}
+.cv-facts .total dd{color:var(--on-fg)}
+.cv-facts .total .dots i{box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
+.cv-facts .total .dots i.on{background:#fff;box-shadow:none}
+.cv-facts .total:has(a):hover{background:#2a2a2e}
+.cv-facts .total:has(a)::after{border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.8)}
+.cv-facts .total:has(a):hover::after{background:#fff;border-color:#fff;color:var(--fg)}
 .cv-jump{margin:20px 0 0}
 .cv-sec{position:relative;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:0 clamp(28px,4vw,56px);align-items:start;
   margin-top:clamp(72px,9vw,128px);padding-top:26px;border-top:1px solid var(--line-strong)}
@@ -992,6 +1020,13 @@ html.pal-open{overflow:hidden}
   .facts div:nth-child(odd){border-left:0;padding-left:0}
   .facts div:nth-child(n+3){border-top:1px solid var(--line)}
   .facts.six{grid-template-columns:1fr 1fr;gap:10px}
+  .facts.cv-facts{grid-template-columns:1fr 1fr;gap:10px}
+  .cv-facts div,.cv-facts div:first-child,.cv-facts div:nth-child(odd),.cv-facts div:nth-child(n+3){min-height:200px;padding:18px 18px 16px;border:0}
+  .cv-facts div:has(a)::after{right:14px;top:14px;width:28px;height:28px}
+  .cv-facts dt{padding-right:34px;font-size:14px}
+  .cv-facts dd{font-size:48px}
+  .cv-facts .dots{gap:4px;margin-bottom:14px;padding-top:18px}
+  .cv-facts .dots i{width:7px;height:7px}
   .facts.six div,.facts.six div:nth-child(odd),.facts.six div:nth-child(n+3){min-height:148px;padding:18px 18px 16px;border:0}
   .facts.six div:has(a)::after{right:14px;top:14px;width:28px;height:28px}
   .facts.six dd{font-size:56px}
@@ -1088,6 +1123,7 @@ html.pal-open{overflow:hidden}
   html{scroll-behavior:auto}
   .fig *{animation:none!important}
   .cv-sec::before,.now::before{animation:none}
+  .cv-facts div,.cv-facts div::after,.cv-facts .dots i{transition:none}
   .js-reveal .row:not(.in) .cv-figs div,.js-reveal .row:not(.in) .tools li{opacity:1;transform:none}
   .row.in .tools li{animation:none}
   .tools li{transition:none}
@@ -1144,6 +1180,16 @@ html.pal-open{overflow:hidden}
   .cv-head{position:static;break-after:avoid}
   .cv-body .row:first-child{break-before:avoid;break-inside:avoid}
   .facts{margin-top:14pt}
+  /* a printed page is narrower than 760px, so the phone rules apply in print;
+     these match their weight and come later */
+  .facts.cv-facts{grid-template-columns:repeat(4,1fr);gap:0}
+  .cv-facts div,.cv-facts div:first-child,.cv-facts div:nth-child(odd),.cv-facts div:nth-child(n+3),.cv-facts .total{
+    min-height:0;padding:8pt 12pt 2pt;border:0;border-radius:0;background:none;color:inherit}
+  .cv-facts div:nth-child(n+2){border-left:1px solid var(--line)}
+  .cv-facts div:first-child{padding-left:0}
+  .cv-facts dt,.cv-facts .total dt{padding-right:0;font-size:9.5pt;color:var(--muted)}
+  .cv-facts dd,.cv-facts .dots + dd,.cv-facts .total dd{margin-top:4pt;font-size:22pt;color:var(--fg)}
+  .cv-facts div:has(a)::after,.cv-facts dd a::after,.cv-facts .dots{display:none}
   .facts div{padding:8pt 12pt 2pt}
   .facts dd{font-size:22pt}
   .facts dt{font-size:9.5pt}
