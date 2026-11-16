@@ -707,11 +707,22 @@ main.filtering .feature{display:none}
 .links a.pill{min-height:42px;padding:6px 6px 6px 20px;background:var(--fg);border-color:var(--fg);color:var(--on-fg);font-size:14px}
 .links a.pill:hover{background:color-mix(in srgb,var(--fg) 82%,var(--base))}
 .cv-links + .facts{margin-top:clamp(48px,6vw,72px)}
-.cv-sec{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);gap:0 40px;align-items:start;
-  margin-top:clamp(64px,8vw,104px);padding-top:28px;border-top:1px solid var(--line-strong)}
-.wrap .cv-sec h2{display:block;position:sticky;top:calc(var(--bar-h) + 28px);margin:0;padding:0;border:0;
-  font-family:var(--display);font-weight:400;font-size:clamp(30px,3.1vw,42px);line-height:1.04;letter-spacing:-.014em}
-.wrap .cv-sec h2::before{display:block;margin:0 0 12px}
+.cv-jump{margin:20px 0 0}
+.cv-sec{position:relative;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:0 clamp(28px,4vw,56px);align-items:start;
+  margin-top:clamp(72px,9vw,128px);padding-top:26px;border-top:1px solid var(--line-strong)}
+/* the rule over a section inks itself in as the section comes up the page */
+.cv-sec::before{content:"";position:absolute;left:0;right:0;top:-1px;height:1px;background:var(--fg);transform-origin:left}
+@supports (animation-timeline:view()){
+  .cv-sec::before{animation:rule-in linear both;animation-timeline:view();animation-range:entry 0% cover 30%}
+}
+@keyframes rule-in{from{transform:scaleX(0)}}
+.cv-head{position:sticky;top:calc(var(--bar-h) + 28px)}
+.wrap .cv-sec h2{display:block;margin:0;padding:0;border:0;
+  font-family:var(--display);font-weight:400;font-size:clamp(40px,4.7vw,64px);line-height:.98;letter-spacing:-.02em}
+.wrap .cv-sec h2::before{display:block;margin:0 0 16px;content:"Section " counter(sec,decimal-leading-zero);text-transform:uppercase}
+/* a second voice under the name: what the section holds */
+.cv-sub,.wrap .cv-sec h2 em{display:block;margin:12px 0 0;font-family:var(--display);font-style:normal;font-weight:400;
+  font-size:clamp(22px,2.3vw,30px);line-height:1.12;letter-spacing:-.01em;color:color-mix(in srgb,var(--fg) 52%,transparent)}
 .cv-body .row{grid-template-columns:116px 1fr;gap:24px}
 .cv-body .row.undated{grid-template-columns:1fr}
 .cv-body .row:first-child{padding-top:4px}
@@ -972,7 +983,7 @@ html.pal-open{overflow:hidden}
   table.problems tbody tr:not(.grp):hover td{background:none;box-shadow:none}
   .age{max-width:260px}
   .nf{grid-template-columns:1fr}
-  .wrap .cv-sec h2{position:static}
+  .cv-head{position:static}
   .cv-body .row{grid-template-columns:1fr;gap:4px}
   .row{grid-template-columns:1fr;gap:4px}
   .row .when{padding-top:0}
@@ -992,6 +1003,7 @@ html.pal-open{overflow:hidden}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .fig *{animation:none!important}
+  .cv-sec::before{animation:none}
   .feature.in .dr{transition:none}
   .ticker span,.stream s,.poem .wd.new,.pal,.pal-box,.js-reveal .hero-fig,.js-reveal .lab-stage .panel{animation:none}
   .bar::before{display:none}
@@ -1026,7 +1038,7 @@ html.pal-open{overflow:hidden}
   .item p,.row .what p,ul.plain li{font-size:10pt;line-height:1.5}
   .row{padding:8pt 0}
   .cv-sec{display:block;margin-top:13pt;padding-top:7pt}
-  .wrap .cv-sec h2{position:static;font-size:15pt;margin:0 0 2pt;break-after:avoid}
+  .wrap .cv-sec h2{font-size:15pt;margin:0 0 2pt;break-after:avoid}
   .row,.cv-body .row{grid-template-columns:84pt 1fr;gap:12pt;padding:6pt 0}
   .row.undated,.cv-body .row.undated{grid-template-columns:1fr}
   .row .when{padding-top:3pt;font-size:8.5pt}
@@ -1038,7 +1050,9 @@ html.pal-open{overflow:hidden}
   .facts div:nth-child(n+2){border-left:1px solid var(--line);padding-left:12pt}
   .facts div:nth-child(n+3){border-top:0}
   .lede{margin-bottom:6pt}
-  .wrap .cv-sec h2::before{display:none}
+  .wrap .cv-sec h2::before,.cv-sec::before,.cv-sub{display:none}
+  .wrap .cv-sec h2 em{display:inline;font-size:inherit;color:inherit}
+  .cv-head{position:static}
   .facts{margin-top:14pt}
   .facts div{padding:8pt 12pt 2pt}
   .facts dd{font-size:22pt}
