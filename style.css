@@ -698,8 +698,8 @@ main.filtering .feature{display:none}
 /* cv rows */
 .row{display:grid;grid-template-columns:148px 1fr;gap:28px;margin:0;padding:26px 0;border-bottom:1px solid var(--line)}
 .row.undated{grid-template-columns:1fr}
-.row .when{padding-top:9px;font-family:var(--mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
-.row .what strong{display:block;font-family:var(--display);font-weight:400;font-size:clamp(24px,2.4vw,30px);line-height:1.15;letter-spacing:-.01em;color:var(--fg)}
+.row .when{padding-top:9px;font-family:var(--mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;transition:color 200ms var(--ease)}
+.row .what strong{display:block;font-family:var(--display);font-weight:400;font-size:clamp(26px,2.6vw,34px);line-height:1.12;letter-spacing:-.012em;color:var(--fg);text-wrap:balance}
 .row .what p{max-width:72ch;margin:8px 0 0;font-size:16px;line-height:1.65;color:var(--fg-2);text-wrap:pretty}
 .row .what p a{color:var(--fg)}
 /* cv: a section name held in the left margin while its rows scroll past */
@@ -723,7 +723,40 @@ main.filtering .feature{display:none}
 /* a second voice under the name: what the section holds */
 .cv-sub,.wrap .cv-sec h2 em{display:block;margin:12px 0 0;font-family:var(--display);font-style:normal;font-weight:400;
   font-size:clamp(22px,2.3vw,30px);line-height:1.12;letter-spacing:-.01em;color:color-mix(in srgb,var(--fg) 52%,transparent)}
-.cv-body .row{grid-template-columns:116px 1fr;gap:24px}
+/* cv rows: a soft card under the row in hand, the date column carries a tag,
+   and the long rows open on their figures before the prose */
+.cv-body .row{position:relative;isolation:isolate;grid-template-columns:116px 1fr;gap:24px}
+.cv-body .row::after{content:"";position:absolute;inset:6px -22px;z-index:-1;border-radius:20px;background:var(--surface-2);
+  opacity:0;pointer-events:none;transition:opacity 300ms var(--ease)}
+.cv-body .row:first-child::after{top:-16px}
+.cv-body .row:last-child::after{bottom:-16px}
+@media (hover:hover){
+  .cv-body .row:hover::after{opacity:.55}
+  .cv-body .row:hover .when{color:var(--fg)}
+}
+.cv-body .row .when{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding-top:11px}
+.now{display:inline-flex;align-items:center;gap:8px;color:var(--fg)}
+.now::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);animation:now-pulse 2.4s var(--ease) infinite}
+@keyframes now-pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 45%,transparent)}70%,100%{box-shadow:0 0 0 7px transparent}}
+.cv-tag{display:inline-flex;align-items:center;gap:7px;padding:2px 10px 2px 8px;border:1px solid var(--line);border-radius:999px;background:var(--surface);
+  font-size:11px;line-height:1.6;color:var(--fg-2);white-space:nowrap}
+.cv-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--c,var(--faint))}
+.cv-tag.math{--c:var(--accent)}
+.cv-tag.ai{--c:var(--fg)}
+.cv-tag.music{--c:var(--warm)}
+.cv-figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));margin:20px 0 22px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.cv-figs div{display:flex;flex-direction:column-reverse;justify-content:flex-end;gap:8px;min-width:0;padding:18px 18px 16px;border-left:1px solid var(--line)}
+.cv-figs div:first-child{border-left:0;padding-left:0}
+.cv-figs dt{max-width:22ch;font-size:13.5px;line-height:1.4;color:var(--muted)}
+.cv-figs dd{margin:0;font-family:var(--display);font-size:clamp(34px,3.2vw,48px);line-height:1;letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
+.cv-figs dd a{text-decoration:none;transition:color 160ms var(--ease)}
+.cv-figs dd a:hover{color:var(--accent)}
+.print-only{display:none}
+.js-reveal .row:not(.in) .cv-figs div{opacity:0;transform:translateY(12px)}
+.row.in .cv-figs div{transition:opacity 700ms var(--ease-out) 160ms,transform 700ms var(--ease-out) 160ms}
+.row.in .cv-figs div:nth-child(2){transition-delay:250ms}
+.row.in .cv-figs div:nth-child(3){transition-delay:340ms}
+.row.in .cv-figs div:nth-child(4){transition-delay:430ms}
 .cv-body .row.undated{grid-template-columns:1fr}
 .cv-body .row:first-child{padding-top:4px}
 .cv-body .row:last-child{border-bottom:0;padding-bottom:0}
@@ -984,7 +1017,15 @@ html.pal-open{overflow:hidden}
   .age{max-width:260px}
   .nf{grid-template-columns:1fr}
   .cv-head{position:static}
-  .cv-body .row{grid-template-columns:1fr;gap:4px}
+  .cv-body .row{grid-template-columns:1fr;gap:10px}
+  .cv-body .row::after{inset:4px -12px}
+  .cv-body .row .when{flex-direction:row;flex-wrap:wrap;align-items:center;gap:6px 12px;padding-top:0}
+  /* on a phone the figures stack as a short ledger: number, then what it counts */
+  .cv-figs{grid-template-columns:1fr;margin:16px 0 18px}
+  .cv-figs div{flex-direction:row-reverse;align-items:baseline;gap:16px;padding:12px 0;border-left:0}
+  .cv-figs div + div{border-top:1px solid var(--line)}
+  .cv-figs dd{min-width:3em;font-size:32px}
+  .cv-figs dt{max-width:none}
   .row{grid-template-columns:1fr;gap:4px}
   .row .when{padding-top:0}
   .filter{grid-template-columns:minmax(0,1fr) auto;border-radius:22px}
@@ -1003,7 +1044,8 @@ html.pal-open{overflow:hidden}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .fig *{animation:none!important}
-  .cv-sec::before{animation:none}
+  .cv-sec::before,.now::before{animation:none}
+  .js-reveal .row:not(.in) .cv-figs div{opacity:1;transform:none}
   .feature.in .dr{transition:none}
   .ticker span,.stream s,.poem .wd.new,.pal,.pal-box,.js-reveal .hero-fig,.js-reveal .lab-stage .panel{animation:none}
   .bar::before{display:none}
@@ -1050,9 +1092,11 @@ html.pal-open{overflow:hidden}
   .facts div:nth-child(n+2){border-left:1px solid var(--line);padding-left:12pt}
   .facts div:nth-child(n+3){border-top:0}
   .lede{margin-bottom:6pt}
-  .wrap .cv-sec h2::before,.cv-sec::before,.cv-sub{display:none}
+  .wrap .cv-sec h2::before,.cv-sec::before,.cv-sub,.cv-figs,.cv-tag,.now,.cv-body .row::after{display:none}
+  .print-only{display:inline}
   .wrap .cv-sec h2 em{display:inline;font-size:inherit;color:inherit}
-  .cv-head{position:static}
+  .cv-head{position:static;break-after:avoid}
+  .cv-body .row:first-child{break-before:avoid;break-inside:avoid}
   .facts{margin-top:14pt}
   .facts div{padding:8pt 12pt 2pt}
   .facts dd{font-size:22pt}

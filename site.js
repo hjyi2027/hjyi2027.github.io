@@ -88,14 +88,17 @@
     (p.tagName === 'A' ? p : p.querySelector('a')).addEventListener('click', function (e) { e.preventDefault(); window.print(); });
   }
 
-  // counts tick up from zero the first time they are seen.
+  // counts tick up from zero the first time they are seen. a sign or unit
+  // around the number ($, +, k) stays put while the digits run.
   if (!reduce && 'IntersectionObserver' in window) {
     var cells = [];
-    document.querySelectorAll('.facts dd').forEach(function (dd) {
+    document.querySelectorAll('.facts dd, .cv-figs dd').forEach(function (dd) {
       var el = dd.children.length === 1 && dd.children[0].tagName === 'A' ? dd.children[0] : dd;
-      if (el.children.length || !/^\d+$/.test(el.textContent.trim())) return;
-      cells.push({ box: dd, el: el, to: +el.textContent });
+      var m = !el.children.length && /^(\D{0,2})(\d{1,3}(?:,\d{3})+|\d+)(\D{0,3})$/.exec(el.textContent.trim());
+      if (!m) return;
+      cells.push({ box: dd, el: el, to: +m[2].replace(/,/g, ''), pre: m[1], post: m[3], comma: m[2].indexOf(',') > -1, end: el.textContent });
     });
+    function fmt(c, n) { return c.pre + (c.comma ? n.toLocaleString('en-US') : n) + c.post; }
     var cio = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         if (!e.isIntersecting) return;
@@ -103,8 +106,8 @@
         var c = cells.filter(function (x) { return x.box === e.target; })[0], t0 = performance.now(), dur = 700 + Math.min(c.to, 40) * 12;
         (function step(now) {
           var u = Math.min((now - t0) / dur, 1), v = 1 - Math.pow(1 - u, 3);
-          c.el.textContent = Math.round(c.to * v);
-          if (u < 1) requestAnimationFrame(step); else c.el.textContent = c.to;
+          c.el.textContent = fmt(c, Math.round(c.to * v));
+          if (u < 1) requestAnimationFrame(step); else c.el.textContent = c.end;
         })(t0);
       });
     }, { threshold: 0.6 });
