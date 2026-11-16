@@ -13,7 +13,7 @@
   // reveal each block once as it arrives. siblings that enter on the same
   // frame stagger, so a section lands as a sequence rather than a slab.
   var sel = '.kicker, .num, .eyebrow, .lede, h2, h3.sub, .item, .row, ul.plain, .links, .latest, ' +
-            '.page-title, .poster, .big, .mail, .cols, .rows, .facts, .play, .poster-sub, .hero-cta, .sec-head, .ticker';
+            '.page-title, .poster, .big, .mail, .cols, .rows, .facts, .play, .poster-sub, .hero-cta, .sec-head, .ticker, .feature';
   document.querySelectorAll('.poster, .big, .mail, .page-title').forEach(function (h) {
     h.querySelectorAll('.w').forEach(function (w, k) { w.style.setProperty('--k', k); });
   });
@@ -46,7 +46,7 @@
   var clock = document.querySelector('.clock');
   if (clock && window.Intl && Intl.DateTimeFormat) {
     var fmt = new Intl.DateTimeFormat('en-GB', { timeZone: clock.getAttribute('data-tz'), hour: '2-digit', minute: '2-digit' });
-    var tick = function () { clock.textContent = 'seoul ' + fmt.format(new Date()); };
+    var tick = function () { clock.textContent = 'Seoul ' + fmt.format(new Date()); };
     tick(); setInterval(tick, 30000);
   }
 
@@ -93,22 +93,22 @@
   function at(p) { return new URL(p, base).href; }
 
   var fixed = [
-    ['home', 'page', at('./')],
-    ['research: every paper and its status', 'page', at('research.html')],
-    ['cv', 'page', at('cv.html')],
-    ['about', 'home', at('./#about')],
-    ['play: the sampler, the line break, the split', 'home', at('./#play')],
-    ['yimo, a free olympiad', 'home', at('./#yimo')],
-    ['contact', 'home', at('./#contact')],
-    ['peer-reviewed and accepted', 'research', at('research.html#accepted')],
-    ['open problems table', 'research', at('research.html#open-problems')],
-    ['github', 'elsewhere', 'https://github.com/hjyi2027'],
-    ['orcid', 'elsewhere', 'https://orcid.org/0009-0006-1197-0063'],
-    ['linkedin', 'elsewhere', 'https://www.linkedin.com/in/hyunjun-yi-3424573a0/'],
-    ['email', 'elsewhere', 'mailto:hjyi2027@gmail.com']
+    ['Home', 'Page', at('./')],
+    ['Research: every paper and its status', 'Page', at('research.html')],
+    ['CV', 'Page', at('cv.html')],
+    ['About', 'Home', at('./#about')],
+    ['Play: the sampler, the line break, the split', 'Home', at('./#play')],
+    ['YIMO, a free olympiad', 'Home', at('./#yimo')],
+    ['Contact', 'Home', at('./#contact')],
+    ['Peer-reviewed and accepted', 'Research', at('research.html#accepted')],
+    ['Open problems table', 'Research', at('research.html#open-problems')],
+    ['GitHub', 'Elsewhere', 'https://github.com/hjyi2027'],
+    ['ORCID', 'Elsewhere', 'https://orcid.org/0009-0006-1197-0063'],
+    ['LinkedIn', 'Elsewhere', 'https://www.linkedin.com/in/hyunjun-yi-3424573a0/'],
+    ['Email', 'Elsewhere', 'mailto:hjyi2027@gmail.com']
   ].map(function (e) { return { t: e[0], k: e[1], u: e[2], x: (e[0] + ' ' + e[1]).toLowerCase() }; });
   var papers = null, loading = false;
-  var names = { accepted: 'accepted', 'in-review': 'in review', mathematics: 'mathematics' };
+  var names = { accepted: 'Accepted', 'in-review': 'In review', mathematics: 'Mathematics' };
 
   function read(doc) {
     var out = [], sec = '', main = doc.getElementById('main');
@@ -134,10 +134,10 @@
   }
 
   var pal = document.createElement('div'); pal.className = 'pal'; pal.hidden = true;
-  pal.setAttribute('role', 'dialog'); pal.setAttribute('aria-modal', 'true'); pal.setAttribute('aria-label', 'search this site');
-  pal.innerHTML = '<div class="pal-box"><input type="search" placeholder="a paper, a venue, a page" autocomplete="off" spellcheck="false" ' +
-    'role="combobox" aria-expanded="true" aria-controls="pal-list" aria-label="search this site">' +
-    '<ol id="pal-list" role="listbox"></ol><p class="pal-foot"><span>&uarr;&darr; move</span><span>enter open</span><span>esc close</span><span class="pal-n"></span></p></div>';
+  pal.setAttribute('role', 'dialog'); pal.setAttribute('aria-modal', 'true'); pal.setAttribute('aria-label', 'Search this site');
+  pal.innerHTML = '<div class="pal-box"><input type="search" placeholder="A paper, a venue, a page" autocomplete="off" spellcheck="false" ' +
+    'role="combobox" aria-expanded="true" aria-controls="pal-list" aria-label="Search this site">' +
+    '<ol id="pal-list" role="listbox"></ol><p class="pal-foot"><span>&uarr;&darr; to move</span><span>Enter to open</span><span>Esc to close</span><span class="pal-n"></span></p></div>';
   document.body.appendChild(pal);
   var input = pal.querySelector('input'), list = pal.querySelector('ol'), count = pal.querySelector('.pal-n'), shown = [], cur = 0, back = null;
 
@@ -159,7 +159,7 @@
       li.addEventListener('pointermove', function () { if (cur !== i) { cur = i; mark(); } });
       list.appendChild(li);
     });
-    if (!shown.length) { var n = document.createElement('li'); n.className = 'pal-none'; n.textContent = loading ? 'reading the research page' : 'nothing matches'; list.appendChild(n); }
+    if (!shown.length) { var n = document.createElement('li'); n.className = 'pal-none'; n.textContent = loading ? 'Reading the research page' : 'Nothing matches'; list.appendChild(n); }
     input.setAttribute('aria-activedescendant', shown.length ? 'pal-' + cur : '');
     count.textContent = words.length ? total + (total === 1 ? ' match' : ' matches') : (papers ? papers.length + ' papers indexed' : '');
   }
@@ -200,8 +200,8 @@
     else if (e.key === '/' && !typing && !e.metaKey && !e.ctrlKey && !e.altKey && !document.querySelector('.filter')) { e.preventDefault(); open(); }
   });
 
-  var btn = document.createElement('button'); btn.type = 'button'; btn.setAttribute('aria-haspopup', 'dialog'); btn.setAttribute('aria-label', 'search this site');
-  btn.innerHTML = 'search<kbd>' + (/Mac|iPhone|iPad/.test(navigator.platform || '') ? '&#8984;K' : 'ctrl K') + '</kbd>';
+  var btn = document.createElement('button'); btn.type = 'button'; btn.setAttribute('aria-haspopup', 'dialog'); btn.setAttribute('aria-label', 'Search this site');
+  btn.innerHTML = 'Search<kbd>' + (/Mac|iPhone|iPad/.test(navigator.platform || '') ? '&#8984;K' : 'Ctrl K') + '</kbd>';
   btn.addEventListener('click', open);
   btn.addEventListener('pointerenter', load);                // warm the index before the click
   links.appendChild(btn);
@@ -233,39 +233,39 @@
 
   items.forEach(function (it) {
     // a copyable link under the entry number
-    var a = document.createElement('a'); a.className = 'pl'; a.href = '#' + it.id; a.textContent = 'link';
-    a.setAttribute('aria-label', 'copy a link to this entry');
+    var a = document.createElement('a'); a.className = 'pl'; a.href = '#' + it.id; a.textContent = 'Link';
+    a.setAttribute('aria-label', 'Copy a link to this entry');
     a.addEventListener('click', function (e) {
       if (!navigator.clipboard || !navigator.clipboard.writeText) return;   // falls back to a plain anchor jump
       e.preventDefault();
       navigator.clipboard.writeText(location.origin + location.pathname + '#' + it.id).then(function () {
-        a.textContent = 'copied'; a.classList.add('done');
-        setTimeout(function () { a.textContent = 'link'; a.classList.remove('done'); }, 1400);
+        a.textContent = 'Copied'; a.classList.add('done');
+        setTimeout(function () { a.textContent = 'Link'; a.classList.remove('done'); }, 1400);
       }, function () { location.hash = it.id; });
     });
     it.appendChild(a);
     // in the titles-only view, each entry opens its own abstract
-    var b = document.createElement('button'); b.type = 'button'; b.className = 'ex'; b.textContent = 'abstract'; b.setAttribute('aria-expanded', 'false');
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'ex'; b.textContent = 'Abstract'; b.setAttribute('aria-expanded', 'false');
     b.addEventListener('click', function () { unfold(it, !it.classList.contains('open')); });
     it._ex = b; it.appendChild(b);
   });
-  function unfold(it, yes) { it.classList.toggle('open', yes); it._ex.setAttribute('aria-expanded', yes ? 'true' : 'false'); it._ex.textContent = yes ? 'close' : 'abstract'; }
+  function unfold(it, yes) { it.classList.toggle('open', yes); it._ex.setAttribute('aria-expanded', yes ? 'true' : 'false'); it._ex.textContent = yes ? 'Close' : 'Abstract'; }
 
   // filter: one free-text box, one row of venue chips, one view switch
   var chips = [
-    ['all', function () { return true; }],
-    ['neurips', function (i) { return /neurips/.test(i._meta); }],
-    ['wacv', function (i) { return /wacv/.test(i._meta); }],
-    ['corl', function (i) { return /corl/.test(i._meta); }],
-    ['jmm', function (i) { return /jmm/.test(i._meta); }],
-    ['mathematics', function (i) { return i._sec === 'mathematics'; }],
-    ['sole author', function (i) { return /sole author/.test(i._meta); }],
-    ['first author', function (i) { return /first author/.test(i._meta); }]
+    ['All', function () { return true; }],
+    ['NeurIPS', function (i) { return /neurips/.test(i._meta); }],
+    ['WACV', function (i) { return /wacv/.test(i._meta); }],
+    ['CoRL', function (i) { return /corl/.test(i._meta); }],
+    ['JMM', function (i) { return /jmm/.test(i._meta); }],
+    ['Mathematics', function (i) { return i._sec === 'mathematics'; }],
+    ['Sole author', function (i) { return /sole author/.test(i._meta); }],
+    ['First author', function (i) { return /first author/.test(i._meta); }]
   ];
   var box = document.createElement('div'); box.className = 'filter'; box.setAttribute('role', 'search');
-  box.innerHTML = '<label>filter<input type="search" placeholder="a title, a venue, a word" autocomplete="off" spellcheck="false"></label>' +
-    '<div class="f-chips" role="group" aria-label="filter by venue or authorship"></div><p class="f-n" aria-live="polite"></p>' +
-    '<div class="f-view"><button type="button" aria-pressed="false">titles only</button></div>';
+  box.innerHTML = '<label>Filter<input type="search" placeholder="A title, a venue, a word" autocomplete="off" spellcheck="false"></label>' +
+    '<div class="f-chips" role="group" aria-label="Filter by venue or authorship"></div><p class="f-n" aria-live="polite"></p>' +
+    '<div class="f-view"><button type="button" aria-pressed="false">Titles only</button></div>';
   var input = box.querySelector('input'), row = box.querySelector('.f-chips'), note = box.querySelector('.f-n'), view = box.querySelector('.f-view button'), cur = 0;
   chips.forEach(function (c, k) {
     var n = items.filter(c[1]).length; if (!n) return;
@@ -295,8 +295,8 @@
     });
     heads.forEach(function (h) { h.hidden = active && !h._n; if (active) h.classList.add('in'); if (h._count) h._count.textContent = h._n; });
     note.innerHTML = active
-      ? '<b>' + n + '</b> of ' + items.length + ' entries' + (n ? '' : '. nothing matches') + '<button type="button">clear</button>'
-      : '<b>' + items.length + '</b> entries' + (keys ? '. press / to search' : '');
+      ? '<b>' + n + '</b> of ' + items.length + ' entries' + (n ? '' : '. Nothing matches') + '<button type="button">Clear</button>'
+      : '<b>' + items.length + '</b> entries' + (keys ? '. Press / to search' : '');
     var clr = note.querySelector('button');
     if (clr) clr.addEventListener('click', function () { showAll(); input.focus(); });
   }
@@ -327,8 +327,8 @@
   // section rail: marks the section in view
   var marks = heads.filter(function (h) { return h.id; });
   if (marks.length < 3) return;
-  var rail = document.createElement('div'); rail.className = 'rail'; rail.setAttribute('role', 'navigation'); rail.setAttribute('aria-label', 'sections of this page');
-  var short = { accepted: 'accepted', mathematics: 'mathematics' };
+  var rail = document.createElement('div'); rail.className = 'rail'; rail.setAttribute('role', 'navigation'); rail.setAttribute('aria-label', 'Sections of this page');
+  var short = { accepted: 'Accepted', mathematics: 'Mathematics' };
   var links = marks.map(function (h) {
     var a = document.createElement('a'); a.href = '#' + h.id; a.textContent = short[h.id] || h._label;
     if (h.tagName === 'H3') a.className = 'sub';
@@ -370,7 +370,7 @@
       probs = p.map(function (v) { return v / z; });
       rows.forEach(function (r, i) {
         r.classList.toggle('cut', !keep[i]); r.children[1].style.setProperty('--p', probs[i]);
-        r.children[2].textContent = keep[i] ? Math.round(probs[i] * 100) + '%' : 'cut';
+        r.children[2].textContent = keep[i] ? Math.round(probs[i] * 100) + '%' : 'Cut';
       });
       box.querySelector('#o-t').textContent = T.toFixed(2); box.querySelector('#o-p').textContent = P.toFixed(2);
       box.querySelector('#o-k').textContent = K; box.querySelector('#acc').textContent = Math.round(probs[0] * 100) + '%';
@@ -401,13 +401,13 @@
         var s = document.createElement('span'); s.className = 'wd' + (changed === i - 1 ? ' new' : ''); s.textContent = w; poem.appendChild(s);
         if (i === words.length - 1) return;
         var g = document.createElement('button'); g.type = 'button'; g.className = 'gap' + (on[i] ? ' on' : '');
-        g.setAttribute('aria-label', (on[i] ? 'remove' : 'add') + ' line break after ' + w);
+        g.setAttribute('aria-label', (on[i] ? 'Remove' : 'Add') + ' line break after ' + w);
         g.addEventListener('click', function () { if (on[i]) delete on[i]; else on[i] = 1; draw(i); });
         poem.appendChild(g);
         if (on[i]) poem.appendChild(document.createElement('br'));
       });
       var mine = Object.keys(on).map(Number), hit = mine.filter(function (g) { return his.indexOf(g) > -1; }).length, extra = mine.length - hit;
-      score.innerHTML = 'you and williams agree on <b>' + hit + ' of 7</b>' + (extra ? '<span style="display:block;margin-top:6px">plus ' + extra + ' he did not make</span>' : '');
+      score.innerHTML = 'You and Williams agree on <b>' + hit + ' of 7</b>' + (extra ? '<span style="display:block;margin-top:6px">plus ' + extra + ' he did not make</span>' : '');
     }
     draw();
     box.querySelector('#b-w').addEventListener('click', function () { on = {}; his.forEach(function (g) { on[g] = 1; }); draw(); });

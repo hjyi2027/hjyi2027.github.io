@@ -11,7 +11,7 @@ personal site of hyunjun yi. hand-written html, one stylesheet, one script. no b
 
 ## files
 
-- `style.css`: tokens, base, frame, homepage, inner pages, research tools, search, motion, print. one light theme: instrument serif headlines, geist text, geist mono labels
+- `style.css`: tokens, base, frame, homepage, inner pages, research tools, search, motion, print. one light theme: instrument serif headlines, geist text, geist mono labels. copy is in sentence case, paper titles too
 - `site.js`: reveals, the search box, the research filter and rail, the homepage instruments. every part is optional and the pages read the same with it off
 - `og.png`: 1200x630 link-preview image
 - `sitemap.xml`, `robots.txt`, `.nojekyll`
@@ -19,8 +19,8 @@ personal site of hyunjun yi. hand-written html, one stylesheet, one script. no b
 ## when a paper changes status
 
 1. edit its entry in `research.html` (title link, the `.meta` line, position in the list)
-2. update the counts strip at the top of `research.html`, the two description metas, and the `updated` stamp
-3. update the counts strip, the about paragraph and the `latest` list in `index.html`, and the research paragraph in `cv.html` if the totals it quotes moved
+2. update the counts strip at the top of `research.html`, the two description metas, and the `updated` stamp. the four highlight cards under the counts repeat a status line each; keep them in step with their entries
+3. update the counts strip, the `all 46 papers` button, the about paragraph and the `latest` list in `index.html`, and the research paragraph in `cv.html` if the totals it quotes moved
 4. bump `lastmod` in `sitemap.xml`
 
 the search box and the filter chips read `research.html` directly, so they need no edits.
