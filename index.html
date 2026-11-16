@@ -117,10 +117,17 @@
     <h2 class="big"><span class="w">Turn the knob</span><span class="w"><em>nobody reports.</em></span></h2>
   </div>
   <div class="play">
-    <div class="panel" id="sampler">
-      <p class="panel-h">The sampler <span>Same model, same prompt</span></p>
+    <div class="lab-tabs" role="tablist" aria-label="Instruments" aria-orientation="vertical">
+      <button type="button" role="tab" id="tab-sampler" aria-controls="sampler" aria-selected="true"><span class="tn">01</span><span class="tt">The sampler</span><span class="td">Same model, same prompt. Change only the decoding settings and the right-answer rate moves.</span></button>
+      <button type="button" role="tab" id="tab-breaker" aria-controls="breaker" aria-selected="false" tabindex="-1"><span class="tn">02</span><span class="tt">The line break</span><span class="td">Williams's sixteen words as prose. Click between the words to break the lines, then compare with his.</span></button>
+      <button type="button" role="tab" id="tab-split" aria-controls="split" aria-selected="false" tabindex="-1"><span class="tn">03</span><span class="tt">The split</span><span class="td">Five source images cut into overlapping crops. Hold out a test set by crop or by image and watch what leaks.</span></button>
+    </div>
+    <div class="lab-stage">
+    <div class="panel on" id="sampler" role="tabpanel" aria-labelledby="tab-sampler">
+      <p class="panel-h"><b>The sampler</b> <span>Same model, same prompt</span></p>
       <p class="prompt">17 &times; 24 = <b class="out">408</b></p>
       <div class="bars" aria-live="off"></div>
+      <p class="presets" role="group" aria-label="Decoding presets"><button type="button" data-t="0.05" data-p="1" data-k="8" aria-pressed="false">Greedy</button><button type="button" data-t="1" data-p="1" data-k="8" aria-pressed="true">Default</button><button type="button" data-t="1" data-p="0.5" data-k="8" aria-pressed="false">Top-p 0.5</button><button type="button" data-t="2" data-p="1" data-k="8" aria-pressed="false">Hot</button></p>
       <div class="knobs">
         <label>Temperature <span class="val" id="o-t">1.00</span><input id="k-t" type="range" min="0.05" max="2" step="0.05" value="1"></label>
         <label>Top-p <span class="val" id="o-p">1.00</span><input id="k-p" type="range" min="0.1" max="1" step="0.05" value="1"></label>
@@ -131,15 +138,15 @@
       <p class="panel-actions"><button type="button" id="draw">Sample 60 answers</button></p>
       <p class="fine">Toy logits chosen for illustration, not model output. The model never changes here, only the decoding settings do, and the score moves anyway. Measuring this on real models is <a href="https://github.com/hjyi2027/sampler-confound">future work</a>.</p>
     </div>
-    <div class="panel" id="breaker">
-      <p class="panel-h">The line break <span>Click between the words</span></p>
+    <div class="panel" id="breaker" role="tabpanel" aria-labelledby="tab-breaker">
+      <p class="panel-h"><b>The line break</b> <span>Click between the words</span></p>
       <p class="poem">so much depends<br>upon<br>a red wheel<br>barrow<br>glazed with rain<br>water<br>beside the white<br>chickens</p>
       <p class="acc" id="score">Williams made 7 breaks.</p>
       <p class="panel-actions"><button type="button" id="b-w">Williams</button><button type="button" id="b-p">Prose</button></p>
       <p class="fine">William Carlos Williams, "The Red Wheelbarrow", 1923. Nothing in the sentence requires a break after "wheel". In <a href="research.html#restored-lines">Restored lines</a>, a model recovers 70 percent of breaks like that one and writes them at half the human rate.</p>
     </div>
-    <div class="panel wide" id="split">
-      <p class="panel-h">The split <span>Same images, two ways to hold out a test set</span></p>
+    <div class="panel wide" id="split" role="tabpanel" aria-labelledby="tab-split">
+      <p class="panel-h"><b>The split</b> <span>Same images, two ways to hold out a test set</span></p>
       <div>
         <svg class="split-fig" role="img" aria-label="Five source images, each cut into eight overlapping crops, coloured by train or test"></svg>
         <ul class="key"><li><i></i>Train crop</li><li><i class="te"></i>Test crop</li><li><i class="lk"></i>Test pixels also in a train crop</li></ul>
@@ -152,6 +159,7 @@
         <p class="panel-actions"><button type="button" id="s-crop" aria-pressed="true">Split by crop</button><button type="button" id="s-img" aria-pressed="false">Split by image</button><button type="button" id="s-mix">Reshuffle</button></p>
         <p class="fine">Toy layout for illustration: five source images, eight crops each, one fifth held out. The HRSID ship-detection benchmark was split by crop, and 94.8% of its test crops share pixels with a training crop. The audit is <a href="research.html#hrsid-split">Half the test ships are in the training crops</a>.</p>
       </div>
+    </div>
     </div>
   </div>
 </div>

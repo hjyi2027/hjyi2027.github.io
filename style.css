@@ -201,8 +201,52 @@ p.cols{display:block;margin:0}
 .links a{min-height:42px;padding:0 20px;font-size:15px}
 
 /* ── homepage playground: three instruments ─────────────── */
-.play{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+/* without js the three panels stack; with it they share one stage behind a column of tabs */
+.play,.lab-stage{display:grid;gap:20px}
+.lab-tabs{display:none}
+.js-reveal .play{grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(24px,3.4vw,48px);align-items:start}
+.js-reveal .lab-tabs{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.lab-tabs button{display:block;width:100%;margin:0;padding:22px 0 24px;border:0;border-bottom:1px solid var(--line);border-radius:0;background:none;
+  font:inherit;text-align:left;color:var(--muted);cursor:pointer;transition:color 200ms var(--ease),border-color 200ms var(--ease)}
+.lab-tabs button:hover{color:var(--fg)}
+.lab-tabs button[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--fg)}
+.lab-tabs span{display:block}
+.lab-tabs .tn{float:left;width:36px;padding-top:9px;font-family:var(--mono);font-size:11px;letter-spacing:.06em}
+.lab-tabs .tt{font-family:var(--display);font-size:clamp(26px,2.6vw,34px);line-height:1.1;letter-spacing:-.012em;color:var(--faint);transition:color 200ms var(--ease)}
+.lab-tabs button:hover .tt,.lab-tabs button[aria-selected="true"] .tt{color:var(--fg)}
+.lab-tabs .td{clear:left;max-height:0;overflow:hidden;padding-left:36px;font-size:15px;line-height:1.6;color:var(--muted);
+  transition:max-height 500ms var(--ease-out),margin 500ms var(--ease-out)}
+.lab-tabs button[aria-selected="true"] .td{max-height:9em;margin-top:12px}
+.js-reveal .lab-stage .panel:not(.on){display:none}
+.js-reveal .lab-stage .panel-h{display:none}
+.js-reveal .lab-stage .panel{animation:stage-in 500ms var(--ease-out) both}
+@keyframes stage-in{from{opacity:0;transform:translateY(8px)}}
+/* on the stage each instrument has room for two columns */
+.js-reveal #sampler{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:0 clamp(24px,3vw,44px);align-items:start;
+  grid-template-areas:"prompt acc" "bars presets" "bars knobs" "bars stream" "bars actions" "fine fine"}
+.js-reveal #sampler:not(.on),.js-reveal #breaker:not(.on){display:none}
+#sampler .prompt{grid-area:prompt}#sampler .acc{grid-area:acc}#sampler .bars{grid-area:bars}#sampler .presets{grid-area:presets}
+#sampler .knobs{grid-area:knobs}#sampler .stream{grid-area:stream}#sampler .panel-actions{grid-area:actions}#sampler .fine{grid-area:fine}
+.js-reveal #sampler .bars{gap:9px;margin-top:6px}
+.js-reveal #sampler .bar-row i{height:14px}
+.js-reveal #breaker{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:0 clamp(24px,3vw,44px);align-items:start;
+  grid-template-areas:"poem score" "poem actions" "poem ." "fine fine";grid-template-rows:auto auto 1fr auto}
+#breaker .poem{grid-area:poem}#breaker .acc{grid-area:score}#breaker .panel-actions{grid-area:actions}#breaker .fine{grid-area:fine}
+.js-reveal #breaker .poem{font-size:clamp(30px,3.1vw,42px);min-height:10.6em}
+@media (min-width:961px){
+  .js-reveal .lab-stage .panel{min-height:520px}
+  /* the split: its figure across the stage, the reading and the controls beneath */
+  .js-reveal #split.on{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 clamp(24px,3vw,44px);
+    grid-template-areas:"fig fig" "acc knobs" "acc actions" "fine fine";grid-template-rows:auto auto 1fr auto}
+  .js-reveal #split > div:first-of-type{grid-area:fig;margin-bottom:22px}
+  .js-reveal #split > div:last-of-type{display:contents}
+  .js-reveal #split .acc{grid-area:acc}.js-reveal #split .knobs{grid-area:knobs;margin-top:6px}
+  .js-reveal #split .panel-actions{grid-area:actions}.js-reveal #split .fine{grid-area:fine}
+}
+.presets{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px}
+.panel .presets button{min-height:32px;padding:0 13px;font-size:13px}
 .panel{padding:clamp(22px,2.6vw,34px);min-width:0;border-radius:28px;background:var(--surface-2)}
+.panel-h b{font-weight:inherit}
 .panel-h{margin:0 0 24px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:18px;font-weight:500;letter-spacing:-.01em;color:var(--fg)}
 .panel-h span{font-family:var(--mono);font-size:12px;font-weight:400;letter-spacing:0;color:var(--muted);text-align:right}
 .prompt{margin:0 0 20px;font-family:var(--display);font-size:clamp(40px,4.6vw,64px);line-height:1;letter-spacing:-.015em;color:var(--muted)}
@@ -476,7 +520,17 @@ html.pal-open{overflow:hidden}
   .hero-fig{position:relative;inset:auto;height:360px;margin:8px calc(var(--gutter)*-1) 0}
   .fig-note{position:static;max-width:none;text-align:left;margin:4px 0 36px}
   .two{grid-template-columns:1fr;align-items:start;gap:32px}
-  .play{grid-template-columns:1fr}
+  .js-reveal .play{grid-template-columns:minmax(0,1fr);gap:20px}
+  .js-reveal .lab-tabs{flex-direction:row;gap:26px;overflow-x:auto;margin-inline:calc(var(--gutter)*-1);padding-inline:var(--gutter);border-top:0;scrollbar-width:none}
+  .lab-tabs::-webkit-scrollbar{display:none}
+  .lab-tabs button{flex:none;width:auto;padding:0 0 10px;border-bottom-color:transparent}
+  .lab-tabs .tn{float:none;display:inline;width:auto;padding:0 8px 0 0}
+  .lab-tabs .tt{display:inline;font-size:24px}
+  .lab-tabs .td{display:none}
+  .js-reveal .lab-stage .panel-h{display:flex}
+  .js-reveal .lab-stage .panel-h b{display:none}
+  .js-reveal #sampler.on,.js-reveal #breaker.on{display:block}
+  .js-reveal #breaker .poem{font-size:clamp(26px,5.4vw,34px)}
   .panel.wide{grid-template-columns:1fr}
   .latest{grid-template-columns:1fr}
 }
@@ -533,10 +587,10 @@ html.pal-open{overflow:hidden}
 /* ── motion and transparency preferences ────────────────── */
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .ticker span,.stream s,.poem .wd.new,.pal,.pal-box,.js-reveal .hero-fig{animation:none}
+  .ticker span,.stream s,.poem .wd.new,.pal,.pal-box,.js-reveal .hero-fig,.js-reveal .lab-stage .panel{animation:none}
   .bar::after{display:none}
   ::view-transition-old(root),::view-transition-new(root){animation:none}
-  .pill-dot,.arrow,.fig svg,.rows li a::after,.item::after,.bar-row i::after,.split-fig rect,.rail a::before,.link,.item h3 a{transition:none}
+  .pill-dot,.arrow,.fig svg,.lab-tabs .td,.rows li a::after,.item::after,.bar-row i::after,.split-fig rect,.rail a::before,.link,.item h3 a{transition:none}
   .js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig):not(.in){opacity:1;filter:none;transform:none}
   .js-reveal :is(.poster,.big,.mail,.page-title):not(.in) .w{clip-path:none;transform:none}
 }

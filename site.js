@@ -354,6 +354,30 @@
   if (!document.documentElement.classList.contains('home')) return;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // ── the three instruments share one stage, behind tabs ──
+  (function () {
+    var list = document.querySelector('.lab-tabs'); if (!list) return;
+    var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+    function show(k, focus) {
+      tabs.forEach(function (t, i) {
+        var yes = i === k, p = document.getElementById(t.getAttribute('aria-controls'));
+        t.setAttribute('aria-selected', yes ? 'true' : 'false'); t.tabIndex = yes ? 0 : -1;
+        if (p) p.classList.toggle('on', yes);
+      });
+      if (focus) tabs[k].focus();
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { show(i); });
+      t.addEventListener('keydown', function (e) {
+        var d = (e.key === 'ArrowDown' || e.key === 'ArrowRight') ? 1 : (e.key === 'ArrowUp' || e.key === 'ArrowLeft') ? -1 : 0;
+        if (e.key === 'Home') { e.preventDefault(); show(0, true); }
+        else if (e.key === 'End') { e.preventDefault(); show(tabs.length - 1, true); }
+        else if (d) { e.preventDefault(); show((i + d + tabs.length) % tabs.length, true); }
+      });
+    });
+    show(0);
+  })();
+
   // ── the sampler: fixed toy logits, live decoding knobs ──
   (function () {
     var box = document.getElementById('sampler'); if (!box) return;
@@ -365,6 +389,7 @@
       r.innerHTML = '<span>' + t + '</span><i></i><b></b>'; bars.appendChild(r); rows.push(r);
     });
     var kt = box.querySelector('#k-t'), kp = box.querySelector('#k-p'), kk = box.querySelector('#k-k');
+    var presets = Array.prototype.slice.call(box.querySelectorAll('.presets button'));
     function calc() {
       var T = +kt.value, P = +kp.value, K = +kk.value, z = 0, p = lg.map(function (l) { return Math.exp(l / T); });
       p.forEach(function (v) { z += v; }); p = p.map(function (v) { return v / z; });
@@ -378,7 +403,10 @@
       });
       box.querySelector('#o-t').textContent = T.toFixed(2); box.querySelector('#o-p').textContent = P.toFixed(2);
       box.querySelector('#o-k').textContent = K; box.querySelector('#acc').textContent = Math.round(probs[0] * 100) + '%';
+      presets.forEach(function (b) { b.setAttribute('aria-pressed', (+b.getAttribute('data-t') === T && +b.getAttribute('data-p') === P && +b.getAttribute('data-k') === K) ? 'true' : 'false'); });
     }
+    // presets move all three knobs at once
+    presets.forEach(function (b) { b.addEventListener('click', function () { kt.value = b.getAttribute('data-t'); kp.value = b.getAttribute('data-p'); kk.value = b.getAttribute('data-k'); calc(); }); });
     [kt, kp, kk].forEach(function (k) { k.addEventListener('input', calc); });
     calc();
     var out = box.querySelector('.out'), stream = box.querySelector('.stream'), timer;
@@ -391,6 +419,13 @@
         if (++n >= 60) { clearInterval(timer); box.querySelector('#acc').textContent = ok + ' of 60'; }
       }, reduce ? 0 : 28);
     });
+    // the first time the sampler is on screen it draws a run by itself
+    if (!reduce && 'IntersectionObserver' in window) {
+      var once = new IntersectionObserver(function (es) {
+        if (es[0].isIntersecting) { once.disconnect(); box.querySelector('#draw').click(); }
+      }, { threshold: 0.6 });
+      once.observe(box);
+    }
   })();
 
   // ── the line break: the red wheelbarrow as prose you can break ──
