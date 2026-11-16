@@ -13,7 +13,7 @@
   // reveal each block once as it arrives. siblings that enter on the same
   // frame stagger, so a section lands as a sequence rather than a slab.
   var sel = '.kicker, .num, .eyebrow, .lede, h2, h3.sub, .item, .row, ul.plain, .links, .latest, ' +
-            '.page-title, .poster, .big, .mail, .cols, .rows, .facts, .play, .poster-sub, .hero-cta, .sec-head, .ticker, .feature, .hero-at, .fig-note, .nf-fig, .night, .sponsors, .about-fig, .points, .tl-day, .foot-in, .foot-big';
+            '.page-title, .poster, .big, .mail, .cols, .rows, .facts, .play, .poster-sub, .hero-cta, .sec-head, .ticker, .feature, .hero-at, .fig-note, .nf-fig, .night, .sponsors, .about-fig, .points, .tl-day, .foot-in, .foot-big, .r-map';
   document.querySelectorAll('.poster, .big, .mail, .page-title').forEach(function (h) {
     h.querySelectorAll('.w').forEach(function (w, k) { w.style.setProperty('--k', k); });
   });
@@ -316,6 +316,49 @@
     if (h.tagName === 'H2') { h._count = document.createElement('span'); h._count.className = 'h-n'; h.appendChild(h._count); }
   });
 
+  // a map of the page beside the lede: one square a paper, grouped by status.
+  // hovering a square names the paper; choosing one goes to it.
+  var mapBox = main.querySelector('.r-map');
+  if (mapBox) {
+    var CLS = { accepted: 'accepted', 'in-review': 'review', solved: 'solved', 'new-records': 'records', 'new-discoveries': 'discoveries', 'in-revision': 'revision' };
+    var NAME = { accepted: 'Accepted', 'in-review': 'In review' };
+    var groups = [], g = null;
+    Array.prototype.forEach.call(main.children, function (k) {
+      var head = k.tagName === 'H2' || (k.tagName === 'H3' && k.classList.contains('sub'));
+      if (head && CLS[k.id]) { g = { id: k.id, name: NAME[k.id] || k.textContent.trim(), list: [] }; groups.push(g); }
+      else if (head) g = null;
+      else if (g && k.classList.contains('item') && k.id) g.list.push(k);
+    });
+    var capIdle = '<b>' + items.length + ' papers</b>Choose a square to see which paper it is.';
+    var gs = document.createElement('div'); gs.className = 'map-gs';
+    var cap = document.createElement('p'); cap.className = 'map-cap'; cap.setAttribute('aria-live', 'polite'); cap.innerHTML = capIdle;
+    var n = 0;
+    groups.forEach(function (gr) {
+      if (!gr.list.length) return;
+      var wrap = document.createElement('div'); wrap.className = 'map-g ' + CLS[gr.id];
+      var lab = document.createElement('span'); lab.className = 'map-l'; lab.textContent = gr.name;
+      var num = document.createElement('b'); num.textContent = gr.list.length; lab.appendChild(num);
+      var cells = document.createElement('div'); cells.className = 'map-c';
+      gr.list.forEach(function (it) {
+        n++;
+        var a = document.createElement('a'), h = it.querySelector('h3'), title = h ? h.textContent.trim() : it.id, no = (n < 10 ? '0' : '') + n;
+        a.href = '#' + it.id; a.setAttribute('aria-label', title);
+        var say = function () {
+          cap.textContent = '';
+          var b = document.createElement('b'); b.textContent = title; cap.appendChild(b);
+          cap.appendChild(document.createTextNode(no + ' \u00b7 ' + gr.name));
+        };
+        a.addEventListener('pointerenter', say); a.addEventListener('focus', say);
+        a.addEventListener('click', function () { if (it.hidden && window.__showAll) window.__showAll(); });
+        cells.appendChild(a);
+      });
+      wrap.appendChild(lab); wrap.appendChild(cells); gs.appendChild(wrap);
+    });
+    gs.addEventListener('pointerleave', function () { cap.innerHTML = capIdle; });
+    var mh = document.createElement('p'); mh.className = 'map-h'; mh.innerHTML = 'Every paper on this page<span>one square each</span>';
+    mapBox.appendChild(mh); mapBox.appendChild(gs); mapBox.appendChild(cap); mapBox.hidden = false;
+  }
+
   // the table's status cells become small tags.
   Array.prototype.forEach.call(document.querySelectorAll('table.problems tbody td:last-child'), function (td) {
     var parts = td.textContent.split('\u00b7').map(function (p) { return p.trim(); }).filter(Boolean);
@@ -429,6 +472,12 @@
     b.innerHTML = c[0] + '<i>' + n + '</i>';
     b.addEventListener('click', function () { cur = k; apply(); });
     c[2] = b; row.appendChild(b);
+  });
+  // a count that names a venue sets that venue's chip on the way to the list
+  Array.prototype.forEach.call(main.querySelectorAll('[data-chip]'), function (a) {
+    a.addEventListener('click', function () {
+      for (var k = 0; k < chips.length; k++) if (chips[k][0] === a.getAttribute('data-chip') && chips[k][2]) { cur = k; input.value = ''; apply(); }
+    });
   });
   var anchor = main.querySelector('.jump') || main.querySelector('.facts');
   if (anchor) anchor.parentNode.insertBefore(box, anchor.nextSibling);

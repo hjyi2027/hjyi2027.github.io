@@ -579,12 +579,49 @@ main.filtering .feature{display:none}
 .fig .lbl{font-family:var(--mono);font-size:11px;fill:var(--accent)}
 
 /* research counts: a hairline grid that works for any number of cells */
-.facts.six{grid-template-columns:repeat(3,1fr);gap:1px;margin:44px 0 24px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.facts.six div{padding:22px 24px 20px;border:0;background:var(--base)}
-.facts.six div:is(:nth-child(1),:nth-child(4),.total){padding-left:0}
-.facts.six dd{font-size:clamp(40px,5vw,64px)}
-.facts.six .span2{grid-column:span 2}
-.facts.six .total{grid-column:1/-1;flex-direction:row;align-items:baseline;justify-content:space-between}
+.facts.six{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:clamp(40px,5vw,64px) 0 24px;border:0}
+.facts.six div{position:relative;flex-direction:column;justify-content:space-between;gap:28px;min-height:176px;padding:22px 24px 20px;
+  border:0;border-radius:24px;background:var(--surface-2);transition:background-color 200ms var(--ease),transform 400ms var(--ease-out)}
+.facts.six div:first-child{padding-left:24px}
+.facts.six dt{max-width:26ch;padding-right:40px;font-size:15px;color:var(--fg-2)}
+.facts.six dd{font-size:clamp(60px,7.4vw,104px);line-height:.86}
+.facts.six dd a{color:inherit}
+.facts.six dd a::after{content:"";position:absolute;inset:0;border-radius:24px}          /* the whole card is the link */
+.facts.six div:has(a)::after{content:"\2193";position:absolute;right:20px;top:18px;display:grid;place-items:center;width:32px;height:32px;border-radius:50%;
+  border:1px solid var(--line-strong);font-size:14px;color:var(--fg-2);transition:background-color 200ms var(--ease),color 200ms var(--ease),border-color 200ms var(--ease),transform 400ms var(--ease-out)}
+.facts.six div:has(a):hover{background:#e8e8e4}
+.facts.six div:has(a):hover::after{background:var(--fg);border-color:var(--fg);color:var(--on-fg);transform:translateY(3px)}
+.facts.six dd a:hover{color:inherit}
+.facts.six .span2{grid-column:auto}
+.facts.six .total{grid-column:auto;background:var(--fg);color:var(--on-fg)}
+.facts.six .total dt{color:rgba(255,255,255,.72)}
+.facts.six .total dd{color:var(--on-fg)}
+.facts.six .total:has(a):hover{background:#2a2a2e}
+.facts.six .total:has(a)::after{border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.8)}
+.facts.six .total:has(a):hover::after{background:#fff;border-color:#fff;color:var(--fg)}
+
+/* the lede beside a map of the page: one square a paper, grouped by status */
+.r-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:start}
+.r-intro .lede{margin:0}
+.r-map{padding:4px 0 0 clamp(20px,3vw,40px);border-left:1px solid var(--line)}
+.map-h{display:flex;justify-content:space-between;gap:12px;margin:0 0 18px;font-family:var(--mono);font-size:12px;line-height:1.5;color:var(--fg-2)}
+.map-h span{color:var(--muted)}
+.map-gs{display:flex;flex-wrap:wrap;gap:16px 26px}
+.map-g{min-width:0}
+.map-l{display:block;margin:0 0 8px;font-family:var(--mono);font-size:11px;line-height:1.4;color:var(--muted)}
+.map-l b{font-weight:400;color:var(--fg);margin-left:4px}
+.map-c{display:flex;flex-wrap:wrap;gap:5px;max-width:346px}
+.map-c a{display:block;width:22px;height:22px;border-radius:6px;background:var(--fg);border:1.5px solid var(--fg);
+  transition:transform 260ms var(--ease-out),box-shadow 200ms var(--ease)}
+.map-c a:is(:hover,:focus-visible,.on){transform:scale(1.28);box-shadow:0 0 0 3px var(--base),0 0 0 4.5px currentColor;outline:0}
+.map-g.review .map-c a,.map-g.revision .map-c a{background:none}
+.map-g.revision .map-c a{border-style:dashed}
+.map-g.solved .map-c a{background:var(--accent);border-color:var(--accent);color:var(--accent)}
+.map-g.records .map-c a{background:#dfe5fb;border-color:var(--accent);color:var(--accent)}
+.map-g.discoveries .map-c a{background:var(--warm);border-color:var(--warm);color:var(--warm)}
+.map-cap{min-height:3.2em;margin:20px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:14.5px;line-height:1.5;color:var(--muted)}
+.map-cap b{display:block;font-family:var(--display);font-weight:400;font-size:21px;line-height:1.2;letter-spacing:-.008em;color:var(--fg);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
 /* cv rows */
 .row{display:grid;grid-template-columns:148px 1fr;gap:28px;margin:0;padding:26px 0;border-bottom:1px solid var(--line)}
@@ -726,8 +763,8 @@ html.pal-open{overflow:hidden}
 /* hidden state is gated on .js-reveal, set by an inline script in <head>,
    so nothing flashes and nothing is hidden without js. each block comes
    into focus as it arrives: up a little, out of a soft blur. */
-.js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big):not(.in){opacity:0;filter:blur(8px);transform:translateY(18px)}
-:is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big).in{
+.js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big,.r-map):not(.in){opacity:0;filter:blur(8px);transform:translateY(18px)}
+:is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big,.r-map).in{
   transition:opacity 900ms var(--ease-out),transform 1000ms var(--ease-out),filter 900ms var(--ease-out);transition-delay:var(--d,0ms)}
 /* headline lines rise out of their own baseline, one after another */
 .js-reveal :is(.poster,.big,.mail,.page-title) .w{transition:clip-path 1000ms var(--ease-out),transform 1000ms var(--ease-out);transition-delay:calc(var(--k,0)*90ms)}
@@ -803,11 +840,14 @@ html.pal-open{overflow:hidden}
   .facts div{padding:22px 16px 18px}
   .facts div:nth-child(odd){border-left:0;padding-left:0}
   .facts div:nth-child(n+3){border-top:1px solid var(--line)}
-  .facts.six{grid-template-columns:1fr 1fr}
-  .facts.six div{border:0;padding:20px 16px 18px}
-  .facts.six div:is(:nth-child(odd),.total){padding-left:0}
-  .facts.six div:nth-child(4){padding-left:16px}
-  .facts.six .span2{grid-column:1/-1;padding-left:0}
+  .facts.six{grid-template-columns:1fr 1fr;gap:10px}
+  .facts.six div,.facts.six div:nth-child(odd),.facts.six div:nth-child(n+3){min-height:148px;padding:18px 18px 16px;border:0}
+  .facts.six div:has(a)::after{right:14px;top:14px;width:28px;height:28px}
+  .facts.six dd{font-size:56px}
+  .r-intro{grid-template-columns:1fr}
+  .r-map{padding:0;border-left:0}
+  .map-c{max-width:none}
+  .facts.six dt{padding-right:34px;font-size:14px}
   .tl-day{grid-template-columns:52px minmax(0,1fr);gap:0 30px}
   .tl-day::before{left:66px}
   .tl-day::after{left:62px}
@@ -877,8 +917,8 @@ html.pal-open{overflow:hidden}
   .bar::before{display:none}
   .bar-in,.menu,.menu-big li{transition:none;animation:none}
   ::view-transition-old(root),::view-transition-new(root){animation:none}
-  .pill-dot,.arrow,.mail-go,.act::after,.tl a::after,.hbars i::after,.fig svg,.lab-tabs .td,.rows li a::after,.item::after,.bar-row i::after,.split-fig rect,.rail a::before,.link,.item h3 a{transition:none}
-  .js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big):not(.in){opacity:1;filter:none;transform:none}
+  .pill-dot,.arrow,.mail-go,.map-c a,.facts.six div,.facts.six div::after,.act::after,.tl a::after,.hbars i::after,.fig svg,.lab-tabs .td,.rows li a::after,.item::after,.bar-row i::after,.split-fig rect,.rail a::before,.link,.item h3 a{transition:none}
+  .js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big,.r-map):not(.in){opacity:1;filter:none;transform:none}
   .js-reveal :is(.poster,.big,.mail,.page-title):not(.in) .w{clip-path:none;transform:none}
 }
 @media (prefers-reduced-transparency:reduce){
@@ -889,7 +929,7 @@ html.pal-open{overflow:hidden}
 @media print{
   :root{--base:#fff;--surface:#fff;--surface-2:#fff;--fg:#000;--fg-2:#1a1a1a;--muted:#555;--line:#ccc;--line-strong:#999}
   body{font-size:11pt}
-  .bar,.menu,.skip,.foot,.kicker,.jump,.filter,.rail,.pl,.ex,.pal,.print,.hero-fig,.fig-note,.ticker,.play,.hero-cta,.feature{display:none!important}
+  .bar,.menu,.skip,.foot,.kicker,.jump,.filter,.rail,.r-map,.pl,.ex,.pal,.print,.hero-fig,.fig-note,.ticker,.play,.hero-cta,.feature{display:none!important}
   .wrap{max-width:none;padding:0}
   .page-title{font-size:36pt;margin-bottom:8pt}
   .lede{font-size:11pt}
