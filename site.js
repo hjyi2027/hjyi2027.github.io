@@ -13,7 +13,7 @@
   // reveal each block once as it arrives. siblings that enter on the same
   // frame stagger, so a section lands as a sequence rather than a slab.
   var sel = '.kicker, .num, .eyebrow, .lede, h2, h3.sub, .item, .row, ul.plain, .links, .latest, ' +
-            '.page-title, .poster, .big, .mail, .cols, .rows, .facts, .play, .poster-sub, .hero-cta, .sec-head, .ticker, .feature, .hero-at, .fig-note, .nf-fig, .night, .sponsors, .about-fig, .points, .tl-day, .foot-in, .foot-big, .r-map, .cv-id, .cv-toc';
+            '.page-title, .poster, .big, .mail, .cols, .rows, .facts, .play, .poster-sub, .hero-cta, .sec-head, .ticker, .feature, .hero-at, .fig-note, .nf-fig, .night, .sponsors, .about-fig, .points, .tl-day, .foot-in, .foot-big, .r-map, .cv-id, .cv-toc, .edu-fig';
   document.querySelectorAll('.poster, .big, .mail, .page-title').forEach(function (h) {
     h.querySelectorAll('.w').forEach(function (w, k) { w.style.setProperty('--k', k); });
   });
@@ -88,6 +88,14 @@
     var k = sec.querySelectorAll('.cv-body > .row').length;
     n.textContent = k + (k === 1 ? ' entry' : ' entries');
   });
+
+  // cv: the education chart marks today on its school-year axis, which runs
+  // from august 2024 to july 2027, and only while today falls inside it.
+  var now = document.querySelector('.ef-now');
+  if (now) {
+    var d = new Date(), mo = (d.getFullYear() - 2024) * 12 + d.getMonth() - 7 + (d.getDate() - 1) / 31;
+    if (mo >= 0 && mo <= 36) { now.style.left = (mo / 36 * 100).toFixed(2) + '%'; now.hidden = false; }
+  }
 
   // cv: the print link exists only when printing can be triggered.
   var p = document.querySelector('.print');

@@ -781,6 +781,37 @@ main.filtering .feature{display:none}
 /* cv rows: a soft card under the row in hand, the date column carries a tag,
    and the long rows open on their figures before the prose */
 .cv-body .row{position:relative;isolation:isolate;grid-template-columns:116px 1fr;gap:24px}
+/* education: the three schools on a school-year axis, drawn on the same
+   squared paper as the figures, with the diploma date and today marked */
+.edu-fig{margin:0 0 8px;padding:18px 20px 14px;border:1px solid var(--line);border-radius:20px;
+  background-color:#f5f3ea;background-image:linear-gradient(rgba(39,71,212,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(39,71,212,.09) 1px,transparent 1px);
+  background-size:24px 24px;background-position:-1px -1px}
+.ef-grid{position:relative;display:grid;grid-template-columns:repeat(36,minmax(0,1fr));row-gap:14px;padding-bottom:26px}
+.ef-y{grid-row:1;padding:0 0 4px 10px;font-family:var(--mono);font-size:11px;line-height:1.45;letter-spacing:.04em;color:var(--fg-2)}
+.ef-y small{display:block;font-size:11px;color:var(--muted)}
+.ef-y.y1{grid-column:1/13;padding-left:0}
+.ef-y.y2{grid-column:13/25}
+.ef-y.y3{grid-column:25/37}
+.ef-row{position:relative;z-index:1;min-width:0}
+.ef-row.ash{grid-column:1/13;grid-row:2}
+.ef-row.sis{grid-column:13/35;grid-row:3}
+.ef-row.su{grid-column:13/25;grid-row:4}
+.ef-l{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:0 0 7px;font-size:13.5px;font-weight:500;line-height:1.3;color:var(--fg);white-space:nowrap}
+.ef-l em{padding:0 4px;background:#f5f3ea;font-style:normal;font-family:var(--mono);font-size:11px;font-weight:400;color:var(--muted)}   /* today's line passes behind it */
+.ef-bar{position:relative;display:block;height:10px;border-radius:999px;background:var(--fg);transform-origin:left;transition:transform 900ms var(--ease-out)}
+.ash .ef-bar{background:linear-gradient(90deg,rgba(23,23,26,0),#9b9b97 55%)}
+.su .ef-bar{background:var(--accent)}
+.sis .ef-bar::after{content:"";position:absolute;right:-3px;top:50%;width:14px;height:14px;margin-top:-7px;border:2px solid var(--fg);border-radius:50%;background:#f5f3ea}
+.ef-sep{position:absolute;top:0;bottom:0;width:0;border-left:1px dashed rgba(23,23,26,.24)}
+.ef-now{position:absolute;top:40px;bottom:0;width:0;border-left:1.5px solid var(--accent);font-family:var(--mono);font-size:10.5px;line-height:1;color:var(--accent);transition:opacity 600ms var(--ease) 900ms}
+.ef-now::before{content:"";position:absolute;left:-4.75px;bottom:-1px;width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.ef-now{text-indent:10px;display:flex;align-items:flex-end;white-space:nowrap}
+.edu-fig figcaption{margin:2px 0 0;padding-top:10px;border-top:1px dashed rgba(23,23,26,.2);font-family:var(--mono);font-size:11px;line-height:1.5;color:var(--muted)}
+.js-reveal .edu-fig:not(.in) .ef-bar{transform:scaleX(0)}
+.js-reveal .edu-fig:not(.in) .ef-now{opacity:0}
+.edu-fig.in .ash .ef-bar{transition-delay:150ms}
+.edu-fig.in .sis .ef-bar{transition-delay:320ms}
+.edu-fig.in .su .ef-bar{transition-delay:490ms}
 .cv-body .row::after{content:"";position:absolute;inset:6px -22px;z-index:-1;border-radius:20px;background:var(--surface-2);
   opacity:0;pointer-events:none;transition:opacity 300ms var(--ease)}
 .cv-body .row:first-child::after{top:-16px}
@@ -969,8 +1000,8 @@ html.pal-open{overflow:hidden}
 /* hidden state is gated on .js-reveal, set by an inline script in <head>,
    so nothing flashes and nothing is hidden without js. each block comes
    into focus as it arrives: up a little, out of a soft blur. */
-.js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big,.r-map,.cv-id,.cv-toc):not(.in){opacity:0;filter:blur(8px);transform:translateY(18px)}
-:is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big,.r-map,.cv-id,.cv-toc).in{
+.js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big,.r-map,.cv-id,.cv-toc,.edu-fig):not(.in){opacity:0;filter:blur(8px);transform:translateY(18px)}
+:is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big,.r-map,.cv-id,.cv-toc,.edu-fig).in{
   transition:opacity 900ms var(--ease-out),transform 1000ms var(--ease-out),filter 900ms var(--ease-out);transition-delay:var(--d,0ms)}
 /* headline lines rise out of their own baseline, one after another */
 .js-reveal :is(.poster,.big,.mail,.page-title) .w{transition:clip-path 1000ms var(--ease-out),transform 1000ms var(--ease-out);transition-delay:calc(var(--k,0)*90ms)}
@@ -1049,6 +1080,9 @@ html.pal-open{overflow:hidden}
   .facts.six{grid-template-columns:1fr 1fr;gap:10px}
   .facts.cv-facts{grid-template-columns:1fr 1fr;gap:10px}
   .cv-id div{grid-template-columns:80px minmax(0,1fr);gap:12px}
+  .edu-fig{padding:14px 14px 12px}
+  .ef-l{font-size:12.5px}
+  .ef-l em{display:none}
   .cv-toc{padding:16px 18px 18px}
   .cv-toc ol a{grid-template-columns:26px auto minmax(10px,1fr) auto 14px;gap:0 8px}
   .cv-facts div,.cv-facts div:first-child,.cv-facts div:nth-child(odd),.cv-facts div:nth-child(n+3){min-height:200px;padding:18px 18px 16px;border:0}
@@ -1157,6 +1191,9 @@ html.pal-open{overflow:hidden}
   .cv-facts div,.cv-facts div::after,.cv-facts .dots i{transition:none}
   .js-reveal .row:not(.in) .cv-figs div,.js-reveal .row:not(.in) .tools li{opacity:1;transform:none}
   .row.in .tools li{animation:none}
+  .js-reveal .edu-fig:not(.in) .ef-bar{transform:none}
+  .js-reveal .edu-fig:not(.in) .ef-now{opacity:1}
+  .ef-bar,.ef-now{transition:none}
   .tools li{transition:none}
   .js-reveal .row:not(.in) .lv i::after{transform:none}
   .feature.in .dr{transition:none}
@@ -1165,7 +1202,7 @@ html.pal-open{overflow:hidden}
   .bar-in,.menu,.menu-big li{transition:none;animation:none}
   ::view-transition-old(root),::view-transition-new(root){animation:none}
   .pill-dot,.arrow,.mail-go,.map-c a,.facts.six div,.facts.six div::after,.act::after,.tl a::after,.hbars i::after,.fig svg,.lab-tabs .td,.rows li a::after,.item::after,.bar-row i::after,.split-fig rect,.rail a::before,.link,.item h3 a{transition:none}
-  .js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big,.r-map,.cv-id,.cv-toc):not(.in){opacity:1;filter:none;transform:none}
+  .js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big,.r-map,.cv-id,.cv-toc,.edu-fig):not(.in){opacity:1;filter:none;transform:none}
   .js-reveal :is(.poster,.big,.mail,.page-title):not(.in) .w{clip-path:none;transform:none}
 }
 @media (prefers-reduced-transparency:reduce){
@@ -1225,7 +1262,7 @@ html.pal-open{overflow:hidden}
   .facts dd{font-size:22pt}
   .facts dt{font-size:9.5pt}
   .cv-links{margin-top:8pt}
-  .cv-toc{display:none}
+  .cv-toc,.edu-fig{display:none}
   .cv-band{display:block;margin:0}
   .cv-id{display:block;margin:0;border:0}
   .cv-id div{display:inline;padding:0;border:0}
