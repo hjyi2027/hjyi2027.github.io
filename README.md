@@ -11,7 +11,7 @@ personal site of hyunjun yi. hand-written html, one stylesheet, one script. no b
 
 ## files
 
-- `style.css`: tokens, base, frame, homepage, inner pages, research tools, search, motion, print. one navy theme
+- `style.css`: tokens, base, frame, homepage, inner pages, research tools, search, motion, print. one light theme: instrument serif headlines, geist text, geist mono labels
 - `site.js`: reveals, the search box, the research filter and rail, the homepage instruments. every part is optional and the pages read the same with it off
 - `og.png`: 1200x630 link-preview image
 - `sitemap.xml`, `robots.txt`, `.nojekyll`

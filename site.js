@@ -1,9 +1,9 @@
 // hyunjun yi — one script for every page. every part is optional:
 // the pages read the same with it switched off.
-//   1. shared: reveals, spotlight, clock, print link, counts
+//   1. shared: reveals, clock, print link, counts
 //   2. search: one box that reaches every page, section and paper
 //   3. research page: filter, titles-only view, section rail, copyable links
-//   4. homepage: loader, three instruments, the line field
+//   4. homepage: three instruments, the line field
 
 // ── 1. shared ────────────────────────────────────────────────────────────
 (function () {
@@ -12,8 +12,8 @@
 
   // reveal each block once as it arrives. siblings that enter on the same
   // frame stagger, so a section lands as a sequence rather than a slab.
-  var sel = '.kicker, .lede, h2, h3.sub, .item, .row, ul.plain, .more, .links, .latest, ' +
-            '.page-title, .poster, .big, .mail, .num, .cols, .rows, .facts, .play, .poster-sub, .ticker';
+  var sel = '.kicker, .num, .eyebrow, .lede, h2, h3.sub, .item, .row, ul.plain, .links, .latest, ' +
+            '.page-title, .poster, .big, .mail, .cols, .rows, .facts, .play, .poster-sub, .hero-cta, .sec-head, .ticker';
   document.querySelectorAll('.poster, .big, .mail, .page-title').forEach(function (h) {
     h.querySelectorAll('.w').forEach(function (w, k) { w.style.setProperty('--k', k); });
   });
@@ -40,17 +40,6 @@
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
     nodes.forEach(function (n) { io.observe(n); });
-  }
-
-  // a spotlight that follows the pointer across a research entry.
-  if (!reduce && window.matchMedia('(hover: hover)').matches) {
-    document.addEventListener('pointermove', function (e) {
-      var it = e.target.closest && e.target.closest('.item');
-      if (!it) return;
-      var r = it.getBoundingClientRect();
-      it.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-      it.style.setProperty('--my', (e.clientY - r.top) + 'px');
-    }, { passive: true });
   }
 
   // the footer shows the local time in seoul; without js it just says "seoul".
@@ -215,7 +204,7 @@
   btn.innerHTML = 'search<kbd>' + (/Mac|iPhone|iPad/.test(navigator.platform || '') ? '&#8984;K' : 'ctrl K') + '</kbd>';
   btn.addEventListener('click', open);
   btn.addEventListener('pointerenter', load);                // warm the index before the click
-  links.insertBefore(btn, links.firstChild);
+  links.appendChild(btn);
 })();
 
 // ── 3. research page ─────────────────────────────────────────────────────
@@ -359,13 +348,7 @@
 // ── 4. homepage ──────────────────────────────────────────────────────────
 (function () {
   if (!document.documentElement.classList.contains('home')) return;
-  var root = document.documentElement;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // loader lifts once fonts are in (or after 900ms, whichever first)
-  var lift = function () { root.classList.add('ready'); };
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(lift);
-  setTimeout(lift, 900);
 
   // ── the sampler: fixed toy logits, live decoding knobs ──
   (function () {
@@ -488,8 +471,10 @@
 
   // the line field: vertical lines warped by a value-noise flow that follows
   // the pointer and the scroll velocity. plain canvas 2d, no library.
+  // with reduced motion it draws one still frame.
   var cv = document.querySelector('canvas.field');
-  if (!cv || reduce) return;
+  if (!cv) return;
+  var host = cv.closest('.hero') || cv.parentNode;
   var ctx = cv.getContext('2d'), W = 0, H = 0, dpr = 1;
   var px = -1e4, py = -1e4, tx = px, ty = py, vel = 0, lastY = window.scrollY, t = 0, on = true;
 
@@ -511,18 +496,21 @@
     W = cv.clientWidth; H = cv.clientHeight;
     cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
-  size(); window.addEventListener('resize', size);
+  size(); window.addEventListener('resize', function () { size(); if (reduce) kick(); });
 
-  cv.parentNode.addEventListener('pointermove', function (e) {
+  host.addEventListener('pointermove', function (e) {
     var r = cv.getBoundingClientRect(); tx = e.clientX - r.left; ty = e.clientY - r.top;
   }, { passive: true });
-  cv.parentNode.addEventListener('pointerleave', function () { tx = -1e4; ty = -1e4; });
+  host.addEventListener('pointerleave', function () { tx = -1e4; ty = -1e4; });
   window.addEventListener('scroll', function () { vel += Math.abs(window.scrollY - lastY); lastY = window.scrollY; }, { passive: true });
-  document.addEventListener('visibilitychange', function () { on = !document.hidden; if (on) requestAnimationFrame(frame); });
-  new IntersectionObserver(function (es) { on = es[0].isIntersecting && !document.hidden; if (on) requestAnimationFrame(frame); }).observe(cv);
+  document.addEventListener('visibilitychange', function () { on = !document.hidden; if (on) kick(); });
+  new IntersectionObserver(function (es) { on = es[0].isIntersecting && !document.hidden; if (on) kick(); }).observe(cv);
 
-  var bone = 'rgba(239,230,211,', brass = 'rgba(201,162,77,';
+  var ink = 'rgba(23,23,26,', accent = 'rgba(39,71,212,';
+  var raf = 0;
+  function kick() { if (!raf) raf = requestAnimationFrame(frame); }
   function frame() {
+    raf = 0;
     if (!on) return;
     t += 0.004; vel *= 0.92;
     px += (tx - px) * 0.08; py += (ty - py) * 0.08;
@@ -541,11 +529,11 @@
         if (y === -step) ctx.moveTo(x, y); else ctx.lineTo(x, y);
       }
       var near = Math.abs(x0 - px) < 260 ? 1 - Math.abs(x0 - px) / 260 : 0;
-      ctx.strokeStyle = (near > 0.25 ? brass : bone) + (0.10 + near * 0.35) + ')';
+      ctx.strokeStyle = (near > 0.25 ? accent : ink) + (0.22 + near * 0.4) + ')';
       ctx.lineWidth = 1;
       ctx.stroke();
     }
-    requestAnimationFrame(frame);
+    if (!reduce) kick();
   }
-  requestAnimationFrame(frame);
+  kick();
 })();
