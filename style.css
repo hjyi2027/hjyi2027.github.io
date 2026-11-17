@@ -998,7 +998,35 @@ main.filtering .feature{display:none}
 .row.in .lv i:nth-child(3)::after{transition-delay:380ms}
 .row.in .lv i:nth-child(4)::after{transition-delay:470ms}
 .row.in .lv i:nth-child(5)::after{transition-delay:560ms}
-.row .what .lv-note{margin:14px 0 0;font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+/* languages as a chart on squared paper: the five steps of the scale across
+   the top, each language a bar that fills to its step; pointing at a
+   language marks its step in the header */
+.row .what .cv-yl + .lang-fig{margin-top:20px}
+.lang-fig{margin:0;padding:16px 20px 12px;border:1px solid var(--line);border-radius:20px;
+  background-color:#f5f3ea;background-image:linear-gradient(rgba(39,71,212,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(39,71,212,.09) 1px,transparent 1px);
+  background-size:24px 24px;background-position:-1px -1px}
+.lf-scale,.lang-fig .langs li{display:grid;grid-template-columns:150px repeat(5,minmax(0,1fr));gap:0}
+.lf-scale{margin:0 0 4px;padding:0 0 10px;list-style:none;border-bottom:1px dashed rgba(23,23,26,.2)}
+.lf-scale li{position:relative;padding:0 4px 0 8px;font-family:var(--mono);font-size:10px;line-height:1.4;letter-spacing:0;color:var(--muted);transition:color 200ms var(--ease)}
+.lf-scale li::before{content:"";position:absolute;left:0;top:2px;bottom:-11px;border-left:1px dashed rgba(23,23,26,.24)}
+.lf-scale li:first-child{grid-column:2}
+.lang-fig .langs li{position:relative;align-items:center;padding:12px 0;border-bottom:1px dashed rgba(23,23,26,.14)}
+.lang-fig .langs li:first-child{padding-top:12px}
+.lang-fig .langs li:last-child{border-bottom:0}
+.lang-fig .langs b{grid-column:1;grid-row:1;font-size:clamp(26px,2.4vw,31px);line-height:1.08}
+.endo{grid-column:1;grid-row:2;margin-top:2px;font-size:13px;line-height:1.35;color:var(--muted)}
+.lang-fig .lv{grid-column:2/-1;grid-row:1/3;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0}
+.lang-fig .lv i{width:auto;height:12px;margin-right:5px;border-radius:999px;background:rgba(23,23,26,.07)}
+.lang-fig .langs small{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.lang-fig figcaption{margin:2px 0 0;padding-top:10px;border-top:1px dashed rgba(23,23,26,.2);font-family:var(--mono);font-size:11px;line-height:1.5;color:var(--muted)}
+@media (hover:hover){
+  .lang-fig .langs li::after{content:"";position:absolute;inset:2px -10px;z-index:-1;border-radius:12px;background:rgba(255,255,255,.7);opacity:0;transition:opacity 200ms var(--ease)}
+  .lang-fig .langs li:hover::after{opacity:1}
+  .lang-fig .langs{position:relative;z-index:0}
+  .lang-fig:has(li:hover .l5) .lf-scale li:nth-child(5),
+  .lang-fig:has(li:hover .l3) .lf-scale li:nth-child(3),
+  .lang-fig:has(li:hover .l2) .lf-scale li:nth-child(2){color:var(--accent)}
+}
 ul.plain{margin:0;padding-left:0;list-style:none;counter-reset:item}
 ul.plain li{position:relative;margin:0;padding:16px 0 16px 72px;border-bottom:1px solid var(--line);font-size:16.5px;color:var(--fg-2);counter-increment:item}
 ul.plain li::before{content:counter(item,decimal-leading-zero);position:absolute;left:0;top:21px;
@@ -1298,6 +1326,13 @@ html.pal-open{overflow:hidden}
   .langs b{grid-area:n}
   .langs .lv{grid-area:m}
   .langs small{grid-area:l}
+  .lang-fig{padding:12px 14px 10px}
+  .lf-scale{display:none}
+  .lang-fig .langs li{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:none;gap:0 12px}
+  .lang-fig .langs b{grid-area:auto;grid-column:1;grid-row:1;font-size:26px}
+  .endo{grid-row:2}
+  .lang-fig .langs small{position:static;grid-area:auto;grid-column:2;grid-row:1/3;width:auto;height:auto;overflow:visible;clip-path:none;text-align:right}
+  .lang-fig .lv{grid-area:auto;grid-column:1/-1;grid-row:3;margin-top:10px}
   .row{grid-template-columns:1fr;gap:4px}
   .row .when{padding-top:0}
   .filter{grid-template-columns:minmax(0,1fr) auto;border-radius:22px}
@@ -1332,6 +1367,7 @@ html.pal-open{overflow:hidden}
   .js-reveal .row:not(.in) .cv-code li{opacity:1}
   .row.in .cv-code li{animation:none}
   .js-reveal .row:not(.in) .lv i::after{transform:none}
+  .lf-scale li,.lang-fig .langs li::after{transition:none}
   .feature.in .dr{transition:none}
   .ticker span,.stream s,.poem .wd.new,.pal,.pal-box,.js-reveal .hero-fig,.js-reveal .lab-stage .panel{animation:none}
   .bar::before{display:none}
@@ -1417,7 +1453,15 @@ html.pal-open{overflow:hidden}
   .cv-body.stack .row{grid-template-columns:84pt 1fr;gap:12pt}
   .cv-body.stack .row .when{padding-top:3pt}
   .tools li,.langs li{display:inline;min-height:0;padding:0;border:0;background:none;font-size:10pt}
-  .tools li::before,.tools span,.lv,.lv-note,.row .what .cv-act{display:none}
+  .tools li::before,.tools span,.lv,.row .what .cv-act,.lf-scale,.endo,.lang-fig figcaption{display:none}
+  .lang-fig{margin:0;padding:0;border:0;background:none}
+  .lang-fig .lv{display:none}
+  .row .what .cv-yl + .lang-fig{margin-top:0}
+  .lang-fig .langs li:first-child{padding-top:0}
+  .lang-fig .langs li::after{position:static;inset:auto;z-index:auto;opacity:1;background:none;border-radius:0}
+  .lang-fig .langs li{display:inline;padding:0;border:0}
+  .lang-fig .langs b{font-size:10pt;line-height:inherit}
+  .lang-fig .langs small{position:static;width:auto;height:auto;overflow:visible;clip-path:none}
   .tools li:not(:last-child) b::after{content:","}
   .langs li:not(:last-child)::after{content:" \00b7  "}
   .tools b,.langs b{display:inline;margin:0;font-family:var(--sans);font-weight:500;font-size:10pt;letter-spacing:0}
