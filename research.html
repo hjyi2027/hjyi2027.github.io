@@ -53,8 +53,8 @@
   <div><dt>Open problems and questions settled</dt><dd><a href="#open-problems">9</a></dd></div>
   <div><dt>New records</dt><dd><a href="#new-records">7</a></dd></div>
   <div><dt>JMM 2027 talks accepted</dt><dd><a href="#mathematics" data-chip="JMM">3</a></dd></div>
-  <div class="span2"><dt>Other acceptances: FSML 2026 and WACV, CoRL and ACML workshops</dt><dd><a href="#accepted">23</a></dd></div>
-  <div class="total"><dt>Papers in total</dt><dd><a href="#accepted">46</a></dd></div>
+  <div class="span2"><dt>Other acceptances: FSML 2026, and WACV and CoRL workshops</dt><dd><a href="#accepted">22</a></dd></div>
+  <div class="total"><dt>Papers in total</dt><dd><a href="#accepted">45</a></dd></div>
 </dl>
 <div class="feat-head"><p class="num">Highlights</p><a class="link" href="#accepted">All entries <span class="arrow down" aria-hidden="true">&darr;</span></a></div>
 <div class="feature">
@@ -121,7 +121,7 @@
     <span class="c-s">The constant in the upper bound drops from 1/&radic;2 to 1/2.</span>
   </a>
 </div>
-<p class="jump"><a href="#accepted">Accepted</a> <a href="#open-problems">Open problems</a> <span class="stamp">Updated <time datetime="2026-11-15">15 November 2026</time></span></p>
+<p class="jump"><a href="#accepted">Accepted</a> <a href="#open-problems">Open problems</a> <span class="stamp">Updated <time datetime="2026-11-23">23 November 2026</time></span></p>
 
 <h2 class="chap" id="accepted"><span class="h-t">Peer-reviewed <em>and accepted.</em></span></h2>
 
@@ -243,12 +243,6 @@
   <h3><a href="https://openreview.net/forum?id=wUAHiqqioS">Hertz is not reactivity: Reaction latency of chunked robot policies under stochastic inference latency</a></h3>
   <p class="meta">2026 &middot; First author, with Bryan Bu, June Young Kim and Raiyan Mazhar &middot; Accepted, Efficient Foundation Models for Real-Time Embodied AI (EEAI) workshop at CoRL 2026, poster &middot; <a href="https://openreview.net/forum?id=wUAHiqqioS">OpenReview</a></p>
   <p>Speed results for robot foundation models are reported as frequencies, and none of them says how old the observation behind the executing action is. Modelling chunked execution under random inference latency as a renewal process gives the mean reaction latency in closed form, &mu; + E[t<sup>2</sup>]/(2E[t]). Under heavy-tailed latency, delaying each inference start to a computable threshold cuts reaction latency by 13 to 20% at no cost in motion. Across 88 simulated configurations, predicted reaction latency ranks tracking error with Spearman &rho; = 0.98, against 0.84 and 0.75 for the two frequencies people usually report.</p>
-</div>
-
-<div class="item" id="retries-repeat-mistakes">
-  <h3><a href="https://openreview.net/forum?id=oG6Ruc1YC5">When retries repeat mistakes: Verification and rollback for small-model agents</a></h3>
-  <p class="meta">2026 &middot; Accepted, OE-Agent workshop at ACML 2026 &middot; <a href="https://openreview.net/forum?id=oG6Ruc1YC5">OpenReview</a></p>
-  <p>Small open models can run agents on two CPU cores, but over long tasks their step errors compound. The usual fix verifies every k steps, rolls back on a flag and retries. The paper gives the exact success probability and cost of that loop, and proves that acting on single flags stretches the reachable horizon by at most (1&minus;f)/(1&minus;d). Small models break the assumption that a retry is a fresh draw: a resampled failed Qwen2.5-1.5B step fails again with probability 0.63, though the mean error rate is 4.2%. Retries by a different model fix 80% of flagged steps at the first retry instead of 33%. With a strong verifier, retry diversity rather than model size is the limit.</p>
 </div>
 
 <div class="item" id="capped-at-100">
