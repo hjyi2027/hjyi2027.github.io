@@ -795,6 +795,30 @@ main.filtering .feature{display:none}
 .cv-body .row{position:relative;isolation:isolate;grid-template-columns:116px 1fr;gap:24px}
 /* education: the three schools on a school-year axis, drawn on the same
    squared paper as the figures, with the diploma date and today marked */
+/* mathematics: how long the settled questions stood, posed year to 2026, on
+   a 1940-2030 axis; each bar starts at its year and ends at the answer */
+.row .what .stood{margin:24px 0 0}
+.stood .cv-k{margin-top:0}
+.st-list{margin:4px 0 0;padding:0;list-style:none}
+.st-list a{display:grid;grid-template-columns:minmax(0,1fr) 76px;align-items:end;column-gap:14px;padding:6px 0;color:var(--fg);text-decoration:none}
+.st-n{grid-column:1;padding-left:calc(var(--s) * 1%);font-size:13.5px;line-height:1.3;white-space:nowrap}
+.st-y{font-family:var(--mono);font-size:10.5px;color:var(--muted);white-space:nowrap}
+.st-track{position:relative;grid-column:1;height:10px;margin-top:5px;background-image:linear-gradient(90deg,transparent 11.11%,var(--line) 11.11%,var(--line) calc(11.11% + 1px),transparent calc(11.11% + 1px),transparent 38.89%,var(--line) 38.89%,var(--line) calc(38.89% + 1px),transparent calc(38.89% + 1px),transparent 66.67%,var(--line) 66.67%,var(--line) calc(66.67% + 1px),transparent calc(66.67% + 1px),transparent 94.44%,var(--line) 94.44%,var(--line) calc(94.44% + 1px),transparent calc(94.44% + 1px))}
+.st-bar{position:absolute;top:0;bottom:0;left:calc(var(--s) * 1%);width:calc(var(--w) * 1%);border-radius:5px;background:var(--fg);transform-origin:0 50%;
+  transition:transform 1100ms var(--ease-out) calc(150ms + var(--i,0) * 120ms),background-color 200ms var(--ease)}
+.st-bar::after{content:"";position:absolute;right:-6px;top:50%;width:12px;height:12px;margin-top:-6px;border:2px solid var(--accent);border-radius:50%;background:var(--base);box-sizing:border-box}
+.st-a{grid-column:2;grid-row:2;font-family:var(--display);font-size:18px;line-height:1;white-space:nowrap}
+.st-list a:is(:hover,:focus-visible) .st-bar{background:var(--accent)}
+.st-axis{position:relative;height:18px;margin:4px 90px 0 0;font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+.st-axis span{position:absolute;left:calc(var(--t) * 1%);transform:translateX(-50%)}
+.js-reveal .row:not(.in) .st-bar{transform:scaleX(0)}
+.stood figcaption{margin:8px 0 0;font-family:var(--mono);font-size:11px;line-height:1.5;color:var(--muted)}
+.stood figcaption a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--line-strong)}
+@media (max-width:760px){
+  .st-n{padding-left:0;white-space:normal}
+  .st-list a{grid-template-columns:minmax(0,1fr) 64px}
+  .st-axis{margin-right:78px}
+}
 .edu-fig{margin:0 0 8px;padding:18px 20px 14px;border:1px solid var(--line);border-radius:20px;
   background-color:#f5f3ea;background-image:linear-gradient(rgba(39,71,212,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(39,71,212,.09) 1px,transparent 1px);
   background-size:24px 24px;background-position:-1px -1px}
@@ -1446,6 +1470,8 @@ html.pal-open{overflow:hidden}
   .tools li,.cv-code a,.cv-code a::after{transition:none}
   .js-reveal .row:not(.in) .cv-code li,.js-reveal .row:not(.in) .cv-pubs li{opacity:1}
   .js-reveal .row:not(.in) .yg .yg-bar{transform:none}
+  .js-reveal .row:not(.in) .st-bar{transform:none}
+  .st-bar{transition:none}
   .yg .yg-bar{transition:none}
   .row.in .cv-code li,.row.in .cv-pubs li{animation:none}
   .pb-th img{transition:none}
@@ -1521,7 +1547,7 @@ html.pal-open{overflow:hidden}
   .facts dd{font-size:22pt}
   .facts dt{font-size:9.5pt}
   .cv-links{margin-top:8pt}
-  .cv-toc,.edu-fig,.cv-hl{display:none}
+  .cv-toc,.edu-fig,.cv-hl,.stood{display:none}
   .cv-band{display:block;margin:0}
   .cv-id{display:block;margin:0;border:0}
   .cv-id div{display:inline;padding:0;border:0}
