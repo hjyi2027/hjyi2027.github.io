@@ -925,6 +925,13 @@ main.filtering .feature{display:none}
 .yf{display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;align-items:start;margin:22px 0 0}
 .row .what .yf-h{margin:0;font-family:var(--mono);font-size:11px;line-height:1.5;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .cv-yimo .yimo-fig{max-width:400px}
+/* what I did: the personal part of each leadership entry */
+.row .what .cv-yl + .cv-k{margin-top:22px}
+.cv-did{margin:0;padding:0;list-style:none;counter-reset:did}
+.cv-did li{position:relative;padding:9px 0 9px 34px;border-top:1px solid var(--line);font-size:15px;line-height:1.5;color:var(--fg-2);counter-increment:did}
+.cv-did li::before{content:counter(did,decimal-leading-zero);position:absolute;left:0;top:12px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--accent)}
+.cv-did a{color:var(--fg)}
+.cv-did + .cv-figs,.cv-did + .cv-k{margin-top:22px}
 /* growth: registrants per contest, stacked by division, with the next contest as an empty frame */
 .yg .yg-key text,.yg .yg-l,.yg .yg-d{font-size:11px}
 .yg .d1{fill:var(--accent)}
@@ -1528,7 +1535,7 @@ html.pal-open{overflow:hidden}
   p.print-only{display:block}
   .row.print-only{display:grid}
   .hon-top{display:none}
-  .cv-lead,.cv-sel,.cv-res,.cv-venues,.row .what .cv-k,.cv-yimo,.cv-yl,.cv-code,.cv-pubs{display:none}
+  .cv-lead,.cv-sel,.cv-res,.cv-venues,.row .what .cv-k,.cv-yimo,.cv-yl,.cv-code,.cv-pubs,.cv-did{display:none}
   .wrap .cv-sec h2 em{display:inline;font-size:inherit;color:inherit}
   .cv-head{position:static;break-after:avoid}
   .cv-body .row:first-child{break-before:avoid;break-inside:avoid}
