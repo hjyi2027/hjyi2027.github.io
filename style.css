@@ -1070,7 +1070,18 @@ main.filtering .feature{display:none}
 .lang-fig .lv{grid-column:2/-1;grid-row:1/3;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0}
 .lang-fig .lv i{width:auto;height:12px;margin-right:5px;border-radius:999px;background:rgba(23,23,26,.07)}
 .lang-fig .langs small{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-.lang-fig figcaption{margin:2px 0 0;padding-top:10px;border-top:1px dashed rgba(23,23,26,.2);font-family:var(--mono);font-size:11px;line-height:1.5;color:var(--muted)}
+.lang-fig figcaption{min-height:43px;margin:2px 0 0;padding-top:10px;border-top:1px dashed rgba(23,23,26,.2);font-family:var(--mono);font-size:11px;line-height:1.5;color:var(--muted)}
+/* pointing at a language swaps the caption for what its level means */
+.lang-fig .lv-d,.lang-fig figcaption .fc,.lang-fig .fc-hint{display:none}
+.lang-fig figcaption .fc-0{display:inline}
+.lang-fig figcaption .fc b{font-weight:500;color:var(--fg)}
+@media (hover:hover){
+  .lang-fig .fc-hint{display:inline}
+  .lang-fig:has(.langs li:hover) figcaption .fc-0{display:none}
+  .lang-fig:has(.langs li:hover .l5) figcaption .fc-5,
+  .lang-fig:has(.langs li:hover .l3) figcaption .fc-3,
+  .lang-fig:has(.langs li:hover .l2) figcaption .fc-2{display:inline}
+}
 @media (hover:hover){
   .lang-fig .langs li::after{content:"";position:absolute;inset:2px -10px;z-index:-1;border-radius:12px;background:rgba(255,255,255,.7);opacity:0;transition:opacity 200ms var(--ease)}
   .lang-fig .langs li:hover::after{opacity:1}
@@ -1388,6 +1399,8 @@ html.pal-open{overflow:hidden}
   .endo{grid-row:2}
   .lang-fig .langs small{position:static;grid-area:auto;grid-column:2;grid-row:1/3;width:auto;height:auto;overflow:visible;clip-path:none;text-align:right}
   .lang-fig .lv{grid-area:auto;grid-column:1/-1;grid-row:3;margin-top:10px}
+  .lang-fig .lv-d{display:block;grid-column:1/-1;grid-row:4;margin-top:8px;font-size:12.5px;line-height:1.45;color:var(--muted)}
+  .lang-fig figcaption{min-height:0}
   .row{grid-template-columns:1fr;gap:4px}
   .row .when{padding-top:0}
   .filter{grid-template-columns:minmax(0,1fr) auto;border-radius:22px}
@@ -1511,7 +1524,7 @@ html.pal-open{overflow:hidden}
   .cv-body.stack .row{grid-template-columns:84pt 1fr;gap:12pt}
   .cv-body.stack .row .when{padding-top:3pt}
   .tools li,.langs li{display:inline;min-height:0;padding:0;border:0;background:none;font-size:10pt}
-  .tools li::before,.tools span,.lv,.row .what .cv-act,.lf-scale,.endo,.lang-fig figcaption{display:none}
+  .tools li::before,.tools span,.lv,.row .what .cv-act,.lf-scale,.endo,.lang-fig figcaption,.lang-fig .lv-d{display:none}
   .lang-fig{margin:0;padding:0;border:0;background:none}
   .lang-fig .lv{display:none}
   .row .what .cv-yl + .lang-fig{margin-top:0}
