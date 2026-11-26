@@ -121,7 +121,7 @@
     <span class="c-s">The constant in the upper bound drops from 1/&radic;2 to 1/2.</span>
   </a>
 </div>
-<p class="jump"><a href="#accepted">Accepted</a> <a href="#open-problems">Open problems</a> <span class="stamp">Updated <time datetime="2026-11-23">23 November 2026</time></span></p>
+<p class="jump"><a href="#accepted">Accepted</a> <a href="#open-problems">Open problems</a> <span class="stamp">Updated <time datetime="2026-11-27">27 November 2026</time></span></p>
 
 <h2 class="chap" id="accepted"><span class="h-t">Peer-reviewed <em>and accepted.</em></span></h2>
 
@@ -145,13 +145,13 @@
 
 <div class="item" id="lost-before-attack">
   <h3><a href="https://openreview.net/forum?id=ot53Wwa6QJ">Lost before any attack: Auditing the invisible watermark shipped with SDXL and FLUX.1</a></h3>
-  <p class="meta">2026 &middot; First author, with Bryan Bu, June Young Kim and Raiyan Mazhar &middot; Accepted as an archival full paper, WACV 2027 SIGNAL workshop &middot; <a href="https://openreview.net/forum?id=ot53Wwa6QJ">OpenReview</a></p>
+  <p class="meta">2026 &middot; First author, with Bryan Bu, June Young Kim and Raiyan Mazhar &middot; Accepted as a full paper, WACV 2027 SIGNAL workshop &middot; <a href="https://openreview.net/forum?id=ot53Wwa6QJ">OpenReview</a></p>
   <p>The reference code of Stable Diffusion XL and FLUX.1 marks every output with an open-source invisible watermark, and Stability AI distributes a detector for it. Auditing the shipped chain from embedder to detector shows most marks are unreadable before any processing: the embedder and detector disagree on a colour offset (0.5 against 128), and FLUX.1&rsquo;s documented 48-bit message has 46 bits. The official detector flags only 45.5% of SDXL-generated images as watermarked. A one-line detector change raises that to 90.9%, and a repaired embedder reaches 100%.</p>
 </div>
 
 <div class="item" id="holds-free-probes">
   <h3><a href="https://openreview.net/forum?id=jRCPkloPBu">Holds as free probes: Timing-aware temporal evaluation of anime video</a></h3>
-  <p class="meta">2026 &middot; Accepted for oral presentation and the workshop proceedings, WACV 2027 AINIME workshop &middot; <a href="https://openreview.net/forum?id=jRCPkloPBu">OpenReview</a></p>
+  <p class="meta">2026 &middot; Accepted for oral presentation, WACV 2027 AINIME workshop &middot; <a href="https://openreview.net/forum?id=jRCPkloPBu">OpenReview</a></p>
   <p>Anime holds each drawing for several frames, and temporal metrics built for live action cannot tell a held drawing from a stable one: re-exposing motion on fours raises VBench&rsquo;s motion smoothness although three quarters of the drawings are gone. Holds are also useful, since any change a restoration model makes inside a held region is its own flicker. That measure needs no reference, and it shows the recurrent AnimeSR changing by 0.81 levels on bit-identical input against at most 0.16 for per-frame models.</p>
 </div>
 
@@ -163,19 +163,19 @@
 
 <div class="item" id="registration-leaks">
   <h3><a href="https://openreview.net/forum?id=wQnmktDaVt">Registration leaks the label: Synthetic-to-measured SAR ATR revisited, with lessons for hypothesis-testing agents</a></h3>
-  <p class="meta">2026 &middot; Accepted for the workshop proceedings, WACV 2027 SENSE workshop &middot; <a href="https://openreview.net/forum?id=wQnmktDaVt">OpenReview</a></p>
+  <p class="meta">2026 &middot; Accepted, WACV 2027 SENSE workshop &middot; <a href="https://openreview.net/forum?id=wQnmktDaVt">OpenReview</a></p>
   <p>Synthetic-to-measured SAR target recognition revisited, with a registration artifact that carries the class label on its own.</p>
 </div>
 
 <div class="item" id="hrsid-split">
   <h3><a href="https://openreview.net/forum?id=KiC6CwBoxf">Half the test ships are in the training crops: Auditing the HRSID split for SAR ship detection</a></h3>
-  <p class="meta">2026 &middot; Accepted for the workshop proceedings, WACV 2027 SENSE workshop &middot; <a href="https://openreview.net/forum?id=KiC6CwBoxf">OpenReview</a></p>
+  <p class="meta">2026 &middot; Accepted, WACV 2027 SENSE workshop &middot; <a href="https://openreview.net/forum?id=KiC6CwBoxf">OpenReview</a></p>
   <p>HRSID splits overlapping crops of 136 source images rather than the images themselves. 94.8% of test crops share pixels with a training crop and 53.5% of test ships lie entirely inside one, so pasting training boxes into the test crops, with no detector at all, scores 42.4 COCO AP. The overlap strips act as a natural experiment: a detector recalls 3.8 points more of the test ships it saw in training.</p>
 </div>
 
 <div class="item" id="same-plate-both-splits">
   <h3><a href="https://openreview.net/forum?id=iXfz4OgVkP">Same plate, both splits: Train-test leakage in Nutrition5k and what it does to food foundation-model probes</a></h3>
-  <p class="meta">2026 &middot; Accepted for the workshop proceedings, WACV 2027 FABRIC workshop &middot; <a href="https://openreview.net/forum?id=iXfz4OgVkP">OpenReview</a></p>
+  <p class="meta">2026 &middot; Accepted, WACV 2027 FABRIC workshop &middot; <a href="https://openreview.net/forum?id=iXfz4OgVkP">OpenReview</a></p>
   <p>Nutrition5k&rsquo;s authors state that no plate appears in both splits. The scan times and weighed ingredient masses it already ships reveal 4,211 pairs of scans of the same food, against 8.1 expected by chance, and 9.0% of the side-view test dishes are repeat scans of training food with identical labels. A frozen CLIP nearest-neighbour probe retrieves the training repeat for 57 of 63 leaked dishes, and the leak cuts its error from 92.4 to 81.0 kcal.</p>
 </div>
 
@@ -193,37 +193,37 @@
 
 <div class="item" id="clothing-description">
   <h3><a href="https://openreview.net/forum?id=4xNYvTW0N9">What a clothing description reveals: Singling out, linkability and inference in pedestrian attribute search under EU law</a></h3>
-  <p class="meta">2026 &middot; Accepted for oral and poster presentation and the workshop proceedings, WACV 2027 RWS workshop &middot; <a href="https://openreview.net/forum?id=4xNYvTW0N9">OpenReview</a></p>
+  <p class="meta">2026 &middot; Accepted for oral and poster presentation, WACV 2027 RWS workshop &middot; <a href="https://openreview.net/forum?id=4xNYvTW0N9">OpenReview</a></p>
   <p>The EU AI Act treats sex, age and hair colour as biometric categories, so a natural fix for attribute-based person search is to keep clothing only. This turns the three anonymisation tests of European data protection guidance into statistics and runs them on 224,589 annotated images. Clothing alone singles out 59.0% of people in random groups of 100, links a person across Market-1501 cameras at rank one in 38.9% of cases against 0.09% chance, and predicts the annotated sex label with AUC 0.67 to 0.79 on held-out datasets. Each measurement is mapped to the GDPR and AI Act provisions it informs.</p>
 </div>
 
 <div class="item" id="image-blind-baselines">
   <h3><a href="https://openreview.net/forum?id=9uTXyRItGH">Image-blind baselines for single-scene hyperspectral and multimodal land-cover benchmarks</a></h3>
-  <p class="meta">2026 &middot; First author, with Bryan Bu, June Young Kim and Raiyan Mazhar &middot; Accepted for the workshop proceedings, WACV 2027 CV4EO workshop &middot; <a href="https://openreview.net/forum?id=9uTXyRItGH">OpenReview</a></p>
+  <p class="meta">2026 &middot; First author, with Bryan Bu, June Young Kim and Raiyan Mazhar &middot; Accepted, WACV 2027 CV4EO workshop &middot; <a href="https://openreview.net/forum?id=9uTXyRItGH">OpenReview</a></p>
   <p>On a standard single-scene hyperspectral split, pixel coordinates alone reach 95.5 percent overall accuracy. The paper sets image-blind baselines that any reported model should have to beat.</p>
 </div>
 
 <div class="item" id="counting-ink">
   <h3><a href="https://openreview.net/forum?id=WlSI4T6Oc3">Counting ink: What an autism scanpath-image benchmark measures</a></h3>
-  <p class="meta">2026 &middot; First author, with Bryan Bu, June Young Kim and Raiyan Mazhar &middot; Accepted for the workshop proceedings, WACV 2027 CVPath-Vision4Neuro workshop &middot; <a href="https://openreview.net/forum?id=WlSI4T6Oc3">OpenReview</a></p>
+  <p class="meta">2026 &middot; First author, with Bryan Bu, June Young Kim and Raiyan Mazhar &middot; Accepted, WACV 2027 CVPath-Vision4Neuro workshop &middot; <a href="https://openreview.net/forum?id=WlSI4T6Oc3">OpenReview</a></p>
   <p>A public set of 547 eye-tracking scanpath images from 54 children has become a benchmark for image-based autism screening, with reported accuracies up to 99.8%. Under participant-grouped cross-validation, a score with no parameters, the share of non-black pixels, separates autistic from typically developing children with AUC 0.85, and probes on four ImageNet backbones add little to it. The images clip each trace at a fixed axes box, which 69.4% of autistic children&rsquo;s traces reach against 40.2% of the others. The benchmark mostly measures how much of a recording is lost, noisy or off screen, not where children look.</p>
 </div>
 
 <div class="item" id="slow-walkers">
   <h3><a href="https://openreview.net/forum?id=aH7ICOqXAp">Slow walkers count more: How the ETH/UCY test protocol weights pedestrians</a></h3>
-  <p class="meta">2026 &middot; First author, with Bryan Bu, June Young Kim and Raiyan Mazhar &middot; Accepted for the workshop proceedings, WACV 2027 UrbanState workshop &middot; <a href="https://openreview.net/forum?id=aH7ICOqXAp">OpenReview</a></p>
+  <p class="meta">2026 &middot; First author, with Bryan Bu, June Young Kim and Raiyan Mazhar &middot; Accepted, WACV 2027 UrbanState workshop &middot; <a href="https://openreview.net/forum?id=aH7ICOqXAp">OpenReview</a></p>
   <p>Pedestrian forecasting is still ranked on ETH/UCY with a loader that cuts recordings into overlapping 8-second windows. The reported error is a weighted mean in which each pedestrian counts once per window they fill, so slow walkers dominate and anyone who crosses in under 8 seconds counts zero: 39% of pedestrians are never evaluated, and one who barely moves supplies 9.7% of the ZARA2 test samples. Counting each pedestrian once raises average error by 10 to 57% and reverses one published model ranking, and confidence intervals are 2.3 to 8.1 times too narrow.</p>
 </div>
 
 <div class="item" id="crossing-frame">
   <h3><a href="https://openreview.net/forum?id=N5Rv6QIZcN">Crossing or leaving the frame? An audit of event anchoring in pedestrian crossing prediction benchmarks</a></h3>
-  <p class="meta">2026 &middot; Accepted for the workshop proceedings, WACV 2027 HOUR workshop &middot; <a href="https://openreview.net/forum?id=N5Rv6QIZcN">OpenReview</a></p>
+  <p class="meta">2026 &middot; Accepted, WACV 2027 HOUR workshop &middot; <a href="https://openreview.net/forum?id=N5Rv6QIZcN">OpenReview</a></p>
   <p>An audit of how crossing-prediction benchmarks anchor the event they ask a model to predict, and what a model can read off the anchoring alone.</p>
 </div>
 
 <div class="item" id="answerable-without-watching">
   <h3><a href="https://openreview.net/forum?id=sxHB6o7n7v">Answerable without watching: Option and split provenance in Social-IQ 2.0 and its derivatives</a></h3>
-  <p class="meta">2026 &middot; Accepted for the workshop proceedings, WACV 2027 HOUR workshop &middot; <a href="https://openreview.net/forum?id=sxHB6o7n7v">OpenReview</a></p>
+  <p class="meta">2026 &middot; Accepted, WACV 2027 HOUR workshop &middot; <a href="https://openreview.net/forum?id=sxHB6o7n7v">OpenReview</a></p>
   <p>How much of a four-way video question-answering benchmark, and the test sets derived from it, can be answered from the answer options and split construction without the video.</p>
 </div>
 
@@ -253,13 +253,13 @@
 
 <div class="item" id="seen-scenes">
   <h3><a href="https://openreview.net/forum?id=wyXhV01u3W">Seen scenes, blind answers: An audit of the ReVA drone video QA benchmark</a></h3>
-  <p class="meta">2026 &middot; First author, with Bryan Bu, June Young Kim and Raiyan Mazhar &middot; Accepted for the workshop proceedings, WACV 2027 MAVU workshop, poster &middot; <a href="https://openreview.net/forum?id=wyXhV01u3W">OpenReview</a></p>
+  <p class="meta">2026 &middot; First author, with Bryan Bu, June Young Kim and Raiyan Mazhar &middot; Accepted, WACV 2027 MAVU workshop, poster &middot; <a href="https://openreview.net/forum?id=wyXhV01u3W">OpenReview</a></p>
   <p>ReVA&rsquo;s paper states its splits are disjoint by video sequence. The public annotation files show 1,012 of 1,014 test clips also appear in training, and the validation file publishes the answers of 392 test items. Copying labelled answers plus a text-only classifier scores 90.5% on validation without a single pixel, and on genuinely held-out recordings the text-only classifier still scores 58.1% against 25% chance.</p>
 </div>
 
 <div class="item" id="sharper-not-truer">
   <h3><a href="https://openreview.net/forum?id=iJcwwNo4TH">Sharper is not truer: Super-resolution rewrites license plates before they are read</a></h3>
-  <p class="meta">2026 &middot; Accepted for the workshop proceedings, WACV 2027 RWS workshop, poster &middot; <a href="https://openreview.net/forum?id=iJcwwNo4TH">OpenReview</a></p>
+  <p class="meta">2026 &middot; Accepted, WACV 2027 RWS workshop, poster &middot; <a href="https://openreview.net/forum?id=iJcwwNo4TH">OpenReview</a></p>
   <p>Super-resolution is the usual proposal for plates captured too small to read. Across six general-purpose upscalers and two open plate readers on the OpenALPR benchmark, only one of 48 comparisons with plain bicubic interpolation read more plates with confidence, by 2.6 points, and GAN training cost 10 to 28 points. Real-ESRGAN changed the read of 58% of plates and broke half the reads bicubic got right. The paper proves no upscaler can raise the Bayes accuracy of plate reading, and two diffusion runs on the same capture disagreed on 40% of plates. Voting over five captured frames helped where upscaling hurt.</p>
 </div>
 
@@ -271,7 +271,7 @@
 
 <div class="item" id="fifty-ms-late">
   <h3><a href="https://openreview.net/forum?id=psZO48VUdL">Fifty milliseconds late: Latency and saccades in event-based eye-tracking benchmarks</a></h3>
-  <p class="meta">2026 &middot; Accepted for the workshop proceedings, WACV 2027 EOF workshop &middot; <a href="https://openreview.net/forum?id=psZO48VUdL">OpenReview</a></p>
+  <p class="meta">2026 &middot; Accepted, WACV 2027 EOF workshop &middot; <a href="https://openreview.net/forum?id=psZO48VUdL">OpenReview</a></p>
   <p>Event cameras are proposed for eye tracking on smart glasses because they follow fast eye movements with little delay, yet the benchmarks score only spatial error at labelled instants. On the 3ET+ 2024 challenge labels, a tracker with no spatial error that reports every position 50 ms late scores 1.25 to 1.35 pixels, close to the best entry&rsquo;s 1.44. The metrics cannot tell latency from spatial error, and they dilute it: saccades fill 7.9% of the time but carry 56% of the error that 10 ms of lag causes. The paper proposes a latency-aware protocol.</p>
 </div>
 
