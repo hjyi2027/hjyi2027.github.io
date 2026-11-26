@@ -807,7 +807,7 @@ main.filtering .feature{display:none}
 .ef-row{position:relative;z-index:1;min-width:0}
 .ef-row.ash{grid-column:1/13;grid-row:2}
 .ef-row.sis{grid-column:13/35;grid-row:3}
-.ef-row.su{grid-column:13/25;grid-row:4}
+.ef-row.su{grid-column:13/18;grid-row:4}
 .ef-l{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:0 0 7px;font-size:13.5px;font-weight:500;line-height:1.3;color:var(--fg);white-space:nowrap}
 .ef-l em{padding:0 4px;background:#f5f3ea;font-style:normal;font-family:var(--mono);font-size:11px;font-weight:400;color:var(--muted)}   /* today's line passes behind it */
 .ef-bar{position:relative;display:block;height:10px;border-radius:999px;background:var(--fg);transform-origin:left;transition:transform 900ms var(--ease-out)}
