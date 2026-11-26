@@ -923,6 +923,10 @@ main.filtering .feature{display:none}
 .hon-fig .brt{fill:var(--warm)}
 .hon-fig .brt-l{fill:none;stroke:var(--warm);stroke-width:1}
 .hon-fig .gl{fill:none;stroke:rgba(23,23,26,.35);stroke-width:1}
+.hon-v{margin:10px 10px 0}
+.hon-v a{font-family:var(--mono);font-size:11.5px;line-height:1.6;color:var(--fg);text-decoration:none;border-bottom:1px solid var(--line-strong);transition:border-color 160ms var(--ease)}
+.hon-v a::after{content:" \2197";color:var(--muted)}
+.hon-v a:hover{border-color:var(--fg)}
 .hon-fig .pd{transform-box:fill-box;transform-origin:50% 100%}
 .hon-k{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:14px 10px 0;font-family:var(--mono);font-size:11.5px;line-height:1.5;color:var(--muted)}
 .hon-y{position:absolute;top:15px;right:18px;z-index:1;font-family:var(--mono);font-size:11px;line-height:1.5;color:var(--fg-2)}
