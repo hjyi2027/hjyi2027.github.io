@@ -875,7 +875,7 @@ main.filtering .feature{display:none}
 .act.go::after{content:"\2192"}
 .act.go:hover::after{transform:translateX(3px)}
 @media (hover:hover){
-  .cv-body .row:has(.cv-sel,.cv-res,.cv-yimo,.cv-code):hover::after{opacity:0}
+  .cv-body .row:has(.cv-sel,.cv-res,.cv-yimo,.cv-code,.cv-pubs):hover::after{opacity:0}
 }
 /* leadership: yimo as a small night panel, as on the homepage: its figures,
    the format drawing and the sponsors */
@@ -981,6 +981,39 @@ main.filtering .feature{display:none}
 .row.in .cv-code li:nth-child(3){animation-delay:280ms}
 .row.in .cv-code li:nth-child(4){animation-delay:360ms}
 .cv-res a[href^="http"]::after{content:"\2197"}
+/* selected papers as publication entries: page one of the PDF, the venue,
+   the title, the authors with mine in bold, one finding, and the links */
+.cv-pubs{margin:0;padding:0;list-style:none;border-top:1px solid var(--line-strong)}
+.cv-pubs li{display:grid;grid-template-columns:96px minmax(0,1fr);gap:22px;padding:20px 0;border-bottom:1px solid var(--line)}
+.pb-th{display:block;align-self:start}
+.pb-th img{display:block;width:96px;height:124px;border:1px solid var(--line);border-radius:4px;background:#fff;
+  box-shadow:0 1px 2px rgba(23,23,26,.06),0 10px 22px -14px rgba(23,23,26,.4);transition:transform 360ms var(--ease-out),box-shadow 360ms var(--ease)}
+.pb-b p{margin:0}
+.row .what .pb-v{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;font-family:var(--mono);font-size:11.5px;line-height:1.55;color:var(--muted)}
+.pb-v .chip{margin:0}
+.row .what .pb-t{margin-top:8px;font-family:var(--display);font-size:clamp(20px,1.9vw,24px);line-height:1.16;letter-spacing:-.008em;text-wrap:balance}
+.row .what .pb-t a{color:var(--fg);background:none;text-decoration:none;transition:color 200ms var(--ease)}
+.row .what .pb-t a:is(:hover,:focus-visible){color:var(--accent)}
+.row .what .pb-a{margin-top:6px;font-size:13.5px;line-height:1.45;color:var(--muted)}
+.pb-a b{font-weight:600;color:var(--fg)}
+.row .what .pb-f{margin-top:8px;font-size:15px;line-height:1.5;color:var(--fg-2);max-width:62ch}
+.row .what .pb-l{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;margin-top:12px}
+.row .what .pb-l a{font-family:var(--mono);font-size:11.5px;line-height:1.6;color:var(--fg);background:none;text-decoration:none;border-bottom:1px solid var(--line-strong);transition:border-color 160ms var(--ease),background-color 160ms var(--ease)}
+.pb-l a::after{content:" \2197";color:var(--muted)}
+.row .what .pb-l a:hover{border-color:var(--fg)}
+.row .what .pb-l a:first-child{padding:1px 11px;border:0;border-radius:999px;background:var(--fg);color:var(--on-fg)}
+.row .what .pb-l a:first-child:hover{background:var(--accent)}
+.pb-l a:first-child::after{color:inherit}
+@media (hover:hover){
+  .cv-pubs li:hover .pb-th img{transform:translateY(-3px) rotate(-1.5deg);box-shadow:0 2px 4px rgba(23,23,26,.08),0 18px 30px -16px rgba(23,23,26,.5)}
+}
+.js-reveal .row:not(.in) .cv-pubs li{opacity:0}
+.row.in .cv-pubs li{animation:tile-in 640ms var(--ease-out) 120ms backwards}
+.row.in .cv-pubs li:nth-child(2){animation-delay:190ms}
+.row.in .cv-pubs li:nth-child(3){animation-delay:260ms}
+.row.in .cv-pubs li:nth-child(4){animation-delay:330ms}
+.row.in .cv-pubs li:nth-child(5){animation-delay:400ms}
+.row.in .cv-pubs li:nth-child(6){animation-delay:470ms}
 .cv-meth li:last-child{border-bottom:0}
 .row .what strong + .cv-k{margin-top:24px}
 .row .what .cv-act{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
@@ -1322,6 +1355,8 @@ html.pal-open{overflow:hidden}
   .tools b{font-size:26px}
   .tools span{margin:0 0 0 auto;text-align:right}
   .cv-code{grid-template-columns:1fr}
+  .cv-pubs li{grid-template-columns:64px minmax(0,1fr);gap:14px}
+  .pb-th img{width:64px;height:83px}
   .langs li{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"n m" "l m";gap:2px 16px}
   .langs b{grid-area:n}
   .langs .lv{grid-area:m}
@@ -1364,8 +1399,9 @@ html.pal-open{overflow:hidden}
   .js-reveal .row:not(.in) .vb{clip-path:none}
   .row.in .vb{transition:none}
   .tools li,.cv-code a,.cv-code a::after{transition:none}
-  .js-reveal .row:not(.in) .cv-code li{opacity:1}
-  .row.in .cv-code li{animation:none}
+  .js-reveal .row:not(.in) .cv-code li,.js-reveal .row:not(.in) .cv-pubs li{opacity:1}
+  .row.in .cv-code li,.row.in .cv-pubs li{animation:none}
+  .pb-th img{transition:none}
   .js-reveal .row:not(.in) .lv i::after{transform:none}
   .lf-scale li,.lang-fig .langs li::after{transition:none}
   .feature.in .dr{transition:none}
@@ -1419,7 +1455,7 @@ html.pal-open{overflow:hidden}
   p.print-only{display:block}
   .row.print-only{display:grid}
   .hon-top{display:none}
-  .cv-lead,.cv-sel,.cv-res,.cv-venues,.row .what .cv-k,.cv-yimo,.cv-yl,.cv-code{display:none}
+  .cv-lead,.cv-sel,.cv-res,.cv-venues,.row .what .cv-k,.cv-yimo,.cv-yl,.cv-code,.cv-pubs{display:none}
   .wrap .cv-sec h2 em{display:inline;font-size:inherit;color:inherit}
   .cv-head{position:static;break-after:avoid}
   .cv-body .row:first-child{break-before:avoid;break-inside:avoid}
