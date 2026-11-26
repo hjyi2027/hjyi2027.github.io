@@ -983,6 +983,15 @@ main.filtering .feature{display:none}
 .hon-top.in .hon-fig :is(.br,.brt,.brt-l){transition:opacity 400ms var(--ease) 700ms}
 .hon-top.in .hon-fig rect.pd{transition:transform 800ms var(--ease-out) 300ms,opacity 260ms var(--ease) 300ms}
 .hon-top + .row{margin-top:8px}
+/* the other honors as smaller cards in a two-by-two grid */
+.hon-more{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0 0;padding:0;list-style:none}
+.hon-more li{position:relative;padding:16px 18px 20px;border:1px solid var(--line);border-radius:18px;background:var(--surface);
+  transition:border-color 200ms var(--ease),transform 320ms var(--ease-out),box-shadow 320ms var(--ease)}
+@media (hover:hover){.hon-more li:hover{border-color:var(--line-strong);transform:translateY(-3px);box-shadow:var(--shadow)}}
+.hm-y{position:absolute;top:18px;right:18px;font-family:var(--mono);font-size:11px;line-height:1.5;color:var(--fg-2)}
+.hm-r{margin:14px 0 0;font-family:var(--display);font-size:clamp(22px,2vw,26px);line-height:1.08;letter-spacing:-.012em;color:var(--fg);text-wrap:balance}
+.hm-e{margin:6px 0 0;font-size:14.5px;font-weight:500;line-height:1.35;color:var(--fg)}
+.hm-n{margin:6px 0 0;font-size:13.5px;line-height:1.45;color:var(--muted)}
 .js-reveal .row:not(.in) .cv-figs div{opacity:0;transform:translateY(12px)}
 .row.in .cv-figs div{transition:opacity 700ms var(--ease-out) 160ms,transform 700ms var(--ease-out) 160ms}
 .row.in .cv-figs div:nth-child(2){transition-delay:250ms}
@@ -1341,6 +1350,7 @@ html.pal-open{overflow:hidden}
   .cv-yimo .sponsors{grid-template-columns:1fr;gap:4px}
   .cv-yimo .sponsors span{display:block;width:auto;margin:0}
   .hon-top{grid-template-columns:1fr;gap:10px}
+  .hon-more{grid-template-columns:1fr;gap:10px}
   .hon-top li{display:grid;grid-template-columns:minmax(0,42%) minmax(0,1fr);grid-auto-rows:min-content;column-gap:4px;padding:8px 8px 14px}
   .hon-fig{grid-row:1/span 5;align-self:start}
   .hon-k{margin-top:4px}
@@ -1471,7 +1481,7 @@ html.pal-open{overflow:hidden}
   .ef-bar,.ef-now{transition:none}
   .js-reveal .hon-top:not(.in) .hon-fig :is(.on,.br,.brt,.brt-l){opacity:1}
   .js-reveal .hon-top:not(.in) .hon-fig .pd{transform:none}
-  .hon-top li,.hon-fig *{transition:none}
+  .hon-top li,.hon-fig *,.hon-more li{transition:none}
   .js-reveal .row:not(.in) .vb{clip-path:none}
   .row.in .vb{transition:none}
   .tools li,.cv-code a,.cv-code a::after{transition:none}
@@ -1534,7 +1544,7 @@ html.pal-open{overflow:hidden}
   .print-only{display:inline}
   p.print-only{display:block}
   .row.print-only{display:grid}
-  .hon-top{display:none}
+  .hon-top,.hon-more{display:none}
   .cv-lead,.cv-sel,.cv-res,.cv-venues,.row .what .cv-k,.cv-yimo,.cv-yl,.cv-code,.cv-pubs,.cv-did{display:none}
   .wrap .cv-sec h2 em{display:inline;font-size:inherit;color:inherit}
   .cv-head{position:static;break-after:avoid}
