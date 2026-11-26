@@ -717,6 +717,18 @@ main.filtering .feature{display:none}
   font-family:var(--mono);font-size:11px;letter-spacing:.02em;color:var(--fg-2);cursor:pointer;transition:border-color 160ms var(--ease),color 160ms var(--ease),background-color 160ms var(--ease)}
 .cv-id .copy:hover{border-color:var(--fg);background:var(--fg);color:var(--on-fg)}
 .cv-links{margin:24px 0 0;align-items:center}
+.kick-up{color:var(--muted)}
+/* highlights: four facts in the hero, each a jump to the section that backs it */
+.cv-hl{margin:40px 0 0}
+.cv-hl-h{display:flex;justify-content:space-between;gap:12px;margin:0;padding-bottom:10px;border-bottom:1px solid var(--line-strong);
+  font-family:var(--mono);font-size:11px;line-height:1.5;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.cv-hl ul{margin:0;padding:0;list-style:none}
+.cv-hl li a{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);
+  font-size:15.5px;line-height:1.4;color:var(--fg-2);text-decoration:none;transition:color 200ms var(--ease)}
+.cv-hl li a::after{content:"\2193";font-size:13px;color:var(--muted);transition:transform 320ms var(--ease-out),color 200ms var(--ease)}
+.cv-hl b{font-family:var(--display);font-weight:400;font-size:24px;line-height:1;letter-spacing:-.012em;color:var(--fg)}
+.cv-hl li a:is(:hover,:focus-visible){color:var(--fg)}
+.cv-hl li a:is(:hover,:focus-visible)::after{color:var(--accent);transform:translateY(3px)}
 .cv-toc{padding:18px 22px 22px;border:1px solid var(--line);border-radius:24px;background:var(--surface);box-shadow:0 1px 2px rgba(23,23,26,.04),0 18px 40px -28px rgba(23,23,26,.22)}
 .toc-h{display:flex;justify-content:space-between;gap:12px;margin:0 0 4px;padding-bottom:12px;border-bottom:1px solid var(--line-strong);
   font-family:var(--mono);font-size:11px;line-height:1.5;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
@@ -1509,7 +1521,7 @@ html.pal-open{overflow:hidden}
   .facts dd{font-size:22pt}
   .facts dt{font-size:9.5pt}
   .cv-links{margin-top:8pt}
-  .cv-toc,.edu-fig{display:none}
+  .cv-toc,.edu-fig,.cv-hl{display:none}
   .cv-band{display:block;margin:0}
   .cv-id{display:block;margin:0;border:0}
   .cv-id div{display:inline;padding:0;border:0}
