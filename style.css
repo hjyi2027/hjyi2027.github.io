@@ -889,8 +889,23 @@ main.filtering .feature{display:none}
 .yf{display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;align-items:start;margin:22px 0 0}
 .row .what .yf-h{margin:0;font-family:var(--mono);font-size:11px;line-height:1.5;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .cv-yimo .yimo-fig{max-width:400px}
+/* growth: registrants per contest, stacked by division, with the next contest as an empty frame */
+.yg .yg-key text,.yg .yg-l,.yg .yg-d{font-size:11px}
+.yg .d1{fill:var(--accent)}
+.yg .d2{fill:var(--fg)}
+.yg .yg-base{stroke:var(--line-strong);stroke-width:1}
+.yg .yg-next{fill:none;stroke:var(--line-strong);stroke-width:1;stroke-dasharray:3 3}
+.yg text.yg-n{font-size:12.5px;fill:var(--fg);text-anchor:middle}
+.yg text.yg-l,.yg text.yg-d{text-anchor:middle}
+.yg text.yg-x{font-family:var(--display);font-size:22px;fill:var(--fg);text-anchor:middle}
+.yg .yg-arc{fill:none;stroke:var(--fg-2);stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
+.yg .yg-bar{transform-box:fill-box;transform-origin:50% 100%;transition:transform 900ms var(--ease-out)}
+.yg .yg-bar.d1{transition-delay:120ms}
+.js-reveal .row:not(.in) .yg .yg-bar{transform:scaleY(0)}
+.cv-yimo .yf + .yf{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
 .cv-yimo .sponsors{margin:20px 0 0;padding-top:16px;border-top:1px solid var(--line)}
-.cv-yimo .sponsors span{display:inline-block;width:96px;margin-right:16px}
+.cv-yimo .sponsors{display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;align-items:baseline}
+.cv-yimo .sponsors span{display:block;width:auto;margin:0}
 /* honors: the three top results as cards, each with a drawing of what the
    result means; the rest stay as rows */
 .row.print-only{display:none}
@@ -1265,7 +1280,8 @@ html.pal-open{overflow:hidden}
   .cv-sel a{padding-right:44px}
   .cv-yimo{padding:20px 18px 18px;border-radius:20px}
   .yf{grid-template-columns:1fr;gap:12px}
-  .cv-yimo .sponsors span{display:block;width:auto;margin:0 0 4px}
+  .cv-yimo .sponsors{grid-template-columns:1fr;gap:4px}
+  .cv-yimo .sponsors span{display:block;width:auto;margin:0}
   .hon-top{grid-template-columns:1fr;gap:10px}
   .hon-top li{display:grid;grid-template-columns:minmax(0,42%) minmax(0,1fr);grid-auto-rows:min-content;column-gap:4px;padding:8px 8px 14px}
   .hon-fig{grid-row:1/span 5;align-self:start}
@@ -1400,6 +1416,8 @@ html.pal-open{overflow:hidden}
   .row.in .vb{transition:none}
   .tools li,.cv-code a,.cv-code a::after{transition:none}
   .js-reveal .row:not(.in) .cv-code li,.js-reveal .row:not(.in) .cv-pubs li{opacity:1}
+  .js-reveal .row:not(.in) .yg .yg-bar{transform:none}
+  .yg .yg-bar{transition:none}
   .row.in .cv-code li,.row.in .cv-pubs li{animation:none}
   .pb-th img{transition:none}
   .js-reveal .row:not(.in) .lv i::after{transform:none}
