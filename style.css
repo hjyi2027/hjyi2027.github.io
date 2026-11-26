@@ -877,6 +877,8 @@ main.filtering .feature{display:none}
 /* research: selected papers with venue and status, the workshop papers as one
    bar split by venue, and the mathematics as a ledger of results */
 .row .what .cv-lead{margin:0;max-width:62ch}
+.row .what .cv-code + .cv-lab{margin-top:18px;font-size:15px;line-height:1.55;color:var(--fg-2)}
+.cv-lab a{color:var(--fg)}
 .row .what .cv-k{margin:28px 0 10px;font-family:var(--mono);font-size:11px;line-height:1.5;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .row .what .cv-figs + .cv-k{margin-top:4px}
 .row .what .cv-yl + .cv-figs{margin-top:20px}
