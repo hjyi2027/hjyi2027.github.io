@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Research | Hyunjun Yi</title>
-<meta name="description" content="Research by Hyunjun Yi: four NeurIPS 2026 acceptances on AI evaluation, nine open problems and questions settled, most in discrete geometry, seven new records, two new discoveries.">
+<meta name="description" content="Research by Hyunjun Yi in AI evaluation and mathematics: every paper, with its status and links.">
 <meta name="author" content="Hyunjun Yi">
 <link rel="canonical" href="https://hjyi2027.github.io/research.html">
 <meta name="theme-color" content="#fafaf8">
 <meta name="color-scheme" content="light">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Research | Hyunjun Yi">
-<meta property="og:description" content="Four NeurIPS 2026 acceptances, nine open problems settled, seven new records, two new discoveries.">
+<meta property="og:description" content="Every paper, with its status and links: AI evaluation and open problems in mathematics.">
 <meta property="og:url" content="https://hjyi2027.github.io/research.html">
 <meta property="og:image" content="https://hjyi2027.github.io/og.png">
 <meta property="og:image:width" content="1200">
@@ -32,11 +32,10 @@
     <a class="mark" href="index.html">Hyunjun Yi</a>
     <nav class="bar-links" aria-label="Site">
       <a href="research.html" aria-current="page">Research</a>
-      <a href="cv.html">CV</a>
       <a class="ext" href="https://github.com/hjyi2027">GitHub</a>
       <a class="ext" href="https://www.linkedin.com/in/hyunjun-yi-3424573a0/">LinkedIn</a>
     </nav>
-    <a class="pill sm" href="index.html#contact">Contact<span class="pill-dot" aria-hidden="true">&rarr;</span></a>
+    <a class="pill sm" href="mailto:hjyi2027@gmail.com">Email<span class="pill-dot" aria-hidden="true">&rarr;</span></a>
   </div>
 </header>
 <div class="wrap">
@@ -44,235 +43,134 @@
 <p class="kicker">Index &middot; Papers and code</p>
 <h1 class="page-title"><span class="w">Research</span><span class="w"><em>in AI and mathematics.</em></span></h1>
 <div class="r-intro">
-<p class="lede muted">Two threads. In AI, how evaluation goes wrong: what a benchmark, a metric, or a decoding setting actually measures, and where a model&rsquo;s ability and its behaviour come apart. In mathematics, exact answers to open problems in discrete geometry and new records in additive combinatorics. Every entry links to its paper, its code, or both.</p>
-<div class="r-map" hidden></div>
+<p class="lede muted">In AI, what benchmarks, metrics and decoding settings actually measure. In mathematics, open problems in discrete geometry and combinatorics.</p>
 </div>
-
-<dl class="facts six">
-  <div><dt>NeurIPS 2026 acceptances</dt><dd><a href="#accepted" data-chip="NeurIPS">4</a></dd></div>
-  <div><dt>Open problems and questions settled</dt><dd><a href="#open-problems">9</a></dd></div>
-  <div><dt>New records</dt><dd><a href="#new-records">7</a></dd></div>
-  <div><dt>JMM 2027 talks accepted</dt><dd><a href="#mathematics" data-chip="JMM">3</a></dd></div>
-  <div class="span2"><dt>Other acceptances: FSML 2026, and WACV and CoRL workshops</dt><dd><a href="#accepted">22</a></dd></div>
-  <div class="total"><dt>Papers in total</dt><dd><a href="#accepted">45</a></dd></div>
-</dl>
-<div class="feat-head"><p class="num">Highlights</p><a class="link" href="#accepted">All entries <span class="arrow down" aria-hidden="true">&darr;</span></a></div>
-<div class="feature">
-  <a class="card" href="#restored-lines">
-    <span class="fig f-lines"><svg viewBox="0 0 320 200" aria-hidden="true"><g class="wds"><rect x="48" y="34" width="46" height="10" rx="5"/><rect x="102" y="34" width="62" height="10" rx="5"/><rect x="172" y="34" width="40" height="10" rx="5"/><rect x="48" y="60" width="30" height="10" rx="5"/><rect x="48" y="86" width="20" height="10" rx="5"/><rect x="76" y="86" width="34" height="10" rx="5"/><rect x="118" y="86" width="52" height="10" rx="5"/><rect x="48" y="112" width="58" height="10" rx="5"/><rect x="48" y="138" width="50" height="10" rx="5"/><rect x="106" y="138" width="38" height="10" rx="5"/><rect x="152" y="138" width="30" height="10" rx="5"/><rect x="48" y="164" width="44" height="10" rx="5"/></g><g class="ac"><path class="dr" pathLength="100" d="M218 48l7-18M84 74l7-18M176 100l7-18M112 126l7-18M188 152l7-18"/></g></svg></span>
-    <span class="c-m">Accepted &middot; NeurIPS 2026 Creative AI &middot; Sole author</span>
-    <span class="c-t">Restored lines</span>
-    <span class="c-s">A model finds the poet's hardest line breaks and declines to write them.</span>
-  </a>
-  <a class="card" href="#dead-ear">
-    <span class="fig f-ear"><svg viewBox="0 0 320 200" aria-hidden="true"><text x="66" y="98" class="wd">tea</text><text x="186" y="98" class="wd">obey</text><path class="ac dash" d="M96 56Q158 14 220 56"/><text x="60" y="162" class="wd dim">prove</text><text x="196" y="162" class="wd dim">love</text><path class="ac dash" d="M104 124Q160 96 216 124"/></svg></span>
-    <span class="c-m">Accepted &middot; NeurIPS 2026 Creative AI &middot; Sole author</span>
-    <span class="c-t">The dead ear</span>
-    <span class="c-s">A model's inherited accent is an archive, not an author.</span>
-  </a>
-  <a class="card" href="#isosceles-sets">
-    <span class="fig f-iso"><svg viewBox="0 0 320 200" aria-hidden="true"><g class="ln"><path d="M160 32L224.7 79 200 155H120L95.3 79ZM160 32L200 155M160 32L120 155M224.7 79L120 155M224.7 79H95.3M200 155L95.3 79M160 100L160 32M160 100L224.7 79M160 100L200 155M160 100L120 155M160 100L95.3 79"/></g><path class="tri" d="M160 32L200 155L120 155Z"/><g class="pt"><circle cx="160" cy="32" r="4.5"/><circle cx="224.7" cy="79" r="4.5"/><circle cx="200" cy="155" r="4.5"/><circle cx="120" cy="155" r="4.5"/><circle cx="95.3" cy="79" r="4.5"/><circle cx="160" cy="100" r="4.5"/></g></svg></span>
-    <span class="c-m">Solved &middot; Erd&#337;s, 1946 &middot; Sole author</span>
-    <span class="c-t">Isosceles sets</span>
-    <span class="c-s">The answer was known to dimension 8. This settles dimensions 9 to 22.</span>
-  </a>
-  <a class="card" href="#orchard-15">
-    <span class="fig f-orch"><svg viewBox="0 0 320 200" aria-hidden="true"><g class="ink"><path d="M160 28L60 172H260ZM160 28V172M260 172L110 100"/></g><path class="ac dr" pathLength="100" d="M60 172L210 100"/><g class="pt"><circle cx="160" cy="28" r="4.5"/><circle cx="260" cy="172" r="4.5"/><circle cx="160" cy="172" r="4.5"/><circle cx="110" cy="100" r="4.5"/></g><g class="pt on"><circle cx="60" cy="172" r="4.5"/><circle cx="160" cy="124" r="4.5"/><circle cx="210" cy="100" r="4.5"/></g></svg></span>
-    <span class="c-m">Solved &middot; Open since 1974 &middot; With two coauthors</span>
-    <span class="c-t">Fifteen-tree orchard</span>
-    <span class="c-s">Fifteen points determine at most 31 three-point lines, not 32.</span>
-  </a>
-</div>
-<div class="feature more">
-  <a class="card" href="#fno-spectral">
-    <span class="fig f-fno"><svg viewBox="0 0 320 200" aria-hidden="true"><path class="ln" d="M36 164.5H284"/><g class="wds"><rect x="44" y="38" width="10" height="126" rx="2"/><rect x="61" y="66" width="10" height="98" rx="2"/><rect x="78" y="87" width="10" height="77" rx="2"/><rect x="95" y="104" width="10" height="60" rx="2"/><rect x="112" y="117" width="10" height="47" rx="2"/><rect x="129" y="127" width="10" height="37" rx="2"/><rect x="146" y="135" width="10" height="29" rx="2"/><rect x="163" y="140" width="10" height="24" rx="2"/><rect x="180" y="145" width="10" height="19" rx="2"/></g><g class="acf"><rect x="197" y="134" width="10" height="30" rx="2"/><rect x="214" y="128" width="10" height="36" rx="2"/><rect x="231" y="136" width="10" height="28" rx="2"/><rect x="248" y="126" width="10" height="38" rx="2"/><rect x="265" y="132" width="10" height="32" rx="2"/></g></svg></span>
-    <span class="c-m">Accepted &middot; Two NeurIPS 2026 workshops &middot; First author</span>
-    <span class="c-t">When does an FNO fail?</span>
-    <span class="c-s">Spectral diagnostics for low-rank surrogates of reaction-diffusion.</span>
-  </a>
-  <a class="card" href="#lost-before-attack">
-    <span class="fig f-wm"><svg viewBox="0 0 320 200" aria-hidden="true"><rect class="sq" x="83" y="43" width="14" height="14" rx="3"/><rect class="sq" x="103" y="43" width="14" height="14" rx="3"/><rect class="sq" x="123" y="43" width="14" height="14" rx="3"/><rect class="sq lo" x="143" y="43" width="14" height="14" rx="3"/><rect class="sq lo" x="163" y="43" width="14" height="14" rx="3"/><rect class="sq" x="183" y="43" width="14" height="14" rx="3"/><rect class="sq" x="203" y="43" width="14" height="14" rx="3"/><rect class="sq" x="223" y="43" width="14" height="14" rx="3"/><rect class="sq" x="83" y="63" width="14" height="14" rx="3"/><rect class="sq lo" x="103" y="63" width="14" height="14" rx="3"/><rect class="sq lo" x="123" y="63" width="14" height="14" rx="3"/><rect class="sq" x="143" y="63" width="14" height="14" rx="3"/><rect class="sq" x="163" y="63" width="14" height="14" rx="3"/><rect class="sq" x="183" y="63" width="14" height="14" rx="3"/><rect class="sq lo" x="203" y="63" width="14" height="14" rx="3"/><rect class="sq lo" x="223" y="63" width="14" height="14" rx="3"/><rect class="sq lo" x="83" y="83" width="14" height="14" rx="3"/><rect class="sq" x="103" y="83" width="14" height="14" rx="3"/><rect class="sq" x="123" y="83" width="14" height="14" rx="3"/><rect class="sq" x="143" y="83" width="14" height="14" rx="3"/><rect class="sq lo" x="163" y="83" width="14" height="14" rx="3"/><rect class="sq lo" x="183" y="83" width="14" height="14" rx="3"/><rect class="sq" x="203" y="83" width="14" height="14" rx="3"/><rect class="sq" x="223" y="83" width="14" height="14" rx="3"/><rect class="sq" x="83" y="103" width="14" height="14" rx="3"/><rect class="sq" x="103" y="103" width="14" height="14" rx="3"/><rect class="sq lo" x="123" y="103" width="14" height="14" rx="3"/><rect class="sq lo" x="143" y="103" width="14" height="14" rx="3"/><rect class="sq" x="163" y="103" width="14" height="14" rx="3"/><rect class="sq" x="183" y="103" width="14" height="14" rx="3"/><rect class="sq" x="203" y="103" width="14" height="14" rx="3"/><rect class="sq lo" x="223" y="103" width="14" height="14" rx="3"/><rect class="sq lo" x="83" y="123" width="14" height="14" rx="3"/><rect class="sq lo" x="103" y="123" width="14" height="14" rx="3"/><rect class="sq" x="123" y="123" width="14" height="14" rx="3"/><rect class="sq" x="143" y="123" width="14" height="14" rx="3"/><rect class="sq" x="163" y="123" width="14" height="14" rx="3"/><rect class="sq lo" x="183" y="123" width="14" height="14" rx="3"/><rect class="sq lo" x="203" y="123" width="14" height="14" rx="3"/><rect class="sq" x="223" y="123" width="14" height="14" rx="3"/><rect class="sq" x="83" y="143" width="14" height="14" rx="3"/><rect class="sq" x="103" y="143" width="14" height="14" rx="3"/><rect class="sq" x="123" y="143" width="14" height="14" rx="3"/><rect class="sq lo" x="143" y="143" width="14" height="14" rx="3"/><rect class="sq lo" x="163" y="143" width="14" height="14" rx="3"/><rect class="sq" x="183" y="143" width="14" height="14" rx="3"/><rect class="miss" x="203" y="143" width="14" height="14" rx="3"/><rect class="miss" x="223" y="143" width="14" height="14" rx="3"/></svg></span>
-    <span class="c-m">Accepted &middot; WACV 2027 SIGNAL workshop &middot; First author</span>
-    <span class="c-t">Lost before any attack</span>
-    <span class="c-s">The official detector flags only 45.5% of SDXL-generated images as watermarked.</span>
-  </a>
-  <a class="card" href="#hrsid-split">
-    <span class="fig f-hr"><svg viewBox="0 0 320 200" aria-hidden="true"><rect class="cr" x="40" y="44" width="84" height="36"/><rect class="cr" x="96" y="52" width="84" height="36"/><rect class="cr te" x="152" y="44" width="84" height="36"/><rect class="cr" x="208" y="52" width="84" height="36"/><rect class="lk" x="152" y="44" width="28" height="36"/><rect class="lk" x="208" y="44" width="28" height="36"/><rect class="cr te" x="40" y="112" width="84" height="36"/><rect class="cr" x="96" y="120" width="84" height="36"/><rect class="cr" x="152" y="112" width="84" height="36"/><rect class="cr" x="208" y="120" width="84" height="36"/><rect class="lk" x="96" y="112" width="28" height="36"/></svg></span>
-    <span class="c-m">Accepted &middot; WACV 2027 SENSE workshop</span>
-    <span class="c-t">Half the test ships are in the training crops</span>
-    <span class="c-s">94.8% of HRSID test crops share pixels with a training crop.</span>
-  </a>
-  <a class="card" href="#three-diametral">
-    <span class="fig f-3d"><svg viewBox="0 0 320 200" aria-hidden="true"><path class="ink" d="M160 38L84 168H236Z"/><g class="pt"><circle cx="78" cy="168" r="4.5"/><circle cx="91" cy="168" r="4.5"/><circle cx="229" cy="168" r="4.5"/><circle cx="242" cy="168" r="4.5"/></g><g class="pt on"><circle cx="153.5" cy="38" r="4.5"/><circle cx="166.5" cy="38" r="4.5"/></g></svg></span>
-    <span class="c-m">Solved &middot; Bezdek and L&aacute;ngi&rsquo;s question &middot; Sole author</span>
-    <span class="c-t">The 3-diametral number</span>
-    <span class="c-s">2d+2 in every dimension, with a unique extremal configuration.</span>
-  </a>
-  <a class="card" href="#watson-complements">
-    <span class="fig f-wa"><svg viewBox="0 0 320 200" aria-hidden="true"><path class="ln" d="M160 30L130 100L160 170M160 30L190 100L160 170"/><path class="ac thin dr" pathLength="100" d="M160 30L70 100L160 170L250 100Z"/><g class="pt"><circle cx="160" cy="30" r="4.5"/><circle cx="160" cy="170" r="4.5"/><circle cx="130" cy="100" r="4.5"/><circle cx="190" cy="100" r="4.5"/></g><g class="pt on"><circle cx="70" cy="100" r="4.5"/><circle cx="250" cy="100" r="4.5"/></g></svg></span>
-    <span class="c-m">Answers an open question &middot; Watson, 1994 &middot; With Wyatt Choi</span>
-    <span class="c-t">Complements of topologies</span>
-    <span class="c-s">Watson&rsquo;s question at singular cardinals is independent of ZFC.</span>
-  </a>
-  <a class="card" href="#chowla-half-constant">
-    <span class="fig f-ch"><svg viewBox="0 0 320 200" aria-hidden="true"><path class="ln dash" d="M36 110H284"/><path class="ink dr" pathLength="100" d="M36.0 25.0L37.8 25.8L39.5 28.2L41.3 32.1L43.1 37.3L44.9 43.6L46.6 50.7L48.4 58.2L50.2 66.0L51.9 73.6L53.7 80.8L55.5 87.3L57.3 92.9L59.0 97.5L60.8 101.0L62.6 103.3L64.3 104.5L66.1 104.7L67.9 104.1L69.7 102.8L71.4 101.1L73.2 99.2L75.0 97.3L76.7 95.7L78.5 94.6L80.3 94.0L82.1 94.0L83.8 94.8L85.6 96.2L87.4 98.3L89.1 100.9L90.9 103.8L92.7 106.8L94.5 109.8L96.2 112.6L98.0 115.0L99.8 116.8L101.5 117.9L103.3 118.3L105.1 117.9L106.9 116.8L108.6 115.1L110.4 112.8L112.2 110.3L113.9 107.6L115.7 105.0L117.5 102.7L119.3 101.0L121.0 99.9L122.8 99.7L124.6 100.4L126.3 102.1L128.1 104.7L129.9 108.1L131.7 112.3L133.4 116.9L135.2 121.7L137.0 126.6L138.7 131.2L140.5 135.3L142.3 138.5L144.1 140.8L145.8 141.9L147.6 141.7L149.4 140.2L151.1 137.4L152.9 133.5L154.7 128.5L156.5 122.8L158.2 116.5L160.0 110.0L161.8 103.6L163.5 97.7L165.3 92.4L167.1 88.2L168.9 85.1L170.6 83.4L172.4 83.1L174.2 84.3L175.9 87.0L177.7 90.9L179.5 95.9L181.3 101.9L183.0 108.4L184.8 115.3L186.6 122.1L188.3 128.8L190.1 134.9L191.9 140.3L193.7 144.8L195.4 148.3L197.2 150.8L199.0 152.2L200.7 152.6L202.5 152.1L204.3 150.9L206.1 149.3L207.8 147.3L209.6 145.2L211.4 143.2L213.1 141.4L214.9 140.0L216.7 139.0L218.5 138.6L220.2 138.6L222.0 139.0L223.8 139.7L225.5 140.6L227.3 141.4L229.1 142.0L230.9 142.2L232.6 141.8L234.4 140.8L236.2 138.9L237.9 136.1L239.7 132.5L241.5 128.1L243.3 122.9L245.0 117.3L246.8 111.3L248.6 105.3L250.3 99.4L252.1 94.0L253.9 89.2L255.7 85.3L257.4 82.6L259.2 81.0L261.0 80.7L262.7 81.8L264.5 84.0L266.3 87.4L268.1 91.6L269.8 96.6L271.6 101.9L273.4 107.4L275.1 112.6L276.9 117.4L278.7 121.4L280.5 124.5L282.2 126.4L284.0 127.0"/><path class="ac thin" d="M200.7 110V152.6"/><g class="pt on"><circle cx="200.7" cy="152.6" r="4.5"/></g></svg></span>
-    <span class="c-m">New record &middot; arXiv &middot; Co-first author</span>
-    <span class="c-t">Chowla&rsquo;s cosine problem</span>
-    <span class="c-s">The constant in the upper bound drops from 1/&radic;2 to 1/2.</span>
-  </a>
-</div>
-<p class="jump"><a href="#accepted">Accepted</a> <a href="#open-problems">Open problems</a> <span class="stamp">Updated <time datetime="2026-11-27">27 November 2026</time></span></p>
 
 <h2 class="chap" id="accepted"><span class="h-t">Peer-reviewed <em>and accepted.</em></span></h2>
 
 <div class="item" id="restored-lines">
   <h3><a href="https://aiscend-research.github.io/papers/restored-lines.pdf">Restored lines: A model finds the poet's hardest line breaks and declines to write them</a></h3>
-  <p class="meta">2026 &middot; Sole author &middot; <a href="https://aiscend-research.github.io/papers.html">Accepted</a>, NeurIPS 2026 Creative AI &middot; <a href="https://aiscend-research.github.io/papers/restored-lines.pdf">PDF</a> &middot; <a href="https://openreview.net/forum?id=XRjFExVggk">OpenReview</a> &middot; <a href="https://github.com/hjyi2027/Restored-Lines">Code</a></p>
-  <p>A line break is the smallest unit of poetic decision. Nothing in the sentence about the red wheelbarrow requires anyone to break it after "wheel". Williams did that. This strips the breaks from 2,059 public-domain poems, grades every break by how much dependency structure it severs, and asks Claude Opus 5 to put them back. On free verse with rhyme, metre and line-initial capitals removed, it recovers 70 percent of the breaks that strand a determiner or a conjunction from its host, where a grammar-and-line-length solver recovers none. Asked to write free verse of its own, it produces those breaks at 6.1 percent against the human 12.3. It locates the poet's override of the sentence and does not perform one.</p>
+  <p class="meta">2026 &middot; Sole author &middot; <a href="https://aiscend-research.github.io/papers.html">Accepted</a>, NeurIPS 2026 Creative AI Track, one of 3 papers by high-school authors among the <a href="https://openreview.net/group?id=NeurIPS.cc/2026/Creative_AI_Track">95 accepted</a> &middot; <a href="https://aiscend-research.github.io/papers/restored-lines.pdf">PDF</a> &middot; <a href="https://openreview.net/forum?id=XRjFExVggk">OpenReview</a> &middot; <a href="https://github.com/hjyi2027/Restored-Lines">Code</a></p>
 </div>
 
 <div class="item" id="dead-ear">
   <h3><a href="https://aiscend-research.github.io/papers/the-dead-ear.pdf">The dead ear: A language model's inherited accent is an archive, not an author</a></h3>
-  <p class="meta">2026 &middot; Sole author &middot; <a href="https://aiscend-research.github.io/papers.html">Accepted</a>, NeurIPS 2026 Creative AI &middot; <a href="https://aiscend-research.github.io/papers/the-dead-ear.pdf">PDF</a> &middot; <a href="https://openreview.net/forum?id=BLL8YXu9ar">OpenReview</a> &middot; <a href="https://github.com/hjyi2027/dead-ear-creative">Code</a></p>
-  <p>Pope rhymed tea with obey. Shakespeare rhymed prove with love. Both were sounds before they were conventions, and a model that learned rhyme from five centuries of verse learned it in accents nobody speaks. Six documented sound changes give 997 dead pairs, crossed against a spelling confound. Opus 5 treats dead rhymes as rhyme-like at 40.0 percent against a 1.2 percent floor, and writes them at 0.6 percent, below the most modern half-century in the corpus. The inheritance is a reference library, consulted accurately and kept out of the writing.</p>
+  <p class="meta">2026 &middot; Sole author &middot; <a href="https://aiscend-research.github.io/papers.html">Accepted</a>, NeurIPS 2026 Creative AI Track, one of 3 papers by high-school authors among the <a href="https://openreview.net/group?id=NeurIPS.cc/2026/Creative_AI_Track">95 accepted</a> &middot; <a href="https://aiscend-research.github.io/papers/the-dead-ear.pdf">PDF</a> &middot; <a href="https://openreview.net/forum?id=BLL8YXu9ar">OpenReview</a> &middot; <a href="https://github.com/hjyi2027/dead-ear-creative">Code</a></p>
 </div>
 
 <div class="item" id="fno-spectral">
   <h3><a href="https://aiscend-research.github.io/papers/fno-spectral-diagnostics.pdf">When does a Fourier neural operator fail? Spectral diagnostics for low-rank surrogates of reaction-diffusion</a></h3>
   <p class="meta">2026 &middot; First author, with David J. Zhang, Wenhao Lu, Jonathan Liu and Spursh Deshpande &middot; Accepted to two NeurIPS 2026 workshops: <a href="https://openreview.net/forum?id=ternx3BLwG">Representations for the Physical Sciences</a>, and Physical Understanding for Decision-Making (poster) &middot; <a href="https://aiscend-research.github.io/papers/fno-spectral-diagnostics.pdf">PDF</a></p>
-  <p>Neural surrogates for PDE simulators are judged by one-step error, which hides the failures that matter: error piling up under rollout, and collapse on unseen regimes. On Gray-Scott, a compact Fourier operator's one-step edge and its single-seed rollout advantage both reverse under three-seed averaging. Rollout error follows the fate of the high-frequency spectrum, which the CNN over-damps and the operator over-excites. The argument is for spectral diagnostics computed from simulator output alone, before any model is trained.</p>
 </div>
 
 <div class="item" id="lost-before-attack">
   <h3><a href="https://openreview.net/forum?id=ot53Wwa6QJ">Lost before any attack: Auditing the invisible watermark shipped with SDXL and FLUX.1</a></h3>
   <p class="meta">2026 &middot; First author, with Bryan Bu, June Young Kim and Raiyan Mazhar &middot; Accepted as a full paper, WACV 2027 SIGNAL workshop &middot; <a href="https://openreview.net/forum?id=ot53Wwa6QJ">OpenReview</a></p>
-  <p>The reference code of Stable Diffusion XL and FLUX.1 marks every output with an open-source invisible watermark, and Stability AI distributes a detector for it. Auditing the shipped chain from embedder to detector shows most marks are unreadable before any processing: the embedder and detector disagree on a colour offset (0.5 against 128), and FLUX.1&rsquo;s documented 48-bit message has 46 bits. The official detector flags only 45.5% of SDXL-generated images as watermarked. A one-line detector change raises that to 90.9%, and a repaired embedder reaches 100%.</p>
 </div>
 
 <div class="item" id="holds-free-probes">
   <h3><a href="https://openreview.net/forum?id=jRCPkloPBu">Holds as free probes: Timing-aware temporal evaluation of anime video</a></h3>
   <p class="meta">2026 &middot; Accepted for oral presentation, WACV 2027 AINIME workshop &middot; <a href="https://openreview.net/forum?id=jRCPkloPBu">OpenReview</a></p>
-  <p>Anime holds each drawing for several frames, and temporal metrics built for live action cannot tell a held drawing from a stable one: re-exposing motion on fours raises VBench&rsquo;s motion smoothness although three quarters of the drawings are gone. Holds are also useful, since any change a restoration model makes inside a held region is its own flicker. That measure needs no reference, and it shows the recurrent AnimeSR changing by 0.81 levels on bit-identical input against at most 0.16 for per-frame models.</p>
 </div>
 
 <div class="item" id="sharper-not-closer">
   <h3><a href="https://aiscend-research.github.io/papers/sharper-is-not-closer.pdf">Sharper is not closer: What no-reference metrics reward in anime restoration</a></h3>
   <p class="meta">2026 &middot; With Bryan Bu, June Young Kim and Raiyan Mazhar &middot; Accepted for oral presentation and the workshop proceedings, WACV 2027 AINIME workshop &middot; <a href="https://aiscend-research.github.io/papers/sharper-is-not-closer.pdf">PDF</a> &middot; <a href="https://openreview.net/forum?id=WJRgT5iiKP">OpenReview</a></p>
-  <p>Real degraded anime has no clean reference, so restoration is ranked with no-reference quality metrics. Degrading 40 frames so each source serves as its own reference shows what they reward: MANIQA prefers a sharpened copy of the source to the source itself in 90% of clips, and one unsharp mask that lowers PSNR in every clip is preferred by four learned metrics in every clip. MANIQA and HyperIQA even rank one restoration above its own source frame in every clip.</p>
 </div>
 
 <div class="item" id="registration-leaks">
   <h3><a href="https://openreview.net/forum?id=wQnmktDaVt">Registration leaks the label: Synthetic-to-measured SAR ATR revisited, with lessons for hypothesis-testing agents</a></h3>
   <p class="meta">2026 &middot; Accepted, WACV 2027 SENSE workshop &middot; <a href="https://openreview.net/forum?id=wQnmktDaVt">OpenReview</a></p>
-  <p>Synthetic-to-measured SAR target recognition revisited, with a registration artifact that carries the class label on its own.</p>
 </div>
 
 <div class="item" id="hrsid-split">
   <h3><a href="https://openreview.net/forum?id=KiC6CwBoxf">Half the test ships are in the training crops: Auditing the HRSID split for SAR ship detection</a></h3>
   <p class="meta">2026 &middot; Accepted, WACV 2027 SENSE workshop &middot; <a href="https://openreview.net/forum?id=KiC6CwBoxf">OpenReview</a></p>
-  <p>HRSID splits overlapping crops of 136 source images rather than the images themselves. 94.8% of test crops share pixels with a training crop and 53.5% of test ships lie entirely inside one, so pasting training boxes into the test crops, with no detector at all, scores 42.4 COCO AP. The overlap strips act as a natural experiment: a detector recalls 3.8 points more of the test ships it saw in training.</p>
 </div>
 
 <div class="item" id="same-plate-both-splits">
   <h3><a href="https://openreview.net/forum?id=iXfz4OgVkP">Same plate, both splits: Train-test leakage in Nutrition5k and what it does to food foundation-model probes</a></h3>
   <p class="meta">2026 &middot; Accepted, WACV 2027 FABRIC workshop &middot; <a href="https://openreview.net/forum?id=iXfz4OgVkP">OpenReview</a></p>
-  <p>Nutrition5k&rsquo;s authors state that no plate appears in both splits. The scan times and weighed ingredient masses it already ships reveal 4,211 pairs of scans of the same food, against 8.1 expected by chance, and 9.0% of the side-view test dishes are repeat scans of training food with identical labels. A frozen CLIP nearest-neighbour probe retrieves the training repeat for 57 of 63 leaked dishes, and the leak cuts its error from 92.4 to 81.0 kcal.</p>
 </div>
 
 <div class="item" id="selection-diversity">
   <h3><a href="https://openreview.net/pdf?id=MQDgIUQB7U">Selection consumes diversity: A closed-form ceiling on self-improvement from verifier-filtered data</a></h3>
   <p class="meta">2026 &middot; First author, with Bryan Bu, June Young Kim and Raiyan Mazhar &middot; Accepted, FSML 2026 workshop track (poster, Split, Croatia, December 14) &middot; <a href="https://openreview.net/pdf?id=MQDgIUQB7U">PDF</a> &middot; <a href="https://openreview.net/forum?id=MQDgIUQB7U">OpenReview</a></p>
-  <p>Rejection-sampling fine-tuning, STaR-style bootstrapping and self-rewarding models share one loop: sample, keep what a verifier scores highly, refit. Each round is truncation selection, so the breeder&rsquo;s equation applies. With a noiseless verifier the total gain over all rounds is finite and closed-form, and the gain being linear in the remaining spread is exactly the entropy-performance law reported for reinforcement learning of reasoning models. On real image data with a learned reward model, one pre-loop measurement predicts the total gain: 9.69 predicted, 9.74 measured.</p>
 </div>
 
 <div class="item" id="one-in-how-many">
   <h3><a href="https://aiscend-research.github.io/papers/one-in-how-many.pdf">One in how many? False alert rates of live facial recognition in London, from controlled test to routine use</a></h3>
   <p class="meta">2026 &middot; First author, with Bryan Bu, June Young Kim and Raiyan Mazhar &middot; Accepted for oral and poster presentation and the workshop proceedings, WACV 2027 RWS workshop &middot; <a href="https://aiscend-research.github.io/papers/one-in-how-many.pdf">PDF</a> &middot; <a href="https://openreview.net/forum?id=HlBYOAY7sI">OpenReview</a></p>
-  <p>The Metropolitan Police cite a controlled test putting false positives at about 1 in 6,000 passers. Transcribing all 729 routine deployments from 2023 to 2026, 10.1 million recorded faces and 58 false alerts, shows the denominator is unstable: recorded faces per hour at the same sites differ elevenfold between periods. The records cannot bound the rate at the level the test predicts, and detecting a twofold demographic difference would take 6 to 8 years of deployments.</p>
 </div>
 
 <div class="item" id="clothing-description">
   <h3><a href="https://openreview.net/forum?id=4xNYvTW0N9">What a clothing description reveals: Singling out, linkability and inference in pedestrian attribute search under EU law</a></h3>
   <p class="meta">2026 &middot; Accepted for oral and poster presentation, WACV 2027 RWS workshop &middot; <a href="https://openreview.net/forum?id=4xNYvTW0N9">OpenReview</a></p>
-  <p>The EU AI Act treats sex, age and hair colour as biometric categories, so a natural fix for attribute-based person search is to keep clothing only. This turns the three anonymisation tests of European data protection guidance into statistics and runs them on 224,589 annotated images. Clothing alone singles out 59.0% of people in random groups of 100, links a person across Market-1501 cameras at rank one in 38.9% of cases against 0.09% chance, and predicts the annotated sex label with AUC 0.67 to 0.79 on held-out datasets. Each measurement is mapped to the GDPR and AI Act provisions it informs.</p>
 </div>
 
 <div class="item" id="image-blind-baselines">
   <h3><a href="https://openreview.net/forum?id=9uTXyRItGH">Image-blind baselines for single-scene hyperspectral and multimodal land-cover benchmarks</a></h3>
   <p class="meta">2026 &middot; First author, with Bryan Bu, June Young Kim and Raiyan Mazhar &middot; Accepted, WACV 2027 CV4EO workshop &middot; <a href="https://openreview.net/forum?id=9uTXyRItGH">OpenReview</a></p>
-  <p>On a standard single-scene hyperspectral split, pixel coordinates alone reach 95.5 percent overall accuracy. The paper sets image-blind baselines that any reported model should have to beat.</p>
 </div>
 
 <div class="item" id="counting-ink">
   <h3><a href="https://openreview.net/forum?id=WlSI4T6Oc3">Counting ink: What an autism scanpath-image benchmark measures</a></h3>
   <p class="meta">2026 &middot; First author, with Bryan Bu, June Young Kim and Raiyan Mazhar &middot; Accepted, WACV 2027 CVPath-Vision4Neuro workshop &middot; <a href="https://openreview.net/forum?id=WlSI4T6Oc3">OpenReview</a></p>
-  <p>A public set of 547 eye-tracking scanpath images from 54 children has become a benchmark for image-based autism screening, with reported accuracies up to 99.8%. Under participant-grouped cross-validation, a score with no parameters, the share of non-black pixels, separates autistic from typically developing children with AUC 0.85, and probes on four ImageNet backbones add little to it. The images clip each trace at a fixed axes box, which 69.4% of autistic children&rsquo;s traces reach against 40.2% of the others. The benchmark mostly measures how much of a recording is lost, noisy or off screen, not where children look.</p>
 </div>
 
 <div class="item" id="slow-walkers">
   <h3><a href="https://openreview.net/forum?id=aH7ICOqXAp">Slow walkers count more: How the ETH/UCY test protocol weights pedestrians</a></h3>
   <p class="meta">2026 &middot; First author, with Bryan Bu, June Young Kim and Raiyan Mazhar &middot; Accepted, WACV 2027 UrbanState workshop &middot; <a href="https://openreview.net/forum?id=aH7ICOqXAp">OpenReview</a></p>
-  <p>Pedestrian forecasting is still ranked on ETH/UCY with a loader that cuts recordings into overlapping 8-second windows. The reported error is a weighted mean in which each pedestrian counts once per window they fill, so slow walkers dominate and anyone who crosses in under 8 seconds counts zero: 39% of pedestrians are never evaluated, and one who barely moves supplies 9.7% of the ZARA2 test samples. Counting each pedestrian once raises average error by 10 to 57% and reverses one published model ranking, and confidence intervals are 2.3 to 8.1 times too narrow.</p>
 </div>
 
 <div class="item" id="crossing-frame">
   <h3><a href="https://openreview.net/forum?id=N5Rv6QIZcN">Crossing or leaving the frame? An audit of event anchoring in pedestrian crossing prediction benchmarks</a></h3>
   <p class="meta">2026 &middot; Accepted, WACV 2027 HOUR workshop &middot; <a href="https://openreview.net/forum?id=N5Rv6QIZcN">OpenReview</a></p>
-  <p>An audit of how crossing-prediction benchmarks anchor the event they ask a model to predict, and what a model can read off the anchoring alone.</p>
 </div>
 
 <div class="item" id="answerable-without-watching">
   <h3><a href="https://openreview.net/forum?id=sxHB6o7n7v">Answerable without watching: Option and split provenance in Social-IQ 2.0 and its derivatives</a></h3>
   <p class="meta">2026 &middot; Accepted, WACV 2027 HOUR workshop &middot; <a href="https://openreview.net/forum?id=sxHB6o7n7v">OpenReview</a></p>
-  <p>How much of a four-way video question-answering benchmark, and the test sets derived from it, can be answered from the answer options and split construction without the video.</p>
 </div>
 
 <div class="item" id="synergy-noise-floors">
   <h3><a href="https://aiscend-research.github.io/papers/synergy-noise-floors.pdf">Is the synergy above the noise? Noise floors for understanding-generation claims in unified multimodal models</a></h3>
   <p class="meta">2026 &middot; First author, with Bryan Bu, June Young Kim and Raiyan Mazhar &middot; Accepted for the workshop proceedings, WACV 2027 UniMUG workshop &middot; <a href="https://aiscend-research.github.io/papers/synergy-noise-floors.pdf">PDF</a> &middot; <a href="https://openreview.net/forum?id=PVmYloBnLR">OpenReview</a></p>
-  <p>Unified multimodal models are justified by synergy between generating and understanding images, usually from ablations run once. Seed variance turns out to be a stable multiple of binomial variance, so every accuracy-type benchmark has a noise floor computable from its size and score. Of 261 results from 28 papers, 42% lie within their floor, claimed benefits clear it less often than claimed harms, and no paper reports seed variation. The paper gives minimum detectable differences for 25 benchmarks.</p>
 </div>
 
 <div class="item" id="seconds-to-spare">
   <h3><a href="https://openreview.net/forum?id=Lj0aErWl0u">Seconds to spare: Interception slack for fair and graded robot tennis benchmarks</a></h3>
   <p class="meta">2026 &middot; Accepted, RoboLetics 3.0 workshop at CoRL 2026 (3-minute talk and poster) &middot; <a href="https://openreview.net/forum?id=Lj0aErWl0u">OpenReview</a></p>
-  <p>Sport benchmarks for human-robot interaction compare bodies that differ in speed, reach and latency, and a raw success rate mixes what a body allows with what its controller achieves. Interception slack, the spare time with which a body could reach the ball, gives an exact feasibility ceiling, and factoring success into ceiling and efficiency reverses raw rankings. Slack marks 12 to 67% of shots as impossible for a given body, and wheelchair tennis&rsquo;s two-bounce rule is worth 0.05 to 0.13 s against a gap of at least 0.88 s to an able-bodied player.</p>
 </div>
 
 <div class="item" id="hertz-not-reactivity">
   <h3><a href="https://openreview.net/forum?id=wUAHiqqioS">Hertz is not reactivity: Reaction latency of chunked robot policies under stochastic inference latency</a></h3>
   <p class="meta">2026 &middot; First author, with Bryan Bu, June Young Kim and Raiyan Mazhar &middot; Accepted, Efficient Foundation Models for Real-Time Embodied AI (EEAI) workshop at CoRL 2026, poster &middot; <a href="https://openreview.net/forum?id=wUAHiqqioS">OpenReview</a></p>
-  <p>Speed results for robot foundation models are reported as frequencies, and none of them says how old the observation behind the executing action is. Modelling chunked execution under random inference latency as a renewal process gives the mean reaction latency in closed form, &mu; + E[t<sup>2</sup>]/(2E[t]). Under heavy-tailed latency, delaying each inference start to a computable threshold cuts reaction latency by 13 to 20% at no cost in motion. Across 88 simulated configurations, predicted reaction latency ranks tracking error with Spearman &rho; = 0.98, against 0.84 and 0.75 for the two frequencies people usually report.</p>
 </div>
 
 <div class="item" id="capped-at-100">
   <h3><a href="https://openreview.net/forum?id=M9vcpS65wU">Capped at 100: Per-image detection limits and the comparability of SKU-110K scores</a></h3>
   <p class="meta">2026 &middot; First author, with Bryan Bu, June Young Kim and Raiyan Mazhar &middot; Accepted, WACV 2027 Physical Retail AI (PRAW) workshop, poster &middot; <a href="https://openreview.net/forum?id=M9vcpS65wU">OpenReview</a></p>
-  <p>SKU-110K is scored with COCO-style average precision, which keeps 100 detections per image by default, yet 95.9% of its test images hold more than 100 products. From the annotations alone, no detector can exceed 0.675 recall or 0.673 AP under that cap. Common toolchains apply the cap inconsistently, so the same detections from one detector score anywhere from 0.326 to 0.470 AP depending on the convention, and the cap even reverses which NMS threshold looks best. Only 3 of 10 published results state the cap.</p>
 </div>
 
 <div class="item" id="seen-scenes">
   <h3><a href="https://openreview.net/forum?id=wyXhV01u3W">Seen scenes, blind answers: An audit of the ReVA drone video QA benchmark</a></h3>
   <p class="meta">2026 &middot; First author, with Bryan Bu, June Young Kim and Raiyan Mazhar &middot; Accepted, WACV 2027 MAVU workshop, poster &middot; <a href="https://openreview.net/forum?id=wyXhV01u3W">OpenReview</a></p>
-  <p>ReVA&rsquo;s paper states its splits are disjoint by video sequence. The public annotation files show 1,012 of 1,014 test clips also appear in training, and the validation file publishes the answers of 392 test items. Copying labelled answers plus a text-only classifier scores 90.5% on validation without a single pixel, and on genuinely held-out recordings the text-only classifier still scores 58.1% against 25% chance.</p>
 </div>
 
 <div class="item" id="sharper-not-truer">
   <h3><a href="https://openreview.net/forum?id=iJcwwNo4TH">Sharper is not truer: Super-resolution rewrites license plates before they are read</a></h3>
   <p class="meta">2026 &middot; Accepted, WACV 2027 RWS workshop, poster &middot; <a href="https://openreview.net/forum?id=iJcwwNo4TH">OpenReview</a></p>
-  <p>Super-resolution is the usual proposal for plates captured too small to read. Across six general-purpose upscalers and two open plate readers on the OpenALPR benchmark, only one of 48 comparisons with plain bicubic interpolation read more plates with confidence, by 2.6 points, and GAN training cost 10 to 28 points. Real-ESRGAN changed the read of 58% of plates and broke half the reads bicubic got right. The paper proves no upscaler can raise the Bayes accuracy of plate reading, and two diffusion runs on the same capture disagreed on 40% of plates. Voting over five captured frames helped where upscaling hurt.</p>
 </div>
 
 <div class="item" id="sarlang-no-image">
   <h3><a href="https://openreview.net/forum?id=4r9Wlw0WrW">No image needed: Answer priors and a lenient scorer in a SAR vision-language benchmark</a></h3>
   <p class="meta">2026 &middot; Accepted as a non-archival presentation, WACV 2027 SENSE workshop &middot; <a href="https://openreview.net/forum?id=4r9Wlw0WrW">OpenReview</a></p>
-  <p>Auditing the question-answering part of SARLANG-1M without opening a single image: answering each question with the most common training answer for its template scores 65.0% under strict exact match. The released scorer counts a prediction as correct whenever the reference appears anywhere inside it, so the string &ldquo;yes | no&rdquo; scores 42.7% and one 965-character string scores 100.0% on 99,522 test questions. Two more remote-sensing scorers share the substring rule, and three give an empty answer full marks.</p>
 </div>
 
 <div class="item" id="fifty-ms-late">
   <h3><a href="https://openreview.net/forum?id=psZO48VUdL">Fifty milliseconds late: Latency and saccades in event-based eye-tracking benchmarks</a></h3>
   <p class="meta">2026 &middot; Accepted, WACV 2027 EOF workshop &middot; <a href="https://openreview.net/forum?id=psZO48VUdL">OpenReview</a></p>
-  <p>Event cameras are proposed for eye tracking on smart glasses because they follow fast eye movements with little delay, yet the benchmarks score only spatial error at labelled instants. On the 3ET+ 2024 challenge labels, a tracker with no spatial error that reports every position 50 ms late scores 1.25 to 1.35 pixels, close to the best entry&rsquo;s 1.44. The metrics cannot tell latency from spatial error, and they dilute it: saccades fill 7.9% of the time but carry 56% of the error that 10 ms of lag causes. The paper proposes a latency-aware protocol.</p>
 </div>
 
 
@@ -281,93 +179,55 @@
 <div class="item" id="litefno">
   <h3><a href="https://aiscend-research.github.io/papers/re-litefno-cnn-ablation.pdf">[Re] A novel CNN ablation reveals limited Fourier inductive bias in LiteFNO: A reproducibility study</a></h3>
   <p class="meta">2026 &middot; With Jacob Goldstein, Kristen Zhou, Wenhao Lu, David J. Zhang, Spursh Deshpande and Jayvant Rajesh &middot; Under open review at ReScience C &middot; <a href="https://github.com/ReScience/submissions/issues/111">Review thread</a> &middot; <a href="https://aiscend-research.github.io/papers/re-litefno-cnn-ablation.pdf">PDF</a> &middot; <a href="https://doi.org/10.5281/zenodo.23195718">DOI</a> &middot; <a href="https://github.com/hjyi2027/litefno-repro">Code</a></p>
-  <p>A from-scratch reproduction of the lightweight Fourier neural operator, plus a parameter-matched low-rank CNN ablation the original paper does not include. On Gray-Scott at 32x32 across three seeds the CNN baseline matches or beats LiteFNO on one-step error and on autoregressive rollout, so the study finds no consistent evidence for a Fourier inductive-bias advantage at this scale.</p>
 </div>
 
 
 <h2 class="chap" id="mathematics"><span class="h-t">Open problems <em>and new records.</em></span></h2>
-<p class="lede muted">9 open problems and questions settled, 7 records improved and 2 new discoveries, in discrete geometry, additive combinatorics, harmonic analysis and set-theoretic topology. Each row links to its entry below, and every entry links to its paper.</p>
-
-<div class="problems-wrap" id="open-problems">
-  <table class="problems">
-    <thead><tr><th scope="col">Problem</th><th scope="col">Before</th><th scope="col">Result</th><th scope="col">Status</th></tr></thead>
-    <tbody>
-    <tr class="grp"><th colspan="4" scope="rowgroup"><div class="g"><span class="g-n">9</span><span class="g-t">open problems and questions</span><span class="badge solved">Solved</span></div></th></tr>
-    <tr><td><a href="#isosceles-sets">Erd&#337;s&rsquo;s isosceles-set problem, d = 9 to 22</a></td><td>Posed 1946; known only to d = 8<span class="age" style="--y:80">Open 80 years</span></td><td class="res">iso(d) = (d+1 choose 2) + 1 for d &le; 21; iso(22) = 276; extremal set unique</td><td>Sole author &middot; arXiv</td></tr>
-    <tr><td><a href="#three-diametral">Bezdek and L&aacute;ngi&rsquo;s 3-diametral question</a></td><td>2d+2 known only for d &le; 3</td><td class="res">2d+2 in every dimension, extremal configuration unique</td><td>Sole author &middot; Preprint</td></tr>
-    <tr><td><a href="#two-distance-d21">Largest two-distance sets, 13 &le; d &le; 22</a></td><td>Open</td><td class="res">g(d) = d(d+1)/2 for d &le; 21; g(22) = 275; no exhaustive search</td><td>Team &middot; arXiv</td></tr>
-    <tr><td><a href="#orchard-15">Orchard-planting problem, 15 points</a></td><td>31 or 32, open since 1974<span class="age" style="--y:52">Open 52 years</span></td><td class="res">t<sub>3</sub>(15) = 31</td><td>Team &middot; Preprint &middot; JMM 2027</td></tr>
-    <tr><td><a href="#two-distance-9-12">Largest two-distance set in R<sup>9</sup></a></td><td>45 to 55, open since 1997<span class="age" style="--y:29">Open 29 years</span></td><td class="res">g(9) = 45</td><td>Team &middot; Preprint</td></tr>
-    <tr><td><a href="#ordinary-lines-15">Sylvester-Gallai ordinary lines, 15 points</a></td><td>7 to 9</td><td class="res">m(15) = 9</td><td>Team &middot; Preprint</td></tr>
-    <tr><td><a href="#watson-complements">Watson&rsquo;s question on complements of topologies at singular cardinals</a></td><td>Asked 1994; counted only for sets of size &alefsym;<sub>n</sub><span class="age" style="--y:32">Open 32 years</span></td><td class="res">Independent of ZFC; complements counted on every infinite set</td><td>Team &middot; Preprint</td></tr>
-    <tr><td><a href="#equiangular-277">Uniqueness of the 277-point two-distance set in R<sup>23</sup></a></td><td>Asked by Ge, Koolen and Munemasa</td><td class="res">Unique up to congruence</td><td>Sole author &middot; Preprint</td></tr>
-    <tr><td><a href="#neumaier">Neumaier graphs with e = s &minus; 2</a></td><td>Question of Abiad, De Boeck and Zeijlemaker</td><td class="res">&mu; odd forces 4 | s</td><td>Team &middot; Preprint &middot; JMM 2027</td></tr>
-    <tr class="grp"><th colspan="4" scope="rowgroup"><div class="g"><span class="g-n">7</span><span class="g-t">improved bounds</span><span class="badge">New record</span></div></th></tr>
-    <tr><td><a href="#chowla-half-constant">Chowla&rsquo;s cosine problem, upper bound</a></td><td>Constant 1/&radic;2 since the classical construction</td><td class="res">Constant 1/2</td><td>Co-first author &middot; arXiv</td></tr>
-    <tr><td><a href="#k-diametral">k-diametral configurations, upper bound</a></td><td>Exponential in d (Bezdek and L&aacute;ngi)</td><td class="res">2(d+1)<sup>k&minus;2</sup>; f<sub>4</sub> &le; 15d<sup>3/2</sup></td><td>Sole author &middot; Preprint</td></tr>
-    <tr><td><a href="#almost-equidistant">Almost-equidistant sets</a></td><td>f(d) &ge; 2d + 4</td><td class="res">Beaten at d = 10 and every 20 &le; d &le; 57; f(22) &ge; 100</td><td>Team &middot; Preprint &middot; JMM 2027</td></tr>
-    <tr><td><a href="#few-distance">Few-distance sets in R<sup>6</sup> to R<sup>8</sup></a></td><td>504 points in R<sup>8</sup> for s = 6</td><td class="res">910</td><td>Team &middot; Preprint</td></tr>
-    <tr><td><a href="#nonlinear-roth">Nonlinear Roth, {x, x+y, x+y<sup>2</sup>}</a></td><td>Exponent 0.76850 (Younis)</td><td class="res">0.77509</td><td>Team &middot; Preprint</td></tr>
-    <tr><td><a href="#x-y-cubed">Sets lacking {x, x+y, x+y<sup>3</sup>}</a></td><td>0.8617631, from cube-difference-free sets</td><td class="res">0.8703797</td><td>Preprint</td></tr>
-    <tr><td><a href="#cube-differences">Sets with no cube differences</a></td><td>Exponent 0.861681 (Lewko)</td><td class="res">0.861763</td><td>Preprint</td></tr>
-    </tbody>
-  </table>
-</div>
-
 <h3 class="sub" id="solved">Solved</h3>
 
 <div class="item" id="isosceles-sets">
   <h3><a href="https://arxiv.org/abs/2611.05421">Isosceles sets and two-distance sets in Euclidean space</a></h3>
   <p class="meta"><span class="badge solved">Solved &middot; Erd&#337;s, 1946</span> November 2026 &middot; Sole author &middot; <a href="https://arxiv.org/abs/2611.05421">arXiv:2611.05421</a> &middot; <a href="https://doi.org/10.5281/zenodo.22928431">Earlier version, DOI</a></p>
-  <p>A finite set is isosceles if every three of its points form an isosceles triangle. Erd&#337;s asked in 1946 for the largest such set in dimension d, and the answer was known only up to d = 8. This proves iso(d) = max{g(d), m(d) + 1, m(d&minus;1) + 3} for every d &ge; 2, where g and m count the largest two-distance and spherical two-distance sets, which reduces the question to those two classical ones. With the recent values of g it gives iso(d) = (d+1 choose 2) + 1 for 9 &le; d &le; 21 and iso(22) = 276, each with a unique extremal set: the edge-midpoints of a regular simplex plus its centroid for d &le; 21, and the McLaughlin configuration plus its centre for d = 22. It also shows g(23) &le; 299, so iso(23) = max{g(23), 278} &le; 299. The proofs start from Blokhuis&rsquo; decomposition of isosceles sets into mutually orthogonal two-distance sets.</p>
 </div>
 
 <div class="item" id="three-diametral">
   <h3><a href="https://doi.org/10.5281/zenodo.23567486">The 3-diametral number of Euclidean d-space is 2d+2</a></h3>
   <p class="meta"><span class="badge solved">Solved</span> October 2026 &middot; Sole author &middot; <a href="https://doi.org/10.5281/zenodo.23567486">DOI</a></p>
-  <p>A configuration of points is 3-diametral if among any three of them two are at distance equal to the diameter. Bezdek and L&aacute;ngi proved the largest such configuration has 2d+2 points for d &le; 3 and asked whether 2d+2 holds in every dimension. This proves that it does, and that a regular simplex with every vertex taken twice is the only extremal configuration. The proof reads a configuration as the Gram matrix of unit vectors in a Lorentzian space and combines a trace identity with Perron-Frobenius. A construction for distinct points also shows Polyanskii&rsquo;s conjectured bound fails for every d &ge; 4 except 7.</p>
 </div>
 
 <div class="item" id="two-distance-d21">
   <h3><a href="https://arxiv.org/abs/2610.40367">Johnson optimality and uniqueness for distance ratio 1:&radic;2</a></h3>
   <p class="meta"><span class="badge solved">Solved</span> October 2026 &middot; With Bryan Bu, Chin-Yen Lee, Yu-Hang Sheng, Meng-Tsung Tsai and Wei-Hsuan Yu &middot; <a href="https://arxiv.org/abs/2610.40367">arXiv:2610.40367</a> &middot; Submitted to Discrete Mathematics</p>
-  <p>Proves that a two-distance set in R<sup>d</sup> with distance ratio 1:&radic;2 has at most d(d+1)/2 points for every d &ge; 9, with equality in full affine dimension only for the Johnson construction, the simplex-midpoint set; for d &ge; 10 full dimension is automatic. The proof splits on whether the short-distance graph is connected: the connected case uses root lattices and intersection theorems, the disconnected case an orthogonal decomposition into component direction spaces. A relative bound for Euclidean two-distance sets, whose equality case forces sphericity, combines with the Larman-Rogers-Seidel theorem to give the maximum two-distance set size d(d+1)/2 for 9 &le; d &le; 21 and 275 for d = 22, without exhaustive enumeration. My <a href="#isosceles-sets">isosceles-sets paper</a> also uses this result.</p>
 </div>
 
 <div class="item" id="orchard-15">
   <h3><a href="https://doi.org/10.5281/zenodo.23343123">The orchard-planting problem for fifteen points</a></h3>
   <p class="meta"><span class="badge solved">Solved &middot; Open since 1974</span> September 2026 &middot; With Bryan Zachary Bu and Karam Gill &middot; Accepted, JMM 2027 (AMS Contributed Paper Session on Combinatorics) &middot; <a href="https://doi.org/10.5281/zenodo.23343123">DOI</a></p>
-  <p>Proves t<sub>3</sub>(15) = 31, the largest number of three-point lines through fifteen points. It has been known since 1974 that t<sub>3</sub>(15) is 31 or 32, and OEIS still lists it that way (<a href="https://oeis.org/A003035">A003035</a>), so 15 is not a sporadic exception to the Burr-Gr&uuml;nbaum-Sloane formula. The proof enumerates 7,955,290 isomorphism classes of partial Steiner triple systems and shows none is realisable in the real projective plane, using Pappus and Desargues as filters and exact Gr&ouml;bner-basis computations for the rest, cross-validated by a SAT encoding of oriented matroids. It also confirms t<sub>3</sub>(13) = 22 and t<sub>3</sub>(14) = 26, which had only been announced from an unpublished computation.</p>
 </div>
 
 <div class="item" id="two-distance-9-12">
   <h3><a href="https://doi.org/10.5281/zenodo.23343351">Maximum two-distance sets in dimensions nine, ten, eleven and twelve</a></h3>
   <p class="meta"><span class="badge solved">Solved &middot; Open since 1997</span> September 2026 &middot; With Bryan Zachary Bu and Karam Gill &middot; <a href="https://doi.org/10.5281/zenodo.23343351">DOI</a></p>
-  <p>Proves g(9) = 45, open since Lison&#283;k&rsquo;s 1997 work left 45 &le; g(9) &le; 55, and shows that up to similarity there are exactly two 45-point two-distance sets in R<sup>9</sup>. It also proves g(10) = 55, g(11) = 66 and g(12) = 78, each attained only by the simplex-midpoint set. The method is a root-lattice reduction plus a symmetry-reduced exhaustive search, cross-checked by an independent SAT-based implementation. My <a href="#isosceles-sets">isosceles-sets paper</a> builds on this result.</p>
 </div>
 
 <div class="item" id="ordinary-lines-15">
   <h3><a href="https://doi.org/10.5281/zenodo.23343345">Fifteen points determine at least nine ordinary lines</a></h3>
   <p class="meta"><span class="badge solved">Solved</span> September 2026 &middot; With Bryan Zachary Bu and Karam Gill &middot; <a href="https://doi.org/10.5281/zenodo.23343345">DOI</a></p>
-  <p>Proves m(15) = 9 for the Sylvester-Gallai ordinary lines problem. Only 7 &le; m(15) &le; 9 was known, the lower bound being the Kelly-Moser bound of 1958, and it was the first unknown entry of <a href="https://oeis.org/A003034">OEIS A003034</a>. The proof classifies 23,174,731 incidence structures and shows none is realisable over the reals, with every algebraic rejection confirmed by an independent SAT test. One system turns out to be realisable over Q(&radic;&minus;3) but not over the reals. It follows that the Green-Tao formula holds for every 6 &le; n &le; 16 except 13.</p>
 </div>
 
 <div class="item" id="watson-complements">
   <h3><a href="https://doi.org/10.5281/zenodo.23904686">Complements in the lattice of topologies on a set of singular cardinality</a></h3>
   <p class="meta"><span class="badge solved">Answers an open question</span> November 2026 &middot; With Wyatt Choi &middot; Preprint &middot; <a href="https://doi.org/10.5281/zenodo.23904686">DOI</a></p>
-  <p>Watson asked in 1994 whether a topology on &alefsym;<sub>&omega;</sub> can have more than 2<sup>&alefsym;<sub>&omega;</sub></sup> and more than sup<sub>n</sub> 2<sup>2<sup>&alefsym;<sub>n</sub></sup></sup> complements, yet fewer than 2<sup>2<sup>&alefsym;<sub>&omega;</sub></sup></sup>. This paper shows the question is independent of ZFC: the answer is yes in a model obtained by Easton forcing and no whenever &alefsym;<sub>&omega;</sub> is a strong limit. Two topologies on a set are complements if their join is discrete and their meet is indiscrete, and behind the result is a count for every infinite set: apart from the discrete and indiscrete topologies and the free unions of an indiscrete and a discrete space, a topology &tau; on &kappa; has exactly 2<sup>&kappa;&middot;2<sup>&lt;&lambda;(&tau;)</sup></sup> complements. Watson&rsquo;s own spaces co(&lt;&lambda;, &kappa;) have 2<sup>&kappa;&middot;2<sup>&lt;&lambda;</sup></sup> complements, so the list of values in his problem 6.1 needs correcting, as does a lemma of his that fails at limit cardinals in some models.</p>
 </div>
 
 <div class="item" id="equiangular-277">
   <h3><a href="https://doi.org/10.5281/zenodo.22928468">Uniqueness of the two-distance extension of the 276 equiangular lines in R<sup>23</sup></a></h3>
   <p class="meta"><span class="badge solved">Answers an open question</span> September 2026 &middot; Sole author &middot; Preprint &middot; <a href="https://doi.org/10.5281/zenodo.22928468">DOI</a></p>
-  <p>Ge, Koolen and Munemasa built a 277-point two-distance set in R<sup>23</sup> by adding one point to representatives of the 276 equiangular lines, and asked whether a set of that size is unique. In the Leech lattice model every extension point is a norm-6 lattice vector; there are exactly 257,600 of them and Co<sub>3</sub> &times; 2 permutes them transitively, so every such 277-point set is congruent to theirs. The automorphism group is 3<sup>5</sup>:(2 &times; M<sub>11</sub>), and maximality gets a two-line proof that previously needed a large Magma computation.</p>
 </div>
 
 <div class="item" id="neumaier">
   <h3><a href="https://doi.org/10.5281/zenodo.23343392">A parity obstruction for Neumaier graphs with e = s &minus; 2</a></h3>
   <p class="meta"><span class="badge solved">Answers an open question</span> September 2026 &middot; With Bryan Zachary Bu and Karam Gill &middot; Accepted, JMM 2027 (AMS Contributed Paper Session on Graph Theory) &middot; <a href="https://doi.org/10.5281/zenodo.23343392">DOI</a></p>
-  <p>Proves that if &mu; is odd then 4 divides s, which explains why these parameter sets vanish in the computations of Abiad, De Boeck and Zeijlemaker and answers their question. It also eliminates five further open parameter sets from their table.</p>
 </div>
 
 
@@ -376,43 +236,36 @@
 <div class="item" id="chowla-half-constant">
   <h3><a href="https://arxiv.org/abs/2610.17160">A half-constant upper bound for Chowla&rsquo;s cosine problem</a></h3>
   <p class="meta"><span class="badge">New record</span> October 2026 &middot; Co-first author, with Bryan Bu, Fayzan Khan, Atharv Jha, Ishaan Chandupatla and Madhav Nagpal &middot; <a href="https://arxiv.org/abs/2610.17160">arXiv:2610.17160</a></p>
-  <p>Chowla asked in 1965 how deep the negative dip of a cosine sum with n frequencies has to be. Call the least possible depth &lambda;(n). The best known lower bound is of order n<sup>1/5</sup> (<a href="https://arxiv.org/abs/2509.05260">Bedert, 2025</a>), and the classical Sidon-difference construction gives the upper bound (1+o(1))&radic;(n/2). This paper lowers the leading constant to 1/2: &lambda;(n) &le; &frac12;&radic;n + O(n<sup>1/4</sup>&radic;log n). The construction combines a two-sided Sidon square identity with a Singer difference set, a Fej&eacute;r-kernel majorant, a parity-biased deletion and an exact-cardinality random selection. In the other direction it carries the L<sup>1</sup> norm through Bedert&rsquo;s estimate, giving a lower bound of order n<sup>1/4</sup> for sets inside [1, cn] and one that recovers the exponent 1/5 and improves it when the L<sup>1</sup> norm is small.</p>
 </div>
 
 <div class="item" id="k-diametral">
   <h3><a href="https://doi.org/10.5281/zenodo.23645266">Bounds for k-diametral point configurations in Euclidean space</a></h3>
   <p class="meta"><span class="badge">New record</span> October 2026 &middot; Sole author &middot; <a href="https://doi.org/10.5281/zenodo.23645266">DOI</a></p>
-  <p>The sequel to the <a href="#three-diametral">3-diametral paper</a>. Bezdek and L&aacute;ngi&rsquo;s upper bound for k-diametral configurations is exponential in d; this proves f<sub>k</sub>(E<sup>d</sup>) &le; 2(d+1)<sup>k&minus;2</sup> and the subquadratic f<sub>4</sub>(E<sup>d</sup>) &le; 15d<sup>3/2</sup>, by making the Lorentzian Gram matrix positive semidefinite with a low-rank correction. It also shows the conjectured equality f<sub>k</sub> = (k&minus;1)(d+1) fails already for k = 6, using two-distance sets of Bondarenko and of Jenrich and Brouwer, and reduces the k = 4 case to an explicit inequality.</p>
 </div>
 
 <div class="item" id="almost-equidistant">
   <h3><a href="https://doi.org/10.5281/zenodo.23661262">Almost-equidistant sets and triangle-free graphs</a></h3>
   <p class="meta"><span class="badge">New record</span> September 2026 &middot; With Bryan Zachary Bu and Karam Gill &middot; Accepted, JMM 2027, presented by me (AMS Contributed Paper Session on Graph Theory) &middot; <a href="https://doi.org/10.5281/zenodo.23661262">DOI</a></p>
-  <p>The pairs at non-unit distance in an almost-equidistant set form a triangle-free graph, and this studies f(d), the largest such set in R<sup>d</sup>, through that graph in both directions. Constructions from the Hoffman-Singleton, Gewirtz, M<sub>22</sub> and Higman-Sims graphs give f(10) &ge; 26 and f(22) &ge; 100, and beat the previous record 2d + 4 for every 20 &le; d &le; 57; the method gives nothing beyond d = 57. On the upper-bound side it proves rank(A &minus; &lambda;<sub>2</sub>I) &gt; n/(8(&lambda;<sub>2</sub>+1)) for every triangle-free graph, so the conjecture f(d) = O(d) holds whenever the non-unit distances are bounded away from 1. A strongly regular graph meeting the Krein bound with triangle-free parameters would give f(d) &ge; (1+o(1))d<sup>4/3</sup> and make the Kupavskii-Mustafa-Swanepoel bound sharp.</p>
 </div>
 
 <div class="item" id="few-distance">
   <h3><a href="https://doi.org/10.5281/zenodo.23343425">Larger few-distance sets in R<sup>6</sup>, R<sup>7</sup>, R<sup>8</sup> and R<sup>9</sup> from shells of root lattices</a></h3>
   <p class="meta"><span class="badge">New record</span> September 2026 &middot; With Bryan Zachary Bu and Karam Gill &middot; <a href="https://doi.org/10.5281/zenodo.23343425">DOI</a></p>
-  <p>Sz&ouml;ll&#337;si and &Ouml;sterg&aring;rd tabulated the largest known s-distance sets for d &le; 8 and called the entries for s = 5, 6 in dimensions 6 to 8 &ldquo;rather weak&rdquo;. The vectors of norm at most 6 in E<sub>6</sub>, E<sub>7</sub> and E<sub>8</sub> contain much larger ones: 910 points in R<sup>8</sup> for s = 6 against 504, and 388 in R<sup>7</sup> against 280. Every set is given as integer vectors and checked by an exact script.</p>
 </div>
 
 <div class="item" id="nonlinear-roth">
   <h3><a href="https://doi.org/10.5281/zenodo.23343401">An improved lower bound in the nonlinear Roth theorem</a></h3>
   <p class="meta"><span class="badge">New record</span> September 2026 &middot; With Bryan Zachary Bu and Karam Gill &middot; <a href="https://doi.org/10.5281/zenodo.23343401">DOI</a></p>
-  <p>Builds subsets of {1, &hellip;, n} of size n<sup>0.77509&hellip;</sup> with no configuration {x, x+y, x+y<sup>2</sup>}, improving Younis&rsquo;s exponent 0.76850, by running his iterated-difference framework at modulus 145. It also solves the optimisation exactly, with big-integer certificates, at moduli 65 and 85.</p>
 </div>
 
 <div class="item" id="x-y-cubed">
   <h3><a href="https://doi.org/10.5281/zenodo.23343461">Lower bound for sets lacking {x, x+y, x+y<sup>3</sup>}</a></h3>
   <p class="meta"><span class="badge">New record</span> September 2026 &middot; <a href="https://doi.org/10.5281/zenodo.23343461">DOI</a></p>
-  <p>The first explicit lower bound for sets lacking {x, x+y, x+y<sup>3</sup>} that goes beyond what sets without cube differences give: exponent 0.8703797&hellip; against 0.8617631&hellip;. The construction runs Younis&rsquo;s iterated-difference framework with a two-step chain of subsets of Z/91Z of sizes 13 and 28, and an exact dynamic program proves that no chain of any length modulo 91 does better.</p>
 </div>
 
 <div class="item" id="cube-differences">
   <h3><a href="https://doi.org/10.5281/zenodo.23343449">An improved lower bound for sets with no cube differences</a></h3>
   <p class="meta"><span class="badge">New record</span> September 2026 &middot; <a href="https://doi.org/10.5281/zenodo.23343449">DOI</a></p>
-  <p>Ruzsa&rsquo;s construction turns a subset of Z/mZ with no nonzero cube difference into a large subset of {1, &hellip;, n} with the same property. The best exponent recorded was 0.861681, from Lewko&rsquo;s 14-element set modulo 91. An explicit 116-element set modulo 3367 = 7 &times; 13 &times; 37 raises it to 0.861763. The modulus came from a structural analysis that rules out every modulus 7p with p &le; 163 and singles out 3367, and the set itself from a tabu search; every finite claim is checked by a standard-library script.</p>
 </div>
 
 
@@ -421,13 +274,11 @@
 <div class="item" id="four-runners">
   <h3><a href="https://arxiv.org/abs/2610.40694">Four runners that are barely lonely</a></h3>
   <p class="meta">October 2026 &middot; With Karam Gill and Bryan Zachary Bu &middot; <a href="https://arxiv.org/abs/2610.40694">arXiv:2610.40694</a> &middot; <a href="https://doi.org/10.5281/zenodo.23763104">Zenodo</a></p>
-  <p>In the lonely runner problem, ML(v) is the largest loneliness any time t achieves for speeds v, and Kravitz asked which values below 1/n occur. For four speeds, Jain and Kravitz showed the values below 1/4 are m/(4m+2) up to finitely many undetermined exceptions. This settles the four-runner case completely: a primitive quadruple has ML &lt; 1/4 exactly when it is {1,2,3,4k}, or {x,y,x+y,x+2y} with gcd(x,y) = 1 and y &#8802; x, 2x mod 4, or {1,3,4,14}. The values below 1/4 are therefore every m/(4m+2) with m &ge; 2 except 3/14, which never occurs. A density lemma bounds the length of a quadruple on neither critical subtorus by 512, and an exact search over 800,816,099 quadruples finishes the proof. The same method shows the accumulation points of the four-runner spectrum in (0, 2/5] are the three-runner values there, as Giri and Kravitz conjectured, and for every n gives ML(v) &gt; 1/n &minus; (n(n&minus;1))<sup>n&minus;2</sup>/(2|v|), conditional on the conjecture for n&minus;1 and n&minus;2 speeds.</p>
 </div>
 
 <div class="item" id="admissible-digits">
   <h3><a href="https://doi.org/10.5281/zenodo.23343438">Largest admissible digit sets modulo primes up to 31</a></h3>
   <p class="meta">September 2026 &middot; <a href="https://doi.org/10.5281/zenodo.23343438">DOI</a></p>
-  <p>Elsholtz, Klahn and Lipnik build large progression-free sets from admissible digit sets and tabulated the largest they could find for primes up to 31; seventeen entries were recorded only as lower bounds. This determines all seventeen. Two increase, modulo 31 to 23 for k = 5 and 24 for k = 6, and the other fifteen are optimal. For three-term progressions the largest admissible digit set modulo any odd prime p has exactly (p+1)/2 elements. The key observation is that admissibility is a linear program, so Gordan&rsquo;s theorem gives short certificates checkable in exact integer arithmetic.</p>
 </div>
 
 <h3 class="sub" id="in-revision">In revision</h3>
@@ -435,7 +286,6 @@
 <div class="item" id="vanishing-sums">
   <h3>The complete classification of minimal vanishing sums of roots of unity up to weight 23</h3>
   <p class="meta">September 2026 &middot; With Bryan Zachary Bu and Karam Gill &middot; In revision</p>
-  <p>A classification of every minimal vanishing sum of roots of unity up to weight 23. The previous complete classification stopped at weight 12 (Poonen and Rubinstein, 1998), which is where <a href="https://oeis.org/A273096">OEIS A273096</a> currently ends. The paper is being revised before journal submission.</p>
 </div>
 
 
@@ -453,7 +303,6 @@
         <p class="foot-h">Site</p>
         <a href="index.html">Home</a>
         <a href="research.html">Research</a>
-        <a href="cv.html">CV</a>
       </div>
       <div>
         <p class="foot-h">Elsewhere</p>
