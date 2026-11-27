@@ -1107,69 +1107,6 @@ main.filtering .feature{display:none}
 .cv-meth li:last-child{border-bottom:0}
 .row .what strong + .cv-k{margin-top:24px}
 .row .what .cv-act{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
-.langs{margin:0;padding:0;list-style:none}
-.langs li{display:grid;grid-template-columns:minmax(0,1fr) auto 172px;align-items:center;gap:24px;padding:14px 0;border-bottom:1px solid var(--line)}
-.langs li:first-child{padding-top:0}
-.langs b{font-family:var(--display);font-weight:400;font-size:clamp(26px,2.6vw,34px);line-height:1.12;letter-spacing:-.012em;color:var(--fg)}
-.langs small{font-family:var(--mono);font-size:12px;line-height:1.4;color:var(--muted)}
-.lv{display:flex;gap:4px}
-.lv i{position:relative;width:24px;height:6px;overflow:hidden;border-radius:3px;background:var(--line)}
-.lv.l5 i::after,.lv.l4 i:nth-child(-n+4)::after,.lv.l2 i:nth-child(-n+2)::after{content:"";position:absolute;inset:0;background:var(--fg);transform-origin:left}
-.js-reveal .row:not(.in) .lv i::after{transform:scaleX(0)}
-.row.in .lv i::after{transition:transform 420ms var(--ease-out) 200ms}
-.row.in .lv i:nth-child(2)::after{transition-delay:290ms}
-.row.in .lv i:nth-child(3)::after{transition-delay:380ms}
-.row.in .lv i:nth-child(4)::after{transition-delay:470ms}
-.row.in .lv i:nth-child(5)::after{transition-delay:560ms}
-/* languages as a chart on squared paper: the five steps of the scale across
-   the top, each language a bar that fills to its step; pointing at a
-   language marks its step in the header */
-.row .what .cv-yl + .lang-fig{margin-top:20px}
-.lang-fig{margin:0;padding:16px 20px 12px;border:1px solid var(--line);border-radius:20px;
-  background-color:#f5f3ea;background-image:linear-gradient(rgba(39,71,212,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(39,71,212,.09) 1px,transparent 1px);
-  background-size:24px 24px;background-position:-1px -1px}
-.lf-scale,.lang-fig .langs li{display:grid;grid-template-columns:150px repeat(5,minmax(0,1fr));gap:0}
-.lf-scale{margin:0 0 4px;padding:0 0 10px;list-style:none;border-bottom:1px dashed rgba(23,23,26,.2)}
-.lf-scale li{position:relative;padding:0 4px 0 8px;font-family:var(--mono);font-size:10px;line-height:1.4;letter-spacing:0;color:var(--muted);transition:color 200ms var(--ease)}
-.lf-scale li::before{content:"";position:absolute;left:0;top:2px;bottom:-11px;border-left:1px dashed rgba(23,23,26,.24)}
-.lf-scale li:first-child{grid-column:2}
-.lang-fig .langs li{position:relative;align-items:center;padding:12px 0;border-bottom:1px dashed rgba(23,23,26,.14)}
-.lang-fig .langs li:first-child{padding-top:12px}
-.lang-fig .langs li:last-child{border-bottom:0}
-.lang-fig .langs b{grid-column:1;grid-row:1;font-size:clamp(26px,2.4vw,31px);line-height:1.08}
-.endo{grid-column:1;grid-row:2;margin-top:2px;font-size:13px;line-height:1.35;color:var(--muted)}
-.lang-fig .lv{grid-column:2/-1;grid-row:1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0}
-.lang-fig .lv i{width:auto;height:12px;margin-right:5px;border-radius:999px;background:rgba(23,23,26,.07)}
-.lang-fig .langs small{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-/* the basis: where each level comes from, set under its bar */
-.lb{grid-column:2/-1;grid-row:2;align-self:start;margin-top:6px;font-family:var(--mono);font-size:11px;line-height:1.45;color:var(--fg-2)}
-.lb a{color:inherit;text-decoration:underline;text-decoration-color:rgba(23,23,26,.3);text-underline-offset:2px;transition:text-decoration-color 200ms var(--ease)}
-.lb a:hover{text-decoration-color:currentColor}
-.lang-fig figcaption{min-height:43px;margin:2px 0 0;padding-top:10px;border-top:1px dashed rgba(23,23,26,.2);font-family:var(--mono);font-size:11px;line-height:1.5;color:var(--muted)}
-/* pointing at a language swaps the caption for what its level means;
-   without a pointer, both meanings sit under the caption as a legend */
-.lang-fig figcaption .fc,.lang-fig .fc-hint{display:none}
-.lang-fig figcaption .fc-0{display:inline}
-.lang-fig figcaption .fc b{font-weight:500;color:var(--fg)}
-@media (hover:hover) and (min-width:761px){
-  .lang-fig .fc-hint{display:inline}
-  .lang-fig:has(.langs li:hover) figcaption .fc-0{display:none}
-  .lang-fig:has(.langs li:hover .l5) figcaption .fc-5,
-  .lang-fig:has(.langs li:hover .l4) figcaption .fc-4,
-  .lang-fig:has(.langs li:hover .l2) figcaption .fc-2{display:inline}
-}
-@media (hover:none),(max-width:760px){
-  .lang-fig figcaption .fc-0{display:block}
-  .lang-fig figcaption .fc-5,.lang-fig figcaption .fc-4,.lang-fig figcaption .fc-2{display:block;margin-top:6px}
-}
-@media (hover:hover){
-  .lang-fig .langs li::after{content:"";position:absolute;inset:2px -10px;z-index:-1;border-radius:12px;background:rgba(255,255,255,.7);opacity:0;transition:opacity 200ms var(--ease)}
-  .lang-fig .langs li:hover::after{opacity:1}
-  .lang-fig .langs{position:relative;z-index:0}
-  .lang-fig:has(li:hover .l5) .lf-scale li:nth-child(5),
-  .lang-fig:has(li:hover .l4) .lf-scale li:nth-child(4),
-  .lang-fig:has(li:hover .l2) .lf-scale li:nth-child(2){color:var(--accent)}
-}
 ul.plain{margin:0;padding-left:0;list-style:none;counter-reset:item}
 ul.plain li{position:relative;margin:0;padding:16px 0 16px 72px;border-bottom:1px solid var(--line);font-size:16.5px;color:var(--fg-2);counter-increment:item}
 ul.plain li::before{content:counter(item,decimal-leading-zero);position:absolute;left:0;top:21px;
@@ -1470,19 +1407,6 @@ html.pal-open{overflow:hidden}
   .cv-code{grid-template-columns:1fr}
   .cv-pubs li{grid-template-columns:64px minmax(0,1fr);gap:14px}
   .pb-th img{width:64px;height:83px}
-  .langs li{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"n m" "l m";gap:2px 16px}
-  .langs b{grid-area:n}
-  .langs .lv{grid-area:m}
-  .langs small{grid-area:l}
-  .lang-fig{padding:12px 14px 10px}
-  .lf-scale{display:none}
-  .lang-fig .langs li{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:none;gap:0 12px}
-  .lang-fig .langs b{grid-area:auto;grid-column:1;grid-row:1;font-size:26px}
-  .endo{grid-row:2}
-  .lang-fig .langs small{position:static;grid-area:auto;grid-column:2;grid-row:1/3;width:auto;height:auto;overflow:visible;clip-path:none;text-align:right}
-  .lang-fig .lv{grid-area:auto;grid-column:1/-1;grid-row:3;margin-top:10px}
-  .lang-fig .lb{grid-column:1/-1;grid-row:4;margin-top:8px}
-  .lang-fig figcaption{min-height:0}
   .row{grid-template-columns:1fr;gap:4px}
   .row .when{padding-top:0}
   .filter{grid-template-columns:minmax(0,1fr) auto;border-radius:22px}
@@ -1520,8 +1444,6 @@ html.pal-open{overflow:hidden}
   .yg .yg-bar{transition:none}
   .row.in .cv-code li,.row.in .cv-pubs li{animation:none}
   .pb-th img{transition:none}
-  .js-reveal .row:not(.in) .lv i::after{transform:none}
-  .lf-scale li,.lang-fig .langs li::after{transition:none}
   .feature.in .dr{transition:none}
   .ticker span,.stream s,.poem .wd.new,.pal,.pal-box,.js-reveal .hero-fig,.js-reveal .lab-stage .panel{animation:none}
   .bar::before{display:none}
@@ -1604,25 +1526,13 @@ html.pal-open{overflow:hidden}
   .cv-band + .facts{margin-top:14pt}
   .links a{min-height:0;padding:0 14pt 0 0;border:0;background:none;font-size:10pt}
   .links a[href^="http"]::after{content:": " attr(href);font-weight:400;color:#555}
-  .tools,.langs{display:block}
+  .tools{display:block}
   .cv-body.stack .row{grid-template-columns:84pt 1fr;gap:12pt}
   .cv-body.stack .row .when{padding-top:3pt}
-  .tools li,.langs li{display:inline;min-height:0;padding:0;border:0;background:none;font-size:10pt}
-  .tools li::before,.tools span,.lv,.row .what .cv-act,.lf-scale,.endo,.lang-fig figcaption,.lang-fig .lb{display:none}
-  .lang-fig{margin:0;padding:0;border:0;background:none}
-  .lang-fig .lv{display:none}
-  .row .what .cv-yl + .lang-fig{margin-top:0}
-  .lang-fig .langs li:first-child{padding-top:0}
-  .lang-fig .langs li::after{position:static;inset:auto;z-index:auto;opacity:1;background:none;border-radius:0}
-  .lang-fig .langs li{display:inline;padding:0;border:0}
-  .lang-fig .langs b{font-size:10pt;line-height:inherit}
-  .lang-fig .langs small{position:static;width:auto;height:auto;overflow:visible;clip-path:none}
+  .tools li{display:inline;min-height:0;padding:0;border:0;background:none;font-size:10pt}
+  .tools li::before,.tools span,.row .what .cv-act{display:none}
   .tools li:not(:last-child) b::after{content:","}
-  .langs li:not(:last-child)::after{content:" \00b7  "}
-  .tools b,.langs b{display:inline;margin:0;font-family:var(--sans);font-weight:500;font-size:10pt;letter-spacing:0}
-  .langs small{font-family:var(--sans);font-size:10pt;text-transform:lowercase}
-  .langs small::before{content:"("}
-  .langs small::after{content:")"}
+  .tools b{display:inline;margin:0;font-family:var(--sans);font-weight:500;font-size:10pt;letter-spacing:0}
   .row .what strong em{color:inherit}
   .row .what strong{font-size:13pt}
   ul.plain li{padding:6pt 0 6pt 34pt}
