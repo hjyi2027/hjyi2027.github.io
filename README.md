@@ -23,6 +23,8 @@ personal site of hyunjun yi. hand-written html, one stylesheet, one script. no b
 
 the search box reads `research.html` directly, so it needs no edits.
 
+when `style.css` or `site.js` changes, bump the `?v=` date on their links in all three pages, so returning visitors don't mix new pages with an old cached file.
+
 ## preview
 
 ```
