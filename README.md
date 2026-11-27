@@ -23,7 +23,7 @@ personal site of hyunjun yi. hand-written html, one stylesheet, one script. no b
 3. update the counts strip, the `all N papers` button, the about paragraph and the `latest` timeline in `index.html` (one `.tl-day` per date, one row per result, newest first), and the counts strip, the research paragraphs (printed only), the figure strips above them (`.cv-figs`), the selected papers (`.cv-pubs`, each with a page-one thumbnail in `thumbs/`, rendered from its public PDF) and results list (`.cv-res`), the workshop venue bar (`.vb`), the repository cards (`.cv-code`) and methods list (`.cv-meth`) under skills, and the hero highlights (`.cv-hl`) and `Updated` stamp in `cv.html` if the paper or the totals they quote moved
 4. bump `lastmod` in `sitemap.xml`
 
-the homepage hero names the venues with acceptances (`.hero-at`); add a venue there when a new one accepts.
+the homepage hero names the venues with acceptances (`.hero-at`), and so does the CV hero (`.cv-at`); add a venue to both when a new one accepts.
 
 the search box and the filter chips read `research.html` directly, so they need no edits.
 

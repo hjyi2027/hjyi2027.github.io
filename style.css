@@ -705,6 +705,16 @@ main.filtering .feature{display:none}
 /* cv: a section name held in the left margin while its rows scroll past */
 /* cv hero: who and where on the left, a contents card on the right that
    counts each section's entries and carries the print button */
+/* the venues that accepted the work, in one line under the title */
+.cv-at{display:flex;flex-wrap:wrap;align-items:baseline;row-gap:6px;margin:clamp(-12px,-.8vw,-4px) 0 clamp(24px,3vw,40px);font-family:var(--display);font-size:clamp(22px,2.3vw,30px);line-height:1.2;letter-spacing:-.01em;color:var(--fg)}
+.cv-at .at-h{margin-right:18px;font-family:var(--mono);font-size:11px;line-height:1.5;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+/* a rule between venues; the one that would open a wrapped line falls
+   outside the clipping box, so no line starts with a divider */
+.cv-at .at-l{flex:1 1 auto;min-width:0;overflow:hidden;padding-bottom:.12em}
+.cv-at .at-i{display:flex;flex-wrap:wrap;row-gap:4px;margin-left:-1.2em}
+.cv-at .at-v{position:relative;margin-left:1.2em;white-space:nowrap}
+.cv-at .at-v::before{content:"";position:absolute;left:-.6em;top:.32em;width:1px;height:.7em;background:var(--line-strong)}
+.cv-at em{font-style:normal;color:color-mix(in srgb,var(--fg) 52%,transparent)}
 .cv-band{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,5vw,72px);align-items:start;margin-top:clamp(12px,2vw,28px)}
 .cv-id{margin:0;border-top:1px solid var(--line-strong)}
 .cv-id div{display:grid;grid-template-columns:104px minmax(0,1fr);gap:16px;align-items:baseline;padding:16px 0 15px;border-bottom:1px solid var(--line)}
@@ -1270,8 +1280,8 @@ html.pal-open{overflow:hidden}
 /* hidden state is gated on .js-reveal, set by an inline script in <head>,
    so nothing flashes and nothing is hidden without js. each block comes
    into focus as it arrives: up a little, out of a soft blur. */
-.js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big,.r-map,.cv-id,.cv-toc,.edu-fig,.hon-top):not(.in){opacity:0;filter:blur(8px);transform:translateY(18px)}
-:is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big,.r-map,.cv-id,.cv-toc,.edu-fig,.hon-top).in{
+.js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.cv-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big,.r-map,.cv-id,.cv-toc,.edu-fig,.hon-top):not(.in){opacity:0;filter:blur(8px);transform:translateY(18px)}
+:is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.cv-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big,.r-map,.cv-id,.cv-toc,.edu-fig,.hon-top).in{
   transition:opacity 900ms var(--ease-out),transform 1000ms var(--ease-out),filter 900ms var(--ease-out);transition-delay:var(--d,0ms)}
 /* headline lines rise out of their own baseline, one after another */
 .js-reveal :is(.poster,.big,.mail,.page-title) .w{transition:clip-path 1000ms var(--ease-out),transform 1000ms var(--ease-out);transition-delay:calc(var(--k,0)*90ms)}
@@ -1350,6 +1360,7 @@ html.pal-open{overflow:hidden}
   .facts.six{grid-template-columns:1fr 1fr;gap:10px}
   .facts.cv-facts{grid-template-columns:1fr 1fr;gap:10px}
   .cv-id div{grid-template-columns:80px minmax(0,1fr);gap:12px}
+  .cv-at .at-h{flex-basis:100%;margin:0 0 6px}
   .edu-fig{padding:14px 14px 12px}
   .ef-l{font-size:12.5px}
   .ef-l em{display:none}
@@ -1511,7 +1522,7 @@ html.pal-open{overflow:hidden}
   .bar-in,.menu,.menu-big li{transition:none;animation:none}
   ::view-transition-old(root),::view-transition-new(root){animation:none}
   .pill-dot,.arrow,.mail-go,.map-c a,.facts.six div,.facts.six div::after,.act::after,.tl a::after,.hbars i::after,.fig svg,.lab-tabs .td,.rows li a::after,.item::after,.bar-row i::after,.split-fig rect,.rail a::before,.link,.item h3 a{transition:none}
-  .js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big,.r-map,.cv-id,.cv-toc,.edu-fig,.hon-top):not(.in){opacity:1;filter:none;transform:none}
+  .js-reveal :is(.kicker,.num,.eyebrow,.lede,h2,h3.sub,.item,.row,ul.plain,.links,.latest,.cols,.rows,.facts,.play,.poster-sub,.hero-cta,.sec-head,.ticker,.feature,.hero-at,.cv-at,.fig-note,.nf-fig,.night,.sponsors,.about-fig,.points,.tl-day,.foot-in,.foot-big,.r-map,.cv-id,.cv-toc,.edu-fig,.hon-top):not(.in){opacity:1;filter:none;transform:none}
   .js-reveal :is(.poster,.big,.mail,.page-title):not(.in) .w{clip-path:none;transform:none}
 }
 @media (prefers-reduced-transparency:reduce){
@@ -1576,6 +1587,7 @@ html.pal-open{overflow:hidden}
   .facts dt{font-size:9.5pt}
   .cv-links{margin-top:8pt}
   .cv-toc,.edu-fig,.cv-hl,.stood{display:none}
+  .cv-at{margin:4pt 0 10pt;font-size:15pt}
   .cv-band{display:block;margin:0}
   .cv-id{display:block;margin:0;border:0}
   .cv-id div{display:inline;padding:0;border:0}
