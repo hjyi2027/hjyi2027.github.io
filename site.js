@@ -89,12 +89,16 @@
     n.textContent = k + (k === 1 ? ' entry' : ' entries');
   });
 
-  // cv: the education chart marks today on its school-year axis, which runs
-  // from august 2024 to july 2027, and only while today falls inside it.
-  var now = document.querySelector('.ef-now');
+  // cv: the education drawing marks today on its slab, which runs from
+  // august 2024 to july 2027; the marker is drawn at august 2024 and moved
+  // along the slab by a month's step, and shown only while today is inside.
+  var now = document.querySelector('.iso-now');
   if (now) {
     var d = new Date(), mo = (d.getFullYear() - 2024) * 12 + d.getMonth() - 7 + (d.getDate() - 1) / 31;
-    if (mo >= 0 && mo <= 36) { now.style.left = (mo / 36 * 100).toFixed(2) + '%'; now.hidden = false; }
+    if (mo >= 0 && mo <= 36) {
+      now.setAttribute('transform', 'translate(' + (mo * now.getAttribute('data-dx')).toFixed(1) + ',' + (mo * now.getAttribute('data-dy')).toFixed(1) + ')');
+      now.classList.add('on');
+    }
   }
 
   // cv: the print link exists only when printing can be triggered.

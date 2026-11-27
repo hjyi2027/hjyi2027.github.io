@@ -832,32 +832,39 @@ main.filtering .feature{display:none}
 .edu-fig{margin:0 0 8px;padding:18px 20px 14px;border:1px solid var(--line);border-radius:20px;
   background-color:#f5f3ea;background-image:linear-gradient(rgba(39,71,212,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(39,71,212,.09) 1px,transparent 1px);
   background-size:24px 24px;background-position:-1px -1px}
-.ef-grid{position:relative;display:grid;grid-template-columns:repeat(36,minmax(0,1fr));row-gap:14px;padding-bottom:26px}
-.ef-y{grid-row:1;padding:0 0 4px 10px;font-family:var(--mono);font-size:11px;line-height:1.45;letter-spacing:.04em;color:var(--fg-2)}
-.ef-y small{display:block;font-size:11px;color:var(--muted)}
-.ef-y.y1{grid-column:1/13;padding-left:0}
-.ef-y.y2{grid-column:13/25}
-.ef-y.y3{grid-column:25/37}
-.ef-row{position:relative;z-index:1;min-width:0}
-.ef-row.ash{grid-column:1/13;grid-row:2}
-.ef-row.sis{grid-column:13/35;grid-row:3}
-.ef-row.su{grid-column:13/18;grid-row:4}
-.ef-l{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:0 0 7px;font-size:13.5px;font-weight:500;line-height:1.3;color:var(--fg);white-space:nowrap}
-.ef-l em{padding:0 4px;background:#f5f3ea;font-style:normal;font-family:var(--mono);font-size:11px;font-weight:400;color:var(--muted)}   /* today's line passes behind it */
-.ef-bar{position:relative;display:block;height:10px;border-radius:999px;background:var(--fg);transform-origin:left;transition:transform 900ms var(--ease-out)}
-.ash .ef-bar{background:linear-gradient(90deg,rgba(23,23,26,0),#9b9b97 55%)}
-.su .ef-bar{background:var(--accent)}
-.sis .ef-bar::after{content:"";position:absolute;right:-3px;top:50%;width:14px;height:14px;margin-top:-7px;border:2px solid var(--fg);border-radius:50%;background:#f5f3ea}
-.ef-sep{position:absolute;top:0;bottom:0;width:0;border-left:1px dashed rgba(23,23,26,.24)}
-.ef-now{position:absolute;top:40px;bottom:0;width:0;border-left:1.5px solid var(--accent);font-family:var(--mono);font-size:10.5px;line-height:1;color:var(--accent);transition:opacity 600ms var(--ease) 900ms}
-.ef-now::before{content:"";position:absolute;left:-4.75px;bottom:-1px;width:8px;height:8px;border-radius:50%;background:var(--accent)}
-.ef-now{text-indent:10px;display:flex;align-items:flex-end;white-space:nowrap}
+/* education as a drawing on the page's drafting paper: the school years
+   as a gridded plate, a block for each school, stanford in the accent
+   stacked on grade 11, one serif word per school on a dashed leader */
+.edu-fig.edu-iso{padding:12px 16px 14px}
+.iso{display:block;width:100%;height:auto;overflow:visible}
+.iso polygon{stroke:rgba(23,23,26,.6);stroke-width:.8;stroke-linejoin:round}
+.iso .sl-t{fill:#fdfcf8}
+.iso .sl-f{fill:#e9e7de}
+.iso .sl-e{fill:#dcdad1}
+.iso .sl-g{fill:none;stroke:rgba(39,71,212,.16);stroke-width:.7}
+.iso .sl-y{fill:none;stroke:rgba(23,23,26,.45);stroke-width:.8;stroke-dasharray:3 3}
+.iso .ash-t{fill:#dddbd3}.iso .ash-f{fill:#c9c7bf}.iso .ash-e{fill:#b5b3aa}
+.iso .sis-t{fill:#3b3b42}.iso .sis-f{fill:#25252a}.iso .sis-e{fill:#17171a}
+.iso .sis-t,.iso .sis-f,.iso .sis-e{stroke:#17171a}
+.iso .su-t{fill:#9fb0f2}.iso .su-f{fill:#2747d4}.iso .su-e{fill:#1d379f}
+.iso .su-t,.iso .su-f,.iso .su-e{stroke:#1a2f8a}
+.iso text{font-family:var(--mono);font-size:12.5px;fill:var(--fg-2)}
+.iso .nm{font-family:var(--display);font-size:25px;letter-spacing:-.01em;fill:var(--fg)}
+.iso-yr path{stroke:rgba(23,23,26,.4);stroke-width:.8;stroke-dasharray:2 2}
+.iso-call path{fill:none;stroke:rgba(23,23,26,.55);stroke-width:.9;stroke-dasharray:3 3}
+.iso-call circle{fill:#f5f3ea;stroke:var(--fg);stroke-width:1.2}
+.iso-now{display:none}
+.iso-now.on{display:inline}
+.iso-now path{stroke:var(--accent);stroke-width:1.5}
+.iso-now circle{fill:var(--accent)}
+.iso .iso-now text{fill:var(--accent)}
+/* the blocks settle onto the slab in order, the stanford one last */
+.edu-fig.in .iso-b,.edu-fig.in .iso-call{transition:opacity 500ms var(--ease),transform 800ms var(--ease-out)}
+.js-reveal .edu-fig:not(.in) .iso-b{opacity:0;transform:translateY(-18px)}
+.js-reveal .edu-fig:not(.in) .iso-call,.js-reveal .edu-fig:not(.in) .iso-now{opacity:0}
+.edu-fig.in .b1{transition-delay:120ms}.edu-fig.in .b2{transition-delay:300ms}.edu-fig.in .b3{transition-delay:620ms}
+.edu-fig.in .iso-call,.edu-fig.in .iso-now{transition:opacity 500ms var(--ease) 900ms}
 .edu-fig figcaption{margin:2px 0 0;padding-top:10px;border-top:1px dashed rgba(23,23,26,.2);font-family:var(--mono);font-size:11px;line-height:1.5;color:var(--muted)}
-.js-reveal .edu-fig:not(.in) .ef-bar{transform:scaleX(0)}
-.js-reveal .edu-fig:not(.in) .ef-now{opacity:0}
-.edu-fig.in .ash .ef-bar{transition-delay:150ms}
-.edu-fig.in .sis .ef-bar{transition-delay:320ms}
-.edu-fig.in .su .ef-bar{transition-delay:490ms}
 .cv-body .row::after{content:"";position:absolute;inset:6px -22px;z-index:-1;border-radius:20px;background:var(--surface-2);
   opacity:0;pointer-events:none;transition:opacity 300ms var(--ease)}
 .cv-body .row:first-child::after{top:-16px}
@@ -1362,8 +1369,8 @@ html.pal-open{overflow:hidden}
   .cv-id div{grid-template-columns:80px minmax(0,1fr);gap:12px}
   .cv-at .at-h{flex-basis:100%;margin:0 0 6px}
   .edu-fig{padding:14px 14px 12px}
-  .ef-l{font-size:12.5px}
-  .ef-l em{display:none}
+  .iso .nm{font-size:32px}
+  .iso .iso-yr text,.iso .iso-now text{font-size:19px}
   .cv-res a{grid-template-columns:1fr;gap:4px;padding-right:44px}
   .res-v{grid-row:auto;font-size:24px}
   .cv-sel a{padding-right:44px}
@@ -1498,9 +1505,8 @@ html.pal-open{overflow:hidden}
   .cv-facts div,.cv-facts div::after,.cv-facts .dots i{transition:none}
   .js-reveal .row:not(.in) .cv-figs div,.js-reveal .row:not(.in) .tools li{opacity:1;transform:none}
   .row.in .tools li{animation:none}
-  .js-reveal .edu-fig:not(.in) .ef-bar{transform:none}
-  .js-reveal .edu-fig:not(.in) .ef-now{opacity:1}
-  .ef-bar,.ef-now{transition:none}
+  .js-reveal .edu-fig:not(.in) :is(.iso-b,.iso-call,.iso-now){opacity:1;transform:none}
+  .edu-fig.in :is(.iso-b,.iso-call,.iso-now){transition:none}
   .js-reveal .hon-top:not(.in) .hon-fig :is(.on,.br,.brt,.brt-l){opacity:1}
   .js-reveal .hon-top:not(.in) .hon-fig .pd{transform:none}
   .hon-top li,.hon-fig *,.hon-more li{transition:none}
