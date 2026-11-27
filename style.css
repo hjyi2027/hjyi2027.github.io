@@ -158,6 +158,9 @@ html.menu-open{overflow:hidden}
 .hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin:36px 0 0}
 .hero-at{margin:44px 0 0;max-width:46ch;font-size:13px;line-height:1.6;color:var(--muted)}
 .hero-at span{margin-right:6px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.hero-at + .hero-at{margin-top:10px}
+.hero-at a{color:inherit;text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:2px}
+.hero-at a:hover{color:var(--fg);text-decoration-color:currentColor}
 /* the hero figure: a live diagram on drafting paper that fades into the page */
 .hero-fig{position:absolute;inset:0 0 0 45%}
 .hero-fig::before{content:"";position:absolute;inset:0;

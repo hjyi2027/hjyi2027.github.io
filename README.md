@@ -4,7 +4,7 @@ personal site of hyunjun yi. hand-written html, one stylesheet, one script. no b
 
 ## pages
 
-- `index.html`: home. name, a short intro, the venues, and a drawing of the largest isosceles set in nine dimensions
+- `index.html`: home. name, a short intro, the venues, one line of honors, and a drawing of the largest isosceles set in nine dimensions
 - `research.html`: every paper, one title and one status line each
 - `404.html`: not-found page (absolute paths, since it is served from any url)
 
